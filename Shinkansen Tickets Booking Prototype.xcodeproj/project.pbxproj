@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */; };
+		D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */; };
+		D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */; };
+		D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DC228B90AC00791F94 /* SeatClassSelectionViewController.swift */; };
+		D074B1E2228B90AC00791F94 /* SeatMapSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DD228B90AC00791F94 /* SeatMapSelectionViewController.swift */; };
+		D074B1E3228B90AC00791F94 /* BookingSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DE228B90AC00791F94 /* BookingSummaryViewController.swift */; };
+		D074B1E5228B90BD00791F94 /* BookingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1E4228B90BD00791F94 /* BookingNavigationController.swift */; };
+		D074B1E8228B926F00791F94 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1E7228B926F00791F94 /* Fonts.swift */; };
+		D074B1EA228B927600791F94 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1E9228B927600791F94 /* Colors.swift */; };
+		D074B1EC228B928100791F94 /* Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1EB228B928100791F94 /* Layers.swift */; };
+		D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */; };
+		D0EAF1BA228B7FB700F3D4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */; };
+		D0EAF1BC228B7FB900F3D4F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */; };
+		D0EAF1BF228B7FB900F3D4F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeInitialViewController.swift; sourceTree = "<group>"; };
+		D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCriteriaViewController.swift; sourceTree = "<group>"; };
+		D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainSelectionViewController.swift; sourceTree = "<group>"; };
+		D074B1DC228B90AC00791F94 /* SeatClassSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatClassSelectionViewController.swift; sourceTree = "<group>"; };
+		D074B1DD228B90AC00791F94 /* SeatMapSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatMapSelectionViewController.swift; sourceTree = "<group>"; };
+		D074B1DE228B90AC00791F94 /* BookingSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingSummaryViewController.swift; sourceTree = "<group>"; };
+		D074B1E4228B90BD00791F94 /* BookingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingNavigationController.swift; sourceTree = "<group>"; };
+		D074B1E7228B926F00791F94 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		D074B1E9228B927600791F94 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D074B1EB228B928100791F94 /* Layers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layers.swift; sourceTree = "<group>"; };
+		D0EAF1B1228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shinkansen Tickets Booking Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D0EAF1B9228B7FB700F3D4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D0EAF1BE228B7FB900F3D4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D0EAF1C0228B7FB900F3D4F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D0EAF1AE228B7FB700F3D4F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D074B1D9228B90AC00791F94 /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */,
+				D074B1E4228B90BD00791F94 /* BookingNavigationController.swift */,
+				D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */,
+				D074B1DC228B90AC00791F94 /* SeatClassSelectionViewController.swift */,
+				D074B1DD228B90AC00791F94 /* SeatMapSelectionViewController.swift */,
+				D074B1DE228B90AC00791F94 /* BookingSummaryViewController.swift */,
+			);
+			path = Booking;
+			sourceTree = "<group>";
+		};
+		D074B1E6228B926100791F94 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				D074B1E9228B927600791F94 /* Colors.swift */,
+				D074B1E7228B926F00791F94 /* Fonts.swift */,
+				D074B1EB228B928100791F94 /* Layers.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		D0EAF1A8228B7FB700F3D4F6 = {
+			isa = PBXGroup;
+			children = (
+				D0EAF1B3228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype */,
+				D0EAF1B2228B7FB700F3D4F6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0EAF1B2228B7FB700F3D4F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0EAF1B1228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0EAF1B3228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype */ = {
+			isa = PBXGroup;
+			children = (
+				D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */,
+				D074B1E6228B926100791F94 /* DesignSystem */,
+				D074B1D9228B90AC00791F94 /* Booking */,
+				D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */,
+				D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */,
+				D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */,
+				D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */,
+				D0EAF1C0228B7FB900F3D4F6 /* Info.plist */,
+			);
+			path = "Shinkansen Tickets Booking Prototype";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D0EAF1B0228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0EAF1C3228B7FB900F3D4F6 /* Build configuration list for PBXNativeTarget "Shinkansen Tickets Booking Prototype" */;
+			buildPhases = (
+				D0EAF1AD228B7FB700F3D4F6 /* Sources */,
+				D0EAF1AE228B7FB700F3D4F6 /* Frameworks */,
+				D0EAF1AF228B7FB700F3D4F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shinkansen Tickets Booking Prototype";
+			productName = "Shinkansen Tickets Booking Prototype";
+			productReference = D0EAF1B1228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D0EAF1A9228B7FB700F3D4F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Virakri Jinangkul";
+				TargetAttributes = {
+					D0EAF1B0228B7FB700F3D4F6 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = D0EAF1AC228B7FB700F3D4F6 /* Build configuration list for PBXProject "Shinkansen Tickets Booking Prototype" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D0EAF1A8228B7FB700F3D4F6;
+			productRefGroup = D0EAF1B2228B7FB700F3D4F6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D0EAF1B0228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D0EAF1AF228B7FB700F3D4F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0EAF1BF228B7FB900F3D4F6 /* LaunchScreen.storyboard in Resources */,
+				D0EAF1BC228B7FB900F3D4F6 /* Assets.xcassets in Resources */,
+				D0EAF1BA228B7FB700F3D4F6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D0EAF1AD228B7FB700F3D4F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
+				D074B1EA228B927600791F94 /* Colors.swift in Sources */,
+				D074B1E3228B90AC00791F94 /* BookingSummaryViewController.swift in Sources */,
+				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
+				D074B1E5228B90BD00791F94 /* BookingNavigationController.swift in Sources */,
+				D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */,
+				D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */,
+				D074B1EC228B928100791F94 /* Layers.swift in Sources */,
+				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
+				D074B1E8228B926F00791F94 /* Fonts.swift in Sources */,
+				D074B1E2228B90AC00791F94 /* SeatMapSelectionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0EAF1B9228B7FB700F3D4F6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0EAF1BE228B7FB900F3D4F6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D0EAF1C1228B7FB900F3D4F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D0EAF1C2228B7FB900F3D4F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D0EAF1C4228B7FB900F3D4F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EJ5UD9292F;
+				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virakri.Shinkansen-Tickets-Booking-Prototype";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0EAF1C5228B7FB900F3D4F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EJ5UD9292F;
+				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virakri.Shinkansen-Tickets-Booking-Prototype";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D0EAF1AC228B7FB700F3D4F6 /* Build configuration list for PBXProject "Shinkansen Tickets Booking Prototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0EAF1C1228B7FB900F3D4F6 /* Debug */,
+				D0EAF1C2228B7FB900F3D4F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0EAF1C3228B7FB900F3D4F6 /* Build configuration list for PBXNativeTarget "Shinkansen Tickets Booking Prototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0EAF1C4228B7FB900F3D4F6 /* Debug */,
+				D0EAF1C5228B7FB900F3D4F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D0EAF1A9228B7FB700F3D4F6 /* Project object */;
+}
