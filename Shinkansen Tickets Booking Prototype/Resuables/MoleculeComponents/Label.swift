@@ -7,7 +7,13 @@
 //
 
 import UIKit
+import Kumi
 
 class Label: UILabel {
     
+    var textStyle: TextStyle?
+    
+    internal func themeUpdated() {
+        
+    }
 }

@@ -16,18 +16,18 @@ struct ConstraintEqual : OptionSet {
     static let bottom = ConstraintEqual(rawValue: 1 << 2)
     static let trailing = ConstraintEqual(rawValue: 1 << 3)
     
-    static let topMargin = ConstraintEqual(rawValue: 1 << 10)
-    static let leadingMargin = ConstraintEqual(rawValue: 1 << 11)
-    static let bottomMargin = ConstraintEqual(rawValue: 1 << 12)
-    static let trailingMargin = ConstraintEqual(rawValue: 1 << 13)
+    static let topMargin = ConstraintEqual(rawValue: 1 << 4)
+    static let leadingMargin = ConstraintEqual(rawValue: 1 << 5)
+    static let bottomMargin = ConstraintEqual(rawValue: 1 << 6)
+    static let trailingMargin = ConstraintEqual(rawValue: 1 << 7)
     
-    static let topSafeArea = ConstraintEqual(rawValue: 1 << 20)
-    static let leadingSafeArea = ConstraintEqual(rawValue: 1 << 21)
-    static let bottomSafeArea = ConstraintEqual(rawValue: 1 << 22)
-    static let trailingSafeArea = ConstraintEqual(rawValue: 1 << 23)
+    static let topSafeArea = ConstraintEqual(rawValue: 1 << 8)
+    static let leadingSafeArea = ConstraintEqual(rawValue: 1 << 9)
+    static let bottomSafeArea = ConstraintEqual(rawValue: 1 << 10)
+    static let trailingSafeArea = ConstraintEqual(rawValue: 1 << 11)
     
-    static let centerVertical = ConstraintEqual(rawValue: 1 << 50)
-    static let centerHorizontal = ConstraintEqual(rawValue: 1 << 51)
+    static let centerVertical = ConstraintEqual(rawValue: 1 << 12)
+    static let centerHorizontal = ConstraintEqual(rawValue: 1 << 13)
     
     static let edges:ConstraintEqual = [top, leading, bottom, trailing]
     static let marginEdges:ConstraintEqual = [topMargin, leadingMargin, bottomMargin, trailingMargin]
@@ -39,7 +39,6 @@ extension UIView {
     
     convenience init(containingView: UIView,
                      withConstaintEquals equals: ConstraintEqual,
-                     isConstraintEdgeToMargin: Bool = true,
                      insetsConstant: NSDirectionalEdgeInsets = .zero) {
         self.init(frame: .zero)
         addSubview(containingView, withConstaintEquals: equals,
