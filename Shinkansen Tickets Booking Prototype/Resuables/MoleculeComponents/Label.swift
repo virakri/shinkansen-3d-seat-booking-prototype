@@ -11,9 +11,21 @@ import Kumi
 
 class Label: UILabel {
     
-    var textStyle: TextStyle?
+    override var text: String? {
+        didSet {
+            textStyleUpdated()
+        }
+    }
     
-    internal func themeUpdated() {
-        
+    var textStyle: TextStyle? {
+        didSet {
+            textStyleUpdated()
+        }
+    }
+    
+    internal func textStyleUpdated() {
+        if let text = text, let textStyle = textStyle {
+            setText(text, using: textStyle)
+        }
     }
 }

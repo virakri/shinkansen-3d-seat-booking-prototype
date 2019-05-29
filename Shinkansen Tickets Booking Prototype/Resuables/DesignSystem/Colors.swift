@@ -8,7 +8,12 @@
 
 import UIKit
 
-internal enum colorTheme {
+//internal struct ColorTheme {
+//    var light: UIColor
+//    var dark: UIColor
+//}
+
+internal enum ColorTheme {
     case light, dark
     
     var component: UIColor.Component {

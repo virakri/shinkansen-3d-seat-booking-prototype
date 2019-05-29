@@ -8,4 +8,4 @@
 
 import UIKit
 
-var currentColorTheme: colorTheme = .light
+var currentColorTheme: ColorTheme = .light
