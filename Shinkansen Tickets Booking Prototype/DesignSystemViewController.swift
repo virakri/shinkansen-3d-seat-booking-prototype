@@ -13,43 +13,44 @@ class DesignSystemBlockView: UIView {
     
     var state: UIControl.State = .normal {
         didSet {
-            if let view = subviews.first as? LayerStyleView {
-                view.state = state
+            if let contentView = contentView as? LayerStyleView {
+                contentView.state = state
             }
         }
     }
     
+    var title: String?
+    
+    var contentView: UIView?
+    
     init(withTextStyle textStyle: TextStyle, title: String) {
         super.init(frame: .zero)
         
-        let view = BlockWithHeader(title: title, view: TextStyleLabel(withTextStyle: textStyle))
+        self.title = title
         
-        addSubview(view,
-                   withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom])
+        contentView = TextStyleLabel(withTextStyle: textStyle)
         
-        preservesSuperviewLayoutMargins = true
+        setupView()
     }
     
     init(withColor color: UIColor, title: String) {
         super.init(frame: .zero)
         
-        let view = BlockWithHeader(title: title, view: ColorView(withColor: color))
+        self.title = title
         
-        addSubview(view,
-                   withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom])
+        contentView = ColorView(withColor: color)
         
-        preservesSuperviewLayoutMargins = true
+        setupView()
     }
     
     init(withLayerStylesState layerStylesState: LayerStyleView.LayerStyleState, title: String) {
         super.init(frame: .zero)
         
-        let view = BlockWithHeader(title: title, view: LayerStyleView(withLayerStylesState: layerStylesState))
+        self.title = title
         
-        addSubview(view,
-                   withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom])
+        contentView = LayerStyleView(withLayerStylesState: layerStylesState)
         
-        preservesSuperviewLayoutMargins = true
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +59,14 @@ class DesignSystemBlockView: UIView {
     
     private func setupView() {
         
+        guard let contentView = contentView else { return }
+        
+        let view = BlockWithHeader(title: title, view: contentView)
+        
+        addSubview(view,
+                   withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom])
+        
+        preservesSuperviewLayoutMargins = true
     }
     
     class TextStyleLabel: Label {
@@ -129,7 +138,7 @@ class DesignSystemBlockView: UIView {
         private func animateLayerStyle(by state: UIControl.State) {
             let animationStyle = CABasicAnimationStyle(duration: 0.35,
                                                        delay: 0,
-                                                       timingFunction: .init(controlPoints: 0.8, 0, 0.2, 1))
+                                                       timingFunction: .init(controlPoints: 0, 0, 0.2, 1))
             switch state {
             case .normal:
                 layerView.layer.setAnimatedLayer(layerStylesState.normal, using: animationStyle)
@@ -149,11 +158,11 @@ class DesignSystemBlockView: UIView {
     
     class BlockWithHeader: UIStackView {
         
-        var title: String
+        var title: String?
         
         var view: UIView
         
-        init(title: String, view: UIView) {
+        init(title: String?, view: UIView) {
             self.title = title
             self.view = view
             super.init(frame: .zero)
@@ -211,50 +220,47 @@ class DesignSystemView: UIView {
         _accessoryView = accessoryView ?? _accessoryView
         _accessoryView.isHidden = accessoryView == nil
         
-        addSubview({
-            let stackView =
-                UIStackView([
-                    {
-                        let labelContainerView = UIView()
-                        labelContainerView.preservesSuperviewLayoutMargins = true
-                        labelContainerView.addSubview({
-                            let headlineLabel = Label()
-                            headlineLabel.text = title
-                            headlineLabel.font = .systemFont(ofSize: 36, weight: .heavy)
-                            return headlineLabel
-                        }(), withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom])
-                        return labelContainerView
-                    }(),
-                    {
-                        let scrollView = UIScrollView()
-                        scrollView.addSubview({
-                            let containerView = UIView()
-                            containerView.addSubview({
-                                let stackView =
-                                    UIStackView(designSystemBlockViews,
-                                                axis: .vertical,
-                                                distribution: .fill,
-                                                alignment: .fill,
-                                                spacing: 16)
-                                stackView.preservesSuperviewLayoutMargins = true
-                                return stackView
-                            }(), withConstaintEquals: .edges)
-                            containerView.preservesSuperviewLayoutMargins = true
-                            return containerView
-                        }(), withConstaintEquals: .edges, insetsConstant: .init(top: 0, leading: 0, bottom: 24, trailing: 0))
-                        scrollView.widthAnchor.constraint(equalTo: scrollView.subviews.first!.widthAnchor).isActive = true
-                        scrollView.preservesSuperviewLayoutMargins = true
-                        scrollView.alwaysBounceVertical = true
-                        
-                        return scrollView
-                    }(),
-                    _accessoryView],
-                            axis: .vertical,
-                            spacing: 8)
-            
-            stackView.preservesSuperviewLayoutMargins = true
-            return stackView
-        }(), withConstaintEquals: .edges)
+        //
+        let labelContainerView = UIView()
+        labelContainerView.preservesSuperviewLayoutMargins = true
+        labelContainerView.addSubview({
+            let headlineLabel = Label()
+            headlineLabel.text = title
+            headlineLabel.font = .systemFont(ofSize: 36, weight: .heavy)
+            return headlineLabel
+        }(), withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom])
+        
+        let scrollView = UIScrollView()
+        scrollView.addSubview({
+            let containerView = UIView()
+            containerView.addSubview({
+                let stackView =
+                    UIStackView(designSystemBlockViews,
+                                axis: .vertical,
+                                distribution: .fill,
+                                alignment: .fill,
+                                spacing: 16)
+                stackView.preservesSuperviewLayoutMargins = true
+                return stackView
+            }(), withConstaintEquals: .edges)
+            containerView.preservesSuperviewLayoutMargins = true
+            return containerView
+        }(), withConstaintEquals: .edges,
+             insetsConstant: .init(top: 0, leading: 0, bottom: 24, trailing: 0))
+        scrollView.widthAnchor.constraint(equalTo: scrollView.subviews.first!.widthAnchor).isActive = true
+        scrollView.preservesSuperviewLayoutMargins = true
+        scrollView.alwaysBounceVertical = true
+        
+        //
+        let stackView =
+            UIStackView([labelContainerView, scrollView, _accessoryView],
+                        axis: .vertical,
+                        spacing: 8)
+        
+        stackView.preservesSuperviewLayoutMargins = true
+
+        
+        addSubview(stackView, withConstaintEquals: .edges)
         
         preservesSuperviewLayoutMargins = true
     }
@@ -264,6 +270,10 @@ class DesignSystemViewController: ViewController {
     
     private let dummyText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     
+    var textStylesView: DesignSystemView!
+    var ColorsView: DesignSystemView!
+    var LayerStylesView: DesignSystemView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -271,7 +281,7 @@ class DesignSystemViewController: ViewController {
     override func setupView() {
         super.setupView()
         
-        let textStylesView = DesignSystemView(title: "Text Style",
+        textStylesView = DesignSystemView(title: "Text Style",
                                               designSystemBlockViews: [DesignSystemBlockView(withTextStyle: .headline,
                                                                                              title: "Headline"),
                                                                        DesignSystemBlockView(withTextStyle: .subheadline,
@@ -285,7 +295,7 @@ class DesignSystemViewController: ViewController {
                                                                        DesignSystemBlockView(withTextStyle: .button,
                                                                                              title: "Button")])
         
-        let ColorsView = DesignSystemView(title: "Colors",
+        ColorsView = DesignSystemView(title: "Colors",
                                           designSystemBlockViews: [DesignSystemBlockView(withColor: UIColor.accent.main,
                                                                                          title: "Accent Main"),
                                                                    DesignSystemBlockView(withColor: UIColor.accent.dark,
@@ -304,7 +314,7 @@ class DesignSystemViewController: ViewController {
                                                                                          title: "Basic White"),
             ])
         
-        let LayerStylesView = DesignSystemView(title: "Layer Styles",
+        LayerStylesView = DesignSystemView(title: "Layer Styles",
                                                designSystemBlockViews: [DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
                                                 .LayerStyleState(normal: LayerStyle.card.normal,
                                                                  highlighted: LayerStyle.card.highlighted,
@@ -334,11 +344,21 @@ class DesignSystemViewController: ViewController {
                                                                                              disabled: LayerStyle.outlinedButton.disabled,
                                                                                              selected: nil,
                                                                                              focused: nil) , title: "Large Card")
-            ])
+            ], accessoryView: {
+                let stateContainterView = UIView()
+                stateContainterView.addSubview({
+                    let stateSegmentedControl = UISegmentedControl(items: ["Normal", "Highlighted","Disabled"])
+                    stateSegmentedControl.selectedSegmentIndex = 0
+                    stateSegmentedControl.addTarget(self, action: #selector(stateSegmentedControlValueChanged), for: .valueChanged)
+                    return stateSegmentedControl
+                }(), withConstaintEquals: .marginEdges)
+                stateContainterView.preservesSuperviewLayoutMargins = true
+                return stateContainterView
+        }())
         
         let contentView = UIView()
-        //        contentView.addSubview(textStylesView, withConstaintEquals: .edges)
-        //        contentView.addSubview(ColorsView, withConstaintEquals: .edges)
+//                contentView.addSubview(textStylesView, withConstaintEquals: .edges)
+//                contentView.addSubview(ColorsView, withConstaintEquals: .edges)
         contentView.addSubview(LayerStylesView, withConstaintEquals: .edges)
         contentView.preservesSuperviewLayoutMargins = true
         
@@ -362,5 +382,18 @@ class DesignSystemViewController: ViewController {
         
         view.backgroundColor = .white
         
+    }
+    
+    @objc func stateSegmentedControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            LayerStylesView.state = .normal
+        case 1:
+            LayerStylesView.state = .highlighted
+        case 2:
+            LayerStylesView.state = .disabled
+        default:
+            break
+        }
     }
 }
