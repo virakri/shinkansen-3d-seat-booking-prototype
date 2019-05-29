@@ -177,7 +177,7 @@ class DesignSystemBlockView: UIView {
             
             let titleLabel = UILabel()
             titleLabel.text = title
-            titleLabel.textColor = .gray
+            titleLabel.textColor = .lightGray
             titleLabel.font = .monospacedDigitSystemFont(ofSize: 12, weight: .medium)
             
             addArrangedSubview(titleLabel)
@@ -228,7 +228,8 @@ class DesignSystemView: UIView {
             headlineLabel.text = title
             headlineLabel.font = .systemFont(ofSize: 36, weight: .heavy)
             return headlineLabel
-        }(), withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom])
+        }(), withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom],
+             insetsConstant: .init(top: 16, leading: 0, bottom: 0, trailing: 0))
         
         let scrollView = UIScrollView()
         scrollView.addSubview({
@@ -266,13 +267,109 @@ class DesignSystemView: UIView {
     }
 }
 
+class DesignSystemTabBar: UIControl {
+    
+    class TabButton: UIControl {
+        
+        var tabIndex: Int?
+        
+        var title: String? {
+            didSet {
+                titleLabel.text = title
+            }
+        }
+        
+        private var titleLabel: UILabel
+        
+        override var isSelected: Bool {
+            didSet {
+                UIView.animate(withDuration: isSelected ? 0 : 0.15, animations: {
+                    self.alpha = self.isSelected ? 1 : 0.33
+                })
+            }
+        }
+        
+        override var isHighlighted: Bool {
+            didSet {
+                UIView.animate(withDuration: isHighlighted ? 0 : 0.15, animations: {
+                    self.titleLabel.alpha = self.isHighlighted ? 0.5 : 1
+                })
+            }
+        }
+        
+        override init(frame: CGRect) {
+            titleLabel = UILabel()
+            super.init(frame: .zero)
+            
+            titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
+            titleLabel.textColor = UIColor.accent.main
+            
+            addSubview(titleLabel, withConstaintEquals: .edges)
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+    
+    var selectedIndex: Int = 0 {
+        didSet {
+            sendActions(for: .valueChanged)
+            tabButtons.forEach { (button) in
+                button.isSelected = button.tabIndex == selectedIndex
+            }
+        }
+    }
+    
+    fileprivate var tabButtons: [TabButton]
+    
+    init(items: [String]) {
+        tabButtons = []
+        super.init(frame: .zero)
+        
+        setupView(with: items)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView(with items: [String]) {
+        
+        items.enumerated().forEach { (index: Int, item: String)  in
+            let button = TabButton()
+            button.title = item
+            button.isSelected = false
+            button.tabIndex = index
+            button.addTarget(self, action: #selector(tabButtonDidTouch), for: .touchUpInside)
+            tabButtons.append(button)
+        }
+        
+        selectedIndex = 0
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        
+        addSubview(stackView, withConstaintEquals: .edges)
+        
+        tabButtons.forEach { (button) in
+            stackView.addArrangedSubview(button)
+        }
+    }
+    
+    @objc func tabButtonDidTouch(_ sender: TabButton) {
+        guard let tabIndex = sender.tabIndex else { return }
+        selectedIndex = tabIndex
+    }
+}
+
 class DesignSystemViewController: ViewController {
     
-    private let dummyText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    
     var textStylesView: DesignSystemView!
-    var ColorsView: DesignSystemView!
-    var LayerStylesView: DesignSystemView!
+    var colorsView: DesignSystemView!
+    var layerStylesView: DesignSystemView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -295,7 +392,7 @@ class DesignSystemViewController: ViewController {
                                                                        DesignSystemBlockView(withTextStyle: .button,
                                                                                              title: "Button")])
         
-        ColorsView = DesignSystemView(title: "Colors",
+        colorsView = DesignSystemView(title: "Colors",
                                           designSystemBlockViews: [DesignSystemBlockView(withColor: UIColor.accent.main,
                                                                                          title: "Accent Main"),
                                                                    DesignSystemBlockView(withColor: UIColor.accent.dark,
@@ -314,13 +411,13 @@ class DesignSystemViewController: ViewController {
                                                                                          title: "Basic White"),
             ])
         
-        LayerStylesView = DesignSystemView(title: "Layer Styles",
+        layerStylesView = DesignSystemView(title: "Layer Styles",
                                                designSystemBlockViews: [DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
                                                 .LayerStyleState(normal: LayerStyle.card.normal,
                                                                  highlighted: LayerStyle.card.highlighted,
                                                                  disabled: LayerStyle.card.disabled,
                                                                  selected: nil,
-                                                                 focused: nil) , title: "Card"),
+                                                                  focused: nil) , title: "Card"),
                                                                         
                                                                         DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
                                                                             .LayerStyleState(normal: LayerStyle.largeCard.normal,
@@ -357,20 +454,24 @@ class DesignSystemViewController: ViewController {
         }())
         
         let contentView = UIView()
-//                contentView.addSubview(textStylesView, withConstaintEquals: .edges)
-//                contentView.addSubview(ColorsView, withConstaintEquals: .edges)
-        contentView.addSubview(LayerStylesView, withConstaintEquals: .edges)
+        contentView.addSubview(textStylesView, withConstaintEquals: .edges)
+        contentView.addSubview(colorsView, withConstaintEquals: .edges)
+        contentView.addSubview(layerStylesView, withConstaintEquals: .edges)
         contentView.preservesSuperviewLayoutMargins = true
+        
+        let tabBar = DesignSystemTabBar(items: ["Components", "Colors", "Text Styles", "Layer Styles"])
+        tabBar.addTarget(self, action: #selector(tabBarValueChanged), for: .valueChanged)
+        tabBar.selectedIndex = 0
+        tabBar.translatesAutoresizingMaskIntoConstraints = false
+        tabBar.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         let tabBarView: UIView = {
             let tabBarContainerView = UIView()
-            tabBarContainerView.addSubview({
-                let view = UIView()
-                view.backgroundColor = .red
-                view.translatesAutoresizingMaskIntoConstraints = false
-                view.heightAnchor.constraint(equalToConstant: 48).isActive = true
-                return view
-            }(), withConstaintEquals: [.top, .leadingMargin, .bottomSafeArea, .trailingMargin])
+            tabBarContainerView.addSubview(tabBar,
+                                           withConstaintEquals: [.top,
+                                                                 .leadingMargin,
+                                                                 .bottomSafeArea,
+                                                                 .trailingMargin])
             tabBarContainerView.preservesSuperviewLayoutMargins = true
             return tabBarContainerView
         }()
@@ -387,11 +488,30 @@ class DesignSystemViewController: ViewController {
     @objc func stateSegmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            LayerStylesView.state = .normal
+            layerStylesView.state = .normal
         case 1:
-            LayerStylesView.state = .highlighted
+            layerStylesView.state = .highlighted
         case 2:
-            LayerStylesView.state = .disabled
+            layerStylesView.state = .disabled
+        default:
+            break
+        }
+    }
+    
+    @objc func tabBarValueChanged(_ sender: DesignSystemTabBar) {
+        textStylesView.isHidden = true
+        colorsView.isHidden = true
+        layerStylesView.isHidden = true
+        
+        switch sender.selectedIndex {
+        case 0:
+            break
+        case 1:
+            colorsView.isHidden = false
+        case 2:
+            textStylesView.isHidden = false
+        case 3:
+            layerStylesView.isHidden = false
         default:
             break
         }
