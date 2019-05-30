@@ -277,7 +277,7 @@ class DesignSystemView: UIView {
                         spacing: 8)
         
         stackView.preservesSuperviewLayoutMargins = true
-
+        
         
         addSubview(stackView, withConstaintEquals: .edges)
         
@@ -397,103 +397,127 @@ class DesignSystemViewController: ViewController {
     override func setupView() {
         super.setupView()
         
-        componentsView = DesignSystemView(title: "Components Style",
-                                          designSystemBlockViews: [DesignSystemBlockView(withView: {
-                                            let button = Button(type: .contained)
-                                            button.setTitle("Lorem Ipsum")
-                                            return button
-                                          }(),
-                                                                                         title: "Contained Button",
-                                                                                         constaintEquals: [.top, .bottom, .centerHorizontal]),
-                                                                   DesignSystemBlockView(withView: {
-                                                                    let button = Button(type: .outlined)
-                                                                    button.setTitle("Lorem Ipsum")
-                                                                    return button
-                                                                   }(),
-                                                                                         title: "Outlined Button",
-                                                                                         constaintEquals: [.top, .bottom, .centerHorizontal]),
-                                                                   DesignSystemBlockView(withTextStyle: .body,
-                                                                                         title: "Body"),
-                                                                   DesignSystemBlockView(withTextStyle: .caption1,
-                                                                                         title: "Caption 1"),
-                                                                   DesignSystemBlockView(withTextStyle: .caption2,
-                                                                                         title: "Caption 2"),
-                                                                   DesignSystemBlockView(withTextStyle: .button,
-                                                                                         title: "Button")])
+        componentsView =
+            DesignSystemView(title: "Components Style",
+                             designSystemBlockViews: [
+                                DesignSystemBlockView(withView: {
+                                    let button = Button(type: .contained)
+                                    button.setTitle("Lorem Ipsum")
+                                    return button
+                                }(),title: "Contained Button",
+                                    constaintEquals: [.top, .bottom, .centerHorizontal]),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let button = Button(type: .outlined)
+                                    button.setTitle("Lorem Ipsum")
+                                    return button
+                                }(), title: "Outlined Button",
+                                     constaintEquals: [.top, .bottom, .centerHorizontal]),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let cardControl = CardControl(type: .regular)
+                                    cardControl.translatesAutoresizingMaskIntoConstraints = false
+                                    cardControl.heightAnchor.constraint(equalToConstant: 112).isActive = true
+                                    return cardControl
+                                }(), title: "Card",
+                                     constaintEquals: .edges),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let cardControl = CardControl(type: .large)
+                                    cardControl.translatesAutoresizingMaskIntoConstraints = false
+                                    cardControl.heightAnchor.constraint(equalToConstant: 112).isActive = true
+                                    return cardControl
+                                }(), title: "Large Card",
+                                     constaintEquals: .edges),
+                                
+                                
+                                DesignSystemBlockView(withTextStyle: .body,
+                                                      title: "Body"),
+                                DesignSystemBlockView(withTextStyle: .caption1,
+                                                      title: "Caption 1"),
+                                DesignSystemBlockView(withTextStyle: .caption2,
+                                                      title: "Caption 2"),
+                                DesignSystemBlockView(withTextStyle: .button,
+                                                      title: "Button")])
         
         textStylesView = DesignSystemView(title: "Text Style",
-                                              designSystemBlockViews: [DesignSystemBlockView(withTextStyle: .headline,
-                                                                                             title: "Headline"),
-                                                                       DesignSystemBlockView(withTextStyle: .subheadline,
-                                                                                             title: "Subheadline"),
-                                                                       DesignSystemBlockView(withTextStyle: .body,
-                                                                                             title: "Body"),
-                                                                       DesignSystemBlockView(withTextStyle: .caption1,
-                                                                                             title: "Caption 1"),
-                                                                       DesignSystemBlockView(withTextStyle: .caption2,
-                                                                                             title: "Caption 2"),
-                                                                       DesignSystemBlockView(withTextStyle: .button,
-                                                                                             title: "Button")])
+                                          designSystemBlockViews: [
+                                            DesignSystemBlockView(withTextStyle: .headline,
+                                                                  title: "Headline"),
+                                            DesignSystemBlockView(withTextStyle: .subheadline,
+                                                                  title: "Subheadline"),
+                                            DesignSystemBlockView(withTextStyle: .body,
+                                                                  title: "Body"),
+                                            DesignSystemBlockView(withTextStyle: .caption1,
+                                                                  title: "Caption 1"),
+                                            DesignSystemBlockView(withTextStyle: .caption2,
+                                                                  title: "Caption 2"),
+                                            DesignSystemBlockView(withTextStyle: .button,
+                                                                  title: "Button")])
         
         colorsView = DesignSystemView(title: "Colors",
-                                          designSystemBlockViews: [DesignSystemBlockView(withColor: UIColor.accent.main,
-                                                                                         title: "Accent Main"),
-                                                                   DesignSystemBlockView(withColor: UIColor.accent.dark,
-                                                                                         title: "Accent Dark"),
-                                                                   DesignSystemBlockView(withColor: UIColor.accent.light,
-                                                                                         title: "Accent Light"),
-                                                                   DesignSystemBlockView(withColor: UIColor.basic.black,
-                                                                                         title: "Basic Black"),
-                                                                   DesignSystemBlockView(withColor: UIColor.basic.offBlack,
-                                                                                         title: "Basic Off Black"),
-                                                                   DesignSystemBlockView(withColor: UIColor.basic.gray,
-                                                                                         title: "Basic Gray"),
-                                                                   DesignSystemBlockView(withColor: UIColor.basic.offWhite,
-                                                                                         title: "Basic Off White"),
-                                                                   DesignSystemBlockView(withColor: UIColor.basic.white,
-                                                                                         title: "Basic White"),
+                                      designSystemBlockViews: [
+                                        DesignSystemBlockView(withColor: UIColor.accent.main,
+                                                              title: "Accent Main"),
+                                        DesignSystemBlockView(withColor: UIColor.accent.dark,
+                                                              title: "Accent Dark"),
+                                        DesignSystemBlockView(withColor: UIColor.accent.light,
+                                                              title: "Accent Light"),
+                                        DesignSystemBlockView(withColor: UIColor.basic.black,
+                                                              title: "Basic Black"),
+                                        DesignSystemBlockView(withColor: UIColor.basic.offBlack,
+                                                              title: "Basic Off Black"),
+                                        DesignSystemBlockView(withColor: UIColor.basic.gray,
+                                                              title: "Basic Gray"),
+                                        DesignSystemBlockView(withColor: UIColor.basic.offWhite,
+                                                              title: "Basic Off White"),
+                                        DesignSystemBlockView(withColor: UIColor.basic.white,
+                                                              title: "Basic White"),
             ])
         
         layerStylesView = DesignSystemView(title: "Layer Styles",
-                                               designSystemBlockViews: [DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
+                                           designSystemBlockViews: [
+                                            DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
+                                                .LayerStyleState(normal: LayerStyle.button.normal,
+                                                                 highlighted: LayerStyle.button.highlighted,
+                                                                 disabled: LayerStyle.button.disabled,
+                                                                 selected: nil,
+                                                                 focused: nil) , title: "Contained Button")
+                                            ,
+                                            
+                                            DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
+                                                .LayerStyleState(normal: LayerStyle.outlinedButton.normal,
+                                                                 highlighted: LayerStyle.outlinedButton.highlighted,
+                                                                 disabled: LayerStyle.outlinedButton.disabled,
+                                                                 selected: nil,
+                                                                 focused: nil) , title: "Outlined Button")
+                                            ,
+                                            DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
                                                 .LayerStyleState(normal: LayerStyle.card.normal,
                                                                  highlighted: LayerStyle.card.highlighted,
                                                                  disabled: LayerStyle.card.disabled,
                                                                  selected: nil,
-                                                                  focused: nil) , title: "Card"),
-                                                                        
-                                                                        DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
-                                                                            .LayerStyleState(normal: LayerStyle.largeCard.normal,
-                                                                                             highlighted: LayerStyle.largeCard.highlighted,
-                                                                                             disabled: LayerStyle.largeCard.disabled,
-                                                                                             selected: nil,
-                                                                                             focused: nil) , title: "Large Card")
-                                                ,
-                                                                        
-                                                                        DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
-                                                                            .LayerStyleState(normal: LayerStyle.button.normal,
-                                                                                             highlighted: LayerStyle.button.highlighted,
-                                                                                             disabled: LayerStyle.button.disabled,
-                                                                                             selected: nil,
-                                                                                             focused: nil) , title: "Large Card")
-                                                ,
-                                                                        
-                                                                        DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
-                                                                            .LayerStyleState(normal: LayerStyle.outlinedButton.normal,
-                                                                                             highlighted: LayerStyle.outlinedButton.highlighted,
-                                                                                             disabled: LayerStyle.outlinedButton.disabled,
-                                                                                             selected: nil,
-                                                                                             focused: nil) , title: "Large Card")
-            ], accessoryView: {
-                let stateContainterView = UIView()
-                stateContainterView.addSubview({
-                    let stateSegmentedControl = UISegmentedControl(items: ["Normal", "Highlighted","Disabled"])
-                    stateSegmentedControl.selectedSegmentIndex = 0
-                    stateSegmentedControl.addTarget(self, action: #selector(stateSegmentedControlValueChanged), for: .valueChanged)
-                    return stateSegmentedControl
-                }(), withConstaintEquals: .marginEdges)
-                stateContainterView.preservesSuperviewLayoutMargins = true
-                return stateContainterView
+                                                                 focused: nil) , title: "Card"),
+                                            
+                                            DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
+                                                .LayerStyleState(normal: LayerStyle.largeCard.normal,
+                                                                 highlighted: LayerStyle.largeCard.highlighted,
+                                                                 disabled: LayerStyle.largeCard.disabled,
+                                                                 selected: nil,
+                                                                 focused: nil) , title: "Large Card")
+                                            ,
+                                            
+                                            
+                                            ], accessoryView: {
+                                                let stateContainterView = UIView()
+                                                stateContainterView.addSubview({
+                                                    let stateSegmentedControl = UISegmentedControl(items: ["Normal", "Highlighted","Disabled"])
+                                                    stateSegmentedControl.selectedSegmentIndex = 0
+                                                    stateSegmentedControl.addTarget(self, action: #selector(stateSegmentedControlValueChanged), for: .valueChanged)
+                                                    return stateSegmentedControl
+                                                }(), withConstaintEquals: .marginEdges)
+                                                stateContainterView.preservesSuperviewLayoutMargins = true
+                                                return stateContainterView
         }())
         
         let contentView = UIView()

@@ -16,15 +16,16 @@ import UIKit
 extension UIColor {
     
     struct accent {
-        static let main = #colorLiteral(red: 0, green: 0.5450980392, blue: 0.2470588235, alpha: 1)
-        static let dark = #colorLiteral(red: 0.02658655568, green: 0.400528169, blue: 0.196070884, alpha: 1)
-        static let light = #colorLiteral(red: 0.2928808364, green: 0.7157515405, blue: 0.4845416591, alpha: 1)
+        static let main = UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0, green: 0.28, blue: 0.1269064748, alpha: 1) : #colorLiteral(red: 0, green: 0.5450980392, blue: 0.2470588235, alpha: 1)
+        static let dark = UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0, green: 0.2, blue: 0.09064748201, alpha: 1) : #colorLiteral(red: 0.02658655568, green: 0.400528169, blue: 0.196070884, alpha: 1)
+        static let light = UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0, green: 0.35, blue: 0.1586330935, alpha: 1) : #colorLiteral(red: 0.2928808364, green: 0.7157515405, blue: 0.4845416591, alpha: 1)
     }
     
     struct basic {
         static let black = #colorLiteral(red: 0.05098039216, green: 0.05098039216, blue: 0.05098039216, alpha: 1)
         static let offBlack = #colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)
-        static let gray = #colorLiteral(red: 0.5647058824, green: 0.5647058824, blue: 0.5843137255, alpha: 1)
+        static let darkGray = #colorLiteral(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
+        static let gray = UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0.18, green: 0.18, blue: 0.18, alpha: 1) : #colorLiteral(red: 0.5647058824, green: 0.5647058824, blue: 0.5843137255, alpha: 1)
         static let offWhite = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         static let white = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
@@ -61,7 +62,7 @@ extension UIColor {
                                                 contentOnCallToAction: UIColor.basic.white)
     
     static let darkMode: Component = Component(background: UIColor.basic.offBlack,
-                                                cardBackground: UIColor.basic.white,
+                                                cardBackground: UIColor.basic.darkGray,
                                                 primaryText: UIColor.basic.white,
                                                 secondaryText: UIColor.basic.gray,
                                                 onCardPrimaryText: UIColor.basic.black,

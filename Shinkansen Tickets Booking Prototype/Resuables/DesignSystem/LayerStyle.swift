@@ -13,7 +13,7 @@ extension LayerStyle {
     static let none = LayerStyle(opacity: 0)
     struct card {
         static let normal = LayerStyle(opacity: 1,
-                                       cornerRadius: Constant.radiusCorner,
+                                       cornerRadius: Constant.cardRadiusCorner,
                                        backgroundColor: currentColorTheme.component.cardBackground.cgColor,
                                        shadowStyle: ShadowStyle.card.normal
         )
@@ -26,7 +26,7 @@ extension LayerStyle {
     
     struct largeCard {
         static let normal = LayerStyle(opacity: 1,
-                                       cornerRadius: Constant.largeRadiusCorner,
+                                       cornerRadius: Constant.largeCardRadiusCorner,
                                        backgroundColor: currentColorTheme.component.cardBackground.cgColor, //currentColorTheme.component.cardBackground.cgColor,
                                        shadowStyle: ShadowStyle.card.normal
         )
@@ -59,7 +59,7 @@ extension LayerStyle {
 
 extension ShadowStyle {
     
-    static let noShadowStyle = ShadowStyle(shadowOpacity: 0, shadowRadius: 0, shadowOffset: .zero, shadowColor: currentColorTheme.component.shadow.cgColor)
+    static let noShadow = ShadowStyle(shadowOpacity: 0, shadowRadius: 0, shadowOffset: .zero, shadowColor: currentColorTheme.component.shadow.cgColor)
     
     struct card {
         static let normal = ShadowStyle(shadowOpacity: 0.16,

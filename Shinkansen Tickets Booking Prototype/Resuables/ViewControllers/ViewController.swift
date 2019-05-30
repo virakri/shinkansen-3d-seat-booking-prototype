@@ -22,6 +22,10 @@ class ViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(preferredColorThemeChanged(_:)), name: .didColorThemeChange, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(preferredColorThemeChanged(_:)), name: UIAccessibility.boldTextStatusDidChangeNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(preferredColorThemeChanged(_:)), name: UIAccessibility.darkerSystemColorsStatusDidChangeNotification, object: nil)
+        
         setupView()
         setupTheme()
     }

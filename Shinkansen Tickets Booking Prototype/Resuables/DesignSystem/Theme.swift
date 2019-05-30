@@ -8,7 +8,7 @@
 
 import UIKit
 
-var currentColorTheme: ColorTheme = .light
+var currentColorTheme: ColorTheme = .dark
 
 internal enum ColorTheme {
     case light, dark

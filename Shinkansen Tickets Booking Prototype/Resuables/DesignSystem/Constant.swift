@@ -32,8 +32,11 @@ struct Constant {
                                                                 bottom: multiplier * 14,
                                                                 right: multiplier * 14)
     
-    static let radiusCorner: CGFloat = multiplier * 8
-    static let largeRadiusCorner: CGFloat = multiplier * 18
+    static let cardRadiusCorner: CGFloat = multiplier * 8
+    static let largeCardRadiusCorner: CGFloat = multiplier * 20
+    
+    static let cardLayoutMarginInset: NSDirectionalEdgeInsets = .init(vertical: 12, horizontal: 16)
+    static let largeCardLayoutMarginInset: NSDirectionalEdgeInsets = .init(vertical: 20, horizontal: 16)
     
     static let gutterSpacing: CGFloat = multiplier * 16
     

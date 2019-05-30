@@ -10,6 +10,8 @@
 		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
 		D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046991229F58BB0028A9D7 /* AnimationStyle.swift */; };
 		D0046994229F58CC0028A9D7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046993229F58CC0028A9D7 /* Constant.swift */; };
+		D0046996229FCB550028A9D7 /* CardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046995229FCB550028A9D7 /* CardControl.swift */; };
+		D0046998229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
 		D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCE229CB476007CCFFE /* UIStackView.swift */; };
 		D053EBD1229CB772007CCFFE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD0229CB772007CCFFE /* UIView.swift */; };
@@ -42,6 +44,8 @@
 		D004698F229F559C0028A9D7 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		D0046991229F58BB0028A9D7 /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		D0046993229F58CC0028A9D7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		D0046995229FCB550028A9D7 /* CardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControl.swift; sourceTree = "<group>"; };
+		D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDirectionalEdgeInsets.swift; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
 		D053EBCE229CB476007CCFFE /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		D053EBD0229CB772007CCFFE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 		D053EBCD229CB432007CCFFE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */,
 				D053EBCE229CB476007CCFFE /* UIStackView.swift */,
 				D053EBD2229D29B3007CCFFE /* UILabel.swift */,
 				D053EBD0229CB772007CCFFE /* UIView.swift */,
@@ -132,6 +137,7 @@
 			children = (
 				D053EBDE229D52BB007CCFFE /* Label.swift */,
 				D004698F229F559C0028A9D7 /* Button.swift */,
+				D0046995229FCB550028A9D7 /* CardControl.swift */,
 			);
 			path = MoleculeComponents;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
+				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
 				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,
 				D074B1EA228B927600791F94 /* Colors.swift in Sources */,
 				D053EBDC229D4D3D007CCFFE /* Notification.swift in Sources */,
@@ -336,6 +343,7 @@
 				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
 				D053EBD3229D29B3007CCFFE /* UILabel.swift in Sources */,
 				D0046994229F58CC0028A9D7 /* Constant.swift in Sources */,
+				D0046998229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift in Sources */,
 				D0046990229F559C0028A9D7 /* Button.swift in Sources */,
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
