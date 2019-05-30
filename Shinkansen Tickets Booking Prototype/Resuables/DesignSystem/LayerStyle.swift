@@ -62,19 +62,19 @@ extension ShadowStyle {
     static let noShadow = ShadowStyle(shadowOpacity: 0, shadowRadius: 0, shadowOffset: .zero, shadowColor: currentColorTheme.component.shadow.cgColor)
     
     struct card {
-        static let normal = ShadowStyle(shadowOpacity: 0.16,
-                                        shadowRadius: 16,
-                                        shadowOffset: .init(width: 0, height: 8),
+        static let normal = ShadowStyle(shadowOpacity: 0.12,
+                                        shadowRadius: 10,
+                                        shadowOffset: .init(width: 0, height: 5),
                                         shadowColor: currentColorTheme.component.shadow.cgColor)
         
-        static let highlighted = ShadowStyle(shadowOpacity: 0.12,
-                                             shadowRadius: 4,
-                                             shadowOffset: .init(width: 0, height: 4),
+        static let highlighted = ShadowStyle(shadowOpacity: 0.10,
+                                             shadowRadius: 2,
+                                             shadowOffset: .init(width: 0, height: 2),
                                              shadowColor: currentColorTheme.component.shadow.cgColor)
         
         static let disabled = ShadowStyle(shadowOpacity: 0.08,
-                                          shadowRadius: 2,
-                                          shadowOffset: .init(width: 0, height: 2),
+                                          shadowRadius: 1,
+                                          shadowOffset: .init(width: 0, height: 1),
                                           shadowColor: currentColorTheme.component.shadow.cgColor)
     }
 }

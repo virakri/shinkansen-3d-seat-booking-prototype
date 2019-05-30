@@ -9,6 +9,7 @@
 import UIKit
 import Kumi
 
+/// A view that is subclassed from UILabel which includes `textStyle` property for containing text style. 
 class Label: UILabel {
     
     override var text: String? {
