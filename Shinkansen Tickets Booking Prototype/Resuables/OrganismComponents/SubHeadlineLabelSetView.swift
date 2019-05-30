@@ -9,11 +9,14 @@
 import UIKit
 import Kumi
 
+/// A view that displays a pair of headline label and its subheadline, used for a station name and time.
 class SubHeadlineLabelSet: UIStackView {
     
-    fileprivate var titleLabel: Label
+    /// The label used for the main content. In this set, it will be used for a station name.
+    var titleLabel: Label
     
-    fileprivate var subtitleLabel: Label
+    /// The label used for the secondary content. In this set, it will be used for showing time.
+    var subtitleLabel: Label
     
     init(title: String, subtitle: String? = nil) {
         titleLabel = Label()
@@ -35,10 +38,10 @@ class SubHeadlineLabelSet: UIStackView {
     /// Setup text colors, text style, and spacing between labels according to the current theme and current accessibility setup.
     public func setupTheme() {
         titleLabel.textColor = currentColorTheme.component.primaryText
-        subtitleLabel.textColor = currentColorTheme.component.primaryText
+        subtitleLabel.textColor = currentColorTheme.component.secondaryText
         titleLabel.textStyle = TextStyle.largeTitle
         subtitleLabel.textStyle = TextStyle.subheadline
-        spacing = (4 * Constant.multiplier).pixelRounded()
+        spacing = (2 * Constant.multiplier).pixelRounded()
     }
     
     /// Mutates the texts in two labels

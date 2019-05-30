@@ -16,11 +16,11 @@ extension TextStyle {
                               weight: UIAccessibility.isBoldTextEnabled ? .bold : .light)))
     static let headline = TextStyle(font:
         UIFontMetrics(forTextStyle: .subheadline).scaledFont(for:
-            UIFont.systemFont(ofSize: 15,
+            UIFont.systemFont(ofSize: 16,
                               weight: UIAccessibility.isBoldTextEnabled ? .bold : .regular)))
     static let subheadline = TextStyle(font:
         UIFontMetrics(forTextStyle: .subheadline).scaledFont(for:
-            UIFont.systemFont(ofSize: 15,
+            UIFont.systemFont(ofSize: 16,
                               weight: UIAccessibility.isBoldTextEnabled ? .bold : .regular)))
     static let body = TextStyle(font:
         UIFontMetrics(forTextStyle: .body).scaledFont(for:

@@ -12,9 +12,11 @@ import Kumi
 /// A view that displays a pair of headline label and its subheadline, used for station name and time.
 class HeadlineLabelSetView: UIStackView {
     
-    fileprivate var titleLabel: Label
+    /// The label used for the main content. In this set, it will be used for a station name.
+    var titleLabel: Label
     
-    fileprivate var subtitleLabel: Label
+    /// The label used for the secondary content. In this set, it will be used for showing time.
+    var subtitleLabel: Label
     
     init(title: String, subtitle: String? = nil) {
         titleLabel = Label()
