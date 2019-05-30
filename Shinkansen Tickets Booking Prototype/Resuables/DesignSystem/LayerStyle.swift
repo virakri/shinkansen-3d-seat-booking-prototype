@@ -10,9 +10,10 @@ import UIKit
 import Kumi
 
 extension LayerStyle {
+    static let none = LayerStyle(opacity: 0)
     struct card {
         static let normal = LayerStyle(opacity: 1,
-                                       cornerRadius: 8,
+                                       cornerRadius: Constant.radiusCorner,
                                        backgroundColor: currentColorTheme.component.cardBackground.cgColor,
                                        shadowStyle: ShadowStyle.card.normal
         )
@@ -25,7 +26,7 @@ extension LayerStyle {
     
     struct largeCard {
         static let normal = LayerStyle(opacity: 1,
-                                       cornerRadius: 18,
+                                       cornerRadius: Constant.largeRadiusCorner,
                                        backgroundColor: currentColorTheme.component.cardBackground.cgColor, //currentColorTheme.component.cardBackground.cgColor,
                                        shadowStyle: ShadowStyle.card.normal
         )
@@ -37,7 +38,7 @@ extension LayerStyle {
     
     struct button {
         static let normal = LayerStyle(opacity: 1,
-                                       cornerRadius: 8,
+                                       cornerRadius: Constant.buttonRadiusCorner,
                                        backgroundColor: currentColorTheme.component.callToAction.cgColor)
         
         static let highlighted = normal.withBackgroundColor(currentColorTheme.component.callToActionHighlighted.cgColor)
@@ -46,11 +47,11 @@ extension LayerStyle {
     }
     
     struct outlinedButton {
-        static let normal = LayerStyle(cornerRadius: 16,
-                                       borderWidth: 1,
+        static let normal = LayerStyle(cornerRadius: 0,
+                                       borderWidth: Constant.buttonOutlinedBorderWidth,
                                        borderColor: currentColorTheme.component.callToAction.cgColor)
         
-        static let highlighted = normal.withOpacity(0.14)
+        static let highlighted = normal.withOpacity(Constant.buttonOutlinedOpacity)
         
         static let disabled = normal.withBorderColor(currentColorTheme.component.callToActionDisabled.cgColor)
     }

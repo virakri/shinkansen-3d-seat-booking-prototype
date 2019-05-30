@@ -13,19 +13,6 @@ import UIKit
 //    var dark: UIColor
 //}
 
-internal enum ColorTheme {
-    case light, dark
-    
-    var component: UIColor.Component {
-        switch self {
-        case .light:
-            return UIColor.lightMode
-        case .dark:
-            return UIColor.darkMode
-        }
-    }
-}
-
 extension UIColor {
     
     struct accent {
@@ -56,6 +43,8 @@ extension UIColor {
         var callToAction: UIColor
         var callToActionHighlighted: UIColor
         var callToActionDisabled: UIColor
+        
+        var contentOnCallToAction: UIColor
     }
     
     //
@@ -68,7 +57,8 @@ extension UIColor {
                                                 shadow: UIColor.basic.black,
                                                 callToAction: UIColor.accent.main,
                                                 callToActionHighlighted: UIColor.accent.dark,
-                                                callToActionDisabled: UIColor.basic.gray)
+                                                callToActionDisabled: UIColor.basic.gray,
+                                                contentOnCallToAction: UIColor.basic.white)
     
     static let darkMode: Component = Component(background: UIColor.basic.offBlack,
                                                 cardBackground: UIColor.basic.white,
@@ -78,7 +68,8 @@ extension UIColor {
                                                 onCardSecondaryText: UIColor.basic.gray,
                                                 shadow: UIColor.basic.black,
                                                 callToAction: UIColor.basic.white,
-                                                callToActionHighlighted: UIColor.basic.gray,
-                                                callToActionDisabled: UIColor.basic.gray)
+                                                callToActionHighlighted: UIColor.basic.white.withAlphaComponent(0.54),
+                                                callToActionDisabled: UIColor.basic.gray,
+                                                contentOnCallToAction: UIColor.accent.main)
     
 }

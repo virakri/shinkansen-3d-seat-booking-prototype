@@ -9,3 +9,25 @@
 import UIKit
 
 var currentColorTheme: ColorTheme = .light
+
+internal enum ColorTheme {
+    case light, dark
+    
+    var component: UIColor.Component {
+        switch self {
+        case .light:
+            return UIColor.lightMode
+        case .dark:
+            return UIColor.darkMode
+        }
+    }
+    
+    var statusBarStyle: UIStatusBarStyle {
+        switch self {
+        case .light:
+            return .default
+        case .dark:
+            return .lightContent
+        }
+    }
+}

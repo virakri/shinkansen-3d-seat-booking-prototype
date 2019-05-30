@@ -12,7 +12,7 @@ class PrototypeInitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.systemFont(ofSize: 24, weight: .light)))
+        print(UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 1)))
         
         print(UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont.systemFont(ofSize: 24, weight: .light)).pointSize)
         

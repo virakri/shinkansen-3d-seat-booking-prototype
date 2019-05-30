@@ -23,16 +23,6 @@ class DesignSystemBlockView: UIView {
     
     var contentView: UIView?
     
-    init(withTextStyle textStyle: TextStyle, title: String) {
-        super.init(frame: .zero)
-        
-        self.title = title
-        
-        contentView = TextStyleLabel(withTextStyle: textStyle)
-        
-        setupView()
-    }
-    
     init(withColor color: UIColor, title: String) {
         super.init(frame: .zero)
         
@@ -43,12 +33,38 @@ class DesignSystemBlockView: UIView {
         setupView()
     }
     
+    init(withTextStyle textStyle: TextStyle, title: String) {
+        super.init(frame: .zero)
+        
+        self.title = title
+        
+        contentView = TextStyleLabel(withTextStyle: textStyle)
+        
+        setupView()
+    }
+    
     init(withLayerStylesState layerStylesState: LayerStyleView.LayerStyleState, title: String) {
         super.init(frame: .zero)
         
         self.title = title
         
         contentView = LayerStyleView(withLayerStylesState: layerStylesState)
+        
+        setupView()
+    }
+    
+    init(withView view: UIView, title: String, constaintEquals: ConstraintEqual = .edges) {
+        super.init(frame: .zero)
+        
+        self.title = title
+        
+        let contentView = UIView()
+        
+        contentView.addSubview(view,
+                               withConstaintEquals: constaintEquals,
+                               insetsConstant: .init(top: 16, leading: 16, bottom: 16, trailing: 16))
+        
+        self.contentView = contentView
         
         setupView()
     }
@@ -77,6 +93,7 @@ class DesignSystemBlockView: UIView {
             super.init(frame: .zero)
             self.textStyle = textStyle
             text = dummyText
+            textColor = currentColorTheme.component.primaryText
             numberOfLines = 0
         }
         
@@ -226,6 +243,7 @@ class DesignSystemView: UIView {
         labelContainerView.addSubview({
             let headlineLabel = Label()
             headlineLabel.text = title
+            headlineLabel.textColor = currentColorTheme.component.primaryText
             headlineLabel.font = .systemFont(ofSize: 36, weight: .heavy)
             return headlineLabel
         }(), withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom],
@@ -302,7 +320,7 @@ class DesignSystemTabBar: UIControl {
             super.init(frame: .zero)
             
             titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
-            titleLabel.textColor = UIColor.accent.main
+            titleLabel.textColor = currentColorTheme.component.callToAction
             
             addSubview(titleLabel, withConstaintEquals: .edges)
         }
@@ -367,6 +385,7 @@ class DesignSystemTabBar: UIControl {
 
 class DesignSystemViewController: ViewController {
     
+    var componentsView: DesignSystemView!
     var textStylesView: DesignSystemView!
     var colorsView: DesignSystemView!
     var layerStylesView: DesignSystemView!
@@ -377,6 +396,30 @@ class DesignSystemViewController: ViewController {
     
     override func setupView() {
         super.setupView()
+        
+        componentsView = DesignSystemView(title: "Components Style",
+                                          designSystemBlockViews: [DesignSystemBlockView(withView: {
+                                            let button = Button(type: .contained)
+                                            button.setTitle("Lorem Ipsum")
+                                            return button
+                                          }(),
+                                                                                         title: "Contained Button",
+                                                                                         constaintEquals: [.top, .bottom, .centerHorizontal]),
+                                                                   DesignSystemBlockView(withView: {
+                                                                    let button = Button(type: .outlined)
+                                                                    button.setTitle("Lorem Ipsum")
+                                                                    return button
+                                                                   }(),
+                                                                                         title: "Outlined Button",
+                                                                                         constaintEquals: [.top, .bottom, .centerHorizontal]),
+                                                                   DesignSystemBlockView(withTextStyle: .body,
+                                                                                         title: "Body"),
+                                                                   DesignSystemBlockView(withTextStyle: .caption1,
+                                                                                         title: "Caption 1"),
+                                                                   DesignSystemBlockView(withTextStyle: .caption2,
+                                                                                         title: "Caption 2"),
+                                                                   DesignSystemBlockView(withTextStyle: .button,
+                                                                                         title: "Button")])
         
         textStylesView = DesignSystemView(title: "Text Style",
                                               designSystemBlockViews: [DesignSystemBlockView(withTextStyle: .headline,
@@ -454,6 +497,7 @@ class DesignSystemViewController: ViewController {
         }())
         
         let contentView = UIView()
+        contentView.addSubview(componentsView, withConstaintEquals: .edges)
         contentView.addSubview(textStylesView, withConstaintEquals: .edges)
         contentView.addSubview(colorsView, withConstaintEquals: .edges)
         contentView.addSubview(layerStylesView, withConstaintEquals: .edges)
@@ -481,8 +525,6 @@ class DesignSystemViewController: ViewController {
         stackView.preservesSuperviewLayoutMargins = true
         view.addSubview(stackView, withConstaintEquals: .edges)
         
-        view.backgroundColor = .white
-        
     }
     
     @objc func stateSegmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -499,13 +541,14 @@ class DesignSystemViewController: ViewController {
     }
     
     @objc func tabBarValueChanged(_ sender: DesignSystemTabBar) {
+        componentsView.isHidden = true
         textStylesView.isHidden = true
         colorsView.isHidden = true
         layerStylesView.isHidden = true
         
         switch sender.selectedIndex {
         case 0:
-            break
+            componentsView.isHidden = false
         case 1:
             colorsView.isHidden = false
         case 2:

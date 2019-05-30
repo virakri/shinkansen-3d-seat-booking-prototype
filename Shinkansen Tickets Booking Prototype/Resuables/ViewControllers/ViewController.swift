@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return currentColorTheme.statusBarStyle
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +35,7 @@ class ViewController: UIViewController {
     /// Setups all stylings, sizes, and colors. It needs to be first called after `setupView()`, and it is called whenever `UIContentSizeCategory` or `.didColorThemeChange` notification is called.
     
     internal func setupTheme() {
-        
+        view.backgroundColor = currentColorTheme.component.background
     }
     
     @objc func preferredContentSizeChanged(_ notification: Notification) {

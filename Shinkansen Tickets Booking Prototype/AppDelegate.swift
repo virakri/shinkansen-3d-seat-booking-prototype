@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         //Setup Tint Color
-        window?.tintColor = UIColor(red: 0, green: 0.5450980392, blue: 0.2470588235, alpha: 1)
+        window?.tintColor = currentColorTheme.component.callToAction
         
         return true
     }

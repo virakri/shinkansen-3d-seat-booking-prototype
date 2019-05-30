@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
+		D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046991229F58BB0028A9D7 /* AnimationStyle.swift */; };
+		D0046994229F58CC0028A9D7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046993229F58CC0028A9D7 /* Constant.swift */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
 		D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCE229CB476007CCFFE /* UIStackView.swift */; };
 		D053EBD1229CB772007CCFFE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD0229CB772007CCFFE /* UIView.swift */; };
@@ -36,6 +39,9 @@
 		2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_Tickets_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
 		9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
+		D004698F229F559C0028A9D7 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		D0046991229F58BB0028A9D7 /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
+		D0046993229F58CC0028A9D7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
 		D053EBCE229CB476007CCFFE /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		D053EBD0229CB772007CCFFE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				D053EBDE229D52BB007CCFFE /* Label.swift */,
+				D004698F229F559C0028A9D7 /* Button.swift */,
 			);
 			path = MoleculeComponents;
 			sourceTree = "<group>";
@@ -146,9 +153,11 @@
 			isa = PBXGroup;
 			children = (
 				D053EBD4229D42F6007CCFFE /* Theme.swift */,
+				D0046993229F58CC0028A9D7 /* Constant.swift */,
 				D074B1E9228B927600791F94 /* Colors.swift */,
 				D074B1E7228B926F00791F94 /* TextStyle.swift */,
 				D074B1EB228B928100791F94 /* LayerStyle.swift */,
+				D0046991229F58BB0028A9D7 /* AnimationStyle.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -311,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
+				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,
 				D074B1EA228B927600791F94 /* Colors.swift in Sources */,
 				D053EBDC229D4D3D007CCFFE /* Notification.swift in Sources */,
 				D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */,
@@ -325,6 +335,8 @@
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
 				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
 				D053EBD3229D29B3007CCFFE /* UILabel.swift in Sources */,
+				D0046994229F58CC0028A9D7 /* Constant.swift in Sources */,
+				D0046990229F559C0028A9D7 /* Button.swift in Sources */,
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
 				D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */,
