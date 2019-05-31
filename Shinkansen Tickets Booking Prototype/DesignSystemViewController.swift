@@ -467,7 +467,16 @@ class DesignSystemViewController: ViewController {
                                     return labelSetView
                                 }(), title: "Label Set View Small",
                                      constaintEquals: .edges),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let stationPairView =
+                                        StationPairView(fromStation: "Bangkok", fromTime: "9:12",
+                                                        toStation: "Osaka", toTime: "12:43")
+                                    return stationPairView
+                                }(), title: "Station Pair View",
+                                     constaintEquals: .edges),
                                 ])
+        
         
         textStylesView = DesignSystemView(title: "Text Style",
                                           designSystemBlockViews: [

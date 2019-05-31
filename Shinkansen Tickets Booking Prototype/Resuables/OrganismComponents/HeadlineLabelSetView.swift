@@ -18,23 +18,31 @@ class HeadlineLabelSetView: UIStackView {
     /// The label used for the secondary content. In this set, it will be used for showing time.
     var subtitleLabel: Label
     
+    /// The technique to use for aligning the text in the set.
+    var textAlignment: NSTextAlignment = .natural {
+        didSet {
+            setTextAlignment()
+        }
+    }
+    
     /// Initializes and returns a headline label set view.
     ///
     /// - Parameters:
     ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
     ///   - textAlignment: The technique to use for aligning the text in the set.
-    init(title: String,
+    init(title: String = " ",
          subtitle: String? = nil,
-         textAlignment: NSTextAlignment = .left) {
+         textAlignment: NSTextAlignment = .natural) {
         titleLabel = Label()
         subtitleLabel = Label()
         super.init(frame: .zero)
         setupView() 
         setupTheme()
         setupText(title: title,
-                  subtitle: subtitle,
-                  textAlignment: textAlignment)
+                  subtitle: subtitle)
+        self.textAlignment = textAlignment
+        setTextAlignment()
     }
     
     required init(coder: NSCoder) {
@@ -47,6 +55,11 @@ class HeadlineLabelSetView: UIStackView {
         addArrangedSubview(subtitleLabel)
     }
     
+    private func setTextAlignment() {
+        titleLabel.textAlignment = textAlignment
+        subtitleLabel.textAlignment = textAlignment
+    }
+    
     /// Setup text colors, text style, and spacing between labels according to the current theme and current accessibility setup.
     public func setupTheme() {
         titleLabel.textColor = currentColorTheme.component.primaryText
@@ -54,6 +67,7 @@ class HeadlineLabelSetView: UIStackView {
         titleLabel.textStyle = TextStyle.largeTitle
         subtitleLabel.textStyle = TextStyle.subheadline
         spacing = (2 * Constant.multiplier).pixelRounded()
+        setTextAlignment()
     }
     
     /// Mutates the texts in two labels
@@ -63,12 +77,8 @@ class HeadlineLabelSetView: UIStackView {
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
     ///   - textAlignment: The technique to use for aligning the text in the set.
     public func setupText(title: String,
-                          subtitle: String? = nil,
-                          textAlignment: NSTextAlignment = .left) {
+                          subtitle: String? = nil) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
-        
-        titleLabel.textAlignment = textAlignment
-        subtitleLabel.textAlignment = textAlignment
     }
 }

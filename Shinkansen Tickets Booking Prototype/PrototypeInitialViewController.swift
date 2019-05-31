@@ -19,6 +19,7 @@ class PrototypeInitialViewController: UIViewController {
         print(UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: UIFont.systemFont(ofSize: 24, weight: .light)).pointSize)
         
         print(UIFontMetrics(forTextStyle: .caption1).scaledFont(for: UIFont.systemFont(ofSize: 24, weight: .light)).pointSize)
+   print(Constant.multiplier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
