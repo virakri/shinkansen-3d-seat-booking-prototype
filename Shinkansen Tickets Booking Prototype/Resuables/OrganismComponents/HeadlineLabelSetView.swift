@@ -18,12 +18,23 @@ class HeadlineLabelSetView: UIStackView {
     /// The label used for the secondary content. In this set, it will be used for showing time.
     var subtitleLabel: Label
     
-    init(title: String, subtitle: String? = nil) {
+    /// Initializes and returns a headline label set view.
+    ///
+    /// - Parameters:
+    ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
+    ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
+    ///   - textAlignment: The technique to use for aligning the text in the set.
+    init(title: String,
+         subtitle: String? = nil,
+         textAlignment: NSTextAlignment = .left) {
         titleLabel = Label()
         subtitleLabel = Label()
         super.init(frame: .zero)
+        setupView() 
         setupTheme()
-        setupText(title: title, subtitle: subtitle)
+        setupText(title: title,
+                  subtitle: subtitle,
+                  textAlignment: textAlignment)
     }
     
     required init(coder: NSCoder) {
@@ -31,6 +42,7 @@ class HeadlineLabelSetView: UIStackView {
     }
     
     private func setupView() {
+        axis = .vertical
         addArrangedSubview(titleLabel)
         addArrangedSubview(subtitleLabel)
     }
@@ -41,7 +53,7 @@ class HeadlineLabelSetView: UIStackView {
         subtitleLabel.textColor = currentColorTheme.component.primaryText
         titleLabel.textStyle = TextStyle.largeTitle
         subtitleLabel.textStyle = TextStyle.subheadline
-        spacing = (4 * Constant.multiplier).pixelRounded()
+        spacing = (2 * Constant.multiplier).pixelRounded()
     }
     
     /// Mutates the texts in two labels
@@ -49,8 +61,14 @@ class HeadlineLabelSetView: UIStackView {
     /// - Parameters:
     ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
-    public func setupText(title: String, subtitle: String? = nil) {
+    ///   - textAlignment: The technique to use for aligning the text in the set.
+    public func setupText(title: String,
+                          subtitle: String? = nil,
+                          textAlignment: NSTextAlignment = .left) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        
+        titleLabel.textAlignment = textAlignment
+        subtitleLabel.textAlignment = textAlignment
     }
 }

@@ -430,15 +430,44 @@ class DesignSystemViewController: ViewController {
                                 }(), title: "Large Card",
                                      constaintEquals: .edges),
                                 
+                                DesignSystemBlockView(withView: {
+                                    let headlineLabelSetView =
+                                        HeadlineLabelSetView(title: "Lorem ipsum dolor",
+                                                             subtitle: "Lorem ipsum dolor",
+                                                             textAlignment: .left)
+                                    return headlineLabelSetView
+                                }(), title: "Headline Label Set View",
+                                     constaintEquals: .edges),
                                 
-                                DesignSystemBlockView(withTextStyle: .body,
-                                                      title: "Body"),
-                                DesignSystemBlockView(withTextStyle: .caption1,
-                                                      title: "Caption 1"),
-                                DesignSystemBlockView(withTextStyle: .caption2,
-                                                      title: "Caption 2"),
-                                DesignSystemBlockView(withTextStyle: .button,
-                                                      title: "Button")])
+                                DesignSystemBlockView(withView: {
+                                    let subheadlineLabelSet =
+                                        SubheadlineLabelSetView(title: "Lorem ipsum dolor",
+                                                                subtitle: "Lorem ipsum dolor",
+                                                                textAlignment: .left)
+                                    return subheadlineLabelSet
+                                }(), title: "Subheadline Label Set View",
+                                     constaintEquals: .edges),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let labelSetView =
+                                        LabelSetView(type: .regular,
+                                                     title: "Lorem ipsum dolor",
+                                                     subtitle: "Lorem ipsum dolor",
+                                                     textAlignment: .left)
+                                    return labelSetView
+                                }(), title: "Label Set View Regular",
+                                     constaintEquals: .edges),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let labelSetView =
+                                        LabelSetView(type: .small,
+                                                     title: "Lorem ipsum dolor",
+                                                     subtitle: "Lorem ipsum dolor",
+                                                     textAlignment: .left)
+                                    return labelSetView
+                                }(), title: "Label Set View Small",
+                                     constaintEquals: .edges),
+                                ])
         
         textStylesView = DesignSystemView(title: "Text Style",
                                           designSystemBlockViews: [

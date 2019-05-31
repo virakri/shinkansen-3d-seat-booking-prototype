@@ -9,7 +9,7 @@
 import UIKit
 import Kumi
 
-/// A view that displays a pair of headline label and its subheadline, used for station name and time.
+/// A view that displays a pair of headline label and its subheadline, used for header in cells.
 class LabelSetView: UIStackView {
     
     /// Specifies the style of this label set view.
@@ -35,19 +35,32 @@ class LabelSetView: UIStackView {
     
     fileprivate var type: _Type
     
-    /// The label used for the main content. In this set, it will be used for a station name.
+    /// The label used for the main content.
     var titleLabel: Label
     
-    /// The label used for the secondary content. In this set, it will be used for showing time.
+    /// The label used for the secondary content.
     var subtitleLabel: Label
     
-    init(type: _Type, title: String, subtitle: String? = nil) {
+    /// Initializes and returns a label set view.
+    ///
+    /// - Parameters:
+    ///   - type: Label set view type. See `_Type` for the possible values.
+    ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
+    ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
+    ///   - textAlignment: The technique to use for aligning the text in the set.
+    init(type: _Type = .regular,
+         title: String,
+         subtitle: String? = nil,
+         textAlignment: NSTextAlignment = .left) {
         self.type = type
         titleLabel = Label()
         subtitleLabel = Label()
         super.init(frame: .zero)
+        setupView() 
         setupTheme()
-        setupText(title: title, subtitle: subtitle)
+        setupText(title: title,
+                  subtitle: subtitle,
+                  textAlignment: textAlignment)
     }
     
     required init(coder: NSCoder) {
@@ -55,6 +68,7 @@ class LabelSetView: UIStackView {
     }
     
     private func setupView() {
+        axis = .vertical
         addArrangedSubview(titleLabel)
         addArrangedSubview(subtitleLabel)
     }
@@ -72,8 +86,14 @@ class LabelSetView: UIStackView {
     /// - Parameters:
     ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
-    public func setupText(title: String, subtitle: String? = nil) {
+    ///   - textAlignment: The technique to use for aligning the text in the set.
+    public func setupText(title: String,
+                          subtitle: String? = nil,
+                          textAlignment: NSTextAlignment = .left) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        
+        titleLabel.textAlignment = textAlignment
+        subtitleLabel.textAlignment = textAlignment
     }
 }

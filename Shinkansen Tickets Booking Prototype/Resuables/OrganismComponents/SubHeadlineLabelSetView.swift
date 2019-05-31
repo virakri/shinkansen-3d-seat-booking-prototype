@@ -9,21 +9,38 @@
 import UIKit
 import Kumi
 
-/// A view that displays a pair of headline label and its subheadline, used for a station name and time.
-class SubHeadlineLabelSet: UIStackView {
+/// A view that displays a pair of headline label and its subheadline, used for properties in booking views.
+class SubheadlineLabelSetView: UIStackView {
     
-    /// The label used for the main content. In this set, it will be used for a station name.
+    /// The label used for the main content.
     var titleLabel: Label
     
-    /// The label used for the secondary content. In this set, it will be used for showing time.
+    /// The label used for the secondary content.
     var subtitleLabel: Label
     
-    init(title: String, subtitle: String? = nil) {
+    fileprivate var subtitlePlaceholderLabel: Label
+    
+    fileprivate var subtitleHorizontalConstraint: NSLayoutConstraint?
+    
+    /// Initializes and returns a subheadline label set view.
+    ///
+    /// - Parameters:
+    ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
+    ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
+    ///   - textAlignment: The technique to use for aligning the text in the set.
+    init(title: String,
+         subtitle: String? = nil,
+         textAlignment: NSTextAlignment = .left) {
         titleLabel = Label()
         subtitleLabel = Label()
+        subtitlePlaceholderLabel = Label()
+        subtitlePlaceholderLabel.text = " "
         super.init(frame: .zero)
+        setupView() 
         setupTheme()
-        setupText(title: title, subtitle: subtitle)
+        setupText(title: title,
+                  subtitle: subtitle,
+                  textAlignment: textAlignment)
     }
     
     required init(coder: NSCoder) {
@@ -31,16 +48,21 @@ class SubHeadlineLabelSet: UIStackView {
     }
     
     private func setupView() {
+        axis = .vertical
         addArrangedSubview(titleLabel)
-        addArrangedSubview(subtitleLabel)
+        addArrangedSubview(subtitlePlaceholderLabel)
+        addSubview(subtitleLabel)
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.centerYAnchor.constraint(equalTo: subtitlePlaceholderLabel.centerYAnchor).isActive = true
     }
     
     /// Setup text colors, text style, and spacing between labels according to the current theme and current accessibility setup.
     public func setupTheme() {
         titleLabel.textColor = currentColorTheme.component.primaryText
         subtitleLabel.textColor = currentColorTheme.component.secondaryText
-        titleLabel.textStyle = TextStyle.largeTitle
-        subtitleLabel.textStyle = TextStyle.subheadline
+        titleLabel.textStyle = TextStyle.headline
+        subtitleLabel.textStyle = TextStyle.caption1
+        subtitlePlaceholderLabel.textStyle = subtitleLabel.textStyle
         spacing = (2 * Constant.multiplier).pixelRounded()
     }
     
@@ -49,8 +71,30 @@ class SubHeadlineLabelSet: UIStackView {
     /// - Parameters:
     ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
-    public func setupText(title: String, subtitle: String? = nil) {
+    ///   - textAlignment: The technique to use for aligning the text in the set.
+    public func setupText(title: String,
+                          subtitle: String? = nil,
+                          textAlignment: NSTextAlignment = .left) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
+        
+        titleLabel.textAlignment = textAlignment
+        subtitleLabel.textAlignment = textAlignment
+        
+        if let constraint = subtitleHorizontalConstraint {
+            removeConstraint(constraint)
+        }
+        
+        switch textAlignment {
+        case .left:
+            subtitleHorizontalConstraint = subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor)
+        case .center:
+            subtitleHorizontalConstraint = subtitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        case .right:
+            subtitleHorizontalConstraint = subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+        default:
+            subtitleHorizontalConstraint = subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor)
+        }
+        subtitleHorizontalConstraint?.isActive = true
     }
 }

@@ -20,9 +20,9 @@ struct Constant {
     static let buttonRadiusCorner: CGFloat = (multiplier * 8).pixelRounded()
     
     static let buttonOutlinedEdgeInset: UIEdgeInsets = UIEdgeInsets(top: (multiplier * 8).pixelRounded(),
-                                                                    left: (multiplier * 14).pixelRounded(),
+                                                                    left: (multiplier * 20).pixelRounded(),
                                                                     bottom: (multiplier * 8).pixelRounded(),
-                                                                    right: (multiplier * 14).pixelRounded())
+                                                                    right: (multiplier * 20).pixelRounded())
     
     static let buttonOutlinedBorderWidth: CGFloat = 1
     static let buttonOutlinedOpacity: Float = 0.54
