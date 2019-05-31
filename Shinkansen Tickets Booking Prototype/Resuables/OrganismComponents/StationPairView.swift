@@ -32,12 +32,12 @@ class StationPairView: UIStackView {
     }
     
     private func setupView() {
-        distribution = .fillEqually
+        alignment = .firstBaseline
+        distribution = .equalSpacing
         addArrangedSubview(fromStationHeadlineView)
+        addArrangedSubview(toLabel)
         addArrangedSubview(toStationHeadlineView)
         
-        addSubview(toLabel, withConstaintEquals: [.centerHorizontal])
-        toLabel.firstBaselineAnchor.constraint(equalTo: fromStationHeadlineView.titleLabel.firstBaselineAnchor).isActive = true
         toLabel.text = "to"
         toLabel.textAlignment = .center
     }

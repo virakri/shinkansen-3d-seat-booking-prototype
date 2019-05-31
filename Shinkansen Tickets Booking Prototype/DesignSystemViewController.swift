@@ -475,6 +475,18 @@ class DesignSystemViewController: ViewController {
                                     return stationPairView
                                 }(), title: "Station Pair View",
                                      constaintEquals: .edges),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let descriptionSetView =
+                                        DescriptionSetView(trainNumber: "Sakura 123",
+                                                           trainName: "E5 Series",
+                                                           carNumber: "Car 8",
+                                                           className: "GreenCar",
+                                                           seatNumber: "15C",
+                                                           price: "$14,200")
+                                    return descriptionSetView
+                                }(), title: "Description Set View",
+                                     constaintEquals: .edges),
                                 ])
         
         

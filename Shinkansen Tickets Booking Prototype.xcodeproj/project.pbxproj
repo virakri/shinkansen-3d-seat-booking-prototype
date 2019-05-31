@@ -31,6 +31,7 @@
 		D074B1EA228B927600791F94 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1E9228B927600791F94 /* Colors.swift */; };
 		D074B1EC228B928100791F94 /* LayerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1EB228B928100791F94 /* LayerStyle.swift */; };
 		D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3622A0B7A0001D3065 /* StationPairView.swift */; };
+		D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3822A13940001D3065 /* DescriptionSetView.swift */; };
 		D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */; };
 		D0EAF1BA228B7FB700F3D4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */; };
 		D0EAF1BC228B7FB900F3D4F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		D074B1E9228B927600791F94 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D074B1EB228B928100791F94 /* LayerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerStyle.swift; sourceTree = "<group>"; };
 		D0C26E3622A0B7A0001D3065 /* StationPairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationPairView.swift; sourceTree = "<group>"; };
+		D0C26E3822A13940001D3065 /* DescriptionSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSetView.swift; sourceTree = "<group>"; };
 		D0EAF1B1228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shinkansen Tickets Booking Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0EAF1B9228B7FB700F3D4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				D0F6D8B722A0867C00872B5B /* SubHeadlineLabelSetView.swift */,
 				D0F6D8B522A085AE00872B5B /* LabelSetView.swift */,
 				D0C26E3622A0B7A0001D3065 /* StationPairView.swift */,
+				D0C26E3822A13940001D3065 /* DescriptionSetView.swift */,
 			);
 			path = OrganismComponents;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */,
 				D074B1E3228B90AC00791F94 /* BookingSummaryViewController.swift in Sources */,
 				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
+				D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */,
 				D074B1E5228B90BD00791F94 /* BookingNavigationController.swift in Sources */,
 				D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */,
 				D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */,
