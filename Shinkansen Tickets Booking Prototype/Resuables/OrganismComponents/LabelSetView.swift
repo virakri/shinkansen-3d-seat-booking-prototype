@@ -56,18 +56,18 @@ class LabelSetView: UIStackView {
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
     ///   - textAlignment: The technique to use for aligning the text in the set.
     init(type: _Type = .regular,
-         title: String = " ",
+         title: String? = nil,
          subtitle: String? = nil,
          textAlignment: NSTextAlignment = .natural) {
         self.type = type
         titleLabel = Label()
         subtitleLabel = Label()
         super.init(frame: .zero)
+        self.textAlignment = textAlignment
         setupView() 
         setupTheme()
-        setupText(title: title,
+        setupValue(title: title,
                   subtitle: subtitle)
-        self.textAlignment = textAlignment
     }
     
     required init(coder: NSCoder) {
@@ -83,6 +83,7 @@ class LabelSetView: UIStackView {
     private func setTextAlignment() {
         titleLabel.textAlignment = textAlignment
         subtitleLabel.textAlignment = textAlignment
+        print(textAlignment.rawValue)
     }
     
     /// Setup text colors, text style, and spacing between labels according to the current theme and current accessibility setup.
@@ -99,7 +100,7 @@ class LabelSetView: UIStackView {
     /// - Parameters:
     ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
-    public func setupText(title: String,
+    public func setupValue(title: String? = nil,
                           subtitle: String? = nil) {
         titleLabel.text = title
         subtitleLabel.text = subtitle

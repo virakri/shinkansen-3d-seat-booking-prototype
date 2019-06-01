@@ -52,15 +52,15 @@ class DescriptionSetView: UIStackView {
         priceSetView.setupTheme()
     }
     
-    public func setupText(trainNumber: String = " ",
+    public func setupValue(trainNumber: String = " ",
                           trainName: String? = nil,
                           carNumber: String? = nil,
                           className: String? = nil,
                           seatNumber: String? = nil,
                           price: String? = nil) {
-        trainNumberSetView.setupText(title: trainNumber, subtitle: trainName)
-        carNumberSetView.setupText(title: carNumber ?? "", subtitle: className)
-        seatNumberSetView.setupText(title: seatNumber ?? "")
-        priceSetView.setupText(title: price ?? "")
+        trainNumberSetView.setupValue(title: trainNumber, subtitle: trainName)
+        carNumberSetView.setupValue(title: carNumber ?? "", subtitle: className)
+        seatNumberSetView.setupValue(title: seatNumber ?? "")
+        priceSetView.setupValue(title: price ?? "")
     }
 }

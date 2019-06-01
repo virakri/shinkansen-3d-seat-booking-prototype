@@ -129,4 +129,17 @@ extension UIView {
         // for chaining function
         return self
     }
+    
+    @discardableResult
+    func constraintAllEdges(to view: UIView) -> [NSLayoutConstraint] {
+        let topConstraint = self.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomConstraint = self.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leadingConstraint = self.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let trailingAnchor = self.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        
+        let anchors = [topConstraint, bottomConstraint,
+                       leadingConstraint, trailingAnchor]
+        NSLayoutConstraint.activate(anchors)
+        return anchors
+    }
 }

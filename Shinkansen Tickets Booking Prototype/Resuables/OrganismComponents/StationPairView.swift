@@ -48,9 +48,9 @@ class StationPairView: UIStackView {
         toLabel.textStyle = TextStyle.subheadline
     }
     
-    public func setupText(fromStation: String, fromTime: String? = nil,
+    public func setupValue(fromStation: String, fromTime: String? = nil,
                           toStation: String, toTime: String? = nil) {
-        fromStationHeadlineView.setupText(title: fromStation, subtitle: fromTime)
-        toStationHeadlineView.setupText(title: toStation, subtitle: toTime)
+        fromStationHeadlineView.setupValue(title: fromStation, subtitle: fromTime)
+        toStationHeadlineView.setupValue(title: toStation, subtitle: toTime)
     }
 }

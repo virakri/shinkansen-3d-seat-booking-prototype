@@ -57,7 +57,7 @@ class HeaderRouteInformationView: UIStackView {
         spacing = 24 * Constant.multiplier
     }
     
-    public func setupText(fromStation: String, fromTime: String? = nil,
+    public func setupValue(fromStation: String, fromTime: String? = nil,
                           toStation: String, toTime: String? = nil,
                           trainNumber: String? = nil,
                           trainName: String? = nil,
@@ -66,9 +66,9 @@ class HeaderRouteInformationView: UIStackView {
                           seatNumber: String? = nil,
                           price: String? = nil) {
         
-        stationPairView.setupText(fromStation: fromStation, fromTime: fromTime,
+        stationPairView.setupValue(fromStation: fromStation, fromTime: fromTime,
                                   toStation: toStation, toTime: toTime)
-        descriptionSetView.setupText(trainNumber: trainNumber ?? " ",
+        descriptionSetView.setupValue(trainNumber: trainNumber ?? " ",
                                      trainName: trainName,
                                      carNumber: carNumber,
                                      className: className,

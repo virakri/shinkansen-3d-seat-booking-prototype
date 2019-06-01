@@ -39,7 +39,7 @@ class HeadlineLabelSetView: UIStackView {
         super.init(frame: .zero)
         setupView() 
         setupTheme()
-        setupText(title: title,
+        setupValue(title: title,
                   subtitle: subtitle)
         self.textAlignment = textAlignment
         setTextAlignment()
@@ -76,7 +76,7 @@ class HeadlineLabelSetView: UIStackView {
     ///   - title: The current text that will be displayed by the `titleLabel` of its label set.
     ///   - subtitle: The current text that will be displayed by the `subtitleLabel` of its label set.
     ///   - textAlignment: The technique to use for aligning the text in the set.
-    public func setupText(title: String,
+    public func setupValue(title: String,
                           subtitle: String? = nil) {
         titleLabel.text = title
         subtitleLabel.text = subtitle

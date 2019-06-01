@@ -502,6 +502,18 @@ class DesignSystemViewController: ViewController {
                                 }(), title: "Description Set View",
                                      constaintEquals: .edges),
                                 
+                                DesignSystemBlockView(withView: {
+                                    let trainScheduleTableViewCell =
+                                        TrainScheduleTableViewCell(style: .default, reuseIdentifier: nil)
+                                    trainScheduleTableViewCell.setupValue(time: "9:46 - 11:42", amountOfTime: "3hr 12min",
+                                                                          trainNumber: "Hayabusa 231", trainName: "E6 Series",
+                                                                          price: nil, trainImage: nil)
+                                    let trainScheduleTableViewCellContentView = trainScheduleTableViewCell.contentView
+                                    return trainScheduleTableViewCellContentView
+                                }(), title: "Description Set View",
+                                     constaintEquals: .edges),
+                                
+//                                TrainScheduleTableViewCell
 //
                                 ])
         
