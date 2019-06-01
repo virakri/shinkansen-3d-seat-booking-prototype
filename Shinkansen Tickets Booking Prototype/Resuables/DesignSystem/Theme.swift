@@ -8,7 +8,14 @@
 
 import UIKit
 
-var currentColorTheme: ColorTheme = .light
+var currentColorTheme: ColorTheme = UserDefaults.standard.object(forKey: "colorTheme") as? ColorTheme ?? .light {
+    didSet {
+        if currentColorTheme != oldValue {
+            UserDefaults.standard.set(currentColorTheme, forKey: "colorTheme")
+            NotificationCenter.default.post(name: .didColorThemeChange, object: nil)
+        }
+    }
+}
 
 internal enum ColorTheme {
     case light, dark

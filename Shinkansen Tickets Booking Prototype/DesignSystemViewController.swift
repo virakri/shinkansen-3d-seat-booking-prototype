@@ -520,23 +520,23 @@ class DesignSystemViewController: ViewController {
         
         textStylesView = DesignSystemView(title: "Text Style",
                                           designSystemBlockViews: [
-                                            DesignSystemBlockView(withTextStyle: .largeTitle,
+                                            DesignSystemBlockView(withTextStyle: textStyle.largeTitle(),
                                                                   title: "Large Title"),
-                                            DesignSystemBlockView(withTextStyle: .headline,
+                                            DesignSystemBlockView(withTextStyle: textStyle.headline(),
                                                                   title: "Headline"),
-                                            DesignSystemBlockView(withTextStyle: .subheadline,
+                                            DesignSystemBlockView(withTextStyle: textStyle.subheadline(),
                                                                   title: "Subheadline"),
-                                            DesignSystemBlockView(withTextStyle: .body,
+                                            DesignSystemBlockView(withTextStyle: textStyle.body(),
                                                                   title: "Body"),
-                                            DesignSystemBlockView(withTextStyle: .button,
+                                            DesignSystemBlockView(withTextStyle: textStyle.button(),
                                                                   title: "Button"),
-                                            DesignSystemBlockView(withTextStyle: .outlinedButton,
+                                            DesignSystemBlockView(withTextStyle: textStyle.outlinedButton(),
                                                                   title: "Outlined Button"),
-                                            DesignSystemBlockView(withTextStyle: .footnote,
+                                            DesignSystemBlockView(withTextStyle: textStyle.footnote(),
                                                                   title: "Footnote"),
-                                            DesignSystemBlockView(withTextStyle: .caption1,
+                                            DesignSystemBlockView(withTextStyle: textStyle.caption1(),
                                                                   title: "Caption 1"),
-                                            DesignSystemBlockView(withTextStyle: .caption2,
+                                            DesignSystemBlockView(withTextStyle: textStyle.caption2(),
                                                                   title: "Caption 2")])
         
         colorsView = DesignSystemView(title: "Colors",
@@ -562,31 +562,31 @@ class DesignSystemViewController: ViewController {
         layerStylesView = DesignSystemView(title: "Layer Styles",
                                            designSystemBlockViews: [
                                             DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
-                                                .LayerStyleState(normal: LayerStyle.button.normal,
-                                                                 highlighted: LayerStyle.button.highlighted,
-                                                                 disabled: LayerStyle.button.disabled,
+                                                .LayerStyleState(normal: layerStyle.button.normal(),
+                                                                 highlighted: layerStyle.button.highlighted(),
+                                                                 disabled: layerStyle.button.disabled(),
                                                                  selected: nil,
                                                                  focused: nil) , title: "Contained Button")
                                             ,
                                             
                                             DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
-                                                .LayerStyleState(normal: LayerStyle.outlinedButton.normal,
-                                                                 highlighted: LayerStyle.outlinedButton.highlighted,
-                                                                 disabled: LayerStyle.outlinedButton.disabled,
+                                                .LayerStyleState(normal: layerStyle.outlinedButton.normal(),
+                                                                 highlighted: layerStyle.outlinedButton.highlighted(),
+                                                                 disabled: layerStyle.outlinedButton.disabled(),
                                                                  selected: nil,
                                                                  focused: nil) , title: "Outlined Button")
                                             ,
                                             DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
-                                                .LayerStyleState(normal: LayerStyle.card.normal,
-                                                                 highlighted: LayerStyle.card.highlighted,
-                                                                 disabled: LayerStyle.card.disabled,
+                                                .LayerStyleState(normal: layerStyle.card.normal(),
+                                                                 highlighted: layerStyle.card.highlighted(),
+                                                                 disabled: layerStyle.card.disabled(),
                                                                  selected: nil,
                                                                  focused: nil) , title: "Card"),
                                             
                                             DesignSystemBlockView(withLayerStylesState: DesignSystemBlockView.LayerStyleView
-                                                .LayerStyleState(normal: LayerStyle.largeCard.normal,
-                                                                 highlighted: LayerStyle.largeCard.highlighted,
-                                                                 disabled: LayerStyle.largeCard.disabled,
+                                                .LayerStyleState(normal: layerStyle.largeCard.normal(),
+                                                                 highlighted: layerStyle.largeCard.highlighted(),
+                                                                 disabled: layerStyle.largeCard.disabled(),
                                                                  selected: nil,
                                                                  focused: nil) , title: "Large Card")
                                             ,

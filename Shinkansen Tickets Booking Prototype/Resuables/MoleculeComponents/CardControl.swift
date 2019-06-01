@@ -19,24 +19,24 @@ class CardControl: UIControl {
             case .regular:
                 switch state {
                 case .normal:
-                    return LayerStyle.card.normal
+                    return DesignSystem.layerStyle.card.normal()
                 case .highlighted:
-                    return LayerStyle.card.highlighted
+                    return DesignSystem.layerStyle.card.highlighted()
                 case .disabled:
-                    return LayerStyle.card.disabled
+                    return DesignSystem.layerStyle.card.disabled()
                 default:
-                    return LayerStyle.card.normal
+                    return DesignSystem.layerStyle.card.normal()
                 }
             case .large:
                 switch state {
                 case .normal:
-                    return LayerStyle.largeCard.normal
+                    return DesignSystem.layerStyle.largeCard.normal()
                 case .highlighted:
-                    return LayerStyle.largeCard.highlighted
+                    return DesignSystem.layerStyle.largeCard.highlighted()
                 case .disabled:
-                    return LayerStyle.largeCard.disabled
+                    return DesignSystem.layerStyle.largeCard.disabled()
                 default:
-                    return LayerStyle.largeCard.normal
+                    return DesignSystem.layerStyle.largeCard.normal()
                 }
             }
         }
@@ -44,9 +44,9 @@ class CardControl: UIControl {
         func layoutMargin() -> NSDirectionalEdgeInsets {
             switch self {
             case .regular:
-                return Constant.cardLayoutMarginInset
+                return DesignSystem.layoutMargins.card()//Constant().cardLayoutMarginInset
             case .large:
-                return Constant.largeCardLayoutMarginInset
+                return DesignSystem.layoutMargins.largeCard()//Constant().largeCardLayoutMarginInset
             }
         }
     }
@@ -100,12 +100,12 @@ class CardControl: UIControl {
         contentView.isUserInteractionEnabled = false
         contentView.directionalLayoutMargins = type.layoutMargin()
         addSubview(contentView, withConstaintEquals: .edges)
-        contentView.layer.setLayer(type.layerStyle(by: currentState).withShadowStyle(ShadowStyle.noShadow))
+        contentView.layer.setLayer(type.layerStyle(by: currentState).withShadowStyle(shadowStyle.noShadow()))
         layer.setLayer(type.layerStyle(by: currentState))
     }
     
     private func updateAppearance(animated: Bool = true) {
-        contentView.layer.setAnimatedLayer(type.layerStyle(by: currentState).withShadowStyle(ShadowStyle.noShadow),
+        contentView.layer.setAnimatedLayer(type.layerStyle(by: currentState).withShadowStyle(shadowStyle.noShadow()),
                                using: CABasicAnimationStyle.layerAnimationStyle)
         layer.setAnimatedLayer(type.layerStyle(by: currentState),
                                using: CABasicAnimationStyle.layerAnimationStyle)

@@ -26,9 +26,9 @@ class LabelSetView: UIStackView {
         func textStyleForTitleLabel() -> TextStyle {
             switch self {
             case .regular:
-                return TextStyle.headline
+                return textStyle.headline()
             case .small:
-                return TextStyle.caption1
+                return textStyle.caption1()
             }
         }
     }
@@ -91,7 +91,7 @@ class LabelSetView: UIStackView {
         titleLabel.textColor = currentColorTheme.component.primaryText
         subtitleLabel.textColor = currentColorTheme.component.secondaryText
         titleLabel.textStyle = type.textStyleForTitleLabel()
-        subtitleLabel.textStyle = TextStyle.caption2
+        subtitleLabel.textStyle = textStyle.caption2()
         setTextAlignment()
     }
     

@@ -88,10 +88,10 @@ class SubheadlineLabelSetView: UIStackView {
     public func setupTheme() {
         titleLabel.textColor = currentColorTheme.component.primaryText
         subtitleLabel.textColor = currentColorTheme.component.secondaryText
-        titleLabel.textStyle = TextStyle.headline
-        subtitleLabel.textStyle = TextStyle.caption1
+        titleLabel.textStyle = textStyle.headline()
+        subtitleLabel.textStyle = textStyle.caption1()
         subtitlePlaceholderLabel.textStyle = subtitleLabel.textStyle
-        spacing = (2 * Constant.multiplier).pixelRounded()
+        spacing = (CGFloat(2).systemSizeMuliplier()).pixelRounded()
         setTextAlignment()
     }
     

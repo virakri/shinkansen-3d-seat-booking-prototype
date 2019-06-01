@@ -59,8 +59,6 @@ class TrainScheduleTableViewCell: UITableViewCell {
                                withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom],
                                insetsConstant: .init(top: 4, leading: 0, bottom: 12, trailing: 0))
         
-        cardView.directionalLayoutMargins = Constant.cardLayoutMarginInset
-        
         let headerTextDetailStackView = UIStackView([timeLabelSetView, trainLabelSetView],
                                                     axis: .horizontal,
                                                     distribution: .equalSpacing,

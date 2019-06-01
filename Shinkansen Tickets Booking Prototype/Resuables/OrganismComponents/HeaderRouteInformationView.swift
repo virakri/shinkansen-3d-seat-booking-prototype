@@ -45,7 +45,7 @@ class HeaderRouteInformationView: UIStackView {
     
     private func setupView() {
         axis = .vertical
-        spacing = min((24 * Constant.multiplier).pixelRounded(), 28)
+        spacing = min(CGFloat(24).systemSizeMuliplier(), 28)
         addArrangedSubview(stationPairView)
         addArrangedSubview(descriptionSetView)
         print(spacing)
@@ -54,7 +54,7 @@ class HeaderRouteInformationView: UIStackView {
     public func setupTheme() {
         stationPairView.setupTheme()
         descriptionSetView.setupTheme()
-        spacing = 24 * Constant.multiplier
+        spacing = CGFloat(24).systemSizeMuliplier()
     }
     
     public func setupValue(fromStation: String, fromTime: String? = nil,

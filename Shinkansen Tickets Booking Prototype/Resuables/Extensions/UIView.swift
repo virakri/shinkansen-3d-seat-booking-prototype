@@ -142,4 +142,19 @@ extension UIView {
         NSLayoutConstraint.activate(anchors)
         return anchors
     }
+    
+    @discardableResult
+    func constraintBottomSafeArea(to view: UIView, withMinimumConstant constant: CGFloat) -> [NSLayoutConstraint] {
+        
+        let bottomConstraint = self.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: constant)
+        
+        let bottomSafeAreaConstraint = self.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        bottomSafeAreaConstraint.priority = .defaultHigh
+        
+        let anchors = [bottomConstraint, bottomSafeAreaConstraint]
+        
+        NSLayoutConstraint.activate(anchors)
+        
+        return anchors
+    }
 }

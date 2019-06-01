@@ -45,7 +45,7 @@ class StationPairView: UIStackView {
         fromStationHeadlineView.setupTheme()
         toStationHeadlineView.setupTheme()
         toLabel.textColor = currentColorTheme.component.secondaryText
-        toLabel.textStyle = TextStyle.subheadline
+        toLabel.textStyle = textStyle.subheadline()
     }
     
     public func setupValue(fromStation: String, fromTime: String? = nil,

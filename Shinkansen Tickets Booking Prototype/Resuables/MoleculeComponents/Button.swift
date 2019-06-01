@@ -21,38 +21,47 @@ class Button: UIButton {
             case .contained:
                 switch state {
                 case .normal:
-                    return LayerStyle.button.normal
+                    return DesignSystem.layerStyle.button.normal()
                 case .highlighted:
-                    return LayerStyle.button.highlighted
+                    return DesignSystem.layerStyle.button.highlighted()
                 case .disabled:
-                    return LayerStyle.button.disabled
+                    return DesignSystem.layerStyle.button.disabled()
                 default:
-                    return LayerStyle.button.normal
+                    return DesignSystem.layerStyle.button.normal()
                 }
             case .outlined:
                 switch state {
                 case .normal:
-                    return LayerStyle.outlinedButton.normal
+                    return DesignSystem.layerStyle.outlinedButton.normal()
                 case .highlighted:
-                    return LayerStyle.outlinedButton.highlighted
+                    return DesignSystem.layerStyle.outlinedButton.highlighted()
                 case .disabled:
-                    return LayerStyle.outlinedButton.disabled
+                    return DesignSystem.layerStyle.outlinedButton.disabled()
                 default:
-                    return LayerStyle.outlinedButton.normal
+                    return DesignSystem.layerStyle.outlinedButton.normal()
                 }
             case .text:
-                return LayerStyle.none
+                switch state {
+                case .normal:
+                    return LayerStyle(opacity: 1)
+                case .highlighted:
+                    return LayerStyle(opacity: DesignSystem.opacity.highlighted)
+                case .disabled:
+                    return LayerStyle(opacity: 1)
+                default:
+                    return LayerStyle(opacity: 1)
+                }
             }
         }
         
         func textStyle() -> TextStyle {
             switch self {
             case .contained:
-                return TextStyle.button
+                return DesignSystem.textStyle.button()
             case .outlined:
-                return TextStyle.outlinedButton
+                return DesignSystem.textStyle.outlinedButton()
             case .text:
-                return TextStyle.button
+                return DesignSystem.textStyle.button()
             }
         }
         
@@ -91,11 +100,11 @@ class Button: UIButton {
         func edgeInset() -> UIEdgeInsets {
             switch self {
             case .contained:
-                return Constant.buttonEdgeInset
+                return DesignSystem.edgeInsets.button()
             case .outlined:
-                return Constant.buttonOutlinedEdgeInset
+                return DesignSystem.edgeInsets.outlinedButton()
             case .text:
-                return Constant.buttonTextEdgeInset
+                return DesignSystem.edgeInsets.button()
             }
         }
     }
