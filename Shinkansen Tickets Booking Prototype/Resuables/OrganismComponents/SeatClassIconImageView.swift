@@ -39,7 +39,7 @@ class SeatClassIconImageView: UIImageView {
             case .regular:
                 return 24
             case .small:
-                return CGFloat(16).systemSizeMuliplier().clamped(to: 16...24)
+                return CGFloat(16).systemSizeMuliplier().clamped(to: 12...24)
             }
         }
     }

@@ -8,6 +8,6 @@
 
 import UIKit
 
-class BookingSummaryViewController: UIViewController {
+class BookingSummaryViewController: BookingViewController {
     
 }

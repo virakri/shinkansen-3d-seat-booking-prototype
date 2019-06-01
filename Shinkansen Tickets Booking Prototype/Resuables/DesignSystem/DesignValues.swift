@@ -48,6 +48,11 @@ extension DesignSystem {
             return .init(vertical: 20, horizontal: 16) }
     }
     
+    class CATransform {
+        static let normal: CATransform3D = CATransform3DIdentity
+        static let highlighted: CATransform3D = CATransform3DMakeScale(0.98, 0.98, 1)
+    }
+    
     class spacing {
         static let cardGutter: CGFloat = 16
     }

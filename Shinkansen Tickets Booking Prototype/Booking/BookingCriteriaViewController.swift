@@ -8,6 +8,31 @@
 
 import UIKit
 
-class BookingCriteriaViewController: UIViewController {
+class BookingCriteriaViewController: BookingViewController {
     
+    override func setupView() {
+        super.setupView()
+        
+        mainStackView.isHidden = true
+    }
+    
+    override func setupInteraction() {
+        super.setupInteraction()
+        
+        mainCallToActionButton.addTarget(self,
+                                         action: #selector(mainCallToActionButtonDidTouch(_:)),
+                                         for: .touchUpInside)
+        
+        backButton.addTarget(self,
+                             action: #selector(backButtonDidTouch(_:)),
+                             for: .touchUpInside)
+    }
+    
+    @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
+        navigationController?.pushViewController(TrainSelectionViewController(), animated: true)
+    }
+    
+    @objc func backButtonDidTouch(_ sender: Button) {
+        
+    }
 }

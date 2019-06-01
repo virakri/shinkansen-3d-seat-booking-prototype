@@ -151,7 +151,7 @@ class PrototypeInitialViewController: ViewController {
     
     @objc private func startPrototypeButtonDidTouch(_ sender: Button) {
         
-        present(UINavigationController(rootViewController: BookingCriteriaViewController()), animated: true, completion: nil)
+        present(NavigationController(rootViewController: BookingCriteriaViewController()), animated: true, completion: nil)
     }
     
     @objc private func darkModeSwitchValueChanged(_ sender: UISwitch) {

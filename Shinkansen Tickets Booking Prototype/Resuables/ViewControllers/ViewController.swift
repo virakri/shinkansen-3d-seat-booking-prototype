@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         
         setNeedsStatusBarAppearanceUpdate()
         view.backgroundColor = currentColorTheme.componentColor.background
+        view.tintColor = currentColorTheme.componentColor.callToAction
         
     }
     

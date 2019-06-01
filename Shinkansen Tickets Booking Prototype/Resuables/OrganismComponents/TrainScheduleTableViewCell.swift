@@ -52,13 +52,16 @@ class TrainScheduleTableViewCell: UITableViewCell {
         contentView.preservesSuperviewLayoutMargins = true
         contentView.isUserInteractionEnabled = false
         
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
+        
         contentView.addSubview(cardView,
                                withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom],
                                insetsConstant: .init(top: 4, leading: 0, bottom: 12, trailing: 0))
         
         let seatClassStackView = UIStackView([granClassIconImageView,
                                               greenIconImageView,
-                                              ordinaryIconImageView], distribution: .fill, alignment: .center, spacing: 8)
+                                              ordinaryIconImageView], distribution: .fill, alignment: .fill, spacing: 8)
         
         let seatClassAndPriceStackView = UIStackView([seatClassStackView, priceLabel],
                                                      axis: .vertical,
@@ -67,7 +70,7 @@ class TrainScheduleTableViewCell: UITableViewCell {
         let headerTextDetailStackView = UIStackView([timeLabelSetView, trainLabelSetView],
                                                     axis: .horizontal,
                                                     distribution: .equalSpacing,
-                                                    alignment: .firstBaseline)
+                                                    alignment: .top)
         
         let verticalStackView = UIStackView([headerTextDetailStackView, seatClassAndPriceStackView],
                                             axis: .vertical,
@@ -78,9 +81,23 @@ class TrainScheduleTableViewCell: UITableViewCell {
         cardView.contentView.addSubview(verticalStackView,
                             withConstaintEquals: .marginEdges,
                             insetsConstant: .zero)
+        
+        cardView.contentView.addSubview(trainImageView, withConstaintEquals: [.bottomMargin])
+        trainImageView.topAnchor.constraint(equalTo: headerTextDetailStackView.bottomAnchor, constant: 8).isActive = true
+        cardView.centerXAnchor.constraint(equalTo: trainImageView.leadingAnchor, constant: 32).isActive = true
+        trainImageView.widthAnchor.constraint(equalTo: trainImageView.heightAnchor, multiplier: 6).isActive = true
+        trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .vertical)
+        trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .horizontal)
+       
+        trainImageView.image = #imageLiteral(resourceName: "image-example-train")
     }
     
     public func setupTheme() {
+        timeLabelSetView.setupTheme()
+        trainLabelSetView.setupTheme()
+        granClassIconImageView.setupTheme()
+        greenIconImageView.setupTheme()
+        ordinaryIconImageView.setupTheme()
         priceLabel.textStyle = textStyle.caption2()
         priceLabel.textColor = currentColorTheme.componentColor.secondaryText
     }
@@ -100,5 +117,9 @@ class TrainScheduleTableViewCell: UITableViewCell {
         greenIconImageView.isAvailable = isGreenAvailable
         ordinaryIconImageView.isAvailable = isOrdinaryAvailable
         priceLabel.text = price
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        cardView.isHighlighted = highlighted
     }
 }

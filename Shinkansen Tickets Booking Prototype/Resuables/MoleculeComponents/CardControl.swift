@@ -105,9 +105,14 @@ class CardControl: UIControl {
     }
     
     private func updateAppearance(animated: Bool = true) {
-        contentView.layer.setAnimatedLayer(type.layerStyle(by: currentState).withShadowStyle(shadowStyle.noShadow()),
+        let contentViewOpacity = currentState == .highlighted ? DesignSystem.opacity.highlighted : 1
+        contentView.layer.setAnimatedLayer(type.layerStyle(by: currentState)
+            .withShadowStyle(shadowStyle.noShadow())
+            .withOpacity(contentViewOpacity),
                                using: CABasicAnimationStyle.layerAnimationStyle)
-        layer.setAnimatedLayer(type.layerStyle(by: currentState),
+        let transform = currentState == .highlighted ? DesignSystem.CATransform.highlighted : DesignSystem.CATransform.normal
+        layer.setAnimatedLayer(type.layerStyle(by: currentState)
+            .withTransform(transform),
                                using: CABasicAnimationStyle.layerAnimationStyle)
         
     }

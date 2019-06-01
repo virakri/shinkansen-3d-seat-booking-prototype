@@ -22,15 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = prototypeInitialViewController
         window?.makeKeyAndVisible()
         
-        //Setup Tint Color
-        window?.tintColor = currentColorTheme.componentColor.callToAction
-        
-        //
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(preferredColorThemeChanged(_:)),
-                                               name: .didColorThemeChange,
-                                               object: nil)
-        
         return true
     }
 
@@ -55,10 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         NotificationCenter.default.removeObserver(self)
-    }
-
-    @objc func preferredColorThemeChanged(_ notification: Notification) {
-        window?.tintColor = currentColorTheme.componentColor.callToAction
     }
 }
 

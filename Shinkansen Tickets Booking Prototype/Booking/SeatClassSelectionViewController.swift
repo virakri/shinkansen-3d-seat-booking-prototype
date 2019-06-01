@@ -8,6 +8,6 @@
 
 import UIKit
 
-class SeatClassSelectionViewController: UIViewController {
+class SeatClassSelectionViewController: BookingViewController {
     
 }
