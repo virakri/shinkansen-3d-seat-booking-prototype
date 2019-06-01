@@ -31,7 +31,6 @@ class DescriptionSetView: UIStackView {
         priceSetView = SubheadlineLabelSetView(title: price ?? "", textAlignment: .right)
         super.init(frame: .zero)
         setupView()
-        setupTheme()
     }
     
     required init(coder: NSCoder) {

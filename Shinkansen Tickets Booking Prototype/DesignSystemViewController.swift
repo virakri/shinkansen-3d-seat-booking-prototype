@@ -487,23 +487,45 @@ class DesignSystemViewController: ViewController {
                                     return descriptionSetView
                                 }(), title: "Description Set View",
                                      constaintEquals: .edges),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let headerRouteInformationView =
+                                        HeaderRouteInformationView(fromStation: "Bangkok", fromTime: "9:12",
+                                                                   toStation: "Osaka", toTime: "12:43",
+                                                                   trainNumber: "Sakura 123",
+                                                                   trainName: "E5 Series",
+                                                                   carNumber: "Car 8",
+                                                                   className: "GreenCar",
+                                                                   seatNumber: "15C",
+                                                                   price: "$14,200")
+                                    return headerRouteInformationView
+                                }(), title: "Description Set View",
+                                     constaintEquals: .edges),
+                                
+//
                                 ])
         
         
         textStylesView = DesignSystemView(title: "Text Style",
                                           designSystemBlockViews: [
+                                            DesignSystemBlockView(withTextStyle: .largeTitle,
+                                                                  title: "Large Title"),
                                             DesignSystemBlockView(withTextStyle: .headline,
                                                                   title: "Headline"),
                                             DesignSystemBlockView(withTextStyle: .subheadline,
                                                                   title: "Subheadline"),
                                             DesignSystemBlockView(withTextStyle: .body,
                                                                   title: "Body"),
+                                            DesignSystemBlockView(withTextStyle: .button,
+                                                                  title: "Button"),
+                                            DesignSystemBlockView(withTextStyle: .outlinedButton,
+                                                                  title: "Outlined Button"),
+                                            DesignSystemBlockView(withTextStyle: .footnote,
+                                                                  title: "Footnote"),
                                             DesignSystemBlockView(withTextStyle: .caption1,
                                                                   title: "Caption 1"),
                                             DesignSystemBlockView(withTextStyle: .caption2,
-                                                                  title: "Caption 2"),
-                                            DesignSystemBlockView(withTextStyle: .button,
-                                                                  title: "Button")])
+                                                                  title: "Caption 2")])
         
         colorsView = DesignSystemView(title: "Colors",
                                       designSystemBlockViews: [

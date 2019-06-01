@@ -17,20 +17,20 @@ extension TextStyle {
     static let headline = TextStyle(font:
         UIFontMetrics(forTextStyle: .subheadline).scaledFont(for:
             UIFont.systemFont(ofSize: 16,
-                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 20))
+                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 22))
     static let subheadline = TextStyle(font:
         UIFontMetrics(forTextStyle: .subheadline).scaledFont(for:
             UIFont.systemFont(ofSize: 16,
-                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 20))
+                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 22))
     static let body = TextStyle(font:
         UIFontMetrics(forTextStyle: .body).scaledFont(for:
             UIFont.systemFont(ofSize: 18,
-                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 20),
+                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 24),
                                 lineSpacing: 4)
     static let button = TextStyle(font:
         UIFontMetrics(forTextStyle: .callout).scaledFont(for:
             UIFont.systemFont(ofSize: 18,
-                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 20))
+                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 24))
     static let outlinedButton = TextStyle(font:
         UIFontMetrics(forTextStyle: .callout).scaledFont(for:
             UIFont.systemFont(ofSize: 16,
@@ -38,14 +38,14 @@ extension TextStyle {
     static let footnote = TextStyle(font:
         UIFontMetrics(forTextStyle: .footnote).scaledFont(for:
             UIFont.systemFont(ofSize: 11,
-                              weight: UIAccessibility.isBoldTextEnabled ? .heavy : .medium), maximumPointSize: 20),
+                              weight: UIAccessibility.isBoldTextEnabled ? .heavy : .medium), maximumPointSize: 16),
                                     textTransform: .uppercased)
     static let caption1 = TextStyle(font:
         UIFontMetrics(forTextStyle: .caption1).scaledFont(for:
             UIFont.systemFont(ofSize: 13,
-                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 20))
+                              weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 18))
     static let caption2 = TextStyle(font:
         UIFontMetrics(forTextStyle: .caption2).scaledFont(for:
             UIFont.systemFont(ofSize: 10,
-                              weight: UIAccessibility.isBoldTextEnabled ? .heavy : .medium), maximumPointSize: 20))
+                              weight: UIAccessibility.isBoldTextEnabled ? .heavy : .medium), maximumPointSize: 15))
 }

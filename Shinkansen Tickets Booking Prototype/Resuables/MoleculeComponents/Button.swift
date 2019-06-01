@@ -125,7 +125,7 @@ class Button: UIButton {
         currentState = .normal
         super.init(frame: .zero)
         
-        setupView()
+        updateAppearance(animated: false)
     }
     
     override init(frame: CGRect) {
@@ -133,7 +133,7 @@ class Button: UIButton {
         currentState = .normal
         super.init(frame: .zero)
         
-        setupView()
+        updateAppearance(animated: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -148,12 +148,10 @@ class Button: UIButton {
         }
     }
     
-    private func setupView() {
-        layer.setLayer(type.layerStyle(by: currentState))
-        contentEdgeInsets = type.edgeInset()
-    }
-    
     private func updateAppearance(animated: Bool = true) {
+        
+        contentEdgeInsets = type.edgeInset()
+        
         var layerStyle = type.layerStyle(by: currentState)
         
         if type == .outlined {
@@ -161,15 +159,23 @@ class Button: UIButton {
             layerStyle = layerStyle.withCornerRadius(bounds.height / 2)
         }
         
-        layer.setAnimatedLayer(layerStyle,
-                               using: CABasicAnimationStyle.layerAnimationStyle)
+        if animated {
+            layer.setAnimatedLayer(layerStyle,
+                                   using: CABasicAnimationStyle.layerAnimationStyle)
+        } else {
+            layer.setLayer(layerStyle)
+        }
         
         if let title = title(for: .normal) {
             setTitleText(title, using: type.textStyle().with(newTextColor: type.textColor(by: currentState)))
         }
     }
     
-    func setTitle(_ title: String?) {
+    public func setupTheme() {
+        layer.setLayer(type.layerStyle(by: currentState))
+    }
+    
+    public func setTitle(_ title: String?) {
         guard let title = title else { return }
         setTitleText(title, using: type.textStyle().with(newTextColor: type.textColor(by: currentState)))
     }

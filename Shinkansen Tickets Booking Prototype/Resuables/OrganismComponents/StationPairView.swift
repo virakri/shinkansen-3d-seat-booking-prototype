@@ -24,7 +24,6 @@ class StationPairView: UIStackView {
         toLabel = Label()
         super.init(frame: .zero)
         setupView()
-        setupTheme()
     }
     
     required init(coder: NSCoder) {
