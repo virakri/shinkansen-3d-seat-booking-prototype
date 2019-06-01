@@ -70,29 +70,29 @@ class Button: UIButton {
             case .contained:
                 switch state {
                 case .normal, .highlighted:
-                    return currentColorTheme.component.contentOnCallToAction
+                    return currentColorTheme.componentColor.contentOnCallToAction
                 case .disabled:
-                    return currentColorTheme.component.contentOnCallToAction
+                    return currentColorTheme.componentColor.contentOnCallToAction
                 default:
-                    return currentColorTheme.component.contentOnCallToAction
+                    return currentColorTheme.componentColor.contentOnCallToAction
                 }
             case .outlined:
                 switch state {
                 case .normal, .highlighted:
-                    return currentColorTheme.component.callToAction
+                    return currentColorTheme.componentColor.callToAction
                 case .disabled:
-                    return currentColorTheme.component.callToActionDisabled
+                    return currentColorTheme.componentColor.callToActionDisabled
                 default:
-                    return currentColorTheme.component.callToAction
+                    return currentColorTheme.componentColor.callToAction
                 }
             case .text:
                 switch state {
                 case .normal, .highlighted:
-                    return currentColorTheme.component.callToAction
+                    return currentColorTheme.componentColor.callToAction
                 case .disabled:
-                    return currentColorTheme.component.callToActionDisabled
+                    return currentColorTheme.componentColor.callToActionDisabled
                 default:
-                    return currentColorTheme.component.callToAction
+                    return currentColorTheme.componentColor.callToAction
                 }
             }
         }
@@ -182,6 +182,7 @@ class Button: UIButton {
     
     public func setupTheme() {
         layer.setLayer(type.layerStyle(by: currentState))
+        setTitle(titleLabel?.text)
     }
     
     public func setTitle(_ title: String?) {

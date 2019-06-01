@@ -62,8 +62,8 @@ class HeadlineLabelSetView: UIStackView {
     
     /// Setup text colors, text style, and spacing between labels according to the current theme and current accessibility setup.
     public func setupTheme() {
-        titleLabel.textColor = currentColorTheme.component.primaryText
-        subtitleLabel.textColor = currentColorTheme.component.primaryText
+        titleLabel.textColor = currentColorTheme.componentColor.primaryText
+        subtitleLabel.textColor = currentColorTheme.componentColor.primaryText
         titleLabel.textStyle = textStyle.largeTitle()
         subtitleLabel.textStyle = textStyle.subheadline()
         spacing = CGFloat(2).systemSizeMuliplier()

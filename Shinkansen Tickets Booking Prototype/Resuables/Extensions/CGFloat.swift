@@ -23,3 +23,19 @@ extension CGFloat {
 //        return (self.systemSizeMuliplier()).pixelRounded()
 //    }
 }
+
+extension Comparable {
+    /// <#Description#>
+    ///
+    /// - Parameter limits: <#limits description#>
+    /// - Returns: <#return value description#>
+    func clamped(to limits: ClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
+    }
+}
+
+extension Strideable where Stride: SignedInteger {
+    func clamped(to limits: CountableClosedRange<Self>) -> Self {
+        return min(max(self, limits.lowerBound), limits.upperBound)
+    }
+}

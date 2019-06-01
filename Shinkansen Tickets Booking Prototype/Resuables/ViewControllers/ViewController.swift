@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(preferredColorThemeChanged(_:)), name: .didColorThemeChange, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(preferredColorThemeChanged(_:)), name: UIAccessibility.boldTextStatusDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(preferredBoldTextStatusChanged(_:)), name: UIAccessibility.boldTextStatusDidChangeNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(preferredColorThemeChanged(_:)), name: UIAccessibility.darkerSystemColorsStatusDidChangeNotification, object: nil)
         
@@ -53,8 +53,10 @@ class ViewController: UIViewController {
     
     /// Setups all stylings, sizes, and colors. It needs to be first called after `setupView()`, and it is called whenever `UIContentSizeCategory` or `.didColorThemeChange` notification is called.
     internal func setupTheme() {
-        print(#function)
-        view.backgroundColor = currentColorTheme.component.background
+        
+        setNeedsStatusBarAppearanceUpdate()
+        view.backgroundColor = currentColorTheme.componentColor.background
+        
     }
     
     /// Initializes interactions and gestures in the view controller.
@@ -63,6 +65,10 @@ class ViewController: UIViewController {
     }
     
     @objc func preferredContentSizeChanged(_ notification: Notification) {
+        setupTheme()
+    }
+    
+    @objc func preferredBoldTextStatusChanged(_ notification: Notification) {
         setupTheme()
     }
     

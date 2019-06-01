@@ -24,6 +24,7 @@ class StationPairView: UIStackView {
         toLabel = Label()
         super.init(frame: .zero)
         setupView()
+        setupTheme()
     }
     
     required init(coder: NSCoder) {
@@ -44,7 +45,7 @@ class StationPairView: UIStackView {
     public func setupTheme() {
         fromStationHeadlineView.setupTheme()
         toStationHeadlineView.setupTheme()
-        toLabel.textColor = currentColorTheme.component.secondaryText
+        toLabel.textColor = currentColorTheme.componentColor.secondaryText
         toLabel.textStyle = textStyle.subheadline()
     }
     

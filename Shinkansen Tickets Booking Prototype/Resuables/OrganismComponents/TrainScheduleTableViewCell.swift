@@ -12,6 +12,9 @@ class TrainScheduleTableViewCell: UITableViewCell {
     var cardView: CardControl
     var timeLabelSetView: LabelSetView
     var trainLabelSetView: LabelSetView
+    var granClassIconImageView: SeatClassIconImageView
+    var greenIconImageView: SeatClassIconImageView
+    var ordinaryIconImageView: SeatClassIconImageView
     var priceLabel: Label
     var classIconStackView: UIStackView
     var trainImageView: UIImageView
@@ -25,6 +28,12 @@ class TrainScheduleTableViewCell: UITableViewCell {
         cardView = CardControl(type: .regular)
         timeLabelSetView = LabelSetView(type: .regular, textAlignment: .left)
         trainLabelSetView = LabelSetView(type: .small, textAlignment: .right)
+        granClassIconImageView = SeatClassIconImageView(seatClass: .granClass,
+                                                        iconSize: .small)
+        greenIconImageView = SeatClassIconImageView(seatClass: .green,
+                                                    iconSize: .small)
+        ordinaryIconImageView = SeatClassIconImageView(seatClass: .ordinary,
+                                                       iconSize: .small)
         priceLabel = Label()
         classIconStackView = UIStackView()
         trainImageView = UIImageView()
@@ -38,55 +47,58 @@ class TrainScheduleTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
+        selectionStyle = .none
         preservesSuperviewLayoutMargins = true
         contentView.preservesSuperviewLayoutMargins = true
-        
-        selectionStyle = .none
-        
         contentView.isUserInteractionEnabled = false
-        
-//        self.constraintAllEdges(to: contentView)
-//        addSubview(contentView, withConstaintEquals: .edges, insetsConstant: .zero)
-//        addSubview(contentView)
-//        contentView.translatesAutoresizingMaskIntoConstraints = false
-//        constraintAllEdges(to: contentView)
-//        topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-//        bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-//        leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-//        trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         contentView.addSubview(cardView,
                                withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom],
                                insetsConstant: .init(top: 4, leading: 0, bottom: 12, trailing: 0))
+        
+        let seatClassStackView = UIStackView([granClassIconImageView,
+                                              greenIconImageView,
+                                              ordinaryIconImageView], distribution: .fill, alignment: .center, spacing: 8)
+        
+        let seatClassAndPriceStackView = UIStackView([seatClassStackView, priceLabel],
+                                                     axis: .vertical,
+                                                     distribution: .fill, alignment: .leading, spacing: 4)
         
         let headerTextDetailStackView = UIStackView([timeLabelSetView, trainLabelSetView],
                                                     axis: .horizontal,
                                                     distribution: .equalSpacing,
                                                     alignment: .firstBaseline)
         
-        let verticalStackView = UIStackView([headerTextDetailStackView],
+        let verticalStackView = UIStackView([headerTextDetailStackView, seatClassAndPriceStackView],
                                             axis: .vertical,
                                             distribution: .fill,
                                             alignment: .fill,
-                                            spacing: 0)
+                                            spacing: 24)
         
-        cardView.addSubview(verticalStackView,
+        cardView.contentView.addSubview(verticalStackView,
                             withConstaintEquals: .marginEdges,
                             insetsConstant: .zero)
     }
     
     public func setupTheme() {
-//        priceLabel.textStyle =
+        priceLabel.textStyle = textStyle.caption2()
+        priceLabel.textColor = currentColorTheme.componentColor.secondaryText
     }
     
     public func setupValue(time: String,
                            amountOfTime: String? = nil,
                            trainNumber: String? = nil,
                            trainName: String? = nil,
+                           isGranClassAvailable: Bool = true,
+                           isGreenAvailable: Bool = true,
+                           isOrdinaryAvailable: Bool = true,
                            price: String? = nil,
                            trainImage: UIImage? = nil) {
         timeLabelSetView.setupValue(title: time, subtitle: amountOfTime)
         trainLabelSetView.setupValue(title: trainNumber, subtitle: trainName)
+        granClassIconImageView.isAvailable = isGranClassAvailable
+        greenIconImageView.isAvailable = isGreenAvailable
+        ordinaryIconImageView.isAvailable = isOrdinaryAvailable
         priceLabel.text = price
     }
 }

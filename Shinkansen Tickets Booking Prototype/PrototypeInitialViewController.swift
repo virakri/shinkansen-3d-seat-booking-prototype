@@ -20,6 +20,8 @@ class PrototypeInitialViewController: ViewController {
     
     var darkModeSwitch: UISwitch!
     
+    var darkModeSwitchLabel: Label!
+    
     var designSystemButton: Button!
     
     var startPrototypeButton: Button!
@@ -56,12 +58,16 @@ class PrototypeInitialViewController: ViewController {
         headlineLabel = Label()
         bodyLabel = Label()
         
+        darkModeSwitch = UISwitch()
+        darkModeSwitchLabel = Label()
+        
         designSystemButton = Button(type: .text)
         startPrototypeButton = Button(type: .contained)
         
         // MARK: Setup static views' properties
         textStackView.axis = .vertical
         callToActionStackView.axis = .vertical
+        callToActionStackView.alignment = .center
         
         headlineLabel.numberOfLines = 0
         bodyLabel.numberOfLines = 0
@@ -73,16 +79,23 @@ class PrototypeInitialViewController: ViewController {
         
         view.constraintBottomSafeArea(to: callToActionStackView, withMinimumConstant: 16)
         
+        // MARK: Set container view for switch
+        let switchStackView = UIStackView([darkModeSwitch, darkModeSwitchLabel], distribution: .fill, alignment: .center, spacing: 8)
+        
         // MARK: Add labels into stackViews
         textStackView.addArrangedSubview(headlineLabel)
         textStackView.addArrangedSubview(bodyLabel)
         
+        
+        callToActionStackView.addArrangedSubview(switchStackView)
         callToActionStackView.addArrangedSubview(designSystemButton)
         callToActionStackView.addArrangedSubview(startPrototypeButton)
         
         // MARK: Setup static content
         headlineLabel.text = "Lorem ipsum dolor sit amet"
         bodyLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+        
+        darkModeSwitchLabel.text = "Dark Mode"
         
         designSystemButton.setTitle("Explore Design System")
         startPrototypeButton.setTitle("Start the Prototype")
@@ -108,15 +121,26 @@ class PrototypeInitialViewController: ViewController {
         headlineLabel.textStyle = textStyle.largeTitle()
         bodyLabel.textStyle = textStyle.body()
         
+        darkModeSwitchLabel.textStyle = textStyle.body()
+        
         // MARK: Set Colors for labels
+        headlineLabel.textColor = currentColorTheme.componentColor.primaryText
+        bodyLabel.textColor = currentColorTheme.componentColor.secondaryText
+        
+        darkModeSwitchLabel.textColor = currentColorTheme.componentColor.secondaryText
     }
     
     override func setupInteraction() {
         super.setupInteraction()
         
+        // MARK: Initialize state of user interfaces
+        darkModeSwitch.isOn = currentColorTheme == .dark
+        
         // MARK: Add targets to buttons
         designSystemButton.addTarget(self, action: #selector(designSystemButtonDidTouch(_:)), for: .touchUpInside)
         startPrototypeButton.addTarget(self, action: #selector(startPrototypeButtonDidTouch(_:)), for: .touchUpInside)
+        
+        darkModeSwitch.addTarget(self, action: #selector(darkModeSwitchValueChanged(_:)), for: .valueChanged)
         
     }
     
@@ -128,5 +152,9 @@ class PrototypeInitialViewController: ViewController {
     @objc private func startPrototypeButtonDidTouch(_ sender: Button) {
         
         present(UINavigationController(rootViewController: BookingCriteriaViewController()), animated: true, completion: nil)
+    }
+    
+    @objc private func darkModeSwitchValueChanged(_ sender: UISwitch) {
+        currentColorTheme = sender.isOn ? .dark : .light
     }
 }

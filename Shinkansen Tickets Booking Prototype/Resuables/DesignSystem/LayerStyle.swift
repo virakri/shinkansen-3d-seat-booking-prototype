@@ -21,7 +21,7 @@ extension DesignSystem {
             class func normal() -> LayerStyle {
                 return LayerStyle(opacity: 1,
                                   cornerRadius: DesignSystem.radiusCorner.card(),
-                                  backgroundColor: currentColorTheme.component.cardBackground.cgColor,
+                                  backgroundColor: currentColorTheme.componentColor.cardBackground.cgColor,
                                   shadowStyle: shadowStyle.card.normal()
                 )
             }
@@ -39,7 +39,7 @@ extension DesignSystem {
             class func normal() -> LayerStyle {
                 return LayerStyle(opacity: 1,
                                   cornerRadius: DesignSystem.radiusCorner.largeCard(),
-                                  backgroundColor: currentColorTheme.component.cardBackground.cgColor,
+                                  backgroundColor: currentColorTheme.componentColor.cardBackground.cgColor,
                     shadowStyle: shadowStyle.card.normal()
                 )
             }
@@ -57,15 +57,15 @@ extension DesignSystem {
             class func normal() -> LayerStyle {
                 return LayerStyle(opacity: 1,
                                   cornerRadius: DesignSystem.radiusCorner.button(),
-                                  backgroundColor: currentColorTheme.component.callToAction.cgColor)
+                                  backgroundColor: currentColorTheme.componentColor.callToAction.cgColor)
             }
             
             class func highlighted() -> LayerStyle {
-                return normal().withBackgroundColor(currentColorTheme.component.callToActionHighlighted.cgColor)
+                return normal().withBackgroundColor(currentColorTheme.componentColor.callToActionHighlighted.cgColor)
             }
             
             class func disabled() -> LayerStyle {
-                return normal().withBackgroundColor(currentColorTheme.component.callToActionDisabled.cgColor)
+                return normal().withBackgroundColor(currentColorTheme.componentColor.callToActionDisabled.cgColor)
             }
         }
  
@@ -73,7 +73,7 @@ extension DesignSystem {
             class func normal() -> LayerStyle {
                 return LayerStyle(cornerRadius: 0,
                                   borderWidth: DesignSystem.borderWidth.outlinedButton,
-                                  borderColor: currentColorTheme.component.callToAction.cgColor)
+                                  borderColor: currentColorTheme.componentColor.callToAction.cgColor)
             }
             
             class func highlighted() -> LayerStyle {
@@ -81,7 +81,7 @@ extension DesignSystem {
             }
             
             class func disabled() -> LayerStyle {
-                return normal().withBorderColor(currentColorTheme.component.callToActionDisabled.cgColor)
+                return normal().withBorderColor(currentColorTheme.componentColor.callToActionDisabled.cgColor)
             }
         }
     }
@@ -89,7 +89,7 @@ extension DesignSystem {
     class shadowStyle {
         
         class func noShadow() -> ShadowStyle {
-            return ShadowStyle(shadowOpacity: 0, shadowRadius: 0, shadowOffset: .zero, shadowColor: currentColorTheme.component.shadow.cgColor)
+            return ShadowStyle(shadowOpacity: 0, shadowRadius: 0, shadowOffset: .zero, shadowColor: currentColorTheme.componentColor.shadow.cgColor)
         }
         
         class card {
@@ -97,21 +97,21 @@ extension DesignSystem {
                 return ShadowStyle(shadowOpacity: 0.12,
                                    shadowRadius: 10,
                                    shadowOffset: .init(width: 0, height: 5),
-                                   shadowColor: currentColorTheme.component.shadow.cgColor)
+                                   shadowColor: currentColorTheme.componentColor.shadow.cgColor)
             }
             
             class func highlighted() -> ShadowStyle {
                 return ShadowStyle(shadowOpacity: 0.10,
                                    shadowRadius: 2,
                                    shadowOffset: .init(width: 0, height: 2),
-                                   shadowColor: currentColorTheme.component.shadow.cgColor)
+                                   shadowColor: currentColorTheme.componentColor.shadow.cgColor)
             }
             
             class func disabled() -> ShadowStyle {
                 return ShadowStyle(shadowOpacity: 0.08,
                                    shadowRadius: 1,
                                    shadowOffset: .init(width: 0, height: 1),
-                                   shadowColor: currentColorTheme.component.shadow.cgColor)
+                                   shadowColor: currentColorTheme.componentColor.shadow.cgColor)
             }
         }
     }

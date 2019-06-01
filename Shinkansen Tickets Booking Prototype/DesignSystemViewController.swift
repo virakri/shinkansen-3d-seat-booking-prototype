@@ -93,7 +93,7 @@ class DesignSystemBlockView: UIView {
             super.init(frame: .zero)
             self.textStyle = textStyle
             text = dummyText
-            textColor = currentColorTheme.component.primaryText
+            textColor = currentColorTheme.componentColor.primaryText
             numberOfLines = 0
         }
         
@@ -243,7 +243,7 @@ class DesignSystemView: UIView {
         labelContainerView.addSubview({
             let headlineLabel = Label()
             headlineLabel.text = title
-            headlineLabel.textColor = currentColorTheme.component.primaryText
+            headlineLabel.textColor = currentColorTheme.componentColor.primaryText
             headlineLabel.font = .systemFont(ofSize: 36, weight: .heavy)
             return headlineLabel
         }(), withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom],
@@ -320,7 +320,7 @@ class DesignSystemTabBar: UIControl {
             super.init(frame: .zero)
             
             titleLabel.font = .systemFont(ofSize: 15, weight: .bold)
-            titleLabel.textColor = currentColorTheme.component.callToAction
+            titleLabel.textColor = currentColorTheme.componentColor.callToAction
             
             addSubview(titleLabel, withConstaintEquals: .edges)
         }
@@ -505,15 +505,15 @@ class DesignSystemViewController: ViewController {
                                 DesignSystemBlockView(withView: {
                                     let trainScheduleTableViewCell =
                                         TrainScheduleTableViewCell(style: .default, reuseIdentifier: nil)
-                                    trainScheduleTableViewCell.setupValue(time: "9:46 - 11:42", amountOfTime: "3hr 12min",
-                                                                          trainNumber: "Hayabusa 231", trainName: "E6 Series",
-                                                                          price: nil, trainImage: nil)
+                                    trainScheduleTableViewCell.setupValue(time: "9:46 - 11:42",
+                                                                          amountOfTime: "3hr 12min",
+                                                                          trainNumber: "Hayabusa 231",
+                                                                          trainName: "E6 Series",
+                                                                          price: "$13,930", trainImage: nil)
                                     let trainScheduleTableViewCellContentView = trainScheduleTableViewCell.contentView
                                     return trainScheduleTableViewCellContentView
-                                }(), title: "Description Set View",
+                                }(), title: "Train Schedule Table View Cell",
                                      constaintEquals: .edges),
-                                
-//                                TrainScheduleTableViewCell
 //
                                 ])
         
@@ -633,6 +633,9 @@ class DesignSystemViewController: ViewController {
         stackView.preservesSuperviewLayoutMargins = true
         view.addSubview(stackView, withConstaintEquals: .edges)
         
+        let closeButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
+        view.addSubview(closeButton, withConstaintEquals: [.trailingMargin, .topSafeArea], insetsConstant: .init(top: 28, leading: 0, bottom: 0, trailing: 0))
+        closeButton.addTarget(self, action: #selector(closeButtonDidtouch(_:)), for: .touchUpInside)
     }
     
     @objc func stateSegmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -666,5 +669,9 @@ class DesignSystemViewController: ViewController {
         default:
             break
         }
+    }
+    
+    @objc func closeButtonDidtouch(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 }

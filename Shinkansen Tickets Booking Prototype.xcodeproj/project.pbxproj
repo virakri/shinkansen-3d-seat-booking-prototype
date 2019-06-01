@@ -12,6 +12,8 @@
 		D0046994229F58CC0028A9D7 /* DesignValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046993229F58CC0028A9D7 /* DesignValues.swift */; };
 		D0046996229FCB550028A9D7 /* CardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046995229FCB550028A9D7 /* CardControl.swift */; };
 		D0046998229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */; };
+		D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */; };
+		D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
 		D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCE229CB476007CCFFE /* UIStackView.swift */; };
 		D053EBD1229CB772007CCFFE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD0229CB772007CCFFE /* UIView.swift */; };
@@ -56,6 +58,8 @@
 		D0046993229F58CC0028A9D7 /* DesignValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignValues.swift; sourceTree = "<group>"; };
 		D0046995229FCB550028A9D7 /* CardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControl.swift; sourceTree = "<group>"; };
 		D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDirectionalEdgeInsets.swift; sourceTree = "<group>"; };
+		D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassIconImageView.swift; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
 		D053EBCE229CB476007CCFFE /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		D053EBD0229CB772007CCFFE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				D0C26E3822A13940001D3065 /* DescriptionSetView.swift */,
 				D09F3F1222A20239005E59C0 /* HeaderRouteInformationView.swift */,
 				D09F3F1422A20ACE005E59C0 /* TrainScheduleTableViewCell.swift */,
+				D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */,
 			);
 			path = OrganismComponents;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			children = (
 				D053EBDE229D52BB007CCFFE /* Label.swift */,
 				D004698F229F559C0028A9D7 /* Button.swift */,
+				D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */,
 				D0046995229FCB550028A9D7 /* CardControl.swift */,
 			);
 			path = MoleculeComponents;
@@ -364,6 +370,7 @@
 				D074B1E3228B90AC00791F94 /* BookingSummaryViewController.swift in Sources */,
 				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
 				D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */,
+				D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */,
 				D074B1E5228B90BD00791F94 /* BookingNavigationController.swift in Sources */,
 				D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */,
 				D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */,
@@ -387,6 +394,7 @@
 				D0046990229F559C0028A9D7 /* Button.swift in Sources */,
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
+				D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */,
 				D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */,
 				D074B1E2228B90AC00791F94 /* SeatMapSelectionViewController.swift in Sources */,
 			);

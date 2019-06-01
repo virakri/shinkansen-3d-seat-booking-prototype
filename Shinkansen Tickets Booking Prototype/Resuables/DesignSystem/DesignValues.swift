@@ -12,6 +12,12 @@ extension DesignSystem {
     
     class opacity {
         static let highlighted: Float = 0.54
+        static let disabled: Float = 0.25
+    }
+    
+    class alpha {
+        static let highlighted: CGFloat = 0.54
+        static let disabled: CGFloat = 0.25
     }
     
     class borderWidth {

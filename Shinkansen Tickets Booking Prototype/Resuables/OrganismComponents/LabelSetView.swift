@@ -88,8 +88,8 @@ class LabelSetView: UIStackView {
     
     /// Setup text colors, text style, and spacing between labels according to the current theme and current accessibility setup.
     public func setupTheme() {
-        titleLabel.textColor = currentColorTheme.component.primaryText
-        subtitleLabel.textColor = currentColorTheme.component.secondaryText
+        titleLabel.textColor = currentColorTheme.componentColor.primaryText
+        subtitleLabel.textColor = currentColorTheme.componentColor.secondaryText
         titleLabel.textStyle = type.textStyleForTitleLabel()
         subtitleLabel.textStyle = textStyle.caption2()
         setTextAlignment()

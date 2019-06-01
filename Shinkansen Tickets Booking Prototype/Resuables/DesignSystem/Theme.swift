@@ -8,24 +8,33 @@
 
 import UIKit
 
-var currentColorTheme: ColorTheme = UserDefaults.standard.object(forKey: "colorTheme") as? ColorTheme ?? .light {
+var currentColorTheme: ColorTheme = ColorTheme(rawValue: UserDefaults.standard.integer(forKey: "colorTheme")) ?? .light {
     didSet {
         if currentColorTheme != oldValue {
-            UserDefaults.standard.set(currentColorTheme, forKey: "colorTheme")
+            UserDefaults.standard.set(currentColorTheme.rawValue, forKey: "colorTheme")
             NotificationCenter.default.post(name: .didColorThemeChange, object: nil)
         }
     }
 }
 
-internal enum ColorTheme {
+internal enum ColorTheme: Int {
     case light, dark
     
-    var component: UIColor.Component {
+    var componentColor: UIColor.Component {
         switch self {
         case .light:
-            return UIColor.lightMode
+            return UIColor.lightModeComponent
         case .dark:
-            return UIColor.darkMode
+            return UIColor.darkModeComponent
+        }
+    }
+    
+    var seatClassColor: UIColor.SeatClass {
+        switch self {
+        case .light:
+            return UIColor.lightModeSeatClass
+        case .dark:
+            return UIColor.darkModeSeatClass
         }
     }
     
