@@ -7,17 +7,46 @@
 //
 
 import UIKit
+import Kumi
 
 class TrainSelectionViewController: BookingViewController {
+    
+    var didFirstLoad: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !didFirstLoad {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                [weak self] in
+                
+                self?.mainTableView.visibleCells.enumerated().forEach { (index, cell) in
+                    guard let cell = cell as? TrainScheduleTableViewCell else { return }
+                    cell.preparePropertiesForAnimation()
+                    cell.transform.ty = 24 * CGFloat(index)
+                    var animationStyle = UIViewAnimationStyle.transitionAnimationStyle
+                    animationStyle.duration = 0.05 * TimeInterval(index) + 0.5
+                    UIView.animate(withStyle: animationStyle, animations: {
+                        cell.setPropertiesToIdentity()
+                        cell.transform.ty = 0
+                    })
+                }
+                self?.didFirstLoad = true
+                self?.mainTableView.isUserInteractionEnabled = true
+            }
+            
+        }
+    }
+    
     override func setupView() {
         super.setupView()
         mainViewType = .tableView
+        mainTableView.isUserInteractionEnabled = false
     }
     
     override func setupInteraction() {
@@ -56,6 +85,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
                         isOrdinaryAvailable: true,
                         price: "from $9,000",
                         trainImage: nil)
+        cell.contentView.alpha = didFirstLoad ? 1 : 0
         return cell
     }
     

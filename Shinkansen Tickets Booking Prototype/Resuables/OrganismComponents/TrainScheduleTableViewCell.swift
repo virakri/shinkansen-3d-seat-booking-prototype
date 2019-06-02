@@ -120,6 +120,16 @@ class TrainScheduleTableViewCell: UITableViewCell {
         priceLabel.text = price
     }
     
+    public func preparePropertiesForAnimation() {
+        contentView.alpha = 0
+        trainImageView.transform.tx = trainImageView.bounds.width
+    }
+    
+    public func setPropertiesToIdentity() {
+        contentView.alpha = 1
+        trainImageView.transform.tx = 0
+    }
+    
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         cardView.isHighlighted = highlighted
     }
