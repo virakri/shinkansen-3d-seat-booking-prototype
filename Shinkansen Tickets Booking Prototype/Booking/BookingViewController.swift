@@ -70,6 +70,8 @@ class BookingViewController: ViewController {
     
     var mainStackView: UIStackView!
     
+    var topBarStackView: UIStackView!
+    
     var headerWithTopBarStackView: UIStackView!
     
     var backButton: ImageButton! // Temporary until the button animation is done.
@@ -92,7 +94,7 @@ class BookingViewController: ViewController {
         // MARK: Header
         backButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
         dateLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
-        let topBarStackView = UIStackView([backButton, dateLabelSetView],
+        topBarStackView = UIStackView([backButton, dateLabelSetView],
                                           axis: .horizontal,
                                           distribution: .equalSpacing,
                                           alignment: .center)

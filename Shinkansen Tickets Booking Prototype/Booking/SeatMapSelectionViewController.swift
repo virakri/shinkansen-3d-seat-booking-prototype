@@ -10,17 +10,34 @@ import UIKit
 
 class SeatMapSelectionViewController: BookingViewController {
     
+    var mainCardView: CardControl!
+    
     override func setupView() {
         super.setupView()
         mainViewType = .view
+        
+        mainCardView = CardControl(type: .large)
+        mainContentView.addSubview(mainCardView, withConstaintEquals: .edges)
+        mainCardView.isUserInteractionEnabled = false
     }
     
     override func setupInteraction() {
         super.setupInteraction()
         
+        mainCallToActionButton.addTarget(self,
+                                         action: #selector(mainCallToActionButtonDidTouch(_:)),
+                                         for: .touchUpInside)
+        
         backButton.addTarget(self,
                              action: #selector(backButtonDidTouch(_:)),
                              for: .touchUpInside)
+    }
+    
+    @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
+        let bookingConfirmationViewController = BookingConfirmationViewController()
+        bookingConfirmationViewController.headerInformation = headerInformation
+        bookingConfirmationViewController.headerInformation?.seatNumber = "5A"
+        navigationController?.pushViewController(bookingConfirmationViewController, animated: true)
     }
     
     @objc func backButtonDidTouch(_ sender: Button) {

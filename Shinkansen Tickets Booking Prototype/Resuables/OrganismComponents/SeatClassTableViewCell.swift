@@ -91,7 +91,7 @@ class SeatClassTableViewCell: UITableViewCell {
         seatImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .horizontal)
         
         seatImageView.image = nil
-        seatImageView.backgroundColor = .red
+        seatImageView.backgroundColor = currentColorTheme.componentColor.callToActionDisabled
         
         contentView.addSubview(cardView,
                                withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom],

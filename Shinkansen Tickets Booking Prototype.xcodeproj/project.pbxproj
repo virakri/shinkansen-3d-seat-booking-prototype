@@ -18,6 +18,7 @@
 		D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */; };
 		D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBF22A316B000C3FAF3 /* UITableView.swift */; };
 		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
+		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
 		D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCE229CB476007CCFFE /* UIStackView.swift */; };
 		D053EBD1229CB772007CCFFE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD0229CB772007CCFFE /* UIView.swift */; };
@@ -31,7 +32,7 @@
 		D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */; };
 		D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DC228B90AC00791F94 /* SeatClassSelectionViewController.swift */; };
 		D074B1E2228B90AC00791F94 /* SeatMapSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DD228B90AC00791F94 /* SeatMapSelectionViewController.swift */; };
-		D074B1E3228B90AC00791F94 /* BookingSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DE228B90AC00791F94 /* BookingSummaryViewController.swift */; };
+		D074B1E3228B90AC00791F94 /* BookingConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DE228B90AC00791F94 /* BookingConfirmationViewController.swift */; };
 		D074B1E5228B90BD00791F94 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1E4228B90BD00791F94 /* NavigationController.swift */; };
 		D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1E7228B926F00791F94 /* TextStyle.swift */; };
 		D074B1EA228B927600791F94 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1E9228B927600791F94 /* Colors.swift */; };
@@ -68,6 +69,7 @@
 		D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelSetView.swift; sourceTree = "<group>"; };
 		D01B2EBF22A316B000C3FAF3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
+		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
 		D053EBCE229CB476007CCFFE /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		D053EBD0229CB772007CCFFE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 		D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainSelectionViewController.swift; sourceTree = "<group>"; };
 		D074B1DC228B90AC00791F94 /* SeatClassSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatClassSelectionViewController.swift; sourceTree = "<group>"; };
 		D074B1DD228B90AC00791F94 /* SeatMapSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatMapSelectionViewController.swift; sourceTree = "<group>"; };
-		D074B1DE228B90AC00791F94 /* BookingSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingSummaryViewController.swift; sourceTree = "<group>"; };
+		D074B1DE228B90AC00791F94 /* BookingConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingConfirmationViewController.swift; sourceTree = "<group>"; };
 		D074B1E4228B90BD00791F94 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		D074B1E7228B926F00791F94 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		D074B1E9228B927600791F94 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -197,7 +199,8 @@
 				D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */,
 				D074B1DC228B90AC00791F94 /* SeatClassSelectionViewController.swift */,
 				D074B1DD228B90AC00791F94 /* SeatMapSelectionViewController.swift */,
-				D074B1DE228B90AC00791F94 /* BookingSummaryViewController.swift */,
+				D074B1DE228B90AC00791F94 /* BookingConfirmationViewController.swift */,
+				D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -376,10 +379,11 @@
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
 				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,
+				D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */,
 				D074B1EA228B927600791F94 /* Colors.swift in Sources */,
 				D053EBDC229D4D3D007CCFFE /* Notification.swift in Sources */,
 				D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */,
-				D074B1E3228B90AC00791F94 /* BookingSummaryViewController.swift in Sources */,
+				D074B1E3228B90AC00791F94 /* BookingConfirmationViewController.swift in Sources */,
 				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
 				D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */,
 				D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */,
