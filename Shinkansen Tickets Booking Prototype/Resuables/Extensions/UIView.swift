@@ -234,4 +234,8 @@ extension UIView {
         
         return anchors
     }
+    
+    func frame(in view: UIView) -> CGRect {
+        return superview?.convert(frame, to: view) ?? convert(frame, to: view)
+    }
 }

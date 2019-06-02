@@ -55,7 +55,7 @@ class StationPairView: UIStackView {
         toStationHeadlineView.setupValue(title: toStation, subtitle: toTime)
         
         fromStationHeadlineView.subtitleLabel.isHidden = fromTime == nil && toTime == nil
-        fromStationHeadlineView.subtitleLabel.isHidden = fromTime == nil && toTime == nil
+        toStationHeadlineView.subtitleLabel.isHidden = fromTime == nil && toTime == nil
         
     }
 }

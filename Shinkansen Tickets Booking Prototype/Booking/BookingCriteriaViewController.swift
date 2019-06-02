@@ -50,6 +50,7 @@ class BookingCriteriaViewController: BookingViewController {
     
     override func setupView() {
         super.setupView()
+        headerRouteInformationView.isHidden = true
         mainStackView.isHidden = true
         
         //
