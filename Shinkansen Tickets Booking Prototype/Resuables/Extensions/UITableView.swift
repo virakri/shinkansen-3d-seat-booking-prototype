@@ -14,6 +14,10 @@ extension UITableView {
             if let cell = cell as? TrainScheduleTableViewCell {
                 cell.setupTheme()
             }
+            
+            if let cell = cell as? SeatClassTableViewCell {
+                cell.setupTheme()
+            }
         }
     }
 }

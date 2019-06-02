@@ -91,6 +91,16 @@ class CardControl: UIControl {
         setupView()
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        // Manually defining shadowPath helps the system to perform better by not having them redefine the shape of the layer ever single time when the view needs to be rendered
+        layer.shadowPath = CGPath(roundedRect: rect,
+                                  cornerWidth: layer.cornerRadius,
+                                  cornerHeight: layer.cornerRadius,
+                                  transform: nil)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

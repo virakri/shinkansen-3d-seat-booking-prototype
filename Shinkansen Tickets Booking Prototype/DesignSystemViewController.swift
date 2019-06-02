@@ -514,6 +514,20 @@ class DesignSystemViewController: ViewController {
                                     return trainScheduleTableViewCellContentView
                                 }(), title: "Train Schedule Table View Cell",
                                      constaintEquals: .edges),
+                                
+                                DesignSystemBlockView(withView: {
+                                    let seatClassTableViewCell =
+                                        SeatClassTableViewCell(style: .default, reuseIdentifier: nil)
+                                    seatClassTableViewCell
+                                        .setupValue(seatClass: .green,
+                                                    seatClassName: "GranClass",
+                                                    price: "¥24,000",
+                                                    description: "a first class travel with an experience of luxury ",
+                                                    trainImage: nil)
+                                    let seatClassTableViewCellContentView = seatClassTableViewCell.contentView
+                                    return seatClassTableViewCellContentView
+                                }(), title: "Seat Class Table View Cell",
+                                     constaintEquals: .edges),
 //
                                 ])
         

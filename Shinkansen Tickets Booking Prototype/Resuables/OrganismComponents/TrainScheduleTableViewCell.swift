@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kumi
 
 class TrainScheduleTableViewCell: UITableViewCell {
     var cardView: CardControl

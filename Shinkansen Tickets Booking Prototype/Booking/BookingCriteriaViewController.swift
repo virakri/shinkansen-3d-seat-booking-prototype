@@ -29,7 +29,11 @@ class BookingCriteriaViewController: BookingViewController {
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
-        navigationController?.pushViewController(TrainSelectionViewController(), animated: true)
+        let trainSelectionViewController = TrainSelectionViewController()
+        trainSelectionViewController.headerInformation =
+            HeaderInformation(dayOfWeek: "Monday", date: "June 3, 2019",
+                              fromStation: "Osaka", toStation: "Tokyo")
+        navigationController?.pushViewController(trainSelectionViewController, animated: true)
     }
     
     @objc func backButtonDidTouch(_ sender: Button) {

@@ -17,6 +17,7 @@
 		D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */; };
 		D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */; };
 		D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBF22A316B000C3FAF3 /* UITableView.swift */; };
+		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
 		D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCE229CB476007CCFFE /* UIStackView.swift */; };
 		D053EBD1229CB772007CCFFE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD0229CB772007CCFFE /* UIView.swift */; };
@@ -66,6 +67,7 @@
 		D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
 		D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelSetView.swift; sourceTree = "<group>"; };
 		D01B2EBF22A316B000C3FAF3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
 		D053EBCE229CB476007CCFFE /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		D053EBD0229CB772007CCFFE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -160,8 +162,9 @@
 				D0C26E3822A13940001D3065 /* DescriptionSetView.swift */,
 				D09F3F1222A20239005E59C0 /* HeaderRouteInformationView.swift */,
 				D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */,
-				D09F3F1422A20ACE005E59C0 /* TrainScheduleTableViewCell.swift */,
 				D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */,
+				D09F3F1422A20ACE005E59C0 /* TrainScheduleTableViewCell.swift */,
+				D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */,
 			);
 			path = OrganismComponents;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				D09F3F1322A20239005E59C0 /* HeaderRouteInformationView.swift in Sources */,
 				D053EBD3229D29B3007CCFFE /* UILabel.swift in Sources */,
 				D0F175BF22A2A7B60095631F /* DesignSystem.swift in Sources */,
+				D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */,
 				D0F6D8B822A0867C00872B5B /* SubHeadlineLabelSetView.swift in Sources */,
 				D0046994229F58CC0028A9D7 /* DesignValues.swift in Sources */,
 				D0F6D8BA22A0869400872B5B /* HeadlineLabelSetView.swift in Sources */,

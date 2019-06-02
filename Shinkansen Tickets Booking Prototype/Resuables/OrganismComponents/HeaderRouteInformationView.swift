@@ -48,7 +48,6 @@ class HeaderRouteInformationView: UIStackView {
         spacing = min(CGFloat(24).systemSizeMuliplier(), 28)
         addArrangedSubview(stationPairView)
         addArrangedSubview(descriptionSetView)
-        print(spacing)
     }
     
     public func setupTheme() {
@@ -77,5 +76,26 @@ class HeaderRouteInformationView: UIStackView {
         
         descriptionSetView.isHidden = trainNumber == nil && trainName == nil &&
             carNumber == nil && className == nil && seatNumber == nil && price == nil
+    }
+    
+    public func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat) {
+        
+        // To filter only negative offset otherwise there will have no effect
+        guard contentOffsetY < 0 else {
+            stationPairView.transform.ty = 0
+            descriptionSetView.transform.ty = 0
+            return
+        }
+        let stationPairViewAppliedVerticalEffectPercentage: CGFloat = {
+            return (stationPairView.bounds.height / 2) / bounds.height
+        }()
+        let descriptionSetViewAppliedVerticalEffectPercentage: CGFloat = {
+            return (stationPairView.bounds.height
+                + spacing
+                + descriptionSetView.bounds.height / 2)
+                / bounds.height
+        }()
+        stationPairView.transform.ty = -contentOffsetY * stationPairViewAppliedVerticalEffectPercentage
+        descriptionSetView.transform.ty = -contentOffsetY * descriptionSetViewAppliedVerticalEffectPercentage
     }
 }

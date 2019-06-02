@@ -83,7 +83,6 @@ class LabelSetView: UIStackView {
     private func setTextAlignment() {
         titleLabel.textAlignment = textAlignment
         subtitleLabel.textAlignment = textAlignment
-        print(textAlignment.rawValue)
     }
     
     /// Setup text colors, text style, and spacing between labels according to the current theme and current accessibility setup.

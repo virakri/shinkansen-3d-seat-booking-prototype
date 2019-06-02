@@ -10,9 +10,45 @@ import UIKit
 
 class BookingViewController: ViewController {
     
+    struct HeaderInformation {
+        var dayOfWeek: String
+        var date: String
+        var fromStation: String
+        var fromTime: String? = nil
+        var toStation: String
+        var toTime: String? = nil
+        var trainNumber: String? = nil
+        var trainName: String? = nil
+        var carNumber: String? = nil
+        var className: String? = nil
+        var seatNumber: String? = nil
+        var price: String? = nil
+        
+        init(dayOfWeek: String, date: String, fromStation: String, toStation: String) {
+            self.dayOfWeek = dayOfWeek
+            self.date = date
+            self.fromStation = fromStation
+            self.toStation = toStation
+            fromTime = nil
+            toTime = nil
+            trainNumber = nil
+            trainName = nil
+            carNumber = nil
+            className = nil
+            seatNumber = nil
+            price = nil
+        }
+    }
+    
     enum MainViewType {
         case tableView
         case view
+    }
+    
+    var headerInformation: HeaderInformation? {
+        didSet {
+            setHeaderInformationValue(headerInformation)
+        }
     }
     
     var mainViewType: MainViewType = .tableView {
@@ -21,9 +57,11 @@ class BookingViewController: ViewController {
             case .tableView:
                 mainTableView.isHidden = false
                 mainContentView.isHidden = true
+                mainCallToActionButton.isHidden = true
             case .view:
                 mainTableView.isHidden = true
                 mainContentView.isHidden = false
+                mainCallToActionButton.isHidden = false
             }
         }
     }
@@ -53,13 +91,13 @@ class BookingViewController: ViewController {
         
         // MARK: Header
         backButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
-        dateLabelSetView = DateLabelSetView(dayOfWeek: "Lorem", date: "Lorem Ipsum")
+        dateLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
         let topBarStackView = UIStackView([backButton, dateLabelSetView],
                                           axis: .horizontal,
                                           distribution: .equalSpacing,
                                           alignment: .center)
         
-        headerRouteInformationView = HeaderRouteInformationView(fromStation: "osaka", fromTime: "7:12", toStation: "Tokyo", toTime: "12:34", trainNumber: "Hayabusa 12", trainName: "E5 Series", carNumber: "Car 3", className: "Ordinary", seatNumber: "12C", price: "$12,000")
+        headerRouteInformationView = HeaderRouteInformationView(fromStation: " ", toStation: " ")
         
         headerWithTopBarStackView = UIStackView([topBarStackView, headerRouteInformationView],
                                                 axis: .vertical,
@@ -73,20 +111,23 @@ class BookingViewController: ViewController {
         
         mainContentView = UIView()
         mainContentView.preservesSuperviewLayoutMargins = true
-        mainContentView.backgroundColor = .red
+        mainContentView.backgroundColor = .clear
         mainContentView.isHidden = true
         
         mainTableView = UITableView(frame: .zero, style: .plain)
         mainTableView.preservesSuperviewLayoutMargins = true
+        mainTableView.showsVerticalScrollIndicator = false
         mainTableView.backgroundColor = .clear
         mainTableView.separatorStyle = .none
         mainTableView.contentInset.top = 12
         mainTableView.contentOffset.y = -12
+        mainTableView.delegate = self
         
         mainStackView = UIStackView([headerWithTopBarContainerView, mainContentView, mainTableView],
                                     axis: .vertical,
                                     distribution: .fill,
-                                    alignment: .fill, spacing: 20)
+                                    alignment: .fill,
+                                    spacing: 20)
         mainStackView.preservesSuperviewLayoutMargins = true
         
         view.addSubview(mainStackView, withConstaintEquals: .edges)
@@ -95,6 +136,8 @@ class BookingViewController: ViewController {
         mainCallToActionButton = Button(type: .contained)
         view.addSubview(mainCallToActionButton, withConstaintEquals: [.leadingMargin, .trailingMargin])
         view.constraintBottomSafeArea(to: mainCallToActionButton, withMinimumConstant: 16)
+        
+        setHeaderInformationValue(headerInformation)
         
     }
     
@@ -113,4 +156,29 @@ class BookingViewController: ViewController {
         super.setupInteraction()
     }
     
+    func setHeaderInformationValue(_ headerInformation: HeaderInformation?) {
+        guard let headerInformation = headerInformation,
+            let dateLabelSetView = dateLabelSetView,
+            let headerRouteInformationView = headerRouteInformationView else { return }
+        dateLabelSetView.setupValue(dayOfWeek: headerInformation.dayOfWeek,
+                                    date: headerInformation.date)
+        headerRouteInformationView.setupValue(fromStation: headerInformation.fromStation,
+                                              fromTime: headerInformation.fromTime,
+                                              toStation: headerInformation.toStation,
+                                              toTime: headerInformation.toTime,
+                                              trainNumber: headerInformation.trainNumber,
+                                              trainName: headerInformation.trainName,
+                                              carNumber: headerInformation.carNumber,
+                                              className: headerInformation.className,
+                                              seatNumber: headerInformation.seatNumber,
+                                              price: headerInformation.price)
+    }
+    
+}
+
+extension BookingViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let verticalContentOffset = scrollView.contentOffset.y + scrollView.contentInset.top
+        headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: verticalContentOffset)
+    }
 }

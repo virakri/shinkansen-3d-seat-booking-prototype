@@ -133,16 +133,14 @@ class Button: UIButton {
         self.type = type
         currentState = .normal
         super.init(frame: .zero)
-        
-        updateAppearance(animated: false)
+        setupTheme()
     }
     
     override init(frame: CGRect) {
         self.type = .contained
         currentState = .normal
         super.init(frame: .zero)
-        
-        updateAppearance(animated: false)
+        setupTheme()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -158,8 +156,6 @@ class Button: UIButton {
     }
     
     private func updateAppearance(animated: Bool = true) {
-        
-        contentEdgeInsets = type.edgeInset()
         
         var layerStyle = type.layerStyle(by: currentState)
         
@@ -181,6 +177,7 @@ class Button: UIButton {
     }
     
     public func setupTheme() {
+        contentEdgeInsets = type.edgeInset()
         layer.setLayer(type.layerStyle(by: currentState))
         setTitle(titleLabel?.text)
     }

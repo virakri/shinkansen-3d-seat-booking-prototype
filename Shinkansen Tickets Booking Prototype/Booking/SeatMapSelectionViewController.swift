@@ -10,4 +10,20 @@ import UIKit
 
 class SeatMapSelectionViewController: BookingViewController {
     
+    override func setupView() {
+        super.setupView()
+        mainViewType = .view
+    }
+    
+    override func setupInteraction() {
+        super.setupInteraction()
+        
+        backButton.addTarget(self,
+                             action: #selector(backButtonDidTouch(_:)),
+                             for: .touchUpInside)
+    }
+    
+    @objc func backButtonDidTouch(_ sender: Button) {
+        navigationController?.popViewController(animated: true)
+    }
 }

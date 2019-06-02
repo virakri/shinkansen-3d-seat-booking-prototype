@@ -44,7 +44,11 @@ class SeatClassIconImageView: UIImageView {
         }
     }
     
-    private(set) var seatClass: SeatClass
+    private(set) var seatClass: SeatClass {
+        didSet {
+            image = seatClass.image()
+        }
+    }
     
     private(set) var iconSize: IconSize
     
@@ -78,5 +82,9 @@ class SeatClassIconImageView: UIImageView {
     public func setupTheme() {
         tintColor = isAvailable ? seatClass.color() : currentColorTheme.componentColor.callToActionDisabled
         alpha = isAvailable ? 1 : DesignSystem.alpha.disabled
+    }
+    
+    public func setSeatClass(to seatClass: SeatClass) {
+        self.seatClass = seatClass
     }
 }

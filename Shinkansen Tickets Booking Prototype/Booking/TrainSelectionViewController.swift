@@ -18,8 +18,6 @@ class TrainSelectionViewController: BookingViewController {
     override func setupView() {
         super.setupView()
         mainViewType = .tableView
-        mainCallToActionButton.isHidden = true
-        
     }
     
     override func setupInteraction() {
@@ -36,16 +34,12 @@ class TrainSelectionViewController: BookingViewController {
         mainTableView.register(TrainScheduleTableViewCell.self, forCellReuseIdentifier: "TrainScheduleTableViewCell")
     }
     
-    @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
-        navigationController?.pushViewController(SeatClassSelectionViewController(), animated: true)
-    }
-    
     @objc func backButtonDidTouch(_ sender: Button) {
         navigationController?.popViewController(animated: true)
     }
 }
 
-extension TrainSelectionViewController: UITableViewDelegate, UITableViewDataSource {
+extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -63,6 +57,17 @@ extension TrainSelectionViewController: UITableViewDelegate, UITableViewDataSour
                         price: "from $9,000",
                         trainImage: nil)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //
+        let seatClassSelectionViewController = SeatClassSelectionViewController()
+        seatClassSelectionViewController.headerInformation = headerInformation
+        seatClassSelectionViewController.headerInformation?.fromTime = "8:42"
+        seatClassSelectionViewController.headerInformation?.toTime = "11:23"
+        seatClassSelectionViewController.headerInformation?.trainNumber = "Hayabusa 14"
+        seatClassSelectionViewController.headerInformation?.trainName = "E6 Series"
+        navigationController?.pushViewController(seatClassSelectionViewController, animated: true)
     }
     
     

@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     }
     
     deinit {
-        print("Remove NotificationCenter Deinit")
+        // Remove NotificationCenter Deinit
         NotificationCenter.default.removeObserver(self)
     }
     

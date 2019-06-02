@@ -28,15 +28,6 @@ class PrototypeInitialViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(UIFontMetrics(forTextStyle: .body).scaledFont(for: .systemFont(ofSize: 1)))
-        
-        print(UIFontMetrics(forTextStyle: .headline).scaledFont(for: UIFont.systemFont(ofSize: 24, weight: .light)).pointSize)
-        
-        print(UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: UIFont.systemFont(ofSize: 24, weight: .light)).pointSize)
-        
-        print(UIFontMetrics(forTextStyle: .caption1).scaledFont(for: UIFont.systemFont(ofSize: 24, weight: .light)).pointSize)
-   print(CGFloat(1).systemSizeMuliplier())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +36,6 @@ class PrototypeInitialViewController: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        present(DesignSystemViewController(), animated: true, completion: nil)
     }
     
     override func setupView() {
@@ -104,10 +94,6 @@ class PrototypeInitialViewController: ViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        
-        
-        print("This is prototype initializer")
-        
         
         // MARK: Update Theme for views
         designSystemButton.setupTheme()
