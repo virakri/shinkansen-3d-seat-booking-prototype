@@ -46,6 +46,7 @@
 		D0EAF1BA228B7FB700F3D4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */; };
 		D0EAF1BC228B7FB900F3D4F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */; };
 		D0EAF1BF228B7FB900F3D4F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */; };
+		D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF4AF22A43533002A9282 /* HeadlineWithContainerView.swift */; };
 		D0F175BD22A29AFE0095631F /* UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F175BC22A29AFE0095631F /* UIEdgeInsets.swift */; };
 		D0F175BF22A2A7B60095631F /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F175BE22A2A7B60095631F /* DesignSystem.swift */; };
 		D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8B522A085AE00872B5B /* LabelSetView.swift */; };
@@ -100,6 +101,7 @@
 		D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0EAF1BE228B7FB900F3D4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0EAF1C0228B7FB900F3D4F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0EAF4AF22A43533002A9282 /* HeadlineWithContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineWithContainerView.swift; sourceTree = "<group>"; };
 		D0F175BC22A29AFE0095631F /* UIEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets.swift; sourceTree = "<group>"; };
 		D0F175BE22A2A7B60095631F /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		D0F6D8B522A085AE00872B5B /* LabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSetView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */,
 				D09F3F1422A20ACE005E59C0 /* TrainScheduleTableViewCell.swift */,
 				D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */,
+				D0EAF4AF22A43533002A9282 /* HeadlineWithContainerView.swift */,
 			);
 			path = OrganismComponents;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				D053EBDF229D52BB007CCFFE /* Label.swift in Sources */,
 				D074B1EC228B928100791F94 /* LayerStyle.swift in Sources */,
 				D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */,
+				D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */,
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
 				D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,

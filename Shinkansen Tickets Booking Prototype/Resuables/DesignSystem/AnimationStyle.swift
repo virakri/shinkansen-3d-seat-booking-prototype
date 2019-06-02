@@ -15,3 +15,7 @@ extension CABasicAnimationStyle {
                                                            timingFunction: CAMediaTimingFunction(controlPoints: 0.2, 0, 0, 1),
                                                            isRemovedOnCompletion: false)
 }
+
+extension UIViewAnimationStyle {
+    static let normalAnimationStyle = UIViewAnimationStyle(duration: 0.2, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
+}

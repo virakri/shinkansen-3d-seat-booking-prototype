@@ -10,10 +10,46 @@ import UIKit
 
 class BookingCriteriaViewController: BookingViewController {
     
+    //
+    var stackView: UIStackView!
+    
+    var headerStackView: UIStackView!
+    
+    var inputStackView: UIStackView!
+    
+    var headlineLabel: Label!
+    
+    var logoImageView: UIImage!
+    
+    var fromStationContainerView: HeadlineWithContainerView!
+    
+    //    var
+    
+    var destinationStationContainerView: HeadlineWithContainerView!
+    
+//    var
+    
+    var dateSegmentedContainerView: HeadlineWithContainerView!
+    
+    var timeSegmentedContainerView: HeadlineWithContainerView!
+    
+    var dateSegmentedControl : SegmentedCardControl!
+    
+    var timeSegmentedControl: SegmentedCardControl!
+    
+//    var
+    
     override func setupView() {
         super.setupView()
-        
         mainStackView.isHidden = true
+        
+        
+        
+        
+    }
+    
+    override func setupTheme() {
+        super.setupTheme()
     }
     
     override func setupInteraction() {

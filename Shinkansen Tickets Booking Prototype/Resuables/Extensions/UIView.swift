@@ -118,30 +118,107 @@ extension UIView {
         
         
         if equals.contains(.centerVertical) {
-            view.safeAreaLayoutGuide.centerYAnchor.constraint(equalTo: centerYAnchor,
+            view.centerYAnchor.constraint(equalTo: centerYAnchor,
                                                               constant: 0).isActive = true
         }
         
         if equals.contains(.centerHorizontal) {
-            view.safeAreaLayoutGuide.centerXAnchor.constraint(equalTo:centerXAnchor,
+            view.centerXAnchor.constraint(equalTo:centerXAnchor,
                                                               constant: 0).isActive = true
         }
         // for chaining function
         return self
     }
     
-    @discardableResult
-    func constraintAllEdges(to view: UIView) -> [NSLayoutConstraint] {
-        let topConstraint = self.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomConstraint = self.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leadingConstraint = self.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingAnchor = self.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+    func addConstraints(toView view: UIView,
+                        withConstaintGreaterThanOrEquals greaterThanOrEquals: ConstraintEqual,
+                        insetsConstant: NSDirectionalEdgeInsets = .zero) {
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        let anchors = [topConstraint, bottomConstraint,
-                       leadingConstraint, trailingAnchor]
-        NSLayoutConstraint.activate(anchors)
-        return anchors
+        if greaterThanOrEquals.contains(.top) {
+            view.topAnchor.constraint(greaterThanOrEqualTo: topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.bottom) {
+            view.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor,
+                                         constant: -insetsConstant.bottom).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.leading) {
+            view.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.trailing) {
+            trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor,
+                                           constant:  insetsConstant.trailing).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.topMargin) {
+            view.topAnchor.constraint(greaterThanOrEqualTo: layoutMarginsGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.bottomMargin) {
+            bottomAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.bottomAnchor,
+                                         constant: insetsConstant.bottom).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.leadingMargin) {
+            view.leadingAnchor.constraint(greaterThanOrEqualTo: layoutMarginsGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.trailingMargin) {
+            trailingAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.trailingAnchor,
+                                           constant:  insetsConstant.trailing).isActive = true
+        }
+        
+        
+        if greaterThanOrEquals.contains(.topSafeArea) {
+            view.topAnchor.constraint(greaterThanOrEqualTo: safeAreaLayoutGuide.topAnchor,
+                                      constant: insetsConstant.top).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.bottomSafeArea) {
+            bottomAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                         constant: insetsConstant.bottom).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.leadingSafeArea) {
+            view.leadingAnchor.constraint(greaterThanOrEqualTo: safeAreaLayoutGuide.leadingAnchor,
+                                          constant: insetsConstant.leading).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.trailingSafeArea) {
+            trailingAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                           constant:  insetsConstant.trailing).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.centerVertical) {
+            view.centerYAnchor.constraint(greaterThanOrEqualTo: centerYAnchor,
+                                                              constant: 0).isActive = true
+        }
+        
+        if greaterThanOrEquals.contains(.centerHorizontal) {
+            view.centerXAnchor.constraint(greaterThanOrEqualTo: centerXAnchor,
+                                                              constant: 0).isActive = true
+        }
     }
+    
+//    @discardableResult
+//    func constraintAllEdges(to view: UIView) -> [NSLayoutConstraint] {
+//        let topConstraint = self.topAnchor.constraint(equalTo: view.topAnchor)
+//        let bottomConstraint = self.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        let leadingConstraint = self.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+//        let trailingAnchor = self.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+//
+//        let anchors = [topConstraint, bottomConstraint,
+//                       leadingConstraint, trailingAnchor]
+//        NSLayoutConstraint.activate(anchors)
+//        return anchors
+//    }
     
     @discardableResult
     func constraintBottomSafeArea(to view: UIView, withMinimumConstant constant: CGFloat) -> [NSLayoutConstraint] {

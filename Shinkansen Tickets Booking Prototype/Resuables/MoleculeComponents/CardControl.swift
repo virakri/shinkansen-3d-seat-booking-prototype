@@ -61,11 +61,13 @@ class CardControl: UIControl {
     
     override var isHighlighted: Bool {
         didSet {
-            currentState = isHighlighted ? .highlighted : .normal
+            if isEnabled {
+                currentState = isHighlighted ? .highlighted : .normal
+            }
         }
     }
     
-    fileprivate var currentState: State {
+     var currentState: State {
         didSet {
             updateAppearance()
         }
@@ -125,5 +127,9 @@ class CardControl: UIControl {
             .withTransform(transform),
                                using: CABasicAnimationStyle.layerAnimationStyle)
         
+    }
+    
+    public func setupTheme() {
+        updateAppearance(animated: false)
     }
 }
