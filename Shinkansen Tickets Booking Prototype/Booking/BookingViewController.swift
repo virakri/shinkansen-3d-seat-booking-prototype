@@ -76,6 +76,8 @@ class BookingViewController: ViewController {
     
     var backButton: ImageButton! // Temporary until the button animation is done.
     
+    private var datePlaceholderLabelSetView: DateLabelSetView!
+    
     var dateLabelSetView: DateLabelSetView!
     
     var headerRouteInformationView: HeaderRouteInformationView!
@@ -93,8 +95,9 @@ class BookingViewController: ViewController {
         
         // MARK: Header
         backButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
+        datePlaceholderLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
         dateLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
-        topBarStackView = UIStackView([backButton, dateLabelSetView],
+        topBarStackView = UIStackView([backButton, datePlaceholderLabelSetView, dateLabelSetView],
                                           axis: .horizontal,
                                           distribution: .equalSpacing,
                                           alignment: .center)
@@ -149,6 +152,7 @@ class BookingViewController: ViewController {
         mainCallToActionButton.setupTheme()
         backButton.setupTheme()
         dateLabelSetView.setupTheme()
+        datePlaceholderLabelSetView.setupTheme()
         headerRouteInformationView.setupTheme()
         mainTableView.setupTheme()
         

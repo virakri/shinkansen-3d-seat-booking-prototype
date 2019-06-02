@@ -61,9 +61,12 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
             
             // Temporary testing animation
             
-            func xxx(fromView: UIView, fromParentView: UIView,
+            func animate(fromView: UIView, fromParentView: UIView,
                      toView: UIView, toParentView: UIView,
+                     basedHorizontalAnimationOffset: CGFloat = 0,
                      basedVerticalAnimationOffset: CGFloat = 0) {
+                
+                // Sets all animated views to orginal position before them get calculated
                 fromView.transform = .identity
                 toView.transform = .identity
                 
@@ -73,10 +76,12 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     
                     // MARK: Hidden views will be slide up
                     if fromView.isHidden  {
+                        displacement.x = CGFloat(-basedHorizontalAnimationOffset).systemSizeMuliplier()
                         displacement.y = CGFloat(-basedVerticalAnimationOffset).systemSizeMuliplier()
                     }
                     
                     if toView.isHidden  {
+                        displacement.x = CGFloat(basedHorizontalAnimationOffset).systemSizeMuliplier()
                         displacement.y = CGFloat(basedVerticalAnimationOffset).systemSizeMuliplier()
                     }
                     
@@ -100,6 +105,10 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     fromView.alpha = 1
                 }
                 
+                //TEMP
+                fromBookingVC.mainContentView.alpha = 0
+                toBookingVC.mainContentView.alpha = 0
+                
                 UIView.animate(withStyle: animationStyle, animations: {
                     fromView.transform.tx = displacement.x
                     fromView.transform.ty = displacement.y
@@ -113,34 +122,68 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     if toView.isHidden {
                         fromView.alpha = 0
                     }
+                    
+                    fromBookingVC.mainContentView.alpha = 1
+                    toBookingVC.mainContentView.alpha = 1
                 })
             }
             
-            guard let fromView = fromBookingVC.headerRouteInformationView,
-                let toView = toBookingVC.headerRouteInformationView else { return }
+            guard let fromHeaderView = fromBookingVC.headerRouteInformationView,
+                let toHeaderView = toBookingVC.headerRouteInformationView else { return }
+            
+            guard let fromDateView = fromBookingVC.dateLabelSetView,
+                let toDateView = toBookingVC.dateLabelSetView else { return }
             
             let fromParentView = fromBookingVC.view!
             let toParentView = toBookingVC.view!
             
-            xxx(fromView: fromView, fromParentView: fromParentView,
-                toView: toView, toParentView: toParentView,
+            animate(fromView: fromDateView,
+                fromParentView: fromParentView,
+                toView: toDateView,
+                toParentView: toParentView,
+                basedVerticalAnimationOffset: 18)
+            
+            animate(fromView: fromHeaderView, fromParentView: fromParentView,
+                toView: toHeaderView, toParentView: toParentView,
                 basedVerticalAnimationOffset: 64)
             
-            xxx(fromView: fromView.stationPairView.fromStationHeadlineView.subtitleLabel,
-                fromParentView: fromView.stationPairView.fromStationHeadlineView,
-                toView: toView.stationPairView.fromStationHeadlineView.subtitleLabel,
-                toParentView: toView.stationPairView.fromStationHeadlineView,
+            animate(fromView: fromHeaderView.stationPairView.fromStationHeadlineView.subtitleLabel,
+                fromParentView: fromHeaderView.stationPairView.fromStationHeadlineView,
+                toView: toHeaderView.stationPairView.fromStationHeadlineView.subtitleLabel,
+                toParentView: toHeaderView.stationPairView.fromStationHeadlineView,
                 basedVerticalAnimationOffset: 6)
             
-            xxx(fromView: fromView.stationPairView.toStationHeadlineView.subtitleLabel,
-                fromParentView: fromView.stationPairView.toStationHeadlineView,
-                toView: toView.stationPairView.toStationHeadlineView.subtitleLabel,
-                toParentView: toView.stationPairView.toStationHeadlineView,
+            animate(fromView: fromHeaderView.stationPairView.toStationHeadlineView.subtitleLabel,
+                fromParentView: fromHeaderView.stationPairView.toStationHeadlineView,
+                toView: toHeaderView.stationPairView.toStationHeadlineView.subtitleLabel,
+                toParentView: toHeaderView.stationPairView.toStationHeadlineView,
                 basedVerticalAnimationOffset: 6)
             
-            xxx(fromView: fromView.descriptionSetView, fromParentView: fromView,
-                toView: toView.descriptionSetView, toParentView: toView,
+            animate(fromView: fromHeaderView.descriptionSetView, fromParentView: fromHeaderView,
+                toView: toHeaderView.descriptionSetView, toParentView: toHeaderView,
                 basedVerticalAnimationOffset: 18)
+            
+            animate(fromView: fromHeaderView.descriptionSetView.carNumberSetView,
+                fromParentView: fromHeaderView.descriptionSetView,
+                toView: toHeaderView.descriptionSetView.carNumberSetView,
+                toParentView: toHeaderView.descriptionSetView,
+                basedVerticalAnimationOffset: 12)
+            
+            animate(fromView: fromHeaderView.descriptionSetView.seatNumberSetView,
+                fromParentView: fromHeaderView.descriptionSetView,
+                toView: toHeaderView.descriptionSetView.seatNumberSetView,
+                toParentView: toHeaderView.descriptionSetView,
+                basedVerticalAnimationOffset: 12)
+            
+            animate(fromView: fromHeaderView.descriptionSetView.priceSetView,
+                fromParentView: fromHeaderView.descriptionSetView,
+                toView: toHeaderView.descriptionSetView.priceSetView,
+                toParentView: toHeaderView.descriptionSetView,
+                basedVerticalAnimationOffset: 12)
+            
+            print(fromBookingVC.mainTableView.visibleCells)
+            print(toBookingVC.mainTableView.visibleCells)
+            
         }
         
         toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0)

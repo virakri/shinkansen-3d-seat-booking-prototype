@@ -60,8 +60,10 @@ class DescriptionSetView: UIStackView {
                           price: String? = nil) {
         trainNumberSetView.setupValue(title: trainNumber, subtitle: trainName)
         carNumberSetView.setupValue(title: carNumber ?? "", subtitle: className)
+        carNumberSetView.isHidden = carNumber == nil && className == nil
         seatNumberSetView.setupValue(title: seatNumber ?? "")
         seatNumberSetView.isHidden = seatNumber == nil
         priceSetView.setupValue(title: price ?? "")
+        priceSetView.isHidden = price == nil
     }
 }
