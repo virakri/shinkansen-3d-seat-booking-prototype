@@ -20,7 +20,7 @@ class BookingConfirmationViewController: BookingViewController {
         super.setupView()
         mainViewType = .view
         
-        dateLabelSetView.isHidden = true
+        dateLabelSetView.alpha = 0
         topBarStackView.addArrangedSubview(UIView())
         
         dateLabel = Label()

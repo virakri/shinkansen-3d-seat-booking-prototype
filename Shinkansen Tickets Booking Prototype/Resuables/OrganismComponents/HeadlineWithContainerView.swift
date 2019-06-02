@@ -15,17 +15,18 @@ class HeadlineWithContainerView: UIStackView {
     
     var view: UIView
     
-    init(title: String, withView view: UIView) {
+    convenience init(title: String, containingView view: UIView) {
+        self.init(containingView: view)
+        setTitle(title: title)
+    }
+    
+    init(containingView view: UIView) {
         titleLabel = Label()
         self.view = view
         super.init(frame: .zero)
         
-        //
-        titleLabel.text = title
-        
         setupView()
         setupTheme()
-        
     }
     
     required init(coder: NSCoder) {
@@ -34,7 +35,7 @@ class HeadlineWithContainerView: UIStackView {
     
     private func setupView() {
         axis = .vertical
-        spacing = 4
+        spacing = 10
         
         addArrangedSubview(titleLabel)
         addArrangedSubview(view)
@@ -43,5 +44,9 @@ class HeadlineWithContainerView: UIStackView {
     func setupTheme() {
         titleLabel.textStyle = textStyle.footnote()
         titleLabel.textColor = currentColorTheme.componentColor.secondaryText
+    }
+    
+    func setTitle(title: String) {
+        titleLabel.text = title
     }
 }

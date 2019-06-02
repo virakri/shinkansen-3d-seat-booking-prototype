@@ -83,6 +83,9 @@ class SegmentedCardControl: UIControl {
             
             // Properties
             isUserInteractionEnabled = false
+            titleLabel.adjustsFontSizeToFitWidth = true
+            unselectedTitleLabel.adjustsFontSizeToFitWidth = true
+            subtitleLabel.adjustsFontSizeToFitWidth = true
             
             // Initialize Height Constraint
             heightConstraint = heightAnchor.constraint(equalToConstant: basedHeight.systemSizeMuliplier())
@@ -190,15 +193,20 @@ class SegmentedCardControl: UIControl {
         }
     }
     
-    var items: [(title: String, subtitle: String)]
+    var items: [(title: String, subtitle: String)]? {
+        didSet {
+            setupItems()
+        }
+    }
     
     var itemCardControls: [ItemCardControl]
     
-    init(items: [(title: String, subtitle: String)]) {
+    init(items: [(title: String, subtitle: String)]? = nil) {
         stackView = UIStackView()
         itemCardControls = []
-        self.items = items
         super.init(frame: .zero)
+        self.items = items
+        
         setupView()
         setSelectedIndexItemCardControlSelected()
     }
@@ -210,19 +218,14 @@ class SegmentedCardControl: UIControl {
     private func setupView() {
         addSubview(stackView, withConstaintEquals: .edges)
         
+        stackView.distribution = .fillEqually
         stackView.spacing = DesignSystem.spacing.cardGutter
         stackView.isUserInteractionEnabled = false
         
         itemCardControls = []
         
         // Setup Items
-        items.enumerated().forEach { (index, item) in
-            let itemCardControl = ItemCardControl(title: item.title,
-                                                  subtitle: item.subtitle)
-            itemCardControl.tag = index
-            itemCardControls.append(itemCardControl)
-            stackView.addArrangedSubview(itemCardControl)
-        }
+        setupItems()
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -264,6 +267,18 @@ class SegmentedCardControl: UIControl {
     
     override func cancelTracking(with event: UIEvent?) {
         setSelectedIndexItemCardControlSelected()
+    }
+    
+    private func setupItems() {
+        // Setup Items
+        guard let items = items else { return }
+        items.enumerated().forEach { (index, item) in
+            let itemCardControl = ItemCardControl(title: item.title,
+                                                  subtitle: item.subtitle)
+            itemCardControl.tag = index
+            itemCardControls.append(itemCardControl)
+            stackView.addArrangedSubview(itemCardControl)
+        }
     }
     
     private func setSelectedIndexItemCardControlSelected() {

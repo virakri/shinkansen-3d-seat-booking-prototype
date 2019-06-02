@@ -21,6 +21,8 @@ class NavigationController: UINavigationController {
                                                selector: #selector(preferredColorThemeChanged(_:)),
                                                name: .didColorThemeChange,
                                                object: nil)
+    
+        delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,5 +47,15 @@ class NavigationController: UINavigationController {
     
     @objc func preferredColorThemeChanged(_ notification: Notification) {
         view.tintColor = currentColorTheme.componentColor.callToAction
+    }
+}
+
+extension NavigationController: UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return ViewControllerAnimatedTransitioning(isPresenting: true)
+//        switch operation {
+//
+//        }
     }
 }

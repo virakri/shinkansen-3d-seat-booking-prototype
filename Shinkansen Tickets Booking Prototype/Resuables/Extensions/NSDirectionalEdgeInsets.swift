@@ -15,4 +15,16 @@ extension NSDirectionalEdgeInsets {
               bottom: vertical,
               trailing: horizontal)
     }
+    
+    init(top: CGFloat? = nil,
+         leading: CGFloat? = nil,
+         bottom: CGFloat? = nil,
+         trailing: CGFloat? = nil) {
+        
+        self.init(top: top ?? 0,
+                  leading: leading ?? 0,
+                  bottom: bottom ?? 0,
+                  trailing: trailing ?? 0)
+        
+    }
 }
