@@ -56,6 +56,12 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         if let fromBookingVC = fromViewController as? BookingViewController,
             let toBookingVC = toViewController as? BookingViewController {
             
+            guard let fromHeaderView = fromBookingVC.headerRouteInformationView,
+                let toHeaderView = toBookingVC.headerRouteInformationView,
+                let fromDateView = fromBookingVC.dateLabelSetView,
+                let toDateView = toBookingVC.dateLabelSetView,
+                let fromParentView = fromBookingVC.view,
+                let toParentView = toBookingVC.view else { return }
             
             func animate(fromView: UIView, fromParentView: UIView,
                          toView: UIView, toParentView: UIView,
@@ -114,27 +120,112 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                 UIView.animate(withStyle: isTransitioningHiddenView ? mutatedAnimationStyle : animationStyle,
                                delay: fromView.isHidden ? mutatedAnimationStyle.delay : 0,
                                animations: {
-                    fromView.transform.tx = displacement.x
-                    fromView.transform.ty = displacement.y
-                    toView.transform = .identity
-                    
-                    // MARK: Animation for one that is hidden
-                    if fromView.isHidden {
-                        toView.alpha = 1
-                    }
-                    
-                    if toView.isHidden {
-                        fromView.alpha = 0
-                    }
+                                fromView.transform.tx = displacement.x
+                                fromView.transform.ty = displacement.y
+                                toView.transform = .identity
+                                
+                                // MARK: Animation for one that is hidden
+                                if fromView.isHidden {
+                                    toView.alpha = 1
+                                }
+                                
+                                if toView.isHidden {
+                                    fromView.alpha = 0
+                                }
                 })
             }
             
-            guard let fromHeaderView = fromBookingVC.headerRouteInformationView,
-                let toHeaderView = toBookingVC.headerRouteInformationView,
-                let fromDateView = fromBookingVC.dateLabelSetView,
-                let toDateView = toBookingVC.dateLabelSetView,
-                let fromParentView = fromBookingVC.view,
-                let toParentView = toBookingVC.view else { return }
+            struct AnimateObject {
+                let fromVC: BookingViewController
+                let toVC: BookingViewController
+                
+                func _animate(fromView: UIView, fromParentView: UIView,
+                             toView: UIView, toParentView: UIView,
+                             basedHorizontalAnimationOffset: CGFloat = 0,
+                             basedVerticalAnimationOffset: CGFloat = 0,
+                             percentageEndPoint: TimeInterval = 1) {
+                    
+                    // Sets all animated views to orginal position before them get calculated
+                    fromView.transform = .identity
+                    toView.transform = .identity
+                    
+                    var displacement: CGPoint = .zero
+                    
+                    var isTransitioningHiddenView = false
+                    
+                    if fromView.isHidden || toView.isHidden {
+                        
+                        isTransitioningHiddenView = true
+                        
+                        // MARK: Hidden views will be slide up
+                        if fromView.isHidden  {
+                            displacement.x = CGFloat(-basedHorizontalAnimationOffset).systemSizeMuliplier()
+                            displacement.y = CGFloat(-basedVerticalAnimationOffset).systemSizeMuliplier()
+                        }
+                        
+                        if toView.isHidden  {
+                            displacement.x = CGFloat(basedHorizontalAnimationOffset).systemSizeMuliplier()
+                            displacement.y = CGFloat(basedVerticalAnimationOffset).systemSizeMuliplier()
+                        }
+                        
+                    } else {
+                        let fromActualFrame = fromView.frame(in: fromParentView)
+                        let toActualFrame = toView.frame(in: toParentView)
+                        
+                        displacement = CGPoint(x: toActualFrame.midX - fromActualFrame.midX,
+                                               y: toActualFrame.minY - fromActualFrame.minY)
+                    }
+                    
+                    toView.transform.tx = -displacement.x
+                    toView.transform.ty = -displacement.y
+                    
+                    // MARK: In case one view is hidden
+                    if fromView.isHidden  {
+                        toView.alpha = 0
+                    }
+                    
+                    if toView.isHidden  {
+                        fromView.alpha = 1
+                    }
+                    
+                    // mutate
+                    let animationStyle = UIViewAnimationStyle.transitionAnimationStyle
+                    var mutatedAnimationStyle = animationStyle
+                    mutatedAnimationStyle.duration = animationStyle.duration * (fromView.isHidden ? 1 - percentageEndPoint : percentageEndPoint)
+                    mutatedAnimationStyle.delay = animationStyle.duration - mutatedAnimationStyle.duration
+                    
+                    UIView.animate(withStyle: isTransitioningHiddenView ? mutatedAnimationStyle : animationStyle,
+                                   delay: fromView.isHidden ? mutatedAnimationStyle.delay : 0,
+                                   animations: {
+                                    fromView.transform.tx = displacement.x
+                                    fromView.transform.ty = displacement.y
+                                    toView.transform = .identity
+                                    
+                                    // MARK: Animation for one that is hidden
+                                    if fromView.isHidden {
+                                        toView.alpha = 1
+                                    }
+                                    
+                                    if toView.isHidden {
+                                        fromView.alpha = 0
+                                    }
+                    })
+                }
+                
+                func animate(view: ((BookingViewController) -> UIView),
+                              parentView: ((BookingViewController) -> UIView)) {
+                    
+                    _animate(fromView: view(fromVC),
+                             fromParentView: parentView(fromVC),
+                             toView: view(toVC),
+                             toParentView: parentView(toVC),
+                             basedVerticalAnimationOffset: 18,
+                             percentageEndPoint: 0.4)
+                }
+            }
+            
+            let aa = AnimateObject(fromVC: fromBookingVC, toVC: toBookingVC)
+//            aa.animate(view: { $0.}, parentView: <#T##((BookingViewController) -> UIView)##((BookingViewController) -> UIView)##(BookingViewController) -> UIView#>)
             
             animate(fromView: fromDateView,
                     fromParentView: fromParentView,
@@ -175,10 +266,8 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     basedVerticalAnimationOffset: 18,
                     percentageEndPoint: 0.4)
             
-            animate(fromView: fromDescriptionSetView.carNumberSetView,
-                    fromParentView: fromDescriptionSetView,
-                    toView: toDescriptionSetView.carNumberSetView,
-                    toParentView: toDescriptionSetView,
+            animate(fromView: fromDescriptionSetView.carNumberSetView, fromParentView: fromDescriptionSetView,
+                    toView: toDescriptionSetView.carNumberSetView, toParentView: toDescriptionSetView,
                     basedVerticalAnimationOffset: 12,
                     percentageEndPoint: 0.4)
             
@@ -330,13 +419,21 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                                                            translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
         }
         
+        if let trainSelectionVC = fromViewController as? TrainSelectionViewController,
+            let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController {
+            
+            // Demo
+            if let selectedIndexPath = trainSelectionVC.selectedIndexPath,
+                let cell = trainSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
+                
+            }
+        }
+        
         // MARK: Transition views in SeatMapSelectionViewController to BookingConfirmationViewController
         if let seatClassSelectionVC = fromViewController as? SeatClassSelectionViewController,
             let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController {
             
-            
             // Demo
-            
             if let selectedIndexPath = seatClassSelectionVC.selectedIndexPath,
                 let cell = seatClassSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
                 
@@ -348,7 +445,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                 let originRectInMainContentView = cell.cardView.frame(in: seatMapSelectionVC.mainContentView)
                 let destinationRectInMainContentView = seatMapSelectionVC.mainCardView.frame(in: seatMapSelectionVC.mainContentView)
                 
-                let originRectInCellContentView = cell.cardView.frame(in: cell.contentView)
+//                let originRectInCellContentView = cell.cardView.frame(in: cell.contentView)
                 let destinationRectInCellContentView = seatMapSelectionVC.mainCardView.frame(in: cell.contentView)
                 
                 if let animatingCardView = seatMapSelectionVC.mainCardView {
@@ -363,10 +460,6 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     
                     animatingCardView.frame = originRectInMainContentView
                     animatingCardView.contentView.frame = animatingCardView.bounds
-                    
-//                    animatingCardView.contentView.backgroundColor = .blue
-                    
-//                     animatingCardViewInCell.contentView.backgroundColor = .red
                     
                     animatingCardViewInCell.contentView.layer.removeAllAnimations()
                     animatingCardViewInCell.layer.removeAllAnimations()

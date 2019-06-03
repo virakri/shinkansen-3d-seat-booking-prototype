@@ -13,6 +13,8 @@ class TrainSelectionViewController: BookingViewController {
     
     var didFirstLoad: Bool = false
     
+    var selectedIndexPath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -76,6 +78,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrainScheduleTableViewCell",
                                                        for: indexPath) as? TrainScheduleTableViewCell else { return UITableViewCell() }
+        selectedIndexPath = indexPath
         cell.setupValue(time: "12:12",
                         amountOfTime: "5hr 21m",
                         trainNumber: "Hayabusa 8",
