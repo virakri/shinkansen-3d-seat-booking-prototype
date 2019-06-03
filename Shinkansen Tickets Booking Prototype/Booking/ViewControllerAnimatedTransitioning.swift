@@ -9,6 +9,7 @@
 import UIKit
 import Kumi
 
+
 class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     
     var isPresenting : Bool
@@ -54,17 +55,13 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         // MARK: Transition Between BookingViewController
         if let fromBookingVC = fromViewController as? BookingViewController,
             let toBookingVC = toViewController as? BookingViewController {
-            print("Parent: \(fromBookingVC.headerRouteInformationView.frame)")
-            print("Child: \(toBookingVC.headerRouteInformationView.frame)")
             
-           
-            
-            // Temporary testing animation
             
             func animate(fromView: UIView, fromParentView: UIView,
-                     toView: UIView, toParentView: UIView,
-                     basedHorizontalAnimationOffset: CGFloat = 0,
-                     basedVerticalAnimationOffset: CGFloat = 0) {
+                         toView: UIView, toParentView: UIView,
+                         basedHorizontalAnimationOffset: CGFloat = 0,
+                         basedVerticalAnimationOffset: CGFloat = 0,
+                         percentageEndPoint: TimeInterval = 1) {
                 
                 // Sets all animated views to orginal position before them get calculated
                 fromView.transform = .identity
@@ -72,7 +69,11 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                 
                 var displacement: CGPoint = .zero
                 
+                var isTransitioningHiddenView = false
+                
                 if fromView.isHidden || toView.isHidden {
+                    
+                    isTransitioningHiddenView = true
                     
                     // MARK: Hidden views will be slide up
                     if fromView.isHidden  {
@@ -105,11 +106,14 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     fromView.alpha = 1
                 }
                 
-                //TEMP
-                fromBookingVC.mainContentView.alpha = 0
-                toBookingVC.mainContentView.alpha = 0
+                // mutate
+                var mutatedAnimationStyle = animationStyle
+                mutatedAnimationStyle.duration = animationStyle.duration * (fromView.isHidden ? 1 - percentageEndPoint : percentageEndPoint)
+                mutatedAnimationStyle.delay = animationStyle.duration - mutatedAnimationStyle.duration
                 
-                UIView.animate(withStyle: animationStyle, animations: {
+                UIView.animate(withStyle: isTransitioningHiddenView ? mutatedAnimationStyle : animationStyle,
+                               delay: fromView.isHidden ? mutatedAnimationStyle.delay : 0,
+                               animations: {
                     fromView.transform.tx = displacement.x
                     fromView.transform.ty = displacement.y
                     toView.transform = .identity
@@ -122,82 +126,230 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     if toView.isHidden {
                         fromView.alpha = 0
                     }
-                    
-                    fromBookingVC.mainContentView.alpha = 1
-                    toBookingVC.mainContentView.alpha = 1
                 })
             }
             
             guard let fromHeaderView = fromBookingVC.headerRouteInformationView,
-                let toHeaderView = toBookingVC.headerRouteInformationView else { return }
-            
-            guard let fromDateView = fromBookingVC.dateLabelSetView,
-                let toDateView = toBookingVC.dateLabelSetView else { return }
-            
-            let fromParentView = fromBookingVC.view!
-            let toParentView = toBookingVC.view!
+                let toHeaderView = toBookingVC.headerRouteInformationView,
+                let fromDateView = fromBookingVC.dateLabelSetView,
+                let toDateView = toBookingVC.dateLabelSetView,
+                let fromParentView = fromBookingVC.view,
+                let toParentView = toBookingVC.view else { return }
             
             animate(fromView: fromDateView,
-                fromParentView: fromParentView,
-                toView: toDateView,
-                toParentView: toParentView,
-                basedVerticalAnimationOffset: 18)
+                    fromParentView: fromParentView,
+                    toView: toDateView,
+                    toParentView: toParentView,
+                    basedVerticalAnimationOffset: 18,
+                    percentageEndPoint: 0.4)
             
             animate(fromView: fromHeaderView, fromParentView: fromParentView,
-                toView: toHeaderView, toParentView: toParentView,
-                basedVerticalAnimationOffset: 64)
+                    toView: toHeaderView, toParentView: toParentView,
+                    basedVerticalAnimationOffset: 72,
+                    percentageEndPoint: 0.4)
             
-            animate(fromView: fromHeaderView.stationPairView.fromStationHeadlineView.subtitleLabel,
-                fromParentView: fromHeaderView.stationPairView.fromStationHeadlineView,
-                toView: toHeaderView.stationPairView.fromStationHeadlineView.subtitleLabel,
-                toParentView: toHeaderView.stationPairView.fromStationHeadlineView,
-                basedVerticalAnimationOffset: 6)
+            // MARK:
+            let fromStationPairView = fromHeaderView.stationPairView
+            let toStationPairView = toHeaderView.stationPairView
             
-            animate(fromView: fromHeaderView.stationPairView.toStationHeadlineView.subtitleLabel,
-                fromParentView: fromHeaderView.stationPairView.toStationHeadlineView,
-                toView: toHeaderView.stationPairView.toStationHeadlineView.subtitleLabel,
-                toParentView: toHeaderView.stationPairView.toStationHeadlineView,
-                basedVerticalAnimationOffset: 6)
+            animate(fromView: fromStationPairView.fromStationHeadlineView.subtitleLabel,
+                    fromParentView: fromStationPairView.fromStationHeadlineView,
+                    toView: toStationPairView.fromStationHeadlineView.subtitleLabel,
+                    toParentView: toStationPairView.fromStationHeadlineView,
+                    basedVerticalAnimationOffset: 6,
+                    percentageEndPoint: 0.4)
             
-            animate(fromView: fromHeaderView.descriptionSetView, fromParentView: fromHeaderView,
-                toView: toHeaderView.descriptionSetView, toParentView: toHeaderView,
-                basedVerticalAnimationOffset: 18)
+            animate(fromView: fromStationPairView.toStationHeadlineView.subtitleLabel,
+                    fromParentView: fromStationPairView.toStationHeadlineView,
+                    toView: toStationPairView.toStationHeadlineView.subtitleLabel,
+                    toParentView: toStationPairView.toStationHeadlineView,
+                    basedVerticalAnimationOffset: 6,
+                    percentageEndPoint: 0.4)
             
-            animate(fromView: fromHeaderView.descriptionSetView.carNumberSetView,
-                fromParentView: fromHeaderView.descriptionSetView,
-                toView: toHeaderView.descriptionSetView.carNumberSetView,
-                toParentView: toHeaderView.descriptionSetView,
-                basedVerticalAnimationOffset: 12)
+            // MARK:
+            let fromDescriptionSetView = fromHeaderView.descriptionSetView
+            let toDescriptionSetView = toHeaderView.descriptionSetView
             
-            animate(fromView: fromHeaderView.descriptionSetView.seatNumberSetView,
-                fromParentView: fromHeaderView.descriptionSetView,
-                toView: toHeaderView.descriptionSetView.seatNumberSetView,
-                toParentView: toHeaderView.descriptionSetView,
-                basedVerticalAnimationOffset: 12)
+            animate(fromView: fromDescriptionSetView, fromParentView: fromHeaderView,
+                    toView: toDescriptionSetView, toParentView: toHeaderView,
+                    basedVerticalAnimationOffset: 18,
+                    percentageEndPoint: 0.4)
             
-            animate(fromView: fromHeaderView.descriptionSetView.priceSetView,
-                fromParentView: fromHeaderView.descriptionSetView,
-                toView: toHeaderView.descriptionSetView.priceSetView,
-                toParentView: toHeaderView.descriptionSetView,
-                basedVerticalAnimationOffset: 12)
+            animate(fromView: fromDescriptionSetView.carNumberSetView,
+                    fromParentView: fromDescriptionSetView,
+                    toView: toDescriptionSetView.carNumberSetView,
+                    toParentView: toDescriptionSetView,
+                    basedVerticalAnimationOffset: 12,
+                    percentageEndPoint: 0.4)
+            
+            animate(fromView: fromDescriptionSetView.seatNumberSetView,
+                    fromParentView: fromDescriptionSetView,
+                    toView: toDescriptionSetView.seatNumberSetView,
+                    toParentView: toDescriptionSetView,
+                    basedVerticalAnimationOffset: 12,
+                    percentageEndPoint: 0.4)
+            
+            animate(fromView: fromDescriptionSetView.priceSetView,
+                    fromParentView: fromDescriptionSetView,
+                    toView: toDescriptionSetView.priceSetView,
+                    toParentView: toDescriptionSetView,
+                    basedVerticalAnimationOffset: 12,
+                    percentageEndPoint: 0.4)
             
             print(fromBookingVC.mainTableView.visibleCells)
             print(toBookingVC.mainTableView.visibleCells)
             
         }
         
-        toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0)
+       
+        
+        let percentageEndPoint: TimeInterval = 0.4
+        
+        // MARK: Transition in and out views in BookingCriteriaViewController
+        if let bookingCriterialVC = fromViewController as? BookingCriteriaViewController {
+            let transitionDirection: UIView.TransitionalDirection = .transitionOut
+            bookingCriterialVC.headerStackView.animateAndFade(as: transitionDirection,
+                                                              animationStyle: animationStyle,
+                                                              percentageEndPoint: percentageEndPoint,
+                                                              translate: .init(x: 0, y: -72))
+            bookingCriterialVC.horizontalStationStackView.animateAndFade(as: transitionDirection,
+                                                                         animationStyle: animationStyle,
+                                                                         percentageEndPoint: percentageEndPoint,
+                                                                         translate: .init(x: 0, y: -48))
+            bookingCriterialVC.dateSegmentedContainerView.animateAndFade(as: transitionDirection,
+                                                                         animationStyle: animationStyle,
+                                                                         percentageEndPoint: percentageEndPoint,
+                                                                         translate: .init(x: 0, y: -32))
+            bookingCriterialVC.timeSegmentedContainerView.animateAndFade(as: transitionDirection,
+                                                                         animationStyle: animationStyle,
+                                                                         percentageEndPoint: percentageEndPoint,
+                                                                         translate: .init(x: 0, y: -16))
+            bookingCriterialVC.mainCallToActionButton.animateAndFade(as: transitionDirection,
+                                                                     animationStyle: animationStyle,
+                                                                     percentageEndPoint: percentageEndPoint,
+                                                                     translate: .init(x: 0, y: 0))
+        } else if let bookingCriterialVC = toViewController as? BookingCriteriaViewController {
+            let transitionDirection: UIView.TransitionalDirection = .transitionIn
+            bookingCriterialVC.headerStackView.animateAndFade(as: transitionDirection,
+                                                              animationStyle: animationStyle,
+                                                              percentageEndPoint: percentageEndPoint,
+                                                              translate: .init(x: 0, y: -72))
+            bookingCriterialVC.horizontalStationStackView.animateAndFade(as: transitionDirection,
+                                                                         animationStyle: animationStyle,
+                                                                         percentageEndPoint: percentageEndPoint,
+                                                                         translate: .init(x: 0, y: -48))
+            bookingCriterialVC.dateSegmentedContainerView.animateAndFade(as: transitionDirection,
+                                                                         animationStyle: animationStyle,
+                                                                         percentageEndPoint: percentageEndPoint,
+                                                                         translate: .init(x: 0, y: -32))
+            bookingCriterialVC.timeSegmentedContainerView.animateAndFade(as: transitionDirection,
+                                                                         animationStyle: animationStyle,
+                                                                         percentageEndPoint: percentageEndPoint,
+                                                                         translate: .init(x: 0, y: -16))
+            bookingCriterialVC.mainCallToActionButton.animateAndFade(as: transitionDirection,
+                                                                     animationStyle: animationStyle,
+                                                                     percentageEndPoint: percentageEndPoint,
+                                                                     translate: .init(x: 0, y: 0))
+        }
+        
+        // MARK: Transition in and out views in SeatMapSelectionViewController
+        if let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController {
+            seatMapSelectionVC.mainCallToActionButton.animateAndFade(as: .transitionIn,
+                                                                     animationStyle: animationStyle,
+                                                                     percentageEndPoint: percentageEndPoint,
+                                                                     translate: .init(x: 0, y: 0))
+        } else if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController {
+            seatMapSelectionVC.mainCallToActionButton.animateAndFade(as: .transitionOut,
+                                                                     animationStyle: animationStyle,
+                                                                     percentageEndPoint: percentageEndPoint,
+                                                                     translate: .init(x: 0, y: 0))
+        }
+        
+        // MARK: Transition in and out views in BookingConfirmationViewController
+        if let bookingConfirmationVC = toViewController as? BookingConfirmationViewController {
+            bookingConfirmationVC.mainCallToActionButton.animateAndFade(as: .transitionIn,
+                                                                     animationStyle: animationStyle,
+                                                                     percentageEndPoint: percentageEndPoint,
+                                                                     translate: .init(x: 0, y: 0))
+        } else if let bookingConfirmationVC = fromViewController as? BookingConfirmationViewController {
+            bookingConfirmationVC.mainCallToActionButton.animateAndFade(as: .transitionOut,
+                                                                     animationStyle: animationStyle,
+                                                                     percentageEndPoint: percentageEndPoint,
+                                                                     translate: .init(x: 0, y: 0))
+        }
+        
+        // MARK: Transition out views in TrainSelectionViewController
+        if let trainSelectionVC = fromViewController as? TrainSelectionViewController,
+            toViewController is BookingCriteriaViewController {
+            
+            trainSelectionVC.mainTableView.animateAndFade(as: .transitionOut,
+                                                          animationStyle: animationStyle,
+                                                          percentageEndPoint: percentageEndPoint,
+                                                          translate: .init(x: 0, y: 72))
+            
+            trainSelectionVC.mainTableView.visibleCells.enumerated().forEach {
+                (index, cell) in
+                cell.animateAndFade(as: .transitionOut,
+                                    animationStyle: animationStyle,
+                                    percentageEndPoint: percentageEndPoint,
+                                    translate: .init(x: 0, y: CGFloat(index) * 16))
+            }
+        }
+        
+        // MARK: Transition views in SeatMapSelectionViewController to BookingConfirmationViewController
+        if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController,
+            let bookingConfirmationVC = toViewController as? BookingConfirmationViewController {
+            seatMapSelectionVC.mainCardView.animateAndFade(as: .transitionOut,
+                                                           animationStyle: animationStyle,
+                                                           percentageEndPoint: 1,
+                                                           translate: .init(x: 0, y: seatMapSelectionVC.mainCardView.bounds.height))
+            
+            bookingConfirmationVC.mainCardView.animateAndFade(as: .transitionIn,
+                                                           animationStyle: animationStyle,
+                                                           percentageEndPoint: 0,
+                                                           translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height))
+            bookingConfirmationVC.dateLabel.animateAndFade(as: .transitionIn,
+                                                              animationStyle: animationStyle,
+                                                              percentageEndPoint: 0,
+                                                              translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
+        } else if let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController,
+            let bookingConfirmationVC = fromViewController as? BookingConfirmationViewController {
+            seatMapSelectionVC.mainCardView.animateAndFade(as: .transitionIn,
+                                                           animationStyle: animationStyle,
+                                                           percentageEndPoint: 0,
+                                                           translate: .init(x: 0, y: seatMapSelectionVC.mainCardView.bounds.height))
+            
+            bookingConfirmationVC.mainCardView.animateAndFade(as: .transitionOut,
+                                                              animationStyle: animationStyle,
+                                                              percentageEndPoint: 1,
+                                                              translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height))
+            
+            bookingConfirmationVC.dateLabel.animateAndFade(as: .transitionOut,
+                                                           animationStyle: animationStyle,
+                                                           percentageEndPoint: 1,
+                                                           translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
+        }
         
         
+        
+        
+        container.backgroundColor = toView.backgroundColor
+         toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0)
+        
+        fromView.backgroundColor = fromView.backgroundColor?.withAlphaComponent(0)
         
         // MARK: Perform Animation
         UIView
             .animate(withStyle: animationStyle,
                      animations: {
-                        toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(1)
+                        toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0.001)
+                        
+//                        fromView.backgroundColor = fromView.backgroundColor?.withAlphaComponent(1)
             },
                      completion: {
                         finished in
+                        fromView.backgroundColor = fromView.backgroundColor?.withAlphaComponent(1)
+                        toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(1)
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kumi
 
 struct ConstraintEqual : OptionSet {
     let rawValue: Int
@@ -237,5 +238,48 @@ extension UIView {
     
     func frame(in view: UIView) -> CGRect {
         return superview?.convert(frame, to: view) ?? convert(frame, to: view)
+    }
+    
+    func animateAndFade(as direction: TransitionalDirection,
+                        animationStyle: UIViewAnimationStyle,
+                        percentageEndPoint: TimeInterval = 1,
+                        translate: CGPoint) {
+        
+        let duration = animationStyle.duration *
+            (direction == .transitionIn ? 1 - percentageEndPoint : percentageEndPoint)
+        let delay = animationStyle.duration - duration
+        
+        var mutatedAnimationStyle = animationStyle
+        mutatedAnimationStyle.duration = duration
+        
+        if direction == .transitionIn {
+            transform.tx = translate.x
+            transform.ty = translate.y
+            alpha = 0
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           delay: delay,
+                           animations: {
+                self.transform.tx = 0
+                self.transform.ty = 0
+                self.alpha = 1
+            })
+        }
+        
+        if direction == .transitionOut {
+            transform.tx = 0
+            transform.ty = 0
+            alpha = 1
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           animations: {
+                self.transform.tx = translate.x
+                self.transform.ty = translate.y
+                self.alpha = 0
+            })
+        }
+    }
+    
+    enum TransitionalDirection {
+        case transitionIn
+        case transitionOut
     }
 }
