@@ -365,12 +365,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         animatingCardView.contentView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
                     })
                 }
-                
-                
-                
             }
-            
-            
         }
         
         
