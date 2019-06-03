@@ -345,24 +345,59 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         otherCell.animateAndFade(as: .transitionOut, animationStyle: animationStyle, percentageEndPoint: 0.3, translate: .zero)
                     }
                 }
-                let originRect = cell.cardView.frame(in: seatMapSelectionVC.mainContentView)
-                let destinationRect = seatMapSelectionVC.mainCardView.frame(in: seatMapSelectionVC.mainContentView)
+                let originRectInMainContentView = cell.cardView.frame(in: seatMapSelectionVC.mainContentView)
+                let destinationRectInMainContentView = seatMapSelectionVC.mainCardView.frame(in: seatMapSelectionVC.mainContentView)
+                
+                let originRectInCellContentView = cell.cardView.frame(in: cell.contentView)
+                let destinationRectInCellContentView = seatMapSelectionVC.mainCardView.frame(in: cell.contentView)
                 
                 if let animatingCardView = seatMapSelectionVC.mainCardView {
                     
-                    animatingCardView.layer.setLayer(layerStyle.card.normal())
-                    animatingCardView.contentView.layer.setLayer(layerStyle.card.normal().withShadowStyle(DesignSystem.shadowStyle.noShadow()))
+                    let animatingCardViewInCell = cell.cardView
                     
                     
-                    animatingCardView.frame = originRect
+                    animatingCardView.layer.cornerRadius = animatingCardViewInCell.layer.cornerRadius
+                    animatingCardView.contentView.layer.cornerRadius = animatingCardViewInCell.contentView.layer.cornerRadius
+                    
+                    animatingCardView.alpha = 0
+                    
+                    animatingCardView.frame = originRectInMainContentView
                     animatingCardView.contentView.frame = animatingCardView.bounds
                     
-                    UIView.animate(withStyle: animationStyle, animations: {
-                        animatingCardView.frame = destinationRect
+//                    animatingCardView.contentView.backgroundColor = .blue
+                    
+//                     animatingCardViewInCell.contentView.backgroundColor = .red
+                    
+                    animatingCardViewInCell.contentView.layer.removeAllAnimations()
+                    animatingCardViewInCell.layer.removeAllAnimations()
+                    
+                    var mutatedAnimationStyle = animationStyle
+                    mutatedAnimationStyle.duration = animationStyle.duration * 0.6
+                    mutatedAnimationStyle.delay = 0
+                    
+                    UIView.animate(withStyle: mutatedAnimationStyle, animations: {
+                        animatingCardView.alpha = 1
+                        
+                        animatingCardView.frame = destinationRectInMainContentView
                         animatingCardView.contentView.frame = animatingCardView.bounds
                         
                         animatingCardView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
                         animatingCardView.contentView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                        
+                        animatingCardViewInCell.frame = destinationRectInCellContentView
+                        
+                        let scaleFactor = animatingCardViewInCell.bounds.width / animatingCardViewInCell.contentView.bounds.width
+                        animatingCardViewInCell.contentView.transform = .init(scaleX: scaleFactor, y: scaleFactor)
+                        
+                        animatingCardViewInCell.contentView.transform.tx = animatingCardViewInCell.bounds.midX - animatingCardViewInCell.contentView.bounds.midX
+                        
+                        animatingCardViewInCell.contentView.transform.ty = originRectInMainContentView.minY
+                        
+                        animatingCardViewInCell.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                        animatingCardViewInCell.contentView.layer.cornerRadius = 0
+                        
+                        animatingCardViewInCell.contentView.alpha = 0
+                        animatingCardViewInCell.alpha = 0
                     })
                 }
             }
