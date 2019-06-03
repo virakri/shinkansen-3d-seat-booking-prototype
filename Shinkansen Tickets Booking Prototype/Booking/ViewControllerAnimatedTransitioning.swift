@@ -330,6 +330,49 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                                                            translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
         }
         
+        // MARK: Transition views in SeatMapSelectionViewController to BookingConfirmationViewController
+        if let seatClassSelectionVC = fromViewController as? SeatClassSelectionViewController,
+            let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController {
+            
+            
+            // Demo
+            
+            if let selectedIndexPath = seatClassSelectionVC.selectedIndexPath,
+                let cell = seatClassSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
+                
+                seatClassSelectionVC.mainTableView.visibleCells.forEach { (otherCell) in
+                    if otherCell != cell {
+                        otherCell.animateAndFade(as: .transitionOut, animationStyle: animationStyle, percentageEndPoint: 0.3, translate: .zero)
+                    }
+                }
+                let originRect = cell.cardView.frame(in: seatMapSelectionVC.mainContentView)
+                let destinationRect = seatMapSelectionVC.mainCardView.frame(in: seatMapSelectionVC.mainContentView)
+                
+                if let animatingCardView = seatMapSelectionVC.mainCardView {
+                    
+                    animatingCardView.layer.setLayer(layerStyle.card.normal())
+                    animatingCardView.contentView.layer.setLayer(layerStyle.card.normal().withShadowStyle(DesignSystem.shadowStyle.noShadow()))
+                    
+                    
+                    animatingCardView.frame = originRect
+                    animatingCardView.contentView.frame = animatingCardView.bounds
+                    
+                    UIView.animate(withStyle: animationStyle, animations: {
+                        animatingCardView.frame = destinationRect
+                        animatingCardView.contentView.frame = animatingCardView.bounds
+                        
+                        animatingCardView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                        animatingCardView.contentView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                    })
+                }
+                
+                
+                
+            }
+            
+            
+        }
+        
         
         
         

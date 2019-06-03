@@ -10,6 +10,8 @@ import UIKit
 
 class SeatClassSelectionViewController: BookingViewController {
     
+    var selectedIndexPath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -58,6 +60,8 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
+        selectedIndexPath = indexPath
+        
         let seatMapSelectionViewController = SeatMapSelectionViewController()
         seatMapSelectionViewController.headerInformation = headerInformation
         seatMapSelectionViewController.headerInformation?.carNumber = "Car 4"
