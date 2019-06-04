@@ -56,85 +56,6 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         if let fromBookingVC = fromViewController as? BookingViewController,
             let toBookingVC = toViewController as? BookingViewController {
             
-            guard let fromHeaderView = fromBookingVC.headerRouteInformationView,
-                let toHeaderView = toBookingVC.headerRouteInformationView,
-                let fromDateView = fromBookingVC.dateLabelSetView,
-                let toDateView = toBookingVC.dateLabelSetView,
-                let fromParentView = fromBookingVC.view,
-                let toParentView = toBookingVC.view else { return }
-            
-            func animate(fromView: UIView, fromParentView: UIView,
-                         toView: UIView, toParentView: UIView,
-                         basedHorizontalAnimationOffset: CGFloat = 0,
-                         basedVerticalAnimationOffset: CGFloat = 0,
-                         percentageEndPoint: TimeInterval = 1) {
-                
-                // Sets all animated views to orginal position before them get calculated
-                fromView.transform = .identity
-                toView.transform = .identity
-                
-                var displacement: CGPoint = .zero
-                
-                var isTransitioningHiddenView = false
-                
-                if fromView.isHidden || toView.isHidden {
-                    
-                    isTransitioningHiddenView = true
-                    
-                    // MARK: Hidden views will be slide up
-                    if fromView.isHidden  {
-                        displacement.x = CGFloat(-basedHorizontalAnimationOffset).systemSizeMuliplier()
-                        displacement.y = CGFloat(-basedVerticalAnimationOffset).systemSizeMuliplier()
-                    }
-                    
-                    if toView.isHidden  {
-                        displacement.x = CGFloat(basedHorizontalAnimationOffset).systemSizeMuliplier()
-                        displacement.y = CGFloat(basedVerticalAnimationOffset).systemSizeMuliplier()
-                    }
-                    
-                } else {
-                    let fromActualFrame = fromView.frame(in: fromParentView)
-                    let toActualFrame = toView.frame(in: toParentView)
-                    
-                    displacement = CGPoint(x: toActualFrame.midX - fromActualFrame.midX,
-                                           y: toActualFrame.minY - fromActualFrame.minY)
-                }
-                
-                toView.transform.tx = -displacement.x
-                toView.transform.ty = -displacement.y
-                
-                // MARK: In case one view is hidden
-                if fromView.isHidden  {
-                    toView.alpha = 0
-                }
-                
-                if toView.isHidden  {
-                    fromView.alpha = 1
-                }
-                
-                // mutate
-                var mutatedAnimationStyle = animationStyle
-                mutatedAnimationStyle.duration = animationStyle.duration * (fromView.isHidden ? 1 - percentageEndPoint : percentageEndPoint)
-                mutatedAnimationStyle.delay = animationStyle.duration - mutatedAnimationStyle.duration
-                
-                UIView.animate(withStyle: isTransitioningHiddenView ? mutatedAnimationStyle : animationStyle,
-                               delay: fromView.isHidden ? mutatedAnimationStyle.delay : 0,
-                               animations: {
-                                fromView.transform.tx = displacement.x
-                                fromView.transform.ty = displacement.y
-                                toView.transform = .identity
-                                
-                                // MARK: Animation for one that is hidden
-                                if fromView.isHidden {
-                                    toView.alpha = 1
-                                }
-                                
-                                if toView.isHidden {
-                                    fromView.alpha = 0
-                                }
-                })
-            }
-            
             struct AnimateObject {
                 let fromVC: BookingViewController
                 let toVC: BookingViewController
@@ -213,80 +134,59 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                 }
                 
                 func animate(view: ((BookingViewController) -> UIView),
-                              parentView: ((BookingViewController) -> UIView)) {
+                             parentView: ((BookingViewController) -> UIView)? = nil,
+                             basedVerticalAnimationOffset: CGFloat,
+                             percentageEndPoint: TimeInterval = 0.4
+                    ) {
                     
                     _animate(fromView: view(fromVC),
-                             fromParentView: parentView(fromVC),
+                             fromParentView: (parentView != nil) ? parentView!(fromVC) : (view(fromVC).superview ?? UIView()),
                              toView: view(toVC),
-                             toParentView: parentView(toVC),
+                             toParentView: (parentView != nil) ? parentView!(toVC) : (view(toVC).superview ?? UIView()),
                              basedVerticalAnimationOffset: 18,
                              percentageEndPoint: 0.4)
                 }
             }
             
-            let aa = AnimateObject(fromVC: fromBookingVC, toVC: toBookingVC)
-//            aa.animate(view: { $0.}, parentView: <#T##((BookingViewController) -> UIView)##((BookingViewController) -> UIView)##(BookingViewController) -> UIView#>)
+            let animateObject = AnimateObject(fromVC: fromBookingVC, toVC: toBookingVC)
             
-            animate(fromView: fromDateView,
-                    fromParentView: fromParentView,
-                    toView: toDateView,
-                    toParentView: toParentView,
-                    basedVerticalAnimationOffset: 18,
-                    percentageEndPoint: 0.4)
+            animateObject.animate(view: {$0.dateLabelSetView},
+                                  parentView: {$0.view},
+                                  basedVerticalAnimationOffset: 18)
             
-            animate(fromView: fromHeaderView, fromParentView: fromParentView,
-                    toView: toHeaderView, toParentView: toParentView,
-                    basedVerticalAnimationOffset: 72,
-                    percentageEndPoint: 0.4)
+            animateObject.animate(view: {$0.headerRouteInformationView},
+                                  parentView: {$0.view},
+                                  basedVerticalAnimationOffset: 72)
             
-            // MARK:
-            let fromStationPairView = fromHeaderView.stationPairView
-            let toStationPairView = toHeaderView.stationPairView
+            animateObject.animate(view: {$0.headerRouteInformationView
+                .stationPairView
+                .fromStationHeadlineView
+                .subtitleLabel},
+                                  basedVerticalAnimationOffset: 6)
             
-            animate(fromView: fromStationPairView.fromStationHeadlineView.subtitleLabel,
-                    fromParentView: fromStationPairView.fromStationHeadlineView,
-                    toView: toStationPairView.fromStationHeadlineView.subtitleLabel,
-                    toParentView: toStationPairView.fromStationHeadlineView,
-                    basedVerticalAnimationOffset: 6,
-                    percentageEndPoint: 0.4)
+            animateObject.animate(view: {$0.headerRouteInformationView
+                .stationPairView
+                .toStationHeadlineView
+                .subtitleLabel},
+                                  basedVerticalAnimationOffset: 6)
             
-            animate(fromView: fromStationPairView.toStationHeadlineView.subtitleLabel,
-                    fromParentView: fromStationPairView.toStationHeadlineView,
-                    toView: toStationPairView.toStationHeadlineView.subtitleLabel,
-                    toParentView: toStationPairView.toStationHeadlineView,
-                    basedVerticalAnimationOffset: 6,
-                    percentageEndPoint: 0.4)
+            animateObject.animate(view: {$0.headerRouteInformationView
+                .descriptionSetView},
+                                  basedVerticalAnimationOffset: 18)
             
-            // MARK:
-            let fromDescriptionSetView = fromHeaderView.descriptionSetView
-            let toDescriptionSetView = toHeaderView.descriptionSetView
+            animateObject.animate(view: {$0.headerRouteInformationView
+                .descriptionSetView.carNumberSetView},
+                                  basedVerticalAnimationOffset: 12)
             
-            animate(fromView: fromDescriptionSetView, fromParentView: fromHeaderView,
-                    toView: toDescriptionSetView, toParentView: toHeaderView,
-                    basedVerticalAnimationOffset: 18,
-                    percentageEndPoint: 0.4)
+            animateObject.animate(view: {$0.headerRouteInformationView
+                .descriptionSetView
+                .seatNumberSetView},
+                                  basedVerticalAnimationOffset: 12)
             
-            animate(fromView: fromDescriptionSetView.carNumberSetView, fromParentView: fromDescriptionSetView,
-                    toView: toDescriptionSetView.carNumberSetView, toParentView: toDescriptionSetView,
-                    basedVerticalAnimationOffset: 12,
-                    percentageEndPoint: 0.4)
-            
-            animate(fromView: fromDescriptionSetView.seatNumberSetView,
-                    fromParentView: fromDescriptionSetView,
-                    toView: toDescriptionSetView.seatNumberSetView,
-                    toParentView: toDescriptionSetView,
-                    basedVerticalAnimationOffset: 12,
-                    percentageEndPoint: 0.4)
-            
-            animate(fromView: fromDescriptionSetView.priceSetView,
-                    fromParentView: fromDescriptionSetView,
-                    toView: toDescriptionSetView.priceSetView,
-                    toParentView: toDescriptionSetView,
-                    basedVerticalAnimationOffset: 12,
-                    percentageEndPoint: 0.4)
-            
-            print(fromBookingVC.mainTableView.visibleCells)
-            print(toBookingVC.mainTableView.visibleCells)
+            animateObject.animate(view: {$0.headerRouteInformationView
+                .descriptionSetView
+                .priceSetView},
+                                  basedVerticalAnimationOffset: 12)
             
         }
         

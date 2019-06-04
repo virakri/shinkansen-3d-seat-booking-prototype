@@ -137,7 +137,10 @@ class PrototypeInitialViewController: ViewController {
     
     @objc private func startPrototypeButtonDidTouch(_ sender: Button) {
         
-        present(NavigationController(rootViewController: BookingCriteriaViewController()), animated: true, completion: nil)
+        let presentedViewController = NavigationController(rootViewController: BookingCriteriaViewController())
+        presentedViewController.modalPresentationStyle = .fullScreen
+        
+        present(presentedViewController, animated: true, completion: nil)
     }
     
     @objc private func darkModeSwitchValueChanged(_ sender: UISwitch) {

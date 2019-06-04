@@ -579,6 +579,7 @@
 			baseConfigurationReference = 9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJ5UD9292F;
 				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
@@ -588,6 +589,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virakri.Shinkansen-Tickets-Booking-Prototype";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -598,6 +600,7 @@
 			baseConfigurationReference = 67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJ5UD9292F;
 				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
@@ -607,6 +610,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virakri.Shinkansen-Tickets-Booking-Prototype";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
