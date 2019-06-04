@@ -240,10 +240,12 @@ extension UIView {
         return superview?.convert(frame, to: view) ?? convert(frame, to: view)
     }
     
-    func animateAndFade(as direction: TransitionalDirection,
+    func translateAndFade(as direction: TransitionalDirection,
                         animationStyle: UIViewAnimationStyle,
                         percentageEndPoint: TimeInterval = 1,
                         translate: CGPoint) {
+        
+        layer.removeAllAnimations()
         
         let duration = animationStyle.duration *
             (direction == .transitionIn ? 1 - percentageEndPoint : percentageEndPoint)
@@ -274,6 +276,65 @@ extension UIView {
                 self.transform.tx = translate.x
                 self.transform.ty = translate.y
                 self.alpha = 0
+            })
+        }
+    }
+    
+    func transformAnimation(as direction: TransitionalDirection,
+                          animationStyle: UIViewAnimationStyle,
+                          percentageEndPoint: TimeInterval = 1,
+                          transform: CGAffineTransform) {
+        
+        let duration = animationStyle.duration *
+            (direction == .transitionIn ? 1 - percentageEndPoint : percentageEndPoint)
+        let delay = animationStyle.duration - duration
+        
+        var mutatedAnimationStyle = animationStyle
+        mutatedAnimationStyle.duration = duration
+        
+        if direction == .transitionIn {
+            self.transform = transform
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           delay: delay,
+                           animations: {
+                            self.transform = .identity
+            })
+        }
+        
+        if direction == .transitionOut {
+            self.transform = .identity
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           animations: {
+                            self.transform = transform
+            })
+        }
+    }
+    
+    func fadeAnimation(as direction: TransitionalDirection,
+                          animationStyle: UIViewAnimationStyle,
+                          percentageEndPoint: TimeInterval = 1) {
+        
+        let duration = animationStyle.duration *
+            (direction == .transitionIn ? 1 - percentageEndPoint : percentageEndPoint)
+        let delay = animationStyle.duration - duration
+        
+        var mutatedAnimationStyle = animationStyle
+        mutatedAnimationStyle.duration = duration
+        
+        if direction == .transitionIn {
+            alpha = 0
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           delay: delay,
+                           animations: {
+                            self.alpha = 1
+            })
+        }
+        
+        if direction == .transitionOut {
+            alpha = 1
+            UIView.animate(withStyle: mutatedAnimationStyle,
+                           animations: {
+                            self.alpha = 0
             })
         }
     }

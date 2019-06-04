@@ -78,7 +78,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrainScheduleTableViewCell",
                                                        for: indexPath) as? TrainScheduleTableViewCell else { return UITableViewCell() }
-        selectedIndexPath = indexPath
+        
         cell.setupValue(time: "12:12",
                         amountOfTime: "5hr 21m",
                         trainNumber: "Hayabusa 8",
@@ -94,6 +94,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
+        selectedIndexPath = indexPath
         let seatClassSelectionViewController = SeatClassSelectionViewController()
         seatClassSelectionViewController.headerInformation = headerInformation
         seatClassSelectionViewController.headerInformation?.fromTime = "8:42"

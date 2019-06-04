@@ -20,6 +20,7 @@
 		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
 		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
 		D01B2EC622A3F4B300C3FAF3 /* SegmentedCardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */; };
+		D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042A71422A70C7600A0CBFC /* CALayer.swift */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
 		D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCE229CB476007CCFFE /* UIStackView.swift */; };
 		D053EBD1229CB772007CCFFE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD0229CB772007CCFFE /* UIView.swift */; };
@@ -75,6 +76,7 @@
 		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
 		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCardControl.swift; sourceTree = "<group>"; };
+		D042A71422A70C7600A0CBFC /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
 		D053EBCE229CB476007CCFFE /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		D053EBD0229CB772007CCFFE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				D053EBD2229D29B3007CCFFE /* UILabel.swift */,
 				D053EBD0229CB772007CCFFE /* UIView.swift */,
 				D053EBDB229D4D3D007CCFFE /* Notification.swift */,
+				D042A71422A70C7600A0CBFC /* CALayer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
 				D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */,
+				D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */,
 				D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */,
 				D074B1E2228B90AC00791F94 /* SeatMapSelectionViewController.swift in Sources */,
 			);
