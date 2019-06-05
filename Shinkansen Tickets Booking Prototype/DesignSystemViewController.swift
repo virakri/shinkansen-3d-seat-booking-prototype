@@ -565,7 +565,7 @@ class DesignSystemViewController: ViewController {
         
         colorsView = DesignSystemView(title: "Colors",
                                       designSystemBlockViews: [
-                                        DesignSystemBlockView(withColor: UIColor.accent.main,
+                                        DesignSystemBlockView(withColor: UIColor.accent().main,
                                                               title: "Accent Main"),
                                         DesignSystemBlockView(withColor: UIColor.accent.dark,
                                                               title: "Accent Dark"),

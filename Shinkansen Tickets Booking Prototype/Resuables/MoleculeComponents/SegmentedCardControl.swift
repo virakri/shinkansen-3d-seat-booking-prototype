@@ -29,7 +29,7 @@ class SegmentedCardControl: UIControl {
         
         var subtitleLabel: Label
         
-        var basedHeight: CGFloat = 72 {
+        var basedHeight: CGFloat = DesignSystem.isNarrowScreen ? 56 : 72 {
             didSet {
                 setupTheme()
             }
@@ -86,6 +86,9 @@ class SegmentedCardControl: UIControl {
             titleLabel.adjustsFontSizeToFitWidth = true
             unselectedTitleLabel.adjustsFontSizeToFitWidth = true
             subtitleLabel.adjustsFontSizeToFitWidth = true
+            
+            // Override the margin
+            cardControl.contentView.directionalLayoutMargins = DesignSystem.layoutMargins.itemCardControl()
             
             // Initialize Height Constraint
             heightConstraint = heightAnchor.constraint(equalToConstant: basedHeight.systemSizeMuliplier())

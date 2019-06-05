@@ -10,6 +10,8 @@ import UIKit
 
 extension DesignSystem {
     
+    static let isNarrowScreen = UIScreen.main.bounds.width <= 320
+    
     class opacity {
         static let highlighted: Float = 0.54
         static let disabled: Float = 0.25
@@ -41,6 +43,9 @@ extension DesignSystem {
     }
     
     class layoutMargins {
+        class func itemCardControl() -> NSDirectionalEdgeInsets {
+            return .init(vertical: 8, horizontal: 8) }
+        
         class func card() -> NSDirectionalEdgeInsets {
             return .init(vertical: 12, horizontal: 16) }
         

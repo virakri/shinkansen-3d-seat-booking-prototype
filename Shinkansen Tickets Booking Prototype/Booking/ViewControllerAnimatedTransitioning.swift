@@ -320,6 +320,8 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                                                            translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
         }
         
+        
+        // MARK: Transition views in TrainSelectionViewController to SeatClassSelectionViewController
         if let trainSelectionVC = fromViewController as? TrainSelectionViewController,
             let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController {
             
@@ -402,8 +404,91 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
             }
         }
         
+        // MARK: Transition views in SeatClassSelectionViewController to TrainSelectionViewController (Backward)
+        if let trainSelectionVC = toViewController as? TrainSelectionViewController,
+            let seatClassSelectionVC = fromViewController as? SeatClassSelectionViewController {
+            
+            // Demo
+            if let selectedIndexPath = trainSelectionVC.selectedIndexPath {
+                guard let cell = trainSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? TrainScheduleTableViewCell else { return }
+                
+                // MARK: Fade all other cells
+                trainSelectionVC.mainTableView.visibleCells.forEach { (otherCell) in
+                    if otherCell != cell {
+                        otherCell.fadeAnimation(as: .transitionOut,
+                                                animationStyle: animationStyle,
+                                                percentageEndPoint: 0.3)
+                        otherCell.transformAnimation(as: .transitionOut,
+                                                     animationStyle: animationStyle,
+                                                     percentageEndPoint: 0.3,
+                                                     transform: CGAffineTransform(scaleX: 0.96, y: 0.96))
+                    }
+                }
+                
+                // MARK: Fade all other cells
+                seatClassSelectionVC.mainTableView.visibleCells.forEach { (otherCell) in
+                    otherCell.fadeAnimation(as: .transitionIn,
+                                            animationStyle: animationStyle,
+                                            percentageEndPoint: 0.55)
+                    
+                }
+                
+                //
+                let originRectInOriginView = cell.cardView.frame(in: cell.contentView)
+                
+                seatClassSelectionVC.mainTableView.visibleCells.forEach { (destinationCell) in
+                    guard let destinationCell = destinationCell as? SeatClassTableViewCell else { return }
+                    let destinationRectInOriginView = destinationCell.cardView.frame(in: cell.contentView)
+                    
+                    let dummyView = UIView()
+                    cell.contentView.addSubview(dummyView)
+                    
+                    dummyView.layer.setLayer(cell.cardView.layer.layerStyle)
+                    dummyView.layer.withNoShadow()
+                    cell.contentView.layer.setShadow(cell.cardView.layer.shadowStyle)
+                    
+                    cell.cardView.layer.removeAllAnimations()
+                    cell.cardView.contentView.layer.removeAllAnimations()
+                    
+                    cell.contentView.sendSubviewToBack(dummyView)
+                    if destinationCell == seatClassSelectionVC.mainTableView.visibleCells.last {
+                        cell.cardView.layer.setLayer(LayerStyle())
+                        cell.cardView.contentView.backgroundColor = .clear
+                        cell.cardView.contentView.fadeAnimation(as: .transitionOut, animationStyle: animationStyle, percentageEndPoint: 0.3)
+                    }
+                    
+                    dummyView.frame = originRectInOriginView
+                    
+                    var muatatedAnimationStyle = animationStyle
+                    muatatedAnimationStyle.duration = animationStyle.duration * 0.35
+                    UIView.animate(withStyle: muatatedAnimationStyle,
+                                   delay: 0.65 * animationStyle.duration,
+                                   animations: {
+                                    dummyView.alpha = 0
+                    })
+                    
+                    
+                    
+                    UIView.animate(withStyle: animationStyle, animations: {
+                        dummyView.frame = destinationRectInOriginView
+                    }, completion: {
+                        _ in
+                        dummyView.removeFromSuperview()
+                    })
+                    
+                    let originRectInDestinationView = cell.cardView.frame(in: destinationCell.contentView)
+                    let destinationRectInDestinationView = destinationCell.cardView.frame(in: destinationCell.contentView)
+                    destinationCell.cardView.frame = originRectInDestinationView
+                    
+                    UIView.animate(withStyle: animationStyle, animations: {
+                        destinationCell.cardView.frame = destinationRectInDestinationView
+                    })
+                }
+            }
+        }
         
-        // MARK: Transition views in SeatMapSelectionViewController to BookingConfirmationViewController
+        
+        // MARK: Transition views in SeatClassSelectionViewController to SeatMapSelectionViewController
         if let seatClassSelectionVC = fromViewController as? SeatClassSelectionViewController,
             let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController {
             
@@ -473,7 +558,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         
         
         container.backgroundColor = toView.backgroundColor
-         toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0)
+        toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0)
         
         fromView.backgroundColor = fromView.backgroundColor?.withAlphaComponent(0)
         

@@ -16,10 +16,11 @@ extension DesignSystem {
     class textStyle {
         
         class func largeTitle() -> TextStyle {
+            let fontSize: CGFloat = DesignSystem.isNarrowScreen ? 28 : 34
             return TextStyle(font:
                 UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for:
-                    UIFont.systemFont(ofSize: 34,
-                                      weight: UIAccessibility.isBoldTextEnabled ? .medium : .light), maximumPointSize: 34))
+                    UIFont.systemFont(ofSize: fontSize,
+                                      weight: UIAccessibility.isBoldTextEnabled ? .medium : .light), maximumPointSize: fontSize))
         }
         
         class func headline() -> TextStyle {

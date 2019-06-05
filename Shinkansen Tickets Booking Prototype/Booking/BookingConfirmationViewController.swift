@@ -39,7 +39,7 @@ class BookingConfirmationViewController: BookingViewController {
         
         mainCardView = CardControl(type: .large)
         mainContentView.addSubview(mainCardView, withConstaintEquals: .edges)
-        mainContentView.widthAnchor.constraint(equalTo: mainContentView.heightAnchor, multiplier: 1).isActive = true
+        mainContentView.widthAnchor.constraint(equalTo: mainContentView.heightAnchor, multiplier: DesignSystem.isNarrowScreen ? 1.25 : 1).isActive = true
         mainCardView.isUserInteractionEnabled = false
         
         setHeaderInformationValue(headerInformation)

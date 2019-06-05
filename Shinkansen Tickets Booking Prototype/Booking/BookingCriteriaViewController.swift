@@ -60,10 +60,11 @@ class BookingCriteriaViewController: BookingViewController {
         headlineLabel.numberOfLines = 0
         
         logoImageView = UIImageView()
+        logoImageView.setContentHuggingPriority(.required, for: .horizontal)
         
         headerStackView = UIStackView([headlineLabel, logoImageView],
                                       axis: .horizontal,
-                                      distribution: .equalSpacing,
+                                      distribution: .fill,
                                       alignment: .top)
         
         fromStationCardControl = StationCardControl()
@@ -111,7 +112,7 @@ class BookingCriteriaViewController: BookingViewController {
                                  inputStackView],
                                 axis: .vertical,
                                 distribution: .fill,
-                                alignment: .fill, spacing: 48)
+                                alignment: .fill, spacing: DesignSystem.isNarrowScreen ? 24 : 48)
         
         view.addSubview(stackView,
                         withConstaintEquals: [.topSafeArea,
