@@ -56,6 +56,17 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         if let fromBookingVC = fromViewController as? BookingViewController,
             let toBookingVC = toViewController as? BookingViewController {
             
+            // Reset verticalRubberBandEffect
+            fromBookingVC.headerRouteInformationView.alpha = isPresenting ? 0 : 1
+            toBookingVC.headerRouteInformationView.alpha = !isPresenting ? 0 : 1
+            
+            UIView.animate(withStyle: animationStyle, animations: {
+                fromBookingVC.headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: 0)
+            }, completion: { _ in
+                fromBookingVC.headerRouteInformationView.alpha = toBookingVC is BookingCriteriaViewController ? 0 : 1
+                toBookingVC.headerRouteInformationView.alpha = 1
+            })
+            
             struct AnimateObject {
                 let fromVC: BookingViewController
                 let toVC: BookingViewController
@@ -415,7 +426,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     if otherCell != cell {
                         otherCell.fadeAnimation(as: .transitionIn,
                                                 animationStyle: animationStyle,
-                                                percentageEndPoint: 0.3)
+                                                percentageEndPoint: 0.5)
                     }
                 }
                 
@@ -434,13 +445,16 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     guard let destinationCell = destinationCell as? SeatClassTableViewCell else { return }
                     let destinationRectInOriginView = destinationCell.cardView.frame(in: cell.contentView)
                     
-                    let dummyView = UIView()
+                    
                     //
                     cell.cardView.layer.removeAllAnimations()
                     cell.cardView.contentView.layer.removeAllAnimations()
                     cell.contentView.layer.setShadow(cell.cardView.layer.shadowStyle)
+                    
+                    let dummyView = UIView()
                     cell.contentView.addSubview(dummyView)
                     cell.contentView.sendSubviewToBack(dummyView)
+                    
                     
                     dummyView.layer.setLayer(cell.cardView.layer.layerStyle)
                     dummyView.layer.withNoShadow()
@@ -501,26 +515,66 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                 
                 let originRectInMainContentView = selectedCell.cardView.frame(in: seatMapSelectionVC.mainContentView)
                 let destinationRectInMainContentView = seatMapSelectionVC.mainCardView.frame(in: seatMapSelectionVC.mainContentView)
-                let destinationRectInCellContentView = seatMapSelectionVC.mainCardView.frame(in: selectedCell.contentView)
+                let destinationRectInOriginView = seatMapSelectionVC.mainCardView.frame(in: selectedCell.contentView)
                 
                 if let cardViewInDestinationView = seatMapSelectionVC.mainCardView {
                     
-                    let cardViewInSelectedCell = selectedCell.cardView
+//                    let cardViewInSelectedCell = selectedCell.cardView
                     
-                    cardViewInDestinationView.layer.cornerRadius = cardViewInSelectedCell.layer.cornerRadius
-                    cardViewInDestinationView.contentView.layer.cornerRadius = cardViewInSelectedCell.contentView.layer.cornerRadius
+                    selectedCell.cardView.contentView.layer.removeAllAnimations()
+                    selectedCell.cardView.layer.removeAllAnimations()
+                    
+//                   let originalContentView = selectedCell.cardView
+                    
+                    let dummyView = UIView()
+                    seatMapSelectionVC.mainContentView.addSubview(dummyView)
+                   seatMapSelectionVC.mainContentView.sendSubviewToBack(dummyView)
+                    dummyView.layer.setLayer(selectedCell.cardView.layer.layerStyle)
+                    dummyView.layer.setShadow(selectedCell.cardView.layer.shadowStyle)
+                    dummyView.frame = originRectInMainContentView
+                    
+                    dummyView.alpha = 0
+                    
+                    let dummyViewInCell = UIView()
+                    selectedCell.contentView.addSubview(dummyViewInCell)
+                    selectedCell.contentView.sendSubviewToBack(dummyViewInCell)
+                    dummyViewInCell.layer.setLayer(selectedCell.cardView.layer.layerStyle)
+                    dummyViewInCell.layer.setShadow(selectedCell.cardView.layer.shadowStyle)
+                    dummyViewInCell.frame = selectedCell.cardView.frame
+                    
+                    dummyViewInCell.alpha = 1
+                    
+                    selectedCell.cardView.layer.setLayer(LayerStyle())
+                    selectedCell.cardView.contentView.backgroundColor = .clear
+                    
+                    selectedCell.cardView.contentView.fadeAnimation(as: .transitionOut, animationStyle: animationStyle, percentageEndPoint: 0.3)
+                    
+                    
+                    
+                    cardViewInDestinationView.layer.cornerRadius = dummyView.layer.cornerRadius
+                    cardViewInDestinationView.contentView.layer.cornerRadius = dummyView.layer.cornerRadius
                     
                     cardViewInDestinationView.alpha = 0
                     
                     cardViewInDestinationView.frame = originRectInMainContentView
                     cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
                     
-                    cardViewInSelectedCell.contentView.layer.removeAllAnimations()
-                    cardViewInSelectedCell.layer.removeAllAnimations()
+                    cardViewInDestinationView.fadeAnimation(as: .transitionIn, animationStyle: animationStyle, percentageEndPoint: 0.55)
                     
-                    var mutatedAnimationStyle = animationStyle
-                    mutatedAnimationStyle.duration = animationStyle.duration * 2 / 3
-                    mutatedAnimationStyle.delay = 0
+                    var muatatedAnimationStyle = animationStyle
+                    muatatedAnimationStyle.duration = animationStyle.duration * 0.3
+                    UIView.animate(withStyle: muatatedAnimationStyle,
+                                   delay: 0.3 * animationStyle.duration,
+                                   animations: {
+                                    dummyView.alpha = 1
+                    }, completion: {
+                        _ in
+                        UIView.animate(withStyle: muatatedAnimationStyle,
+                                       animations: {
+                                        dummyView.alpha = 0
+                                        dummyViewInCell.alpha = 0
+                        })
+                    })
                     
                     // Animate subview in cardView.content of Destination
                     cardViewInDestinationView.contentView.subviews.forEach { (view) in
@@ -534,7 +588,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     }
                     
                     UIView.animate(withStyle: animationStyle, animations: {
-                        cardViewInDestinationView.alpha = 1
+                        
                         
                         cardViewInDestinationView.frame = destinationRectInMainContentView
                         cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
@@ -542,20 +596,127 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         cardViewInDestinationView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
                         cardViewInDestinationView.contentView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
                         
-                        cardViewInSelectedCell.frame = destinationRectInCellContentView
+                        dummyView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                        dummyViewInCell.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
                         
-                        let scaleFactor = cardViewInSelectedCell.bounds.width / cardViewInSelectedCell.contentView.bounds.width
-                        cardViewInSelectedCell.contentView.transform = .init(scaleX: scaleFactor, y: scaleFactor)
+                        dummyView.frame = destinationRectInMainContentView
+                        dummyViewInCell.frame = destinationRectInOriginView
+                    }, completion: {
+                        _ in
+                        dummyView.removeFromSuperview()
+                        dummyViewInCell.removeFromSuperview()
+                        cardViewInDestinationView.setupTheme()
+                        selectedCell.cardView.setupTheme()
+                    })
+                }
+            }
+        }
+        
+        // MARK: Transition views in SeatClassSelectionViewController to SeatMapSelectionViewController
+        if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController ,
+            let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController{
+            
+            // Demo
+            if let selectedIndexPath = seatClassSelectionVC.selectedIndexPath,
+                let selectedCell = seatClassSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
+                
+                seatClassSelectionVC.mainTableView.visibleCells.forEach { (otherCell) in
+                    if otherCell != selectedCell {
+                        otherCell.translateAndFade(as: .transitionIn, animationStyle: animationStyle, percentageEndPoint: 0.6, translate: .zero)
+                    }
+                }
+                
+                let originRectInMainContentView = selectedCell.cardView.frame(in: seatMapSelectionVC.mainContentView)
+                let destinationRectInMainContentView = seatMapSelectionVC.mainCardView.frame(in: seatMapSelectionVC.mainContentView)
+                let destinationRectInOriginView = seatMapSelectionVC.mainCardView.frame(in: selectedCell.contentView)
+                
+                if let cardViewInDestinationView = seatMapSelectionVC.mainCardView {
+                    
+                    selectedCell.cardView.contentView.layer.removeAllAnimations()
+                    selectedCell.cardView.layer.removeAllAnimations()
+                    
+                    let dummyView = UIView()
+                    let dummyViewInCell = UIView()
+                    seatMapSelectionVC.mainContentView.addSubview(dummyView)
+                    seatMapSelectionVC.mainContentView.sendSubviewToBack(dummyView)
+                    selectedCell.contentView.addSubview(dummyViewInCell)
+                    selectedCell.contentView.sendSubviewToBack(dummyViewInCell)
+                    
+                    dummyView.alpha = 0
+                    dummyViewInCell.alpha = 0
+                   
+                    dummyView.layer.setLayer(seatMapSelectionVC.mainCardView.layer.layerStyle)
+                    dummyView.layer.setShadow(seatMapSelectionVC.mainCardView.layer.shadowStyle)
+                    dummyView.frame = destinationRectInMainContentView
+                    
+                    
+                    
+                    
+                    dummyViewInCell.layer.setLayer(seatMapSelectionVC.mainCardView.layer.layerStyle)
+                    dummyViewInCell.layer.setShadow(seatMapSelectionVC.mainCardView.layer.shadowStyle)
+                    dummyViewInCell.frame = destinationRectInOriginView
+                    
+                    
+                    selectedCell.cardView.layer.setLayer(LayerStyle())
+                    selectedCell.cardView.contentView.backgroundColor = .clear
+                    
+                    selectedCell.cardView.contentView.fadeAnimation(as: .transitionIn, animationStyle: animationStyle, percentageEndPoint: 0.5)
+                    
+                    
+                    
+                    cardViewInDestinationView.layer.cornerRadius = dummyView.layer.cornerRadius
+                    cardViewInDestinationView.contentView.layer.cornerRadius = dummyView.layer.cornerRadius
+                    
+                    cardViewInDestinationView.alpha = 1
+                    
+                    cardViewInDestinationView.frame = originRectInMainContentView
+                    cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
+                    
+                    cardViewInDestinationView.fadeAnimation(as: .transitionOut, animationStyle: animationStyle, percentageEndPoint: 0.3)
+                    
+                    var muatatedAnimationStyle = animationStyle
+                    muatatedAnimationStyle.duration = animationStyle.duration * 0.3
+                    UIView.animate(withStyle: muatatedAnimationStyle,
+                                   delay: 0.3 * animationStyle.duration,
+                                   animations: {
+                                    dummyView.alpha = 1
+                    }, completion: {
+                        _ in
+                        UIView.animate(withStyle: muatatedAnimationStyle,
+                                       animations: {
+                                        dummyView.alpha = 0
+                        })
+                    })
+                    
+                    // Animate subview in cardView.content of Destination
+                    cardViewInDestinationView.contentView.subviews.forEach { (view) in
+                        UIView.animate(withStyle: animationStyle, animations: {
+                            view.transform.tx = originRectInMainContentView.midX - destinationRectInMainContentView.midX
+                            
+                            view.transform.ty = originRectInMainContentView.midY - destinationRectInMainContentView.midY
+                        })
+                    }
+                    
+                    UIView.animate(withStyle: animationStyle, animations: {
                         
-                        cardViewInSelectedCell.contentView.transform.tx = cardViewInSelectedCell.bounds.midX - cardViewInSelectedCell.contentView.bounds.midX
                         
-                        cardViewInSelectedCell.contentView.transform.ty = originRectInMainContentView.minY
+                        cardViewInDestinationView.frame = originRectInMainContentView
+                        cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
                         
-                        cardViewInSelectedCell.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
-                        cardViewInSelectedCell.contentView.layer.cornerRadius = 0
+                        cardViewInDestinationView.layer.cornerRadius = layerStyle.card.normal().cornerRadius
+                        cardViewInDestinationView.contentView.layer.cornerRadius = layerStyle.card.normal().cornerRadius
                         
-                        cardViewInSelectedCell.contentView.alpha = 0
-                        cardViewInSelectedCell.alpha = 0
+                        dummyView.layer.cornerRadius = layerStyle.card.normal().cornerRadius
+                        dummyViewInCell.layer.cornerRadius = layerStyle.card.normal().cornerRadius
+                        dummyView.frame = originRectInMainContentView
+                        dummyViewInCell.frame = selectedCell.cardView.frame
+                        
+                    }, completion: {
+                        _ in
+                        dummyView.removeFromSuperview()
+                        dummyViewInCell.removeFromSuperview()
+                        cardViewInDestinationView.setupTheme()
+                        selectedCell.cardView.setupTheme()
                     })
                 }
             }
@@ -569,16 +730,18 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         
         fromView.backgroundColor = fromView.backgroundColor?.withAlphaComponent(0)
         
+        
+        
         // MARK: Perform Animation
         UIView
             .animate(withStyle: animationStyle,
                      animations: {
-                        toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0.001)
+                        toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(0.0001)
                         
-//                        fromView.backgroundColor = fromView.backgroundColor?.withAlphaComponent(1)
             },
                      completion: {
                         finished in
+                        
                         fromView.backgroundColor = fromView.backgroundColor?.withAlphaComponent(1)
                         toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(1)
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)

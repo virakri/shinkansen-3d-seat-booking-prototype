@@ -66,6 +66,16 @@ class BookingViewController: ViewController {
         }
     }
     
+    var isPopPerforming: Bool = false {
+        didSet {
+            if oldValue != isPopPerforming && isPopPerforming == true {
+                navigationController?.popViewController(animated: true)
+                let generator = UIImpactFeedbackGenerator(style: .medium)
+                generator.impactOccurred()
+            }
+        }
+    }
+    
     var mainCallToActionButton: Button!
     
     var mainStackView: UIStackView!
@@ -185,6 +195,14 @@ class BookingViewController: ViewController {
 extension BookingViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let verticalContentOffset = scrollView.contentOffset.y + scrollView.contentInset.top
-        headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: verticalContentOffset)
+       
+        if !isPopPerforming {
+            headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: verticalContentOffset)
+        }
+        
+        if verticalContentOffset < -128 {
+            isPopPerforming = true
+        }
+        
     }
 }
