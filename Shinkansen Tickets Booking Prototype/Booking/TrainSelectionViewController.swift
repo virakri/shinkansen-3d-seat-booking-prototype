@@ -103,6 +103,4 @@ extension TrainSelectionViewController: UITableViewDataSource {
         seatClassSelectionViewController.headerInformation?.trainName = "E6 Series"
         navigationController?.pushViewController(seatClassSelectionViewController, animated: true)
     }
-    
-    
 }

@@ -335,10 +335,6 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         otherCell.fadeAnimation(as: .transitionOut,
                                                 animationStyle: animationStyle,
                                                 percentageEndPoint: 0.3)
-                        otherCell.transformAnimation(as: .transitionOut,
-                                                     animationStyle: animationStyle,
-                                                     percentageEndPoint: 0.3,
-                                                     transform: CGAffineTransform(scaleX: 0.96, y: 0.96))
                     }
                 }
                 
@@ -390,6 +386,8 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         dummyView.frame = destinationRectInOriginView
                     }, completion: {
                         _ in
+                        cell.contentView.layer.withNoShadow()
+                        cell.cardView.setupTheme()
                         dummyView.removeFromSuperview()
                     })
                     
@@ -415,21 +413,17 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                 // MARK: Fade all other cells
                 trainSelectionVC.mainTableView.visibleCells.forEach { (otherCell) in
                     if otherCell != cell {
-                        otherCell.fadeAnimation(as: .transitionOut,
+                        otherCell.fadeAnimation(as: .transitionIn,
                                                 animationStyle: animationStyle,
                                                 percentageEndPoint: 0.3)
-                        otherCell.transformAnimation(as: .transitionOut,
-                                                     animationStyle: animationStyle,
-                                                     percentageEndPoint: 0.3,
-                                                     transform: CGAffineTransform(scaleX: 0.96, y: 0.96))
                     }
                 }
                 
                 // MARK: Fade all other cells
                 seatClassSelectionVC.mainTableView.visibleCells.forEach { (otherCell) in
-                    otherCell.fadeAnimation(as: .transitionIn,
+                    otherCell.fadeAnimation(as: .transitionOut,
                                             animationStyle: animationStyle,
-                                            percentageEndPoint: 0.55)
+                                            percentageEndPoint: 0.15)
                     
                 }
                 
@@ -441,47 +435,50 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     let destinationRectInOriginView = destinationCell.cardView.frame(in: cell.contentView)
                     
                     let dummyView = UIView()
+                    //
+                    cell.cardView.layer.removeAllAnimations()
+                    cell.cardView.contentView.layer.removeAllAnimations()
+                    cell.contentView.layer.setShadow(cell.cardView.layer.shadowStyle)
                     cell.contentView.addSubview(dummyView)
+                    cell.contentView.sendSubviewToBack(dummyView)
                     
                     dummyView.layer.setLayer(cell.cardView.layer.layerStyle)
                     dummyView.layer.withNoShadow()
-                    cell.contentView.layer.setShadow(cell.cardView.layer.shadowStyle)
+                    dummyView.frame = destinationRectInOriginView
+                    dummyView.alpha = 0
                     
-                    cell.cardView.layer.removeAllAnimations()
-                    cell.cardView.contentView.layer.removeAllAnimations()
-                    
-                    cell.contentView.sendSubviewToBack(dummyView)
+                    // Set cell to have no appearance if the cell loops to the last cell
                     if destinationCell == seatClassSelectionVC.mainTableView.visibleCells.last {
                         cell.cardView.layer.setLayer(LayerStyle())
                         cell.cardView.contentView.backgroundColor = .clear
-                        cell.cardView.contentView.fadeAnimation(as: .transitionOut, animationStyle: animationStyle, percentageEndPoint: 0.3)
+                        cell.cardView.contentView.fadeAnimation(as: .transitionIn, animationStyle: animationStyle, percentageEndPoint: 0.3)
                     }
                     
-                    dummyView.frame = originRectInOriginView
-                    
                     var muatatedAnimationStyle = animationStyle
-                    muatatedAnimationStyle.duration = animationStyle.duration * 0.35
+                    muatatedAnimationStyle.duration = animationStyle.duration * 0.05
                     UIView.animate(withStyle: muatatedAnimationStyle,
-                                   delay: 0.65 * animationStyle.duration,
                                    animations: {
-                                    dummyView.alpha = 0
+                                    dummyView.alpha = 1
                     })
                     
                     
-                    
+                    // Animate dummyView's frame
                     UIView.animate(withStyle: animationStyle, animations: {
-                        dummyView.frame = destinationRectInOriginView
+                        dummyView.frame = originRectInOriginView
                     }, completion: {
                         _ in
+                        cell.contentView.layer.withNoShadow()
+                        cell.cardView.setupTheme()
                         dummyView.removeFromSuperview()
                     })
                     
+                    //Animation the Destination Cell
                     let originRectInDestinationView = cell.cardView.frame(in: destinationCell.contentView)
                     let destinationRectInDestinationView = destinationCell.cardView.frame(in: destinationCell.contentView)
-                    destinationCell.cardView.frame = originRectInDestinationView
+                    destinationCell.cardView.frame = destinationRectInDestinationView
                     
                     UIView.animate(withStyle: animationStyle, animations: {
-                        destinationCell.cardView.frame = destinationRectInDestinationView
+                        destinationCell.cardView.frame = originRectInDestinationView
                     })
                 }
             }
@@ -494,61 +491,71 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
             
             // Demo
             if let selectedIndexPath = seatClassSelectionVC.selectedIndexPath,
-                let cell = seatClassSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
+                let selectedCell = seatClassSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
                 
                 seatClassSelectionVC.mainTableView.visibleCells.forEach { (otherCell) in
-                    if otherCell != cell {
+                    if otherCell != selectedCell {
                         otherCell.translateAndFade(as: .transitionOut, animationStyle: animationStyle, percentageEndPoint: 0.3, translate: .zero)
                     }
                 }
-                let originRectInMainContentView = cell.cardView.frame(in: seatMapSelectionVC.mainContentView)
+                
+                let originRectInMainContentView = selectedCell.cardView.frame(in: seatMapSelectionVC.mainContentView)
                 let destinationRectInMainContentView = seatMapSelectionVC.mainCardView.frame(in: seatMapSelectionVC.mainContentView)
+                let destinationRectInCellContentView = seatMapSelectionVC.mainCardView.frame(in: selectedCell.contentView)
                 
-//                let originRectInCellContentView = cell.cardView.frame(in: cell.contentView)
-                let destinationRectInCellContentView = seatMapSelectionVC.mainCardView.frame(in: cell.contentView)
-                
-                if let animatingCardView = seatMapSelectionVC.mainCardView {
+                if let cardViewInDestinationView = seatMapSelectionVC.mainCardView {
                     
-                    let animatingCardViewInCell = cell.cardView
+                    let cardViewInSelectedCell = selectedCell.cardView
                     
-                    animatingCardView.layer.cornerRadius = animatingCardViewInCell.layer.cornerRadius
-                    animatingCardView.contentView.layer.cornerRadius = animatingCardViewInCell.contentView.layer.cornerRadius
+                    cardViewInDestinationView.layer.cornerRadius = cardViewInSelectedCell.layer.cornerRadius
+                    cardViewInDestinationView.contentView.layer.cornerRadius = cardViewInSelectedCell.contentView.layer.cornerRadius
                     
-                    animatingCardView.alpha = 0
+                    cardViewInDestinationView.alpha = 0
                     
-                    animatingCardView.frame = originRectInMainContentView
-                    animatingCardView.contentView.frame = animatingCardView.bounds
+                    cardViewInDestinationView.frame = originRectInMainContentView
+                    cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
                     
-                    animatingCardViewInCell.contentView.layer.removeAllAnimations()
-                    animatingCardViewInCell.layer.removeAllAnimations()
+                    cardViewInSelectedCell.contentView.layer.removeAllAnimations()
+                    cardViewInSelectedCell.layer.removeAllAnimations()
                     
                     var mutatedAnimationStyle = animationStyle
-                    mutatedAnimationStyle.duration = animationStyle.duration * 0.6
+                    mutatedAnimationStyle.duration = animationStyle.duration * 2 / 3
                     mutatedAnimationStyle.delay = 0
                     
-                    UIView.animate(withStyle: mutatedAnimationStyle, animations: {
-                        animatingCardView.alpha = 1
+                    // Animate subview in cardView.content of Destination
+                    cardViewInDestinationView.contentView.subviews.forEach { (view) in
+                        view.transform.tx = cardViewInDestinationView.bounds.midX - destinationRectInMainContentView.midX
                         
-                        animatingCardView.frame = destinationRectInMainContentView
-                        animatingCardView.contentView.frame = animatingCardView.bounds
+                        view.transform.ty = cardViewInDestinationView.bounds.midY - destinationRectInMainContentView.midY
                         
-                        animatingCardView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
-                        animatingCardView.contentView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                        UIView.animate(withStyle: animationStyle, animations: {
+                            view.transform = .identity
+                        })
+                    }
+                    
+                    UIView.animate(withStyle: animationStyle, animations: {
+                        cardViewInDestinationView.alpha = 1
                         
-                        animatingCardViewInCell.frame = destinationRectInCellContentView
+                        cardViewInDestinationView.frame = destinationRectInMainContentView
+                        cardViewInDestinationView.contentView.frame = cardViewInDestinationView.bounds
                         
-                        let scaleFactor = animatingCardViewInCell.bounds.width / animatingCardViewInCell.contentView.bounds.width
-                        animatingCardViewInCell.contentView.transform = .init(scaleX: scaleFactor, y: scaleFactor)
+                        cardViewInDestinationView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                        cardViewInDestinationView.contentView.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
                         
-                        animatingCardViewInCell.contentView.transform.tx = animatingCardViewInCell.bounds.midX - animatingCardViewInCell.contentView.bounds.midX
+                        cardViewInSelectedCell.frame = destinationRectInCellContentView
                         
-                        animatingCardViewInCell.contentView.transform.ty = originRectInMainContentView.minY
+                        let scaleFactor = cardViewInSelectedCell.bounds.width / cardViewInSelectedCell.contentView.bounds.width
+                        cardViewInSelectedCell.contentView.transform = .init(scaleX: scaleFactor, y: scaleFactor)
                         
-                        animatingCardViewInCell.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
-                        animatingCardViewInCell.contentView.layer.cornerRadius = 0
+                        cardViewInSelectedCell.contentView.transform.tx = cardViewInSelectedCell.bounds.midX - cardViewInSelectedCell.contentView.bounds.midX
                         
-                        animatingCardViewInCell.contentView.alpha = 0
-                        animatingCardViewInCell.alpha = 0
+                        cardViewInSelectedCell.contentView.transform.ty = originRectInMainContentView.minY
+                        
+                        cardViewInSelectedCell.layer.cornerRadius = layerStyle.largeCard.normal().cornerRadius
+                        cardViewInSelectedCell.contentView.layer.cornerRadius = 0
+                        
+                        cardViewInSelectedCell.contentView.alpha = 0
+                        cardViewInSelectedCell.alpha = 0
                     })
                 }
             }
