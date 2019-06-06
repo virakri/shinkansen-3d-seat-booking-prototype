@@ -23,9 +23,9 @@ internal enum ColorTheme: Int {
     var componentColor: UIColor.Component {
         switch self {
         case .light:
-            return UIColor.lightModeComponent
+            return UIColor().lightModeComponent
         case .dark:
-            return UIColor.darkModeComponent
+            return UIColor().darkModeComponent
         }
     }
     

@@ -31,7 +31,8 @@ extension DesignSystem {
             }
             
             class func disabled() -> LayerStyle {
-                return normal().withShadowStyle(shadowStyle.card.disabled())
+                return normal().withBackgroundColor(currentColorTheme.componentColor.cardDisabledBackground.cgColor)
+                    .withShadowStyle(shadowStyle.card.disabled())
             }
         }
         
@@ -49,7 +50,9 @@ extension DesignSystem {
             }
             
             class func disabled() -> LayerStyle {
-                return normal().withShadowStyle(shadowStyle.card.disabled())
+                return normal()
+                    .withBackgroundColor(currentColorTheme.componentColor.cardDisabledBackground.cgColor)
+                    .withShadowStyle(shadowStyle.card.disabled())
             }
         }
         

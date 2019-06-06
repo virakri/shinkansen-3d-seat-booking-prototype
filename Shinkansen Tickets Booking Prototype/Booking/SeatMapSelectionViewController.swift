@@ -12,6 +12,8 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var mainCardView: CardControl!
     
+    var selectedSeatID: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStaticContent()

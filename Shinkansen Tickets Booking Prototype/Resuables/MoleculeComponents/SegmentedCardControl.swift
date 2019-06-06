@@ -132,10 +132,6 @@ class SegmentedCardControl: UIControl {
             heightConstraint?.constant = CGFloat(basedHeight).systemSizeMuliplier()
         }
         
-        override func draw(_ rect: CGRect) {
-            
-        }
-        
         private func setLabelsToSelected(_ isSelected: Bool) {
             guard let contentSuperView = titleLabel.superview else { return }
             

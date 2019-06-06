@@ -56,7 +56,7 @@ extension DesignSystem {
             return TextStyle(font:
                 UIFontMetrics(forTextStyle: .callout).scaledFont(for:
                     UIFont.systemFont(ofSize: 18,
-                                      weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 24))
+                                      weight: UIAccessibility.isBoldTextEnabled ? .bold : .medium), maximumPointSize: 24))
         }
         
         class func outlinedButton() -> TextStyle {
