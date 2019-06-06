@@ -15,7 +15,14 @@ class SeatClassIconImageView: UIImageView {
         case ordinary
         
         func image() -> UIImage {
-            return #imageLiteral(resourceName: "symbol-close-button").withRenderingMode(.alwaysTemplate)
+            switch self {
+            case .granClass:
+                return #imageLiteral(resourceName: "Icon Gran").withRenderingMode(.alwaysTemplate)
+            case .green:
+                return #imageLiteral(resourceName: "Icon Green Car").withRenderingMode(.alwaysTemplate)
+            case .ordinary:
+                return #imageLiteral(resourceName: "Icon Ordinary").withRenderingMode(.alwaysTemplate)
+            }
         }
         
         func color() -> UIColor {

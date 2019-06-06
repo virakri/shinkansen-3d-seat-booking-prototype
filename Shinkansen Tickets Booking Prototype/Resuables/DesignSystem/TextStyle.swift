@@ -23,6 +23,13 @@ extension DesignSystem {
                                       weight: UIAccessibility.isBoldTextEnabled ? .medium : .light), maximumPointSize: fontSize))
         }
         
+        class func title1() -> TextStyle {
+            return TextStyle(font:
+                UIFontMetrics(forTextStyle: .title1).scaledFont(for:
+                    UIFont.systemFont(ofSize: 24,
+                                      weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 28))
+        }
+        
         class func headline() -> TextStyle {
             return TextStyle(font:
                 UIFontMetrics(forTextStyle: .subheadline).scaledFont(for:
@@ -72,6 +79,13 @@ extension DesignSystem {
                 UIFontMetrics(forTextStyle: .caption1).scaledFont(for:
                     UIFont.systemFont(ofSize: 13,
                                       weight: UIAccessibility.isBoldTextEnabled ? .medium : .regular), maximumPointSize: 18))
+        }
+        
+        class func caption1Alt() -> TextStyle {
+            return TextStyle(font:
+                UIFontMetrics(forTextStyle: .caption1).scaledFont(for:
+                    UIFont.systemFont(ofSize: 13,
+                                      weight: UIAccessibility.isBoldTextEnabled ? .semibold : .medium), maximumPointSize: 18))
         }
         
         class func caption2() -> TextStyle {

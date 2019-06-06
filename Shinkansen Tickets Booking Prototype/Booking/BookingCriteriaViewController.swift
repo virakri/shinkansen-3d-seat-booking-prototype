@@ -154,13 +154,16 @@ class BookingCriteriaViewController: BookingViewController {
     func setupStaticContent() {
         headlineLabel.text = "Reserve \nShinkansen \nTickets"
         
-        logoImageView.image = #imageLiteral(resourceName: "symbol-close-button")
+        logoImageView.image = #imageLiteral(resourceName: "Logo JR East")
         
-        arrowImageView.image = #imageLiteral(resourceName: "symbol-close-button")
+        arrowImageView.image = #imageLiteral(resourceName: "Icon Arrow Right")
         
         fromStationContainerView.setTitle(title: "From")
         
         destinationStationContainerView.setTitle(title: "Destination")
+        
+        fromStationCardControl.setupValue(stationNameJP: "東京", stationName: "Tokyo")
+        destinationStationCardControl.setupValue(stationNameJP: "富山", stationName: "Toyama")
         
         dateSegmentedContainerView.setTitle(title: "Date")
         dateSegmentedControl.items = [(title: "Today", subtitle: "Jun 3, 2019"),
