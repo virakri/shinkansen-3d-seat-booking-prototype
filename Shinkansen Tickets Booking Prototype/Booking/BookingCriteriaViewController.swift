@@ -53,6 +53,7 @@ class BookingCriteriaViewController: BookingViewController {
         dateLabelSetView.isHidden = true
         headerRouteInformationView.isHidden = true
         mainStackView.isHidden = true
+        backButton.isHidden = true
         
         //
         

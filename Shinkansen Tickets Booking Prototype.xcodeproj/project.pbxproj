@@ -56,6 +56,7 @@
 		D0F6D8B822A0867C00872B5B /* SubHeadlineLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8B722A0867C00872B5B /* SubHeadlineLabelSetView.swift */; };
 		D0F6D8BA22A0869400872B5B /* HeadlineLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8B922A0869400872B5B /* HeadlineLabelSetView.swift */; };
 		D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8BB22A0930100872B5B /* CGFloat.swift */; };
+		D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9E35B22A87C57003B339D /* BackButtonControl.swift */; };
 		F3B92A8562906132AD800542 /* Pods_Shinkansen_Tickets_Booking_Prototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,7 @@
 		D0F6D8B722A0867C00872B5B /* SubHeadlineLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubHeadlineLabelSetView.swift; sourceTree = "<group>"; };
 		D0F6D8B922A0869400872B5B /* HeadlineLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineLabelSetView.swift; sourceTree = "<group>"; };
 		D0F6D8BB22A0930100872B5B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		D0F9E35B22A87C57003B339D /* BackButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */,
 				D0046995229FCB550028A9D7 /* CardControl.swift */,
 				D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */,
+				D0F9E35B22A87C57003B339D /* BackButtonControl.swift */,
 			);
 			path = MoleculeComponents;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				D01B2EC622A3F4B300C3FAF3 /* SegmentedCardControl.swift in Sources */,
 				D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */,
 				D0F175BD22A29AFE0095631F /* UIEdgeInsets.swift in Sources */,
+				D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */,
 				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
 				D09F3F1322A20239005E59C0 /* HeaderRouteInformationView.swift in Sources */,
 				D053EBD3229D29B3007CCFFE /* UILabel.swift in Sources */,

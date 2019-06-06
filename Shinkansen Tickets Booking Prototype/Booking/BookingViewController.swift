@@ -84,7 +84,7 @@ class BookingViewController: ViewController {
     
     var headerWithTopBarStackView: UIStackView!
     
-    var backButton: ImageButton! // Temporary until the button animation is done.
+    var backButton: BackButtonControl!
     
     private var datePlaceholderLabelSetView: DateLabelSetView!
     
@@ -104,10 +104,9 @@ class BookingViewController: ViewController {
         super.setupView()
         
         // MARK: Header
-        backButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
         datePlaceholderLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
         dateLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
-        topBarStackView = UIStackView([backButton, datePlaceholderLabelSetView, dateLabelSetView],
+        topBarStackView = UIStackView([datePlaceholderLabelSetView, dateLabelSetView],
                                           axis: .horizontal,
                                           distribution: .equalSpacing,
                                           alignment: .center)
@@ -151,6 +150,11 @@ class BookingViewController: ViewController {
         mainCallToActionButton = Button(type: .contained)
         view.addSubview(mainCallToActionButton, withConstaintEquals: [.leadingMargin, .trailingMargin])
         view.constraintBottomSafeArea(to: mainCallToActionButton, withMinimumConstant: 16)
+        
+        backButton = BackButtonControl()
+        view.addSubview(backButton)
+        backButton.centerYAnchor.constraint(equalTo: topBarStackView.centerYAnchor).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: topBarStackView.leadingAnchor, constant: -10).isActive = true
         
         setHeaderInformationValue(headerInformation)
         
@@ -198,6 +202,12 @@ extension BookingViewController: UITableViewDelegate {
        
         if !isPopPerforming {
             headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: verticalContentOffset)
+            let translateX = verticalContentOffset <= 0 ? -verticalContentOffset / 6 : 0
+            backButton.shapeView.transform.tx = translateX
+            if verticalContentOffset < 0  {
+                backButton.shapeLayer.removeAnimation(forKey: "ActualAnimation")
+            }
+            backButton.setShapeProgress(to: verticalContentOffset < 0 ? CFTimeInterval(-verticalContentOffset / 128) : 0)
         }
         
         if verticalContentOffset < -128 {

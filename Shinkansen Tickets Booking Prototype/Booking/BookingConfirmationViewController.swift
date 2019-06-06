@@ -45,6 +45,7 @@ class BookingConfirmationViewController: BookingViewController {
         mainCardView.isUserInteractionEnabled = false
         
         setHeaderInformationValue(headerInformation)
+        view.bringSubviewToFront(backButton)
     }
     
     override func setupTheme() {

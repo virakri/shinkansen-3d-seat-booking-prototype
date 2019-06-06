@@ -199,6 +199,24 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                 .priceSetView},
                                   basedVerticalAnimationOffset: 12)
             
+            
+            // Animate Back Button
+            
+            toBookingVC.backButton.transform.tx = isPresenting ? -44 : 44
+            fromBookingVC.backButton.transform.tx = 0
+            toBookingVC.backButton.alpha = 0
+            
+            toBookingVC.backButton.setPath(to: self.isPresenting ? .pullBack : .pushedForward)
+            toBookingVC.backButton.playAnimation(to: .original, withDuration: 0.35)
+            fromBookingVC.backButton.playAnimation(to: self.isPresenting ? .pullBack : .pushedForward, withDuration: 0.35)
+            
+            UIView.animate(withStyle: .halfTransitionAnimationStyle, animations: {
+                fromBookingVC.backButton.shapeView.transform = .identity
+                toBookingVC.backButton.transform.tx = 0
+                fromBookingVC.backButton.transform.tx = self.isPresenting ? 24 : -24
+                toBookingVC.backButton.alpha = 1
+                fromBookingVC.backButton.alpha = 0
+            })
         }
         
        
