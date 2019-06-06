@@ -30,10 +30,18 @@ struct ConstraintEqual : OptionSet {
     static let centerVertical = ConstraintEqual(rawValue: 1 << 12)
     static let centerHorizontal = ConstraintEqual(rawValue: 1 << 13)
     
+    static let centerVerticalMargin = ConstraintEqual(rawValue: 1 << 14)
+    static let centerHorizontalMargin = ConstraintEqual(rawValue: 1 << 15)
+    
+    static let centerVerticalSafeArea = ConstraintEqual(rawValue: 1 << 16)
+    static let centerHorizontalSafeArea = ConstraintEqual(rawValue: 1 << 17)
+    
     static let edges:ConstraintEqual = [top, leading, bottom, trailing]
     static let marginEdges:ConstraintEqual = [topMargin, leadingMargin, bottomMargin, trailingMargin]
     static let safeAreaEdges:ConstraintEqual = [topSafeArea, leadingSafeArea, bottomSafeArea, trailingSafeArea]
     static let center:ConstraintEqual = [centerVertical, centerHorizontal]
+    static let centerMargin:ConstraintEqual = [centerVerticalMargin, centerHorizontalMargin]
+    static let centerSafeArea:ConstraintEqual = [centerVerticalSafeArea, centerHorizontalSafeArea]
 }
 
 extension UIView {
@@ -120,12 +128,34 @@ extension UIView {
         
         if equals.contains(.centerVertical) {
             view.centerYAnchor.constraint(equalTo: centerYAnchor,
-                                                              constant: 0).isActive = true
+                                          constant: 0).isActive = true
         }
         
         if equals.contains(.centerHorizontal) {
             view.centerXAnchor.constraint(equalTo:centerXAnchor,
-                                                              constant: 0).isActive = true
+                                          constant: 0).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVerticalMargin) {
+            view.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor,
+                                          constant: 0).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontalMargin) {
+            view.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor,
+                                          constant: 0).isActive = true
+        }
+        
+        
+        if equals.contains(.centerVerticalSafeArea) {
+            view.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor,
+                                          constant: 0).isActive = true
+        }
+        
+        if equals.contains(.centerHorizontalSafeArea) {
+            view.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor,
+                                          constant: 0).isActive = true
         }
         // for chaining function
         return self

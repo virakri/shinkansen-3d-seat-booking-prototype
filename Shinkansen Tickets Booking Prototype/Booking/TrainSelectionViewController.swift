@@ -15,6 +15,8 @@ class TrainSelectionViewController: BookingViewController {
     
     var selectedIndexPath: IndexPath?
     
+    var loadingActivityIndicatorView: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -40,6 +42,7 @@ class TrainSelectionViewController: BookingViewController {
                 }
                 self?.didFirstLoad = true
                 self?.mainTableView.isUserInteractionEnabled = true
+                self?.loadingActivityIndicatorView.stopAnimating()
             }
             
         }
@@ -47,8 +50,13 @@ class TrainSelectionViewController: BookingViewController {
     
     override func setupView() {
         super.setupView()
+        loadingActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
+        loadingActivityIndicatorView.color = currentColorTheme.componentColor.secondaryText
+        loadingActivityIndicatorView.startAnimating()
         mainViewType = .tableView
         mainTableView.isUserInteractionEnabled = false
+        mainTableView.addSubview(loadingActivityIndicatorView,
+                                 withConstaintEquals: .centerSafeArea)
     }
     
     override func setupInteraction() {

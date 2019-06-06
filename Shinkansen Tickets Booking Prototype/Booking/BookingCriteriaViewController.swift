@@ -41,6 +41,8 @@ class BookingCriteriaViewController: BookingViewController {
     
     var timeSegmentedControl: SegmentedCardControl!
     
+    private var logoImageAlignmentConstraint: NSLayoutConstraint!
+    
 //    var
     
     override func viewDidLoad() {
@@ -62,11 +64,15 @@ class BookingCriteriaViewController: BookingViewController {
         
         logoImageView = UIImageView()
         logoImageView.setContentHuggingPriority(.required, for: .horizontal)
+        let logoImageContainerView = UIView(containingView: logoImageView, withConstaintEquals: [.leading, .trailing])
         
-        headerStackView = UIStackView([headlineLabel, logoImageView],
+        headerStackView = UIStackView([headlineLabel, logoImageContainerView],
                                       axis: .horizontal,
                                       distribution: .fill,
                                       alignment: .top)
+        
+        logoImageAlignmentConstraint = logoImageView.topAnchor.constraint(equalTo: headlineLabel.firstBaselineAnchor)
+        logoImageAlignmentConstraint.isActive = true
         
         fromStationCardControl = StationCardControl()
         
@@ -127,6 +133,7 @@ class BookingCriteriaViewController: BookingViewController {
         
         headlineLabel.textStyle = textStyle.largeTitle()
         headlineLabel.textColor = currentColorTheme.componentColor.callToAction
+        logoImageAlignmentConstraint.constant = -textStyle.largeTitle().font.capHeight
         
         fromStationContainerView.setupTheme()
         destinationStationContainerView.setupTheme()
@@ -137,6 +144,8 @@ class BookingCriteriaViewController: BookingViewController {
         destinationStationCardControl.setupTheme()
         dateSegmentedControl.setupTheme()
         timeSegmentedControl.setupTheme()
+        
+        
     }
     
     override func setupInteraction() {

@@ -297,6 +297,16 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                                                                      translate: .init(x: 0, y: -bookingConfirmationVC.mainCallToActionButton.bounds.height * 0.25))
         }
         
+        // MARK: Transition In views in TrainSelectionViewController
+        if let trainSelectionVC = toViewController as? TrainSelectionViewController,
+            fromViewController is BookingCriteriaViewController {
+            
+            trainSelectionVC.mainTableView.translateAndFade(as: .transitionIn,
+                                                            animationStyle: animationStyle,
+                                                            percentageEndPoint: percentageEndPoint,
+                                                            translate: .init(x: 0, y: 128))
+        }
+        
         // MARK: Transition out views in TrainSelectionViewController
         if let trainSelectionVC = fromViewController as? TrainSelectionViewController,
             toViewController is BookingCriteriaViewController {
