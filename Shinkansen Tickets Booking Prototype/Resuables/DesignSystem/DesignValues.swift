@@ -61,4 +61,8 @@ extension DesignSystem {
     class spacing {
         static let cardGutter: CGFloat = 16
     }
+    
+    class layout {
+        static let maximumWidth: CGFloat = 540
+    }
 }

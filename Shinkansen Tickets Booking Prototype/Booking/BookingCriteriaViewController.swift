@@ -122,10 +122,13 @@ class BookingCriteriaViewController: BookingViewController {
                                 alignment: .fill, spacing: DesignSystem.isNarrowScreen ? 24 : 48)
         
         view.addSubview(stackView,
-                        withConstaintEquals: [.topSafeArea,
-                                              .leadingMargin,
-                                              .trailingMargin],
+                        withConstaintEquals: [.topSafeArea, .centerHorizontal],
                         insetsConstant: .init(top: 24))
+        view.addConstraints(toView: stackView, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+        
+        let stackViewWidthConstraint = stackView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        stackViewWidthConstraint.priority = .init(999)
+        stackViewWidthConstraint.isActive = true
     }
     
     override func setupTheme() {

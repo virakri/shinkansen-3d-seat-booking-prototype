@@ -398,7 +398,7 @@ class DesignSystemViewController: ViewController {
         super.setupView()
         
         componentsView =
-            DesignSystemView(title: "Components Style",
+            DesignSystemView(title: "Components",
                              designSystemBlockViews: [
                                 DesignSystemBlockView(withView: {
                                     let button = Button(type: .contained)
@@ -658,7 +658,7 @@ class DesignSystemViewController: ViewController {
         view.addSubview(stackView, withConstaintEquals: .edges)
         
         let closeButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
-        view.addSubview(closeButton, withConstaintEquals: [.trailingMargin, .topSafeArea], insetsConstant: .init(top: 28, leading: 0, bottom: 0, trailing: 0))
+        view.addSubview(closeButton, withConstaintEquals: [.trailingMargin, .topSafeArea])
         closeButton.addTarget(self, action: #selector(closeButtonDidtouch(_:)), for: .touchUpInside)
     }
     

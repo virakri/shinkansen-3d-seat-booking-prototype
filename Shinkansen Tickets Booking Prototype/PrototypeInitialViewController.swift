@@ -67,7 +67,7 @@ class PrototypeInitialViewController: ViewController {
         
         view.addSubview(callToActionStackView, withConstaintEquals: [.leadingMargin, .trailingMargin], insetsConstant: .zero)
         
-        view.constraintBottomSafeArea(to: callToActionStackView, withMinimumConstant: 16)
+        view.constraintBottomSafeArea(to: callToActionStackView, withGreaterThanConstant: 16)
         
         // MARK: Set container view for switch
         let switchStackView = UIStackView([darkModeSwitch, darkModeSwitchLabel], distribution: .fill, alignment: .center, spacing: 8)

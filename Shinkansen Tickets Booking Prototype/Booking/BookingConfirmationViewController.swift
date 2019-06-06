@@ -39,7 +39,12 @@ class BookingConfirmationViewController: BookingViewController {
         mainStackView.insertArrangedSubview(dateLabelContainerView, at: 1)
         mainStackView.addArrangedSubview(UIView())
         
-        view.addSubview(topBarStackView, withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin])
+        view.addSubview(topBarStackView, withConstaintEquals: [.topSafeArea, .centerHorizontal])
+        view.addConstraints(toView: topBarStackView, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+        
+        let topBarStackViewWidthConstraint = topBarStackView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        topBarStackViewWidthConstraint.priority = .defaultHigh
+        topBarStackViewWidthConstraint.isActive = true
 //        mainCardView.
         
         mainCardView = CardControl(type: .large)

@@ -531,6 +531,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         if let seatClassSelectionVC = fromViewController as? SeatClassSelectionViewController,
             let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController {
             
+            seatClassSelectionVC.mainTableView.clipsToBounds = false
             // Demo
             if let selectedIndexPath = seatClassSelectionVC.selectedIndexPath,
                 let selectedCell = seatClassSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
@@ -635,6 +636,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         dummyViewInCell.removeFromSuperview()
                         cardViewInDestinationView.setupTheme()
                         selectedCell.cardView.setupTheme()
+                        seatClassSelectionVC.mainTableView.clipsToBounds = true
                     })
                 }
             }
@@ -644,6 +646,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController ,
             let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController{
             
+            seatClassSelectionVC.mainTableView.clipsToBounds = false
             // Demo
             if let selectedIndexPath = seatClassSelectionVC.selectedIndexPath,
                 let selectedCell = seatClassSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? SeatClassTableViewCell {
@@ -745,6 +748,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         dummyViewInCell.removeFromSuperview()
                         cardViewInDestinationView.setupTheme()
                         selectedCell.cardView.setupTheme()
+                        seatClassSelectionVC.mainTableView.clipsToBounds = true
                     })
                 }
             }

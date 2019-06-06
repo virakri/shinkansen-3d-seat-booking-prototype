@@ -120,8 +120,12 @@ class BookingViewController: ViewController {
                                                 spacing: 20)
         
         let headerWithTopBarContainerView = UIView(containingView: headerWithTopBarStackView, withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom])
-        
         headerWithTopBarContainerView.preservesSuperviewLayoutMargins = true
+        
+        
+        let headerWithTopBarContainerViewWidthConstraint = headerWithTopBarContainerView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        headerWithTopBarContainerViewWidthConstraint.priority = .defaultHigh
+        headerWithTopBarContainerViewWidthConstraint.isActive = true
         
         mainContentView = UIView()
         mainContentView.preservesSuperviewLayoutMargins = true
@@ -137,19 +141,36 @@ class BookingViewController: ViewController {
         mainTableView.contentOffset.y = -12
         mainTableView.delegate = self
         
-        mainStackView = UIStackView([headerWithTopBarContainerView, mainContentView, mainTableView],
+        let mainTableViewWidthConstraint = mainTableView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        mainTableViewWidthConstraint.priority = .defaultHigh
+        mainTableViewWidthConstraint.isActive = true
+        
+        mainStackView = UIStackView([headerWithTopBarContainerView,
+                                     mainContentView,
+                                     mainTableView],
                                     axis: .vertical,
                                     distribution: .fill,
-                                    alignment: .fill,
+                                    alignment: .center,
                                     spacing: 20)
         mainStackView.preservesSuperviewLayoutMargins = true
+        
+        mainContentView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor).isActive = true
         
         view.addSubview(mainStackView, withConstaintEquals: .edges)
         
         // MARK: Setup Button
         mainCallToActionButton = Button(type: .contained)
-        view.addSubview(mainCallToActionButton, withConstaintEquals: [.leadingMargin, .trailingMargin])
-        view.constraintBottomSafeArea(to: mainCallToActionButton, withMinimumConstant: 16)
+        view.addSubview(mainCallToActionButton, withConstaintEquals: .centerHorizontal)
+        
+        view.addConstraints(toView: mainCallToActionButton, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+        
+        view.constraintBottomSafeArea(to: mainCallToActionButton,
+                                      withGreaterThanConstant: 16,
+                                      minimunConstant: 8)
+        
+        let mainCallToActionButtonWidthConstraint = mainCallToActionButton.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        mainCallToActionButtonWidthConstraint.priority = .defaultHigh
+        mainCallToActionButtonWidthConstraint.isActive = true
         
         backButton = BackButtonControl()
         view.addSubview(backButton)
