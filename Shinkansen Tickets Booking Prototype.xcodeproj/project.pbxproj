@@ -41,6 +41,7 @@
 		D074B1EC228B928100791F94 /* LayerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1EB228B928100791F94 /* LayerStyle.swift */; };
 		D09F3F1322A20239005E59C0 /* HeaderRouteInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F3F1222A20239005E59C0 /* HeaderRouteInformationView.swift */; };
 		D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09F3F1422A20ACE005E59C0 /* TrainScheduleTableViewCell.swift */; };
+		D0AD0AC522A9712600F2E976 /* SeatMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AD0AC422A9712600F2E976 /* SeatMapView.swift */; };
 		D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3622A0B7A0001D3065 /* StationPairView.swift */; };
 		D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3822A13940001D3065 /* DescriptionSetView.swift */; };
 		D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */; };
@@ -98,6 +99,7 @@
 		D074B1EB228B928100791F94 /* LayerStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerStyle.swift; sourceTree = "<group>"; };
 		D09F3F1222A20239005E59C0 /* HeaderRouteInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderRouteInformationView.swift; sourceTree = "<group>"; };
 		D09F3F1422A20ACE005E59C0 /* TrainScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		D0AD0AC422A9712600F2E976 /* SeatMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMapView.swift; sourceTree = "<group>"; };
 		D0C26E3622A0B7A0001D3065 /* StationPairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationPairView.swift; sourceTree = "<group>"; };
 		D0C26E3822A13940001D3065 /* DescriptionSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSetView.swift; sourceTree = "<group>"; };
 		D0EAF1B1228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shinkansen Tickets Booking Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */,
 				D0EAF4AF22A43533002A9282 /* HeadlineWithContainerView.swift */,
 				D0EAF4B122A442DD002A9282 /* StationCardControl.swift */,
+				D0AD0AC422A9712600F2E976 /* SeatMapView.swift */,
 			);
 			path = OrganismComponents;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */,
 				D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */,
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
+				D0AD0AC522A9712600F2E976 /* SeatMapView.swift in Sources */,
 				D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
 				D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */,

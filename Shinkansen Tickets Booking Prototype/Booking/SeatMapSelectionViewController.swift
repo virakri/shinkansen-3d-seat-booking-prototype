@@ -12,6 +12,8 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var mainCardView: CardControl!
     
+    var seatMapSceneView: SeatMapView!
+    
     var selectedSeatID: Int?
     
     override func viewDidLoad() {
@@ -29,11 +31,9 @@ class SeatMapSelectionViewController: BookingViewController {
                                    insetsConstant: .init(bottom: -mainCardView.layer.cornerRadius))
         mainCardView.isUserInteractionEnabled = false
         
-        let dummySeatMapView = UIView()
-        dummySeatMapView.backgroundColor = .red
-        dummySeatMapView.widthAnchor.constraint(equalToConstant: 240).isActive = true
-        dummySeatMapView.heightAnchor.constraint(equalToConstant: 240).isActive = true
-        mainCardView.contentView.addSubview(dummySeatMapView, withConstaintEquals: .center)
+        seatMapSceneView = SeatMapView()
+        mainCardView.contentView.addSubview(seatMapSceneView,
+                                            withConstaintEquals: .edges)
     }
     
     override func setupInteraction() {
