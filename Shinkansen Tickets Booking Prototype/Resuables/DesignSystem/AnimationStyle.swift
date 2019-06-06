@@ -15,7 +15,7 @@ extension CABasicAnimationStyle {
                                                            timingFunction: CAMediaTimingFunction(controlPoints: 0.2, 0, 0, 1),
                                                            isRemovedOnCompletion: false)
     
-    static let transitionAnimationStyle = CABasicAnimationStyle(duration: 0.7,
+    static let transitionAnimationStyle = CABasicAnimationStyle(duration: 0.6,
                                                            delay: 0,
                                                            timingFunction: CAMediaTimingFunction(controlPoints: 0.2, 0, 0, 1),
                                                            isRemovedOnCompletion: false)
@@ -24,7 +24,7 @@ extension CABasicAnimationStyle {
 extension UIViewAnimationStyle {
     static let normalAnimationStyle = UIViewAnimationStyle(duration: 0.2, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
     
-    static let transitionAnimationStyle = UIViewAnimationStyle(duration: 0.7, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
+    static let transitionAnimationStyle = UIViewAnimationStyle(duration: 0.6, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
     
     static let halfTransitionAnimationStyle = UIViewAnimationStyle(duration: 0.35, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
     
