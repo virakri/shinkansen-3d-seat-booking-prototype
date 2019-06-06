@@ -33,11 +33,14 @@ class BookingConfirmationViewController: BookingViewController {
                                         withConstaintEquals: [.centerHorizontal, .top, .bottom],
                                         insetsConstant: .init(top: 4, leading: 0, bottom: 0, trailing: 0))
         
+        let placeholderView = UIView()
+        
         mainStackView.removeArrangedSubview(topBarStackView)
         mainStackView.removeArrangedSubview(mainContentView)
         mainStackView.insertArrangedSubview(mainContentView, at: 0)
         mainStackView.insertArrangedSubview(dateLabelContainerView, at: 1)
         mainStackView.addArrangedSubview(UIView())
+        mainStackView.addArrangedSubview(placeholderView)
         
         view.addSubview(topBarStackView, withConstaintEquals: [.topSafeArea, .centerHorizontal])
         view.addConstraints(toView: topBarStackView, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
@@ -45,14 +48,18 @@ class BookingConfirmationViewController: BookingViewController {
         let topBarStackViewWidthConstraint = topBarStackView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
         topBarStackViewWidthConstraint.priority = .defaultHigh
         topBarStackViewWidthConstraint.isActive = true
-//        mainCardView.
         
         mainCardView = CardControl(type: .large)
         mainContentView.addSubview(mainCardView,
                                    withConstaintEquals: .edges,
                                    insetsConstant: .init(top: -mainCardView.layer.cornerRadius))
-        mainContentView.widthAnchor.constraint(equalTo: mainContentView.heightAnchor, multiplier: DesignSystem.isNarrowScreen ? 1.25 : 1).isActive = true
+      mainContentView.heightAnchor.constraint(lessThanOrEqualTo:  mainContentView.widthAnchor, multiplier: 1).isActive = true
+        
         mainCardView.isUserInteractionEnabled = false
+        
+        
+        placeholderView.translatesAutoresizingMaskIntoConstraints = false
+        placeholderView.topAnchor.constraint(equalTo: mainCallToActionButton.topAnchor).isActive = true
         
         setHeaderInformationValue(headerInformation)
         view.bringSubviewToFront(backButton)
