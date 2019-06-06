@@ -127,6 +127,16 @@ class BookingCriteriaViewController: BookingViewController {
         
         headlineLabel.textStyle = textStyle.largeTitle()
         headlineLabel.textColor = currentColorTheme.componentColor.callToAction
+        
+        fromStationContainerView.setupTheme()
+        destinationStationContainerView.setupTheme()
+        dateSegmentedContainerView.setupTheme()
+        timeSegmentedContainerView.setupTheme()
+        
+        fromStationCardControl.setupTheme()
+        destinationStationCardControl.setupTheme()
+        dateSegmentedControl.setupTheme()
+        timeSegmentedControl.setupTheme()
     }
     
     override func setupInteraction() {

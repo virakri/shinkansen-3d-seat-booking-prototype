@@ -16,6 +16,11 @@ class BookingConfirmationViewController: BookingViewController {
     
     var dateLabel: Label!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupStaticContent()
+    }
+    
     override func setupView() {
         super.setupView()
         mainViewType = .view

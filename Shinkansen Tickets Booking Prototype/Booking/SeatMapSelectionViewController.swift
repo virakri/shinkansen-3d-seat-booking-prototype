@@ -12,6 +12,11 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var mainCardView: CardControl!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupStaticContent()
+    }
+    
     override func setupView() {
         super.setupView()
         mainViewType = .view

@@ -298,4 +298,11 @@ class SegmentedCardControl: UIControl {
             itemCardControl.isHighlighted = false
         }
     }
+    
+    func setupTheme() {
+        stackView.arrangedSubviews.forEach { (itemCardControl) in
+            guard let itemCardControl = itemCardControl as? ItemCardControl else { return }
+            itemCardControl.setupTheme()
+        }
+    }
 }
