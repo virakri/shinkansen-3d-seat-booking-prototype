@@ -73,6 +73,10 @@ class BookingConfirmationViewController: BookingViewController {
         dateLabel.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
     }
     
+    private func setupStaticContent() {
+        mainCallToActionButton.setTitle("Purchase this Ticket—¥24,000")
+    }
+    
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
         dismiss(animated: true, completion: nil)
     }

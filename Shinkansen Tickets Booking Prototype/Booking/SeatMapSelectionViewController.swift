@@ -41,6 +41,10 @@ class SeatMapSelectionViewController: BookingViewController {
                              for: .touchUpInside)
     }
     
+    private func setupStaticContent() {
+        mainCallToActionButton.setTitle("Pick a Seat")
+    }
+    
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
         let bookingConfirmationViewController = BookingConfirmationViewController()
         bookingConfirmationViewController.headerInformation = headerInformation
