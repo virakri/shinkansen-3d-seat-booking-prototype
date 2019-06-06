@@ -154,7 +154,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                              fromParentView: (parentView != nil) ? parentView!(fromVC) : (view(fromVC).superview ?? UIView()),
                              toView: view(toVC),
                              toParentView: (parentView != nil) ? parentView!(toVC) : (view(toVC).superview ?? UIView()),
-                             basedVerticalAnimationOffset: 18,
+                             basedVerticalAnimationOffset: basedVerticalAnimationOffset,
                              percentageEndPoint: 0.4)
                 }
             }

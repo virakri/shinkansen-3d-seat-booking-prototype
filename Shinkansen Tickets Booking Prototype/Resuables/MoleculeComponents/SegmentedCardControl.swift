@@ -29,7 +29,7 @@ class SegmentedCardControl: UIControl {
         
         var subtitleLabel: Label
         
-        var basedHeight: CGFloat = DesignSystem.isNarrowScreen ? 56 : 72 {
+        var basedHeight: CGFloat = DesignSystem.isNarrowScreen ? 56 : 56 {
             didSet {
                 setupTheme()
             }
@@ -51,6 +51,10 @@ class SegmentedCardControl: UIControl {
             didSet {
                 if !isSelected {
                     currentState = isHighlighted ? .highlighted : .normal
+                    if oldValue != isHighlighted && isHighlighted {
+                        let generator = UISelectionFeedbackGenerator()
+                        generator.selectionChanged()
+                    }
                 }
             }
         }
@@ -192,6 +196,10 @@ class SegmentedCardControl: UIControl {
     
     var selectedIndex: Int = 0 {
         didSet {
+            if oldValue != selectedIndex {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+            }
             setSelectedIndexItemCardControlSelected()
         }
     }
