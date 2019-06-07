@@ -70,6 +70,9 @@ class SeatMapSelectionViewController: BookingViewController {
             print(node.position)
             seatMapSceneView.contentNode.addChildNode(node)
         }
+        
+    }
+    
     func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat)  {
         guard contentOffsetY < 0 else {
             mainCardView.transform.ty = 0
@@ -95,7 +98,7 @@ extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint) {
         
         DispatchQueue.main.async {
-           self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
+            self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
             self.headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
             let translateX = offset.y <= 0 ? -offset.y / 6 : 0
             self.backButton.shapeView.transform.tx = translateX
@@ -106,5 +109,4 @@ extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
             isPopPerforming = true
         }
     }
-    
 }
