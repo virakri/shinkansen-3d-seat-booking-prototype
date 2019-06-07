@@ -8,7 +8,16 @@
 
 import SceneKit
 
-enum SeatClass: String, Codable {
+struct SeatClass: Codable {
+    let id: Int
+    let name: String
+    let description: String
+    let seatClass: SeatClassType
+    let price: Float
+    let isAvailable: Bool
+}
+
+enum SeatClassType: String, Codable {
     case granClass = "granClass"
     case green = "green"
     case ordinary = "ordinary"
@@ -27,7 +36,7 @@ enum SeatClass: String, Codable {
 
 struct SeatClassEntity: Codable {
     let id: Int
-    let seatClass: SeatClass
+    let seatClass: SeatClassType
     let name: String
     let carNumber: String
     let reservableEntities: [ReservableEntity]

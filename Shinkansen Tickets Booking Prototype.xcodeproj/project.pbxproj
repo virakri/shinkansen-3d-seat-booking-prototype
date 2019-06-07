@@ -65,11 +65,13 @@
 		D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8BB22A0930100872B5B /* CGFloat.swift */; };
 		D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9E35B22A87C57003B339D /* BackButtonControl.swift */; };
 		E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04BCCF522AAA626002E29DE /* SeatMap.swift */; };
-		E0CF322A22AAB44900BC4788 /* SeatClassEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322922AAB44900BC4788 /* SeatClassEntity.swift */; };
+		E0CF322A22AAB44900BC4788 /* SeatClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322922AAB44900BC4788 /* SeatClass.swift */; };
 		E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */; };
 		E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */; };
 		E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */; };
 		E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */; };
+		E0CF325422AAEF3F00BC4788 /* TrainCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */; };
+		E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325522AAF10800BC4788 /* TrainSchedule.swift */; };
 		F3B92A8562906132AD800542 /* Pods_Shinkansen_Tickets_Booking_Prototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,11 +139,13 @@
 		D0F6D8BB22A0930100872B5B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		D0F9E35B22A87C57003B339D /* BackButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonControl.swift; sourceTree = "<group>"; };
 		E04BCCF522AAA626002E29DE /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
-		E0CF322922AAB44900BC4788 /* SeatClassEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassEntity.swift; sourceTree = "<group>"; };
+		E0CF322922AAB44900BC4788 /* SeatClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClass.swift; sourceTree = "<group>"; };
 		E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableEntity.swift; sourceTree = "<group>"; };
 		E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformedModelEntity.swift; sourceTree = "<group>"; };
 		E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3.swift; sourceTree = "<group>"; };
 		E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableNode.swift; sourceTree = "<group>"; };
+		E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainCriteria.swift; sourceTree = "<group>"; };
+		E0CF325522AAF10800BC4788 /* TrainSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainSchedule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,8 +340,10 @@
 			children = (
 				E04BCCF522AAA626002E29DE /* SeatMap.swift */,
 				E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */,
-				E0CF322922AAB44900BC4788 /* SeatClassEntity.swift */,
+				E0CF322922AAB44900BC4788 /* SeatClass.swift */,
 				E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */,
+				E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */,
+				E0CF325522AAF10800BC4788 /* TrainSchedule.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EAF4B222A442DD002A9282 /* StationCardControl.swift in Sources */,
+				E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */,
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
 				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,
@@ -472,12 +479,13 @@
 				D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */,
 				D074B1E5228B90BD00791F94 /* NavigationController.swift in Sources */,
 				D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */,
+				E0CF325422AAEF3F00BC4788 /* TrainCriteria.swift in Sources */,
 				D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */,
 				D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */,
 				D053EBDF229D52BB007CCFFE /* Label.swift in Sources */,
 				D074B1EC228B928100791F94 /* LayerStyle.swift in Sources */,
 				D016655822AABE1D00BFD6DB /* HitTestFloorNode.swift in Sources */,
-				E0CF322A22AAB44900BC4788 /* SeatClassEntity.swift in Sources */,
+				E0CF322A22AAB44900BC4788 /* SeatClass.swift in Sources */,
 				D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */,
 				D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */,
 				E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */,
