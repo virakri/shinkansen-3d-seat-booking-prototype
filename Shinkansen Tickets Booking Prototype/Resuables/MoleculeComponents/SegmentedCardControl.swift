@@ -47,13 +47,14 @@ class SegmentedCardControl: UIControl {
 //            }
 //        }
         
+        static let hipticGenerator = UISelectionFeedbackGenerator()
+        
         override var isHighlighted: Bool {
             didSet {
                 if !isSelected {
                     currentState = isHighlighted ? .highlighted : .normal
                     if oldValue != isHighlighted && isHighlighted {
-                        let generator = UISelectionFeedbackGenerator()
-                        generator.selectionChanged()
+                        SegmentedCardControl.ItemCardControl.hipticGenerator.selectionChanged()
                     }
                 }
             }
@@ -190,11 +191,12 @@ class SegmentedCardControl: UIControl {
     
     var stackView: UIStackView
     
+    static let hipticGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     var selectedIndex: Int = 0 {
         didSet {
             if oldValue != selectedIndex {
-                let generator = UIImpactFeedbackGenerator(style: .light)
-                generator.impactOccurred()
+                SegmentedCardControl.hipticGenerator.impactOccurred()
             }
             setSelectedIndexItemCardControlSelected()
         }

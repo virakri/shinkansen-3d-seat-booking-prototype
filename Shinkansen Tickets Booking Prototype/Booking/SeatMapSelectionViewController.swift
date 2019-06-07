@@ -95,16 +95,12 @@ class SeatMapSelectionViewController: BookingViewController {
 extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
     
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint) {
-        
-        DispatchQueue.main.async {
-            self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
-            self.headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
-            let translateX = offset.y <= 0 ? -offset.y / 6 : 0
-            self.backButton.shapeView.transform.tx = translateX
-            
+        if !isPopPerforming {
         }
         
         if offset.y < -72 {
+//            seatMapSceneView.contentNode.removeAction(forKey: "panDrift")
+//            seatMapSceneView.isUserInteractionEnabled = false
             isPopPerforming = true
         }
     }

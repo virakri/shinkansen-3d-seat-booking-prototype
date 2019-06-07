@@ -54,6 +54,7 @@ class SeatMapSceneView: SCNView {
         let cameraNode = CameraNode()
         
         let scene = SCNScene()
+        scene.background.contents = UIColor.clear
         
         contentNode.addChildNode(dummyNode)
         
