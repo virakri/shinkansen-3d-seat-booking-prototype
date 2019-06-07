@@ -97,6 +97,14 @@ class SeatMapSceneView: SCNView {
     
     var perspectiveVelocity: Float?
     
+    var contentZPositionLimit: ClosedRange<Float> = -1...25
+    
+    private func zPositionClamp(_ value: Float) -> Float {
+        let trimmedMaxValue = value > contentZPositionLimit.upperBound ? contentZPositionLimit.upperBound * (1 + log10(value/contentZPositionLimit.upperBound)) : value
+//
+        return value < contentZPositionLimit.lowerBound ? contentZPositionLimit.lowerBound * (1 + log10( trimmedMaxValue  / contentZPositionLimit.lowerBound )) : trimmedMaxValue
+    }
+    
     private func positionOfFloorHitTest(_ point: CGPoint) -> SCNVector3? {
         let hitTests = hitTest(point, options: [.categoryBitMask : 1 << 1])
         return hitTests.first?.worldCoordinates
@@ -113,18 +121,17 @@ class SeatMapSceneView: SCNView {
             
         case .changed:
             // Temporary
-//            contentNode.localTranslate(by: SCNVector3(0, 0, sender.velocity(in: sender.view!).y / 1000))
-            
-            currectContentNodePosition = contentNode.position
             
             let hitTestPositionWhereCurrentTouch = positionOfFloorHitTest(location)
             
             if let hitTestPositionWhereTouchBegan = hitTestPositionWhereTouchBegan,
                 let hitTestPositionWhereCurrentTouch = hitTestPositionWhereCurrentTouch,
-            let contentNodePositionWhereTouchBegan = contentNodePositionWhereTouchBegan{
-                contentNode.position.z = hitTestPositionWhereCurrentTouch.z - hitTestPositionWhereTouchBegan.z + contentNodePositionWhereTouchBegan.z
+                let contentNodePositionWhereTouchBegan = contentNodePositionWhereTouchBegan{
+                let zPosition = zPositionClamp(hitTestPositionWhereCurrentTouch.z - hitTestPositionWhereTouchBegan.z + contentNodePositionWhereTouchBegan.z)
+                contentNode.position.z = zPosition
             }
             
+            currectContentNodePosition = contentNode.position
             
             
             
@@ -145,15 +152,12 @@ class SeatMapSceneView: SCNView {
                             .step(timeElapsed: CFTimeInterval(elapsedTime - currentTime),
                                   velocity: currentVelocity)
                         
-                        let xDisplacment = newStep.displacement.x
+//                        let xDisplacment = newStep.displacement.x
                         let yDisplacment = newStep.displacement.y
                         
-                        self.contentNode.position.z = self.contentNode.position.z + Float(yDisplacment)
+                        let newZPosition = self.contentNode.position.z + Float(yDisplacment)
                         
-                        //                    self.cameraNode.currentCameraPosition.x = calculateCameraPosition(of: self.cameraNode.currentCameraPosition.x, with: Float(yDisplacment) * self.panMultiplier)
-                        //
-                        //                    self.cameraNode.currentCameraPosition.y = calculateCameraPosition(of: self.cameraNode.currentCameraPosition.y, with: Float(xDisplacment) * self.panMultiplier)
-                        
+                        self.contentNode.position.z = (newZPosition + self.zPositionClamp(newZPosition)) / 2
                         
                         currentVelocity = newStep.velocity
                         currentTime = elapsedTime
@@ -161,7 +165,17 @@ class SeatMapSceneView: SCNView {
             
             contentNode.runAction(driftAction,
                                       forKey: "panDrift",
-                                      completionHandler:{})
+                                      completionHandler:{
+                                        
+                                        // reset the position of the content if it goes beyond the position limit after the panDrift animation
+                                        if self.contentNode.position.z > self.contentZPositionLimit.upperBound {
+                                            self.contentNode.position.z = self.contentZPositionLimit.upperBound
+                                        }
+                                        
+                                        else if self.contentNode.position.z < self.contentZPositionLimit.lowerBound {
+                                            self.contentNode.position.z = self.contentZPositionLimit.lowerBound
+                                        }
+            })
         
         
         default:
