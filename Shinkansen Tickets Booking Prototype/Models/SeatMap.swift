@@ -17,3 +17,21 @@ struct SeatMap: Codable {
     let seatClassEntities: [SeatClassEntity]
     let transformedModelEntity: TransformedModelEntity
 }
+
+extension SeatMap {
+    static func fetchData(completion: @escaping (Result<SeatMap, Error>) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            sleep(1)
+            guard let data = NSDataAsset(name: "SeatMap")?.data else {
+                return completion(.failure(NSError(domain: "SeatMap", code: -900, userInfo: [NSLocalizedFailureReasonErrorKey: "Please check SeatMap.json in assets directory."])))
+            }
+            do {
+                let decoder = JSONDecoder()
+                let seatMap = try decoder.decode(SeatMap.self, from: data)
+                completion(.success(seatMap))
+            } catch (let error) {
+                completion(.failure(error))
+            }
+        }
+    }
+}

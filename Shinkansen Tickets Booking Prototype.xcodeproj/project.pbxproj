@@ -69,6 +69,7 @@
 		E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */; };
 		E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */; };
 		E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */; };
+		E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */; };
 		F3B92A8562906132AD800542 /* Pods_Shinkansen_Tickets_Booking_Prototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */; };
 /* End PBXBuildFile section */
 
@@ -140,6 +141,7 @@
 		E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableEntity.swift; sourceTree = "<group>"; };
 		E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformedModelEntity.swift; sourceTree = "<group>"; };
 		E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3.swift; sourceTree = "<group>"; };
+		E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +326,7 @@
 				D016655322AABD4600BFD6DB /* CameraNode.swift */,
 				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
 				D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */,
+				E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */,
 			);
 			path = SeatMapNodes;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
 				D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */,
+				E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,
 				D01B2EC622A3F4B300C3FAF3 /* SegmentedCardControl.swift in Sources */,

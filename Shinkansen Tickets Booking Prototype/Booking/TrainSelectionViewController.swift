@@ -17,6 +17,8 @@ class TrainSelectionViewController: BookingViewController {
     
     var loadingActivityIndicatorView: UIActivityIndicatorView!
     
+    var seatMap: SeatMap?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -26,9 +28,9 @@ class TrainSelectionViewController: BookingViewController {
         super.viewDidAppear(animated)
         if !didFirstLoad {
             
-            fetchData { result in
+            SeatMap.fetchData { [weak self] result in
                 if case .success(let seatMap) = result {
-                    
+                    self?.seatMap = seatMap
                     DispatchQueue.main.async {
                         [weak self] in
                         
@@ -108,6 +110,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
         //
         selectedIndexPath = indexPath
         let seatClassSelectionViewController = SeatClassSelectionViewController()
+        seatClassSelectionViewController.seatMap = seatMap
         seatClassSelectionViewController.headerInformation = headerInformation
         seatClassSelectionViewController.headerInformation?.fromTime = "8:42"
         seatClassSelectionViewController.headerInformation?.toTime = "11:23"
@@ -116,19 +119,4 @@ extension TrainSelectionViewController: UITableViewDataSource {
         navigationController?.pushViewController(seatClassSelectionViewController, animated: true)
     }
     
-    private func fetchData(completion: @escaping (Result<SeatMap, Error>) -> Void) {
-        DispatchQueue.global(qos: .background).async {
-            sleep(1)
-            guard let data = NSDataAsset(name: "SeatMap")?.data else {
-                return completion(.failure(NSError(domain: "SeatMap", code: -900, userInfo: [NSLocalizedFailureReasonErrorKey: "Please check SeatMap.json in assets directory."])))
-            }
-            do {
-                let decoder = JSONDecoder()
-                let seatMap = try decoder.decode(SeatMap.self, from: data)
-                completion(.success(seatMap))
-            } catch (let error) {
-                completion(.failure(error))
-            }
-        }
-    }
 }

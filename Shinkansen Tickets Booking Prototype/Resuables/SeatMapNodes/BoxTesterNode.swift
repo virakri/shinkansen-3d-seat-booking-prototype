@@ -8,7 +8,7 @@
 
 import SceneKit
 
-class BoxTesterNode: SCNNode {
+class BoxTesterNode: ReservableNode {
     
     var isHighlighted: Bool = false
     
@@ -16,19 +16,20 @@ class BoxTesterNode: SCNNode {
     
     var isEnabled: Bool = true
     
-    override init() {
-        super.init()
+    override init(reservableEntity: ReservableEntity) {
+        super.init(reservableEntity: reservableEntity)
         
         let box = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
         geometry = box
-        
+        position = reservableEntity.transformedModelEntity.position
+        eulerAngles = reservableEntity.transformedModelEntity.rotation
         setupTheme()
     }
     
     func setupTheme() {
         let material = geometry?.firstMaterial
         
-        material?.diffuse.contents = UIColor.white
+        material?.diffuse.contents = UIColor.yellow
         
         if isHighlighted {
             material?.diffuse.contents = UIColor.red

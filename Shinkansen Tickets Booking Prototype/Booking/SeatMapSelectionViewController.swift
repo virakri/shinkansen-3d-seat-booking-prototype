@@ -16,6 +16,8 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var selectedSeatID: Int?
     
+    var seatEntity: SeatClassEntity?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStaticContent()
@@ -36,6 +38,8 @@ class SeatMapSelectionViewController: BookingViewController {
                                             withConstaintEquals: .edges)
         
         mainCardView.contentView.isUserInteractionEnabled = true
+        
+        placeSeats()
     }
     
     override func setupInteraction() {
@@ -54,6 +58,18 @@ class SeatMapSelectionViewController: BookingViewController {
         mainCallToActionButton.setTitle("Pick a Seat")
     }
     
+    private func placeSeats() {
+        print(seatEntity?.reservableEntities.count ?? 0)
+        guard let seatEntity = seatEntity else {
+            return
+        }
+        let nodes: [ReservableNode] = seatEntity.reservableEntities.map({
+            BoxTesterNode(reservableEntity: $0)
+        })
+        nodes.forEach { node in
+            print(node.position)
+            seatMapSceneView.contentNode.addChildNode(node)
+        }
     func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat)  {
         guard contentOffsetY < 0 else {
             mainCardView.transform.ty = 0

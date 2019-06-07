@@ -12,6 +12,17 @@ enum SeatClass: String, Codable {
     case granClass = "granClass"
     case green = "green"
     case ordinary = "ordinary"
+    
+    var name: String {
+        switch self {
+        case .granClass:
+            return "Gran Class"
+        case .green:
+            return "Green Class"
+        case .ordinary:
+            return "Ordinary Class"
+        }
+    }
 }
 
 struct SeatClassEntity: Codable {

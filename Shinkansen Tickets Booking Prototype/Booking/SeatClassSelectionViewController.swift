@@ -12,6 +12,8 @@ class SeatClassSelectionViewController: BookingViewController {
     
     var selectedIndexPath: IndexPath?
     
+    var seatMap: SeatMap?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -59,14 +61,21 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         //
         selectedIndexPath = indexPath
         
+        // TODO: Fix this
+        let selectedEntity = seatMap?.seatClassEntities.first(where: {
+            $0.seatClass == .granClass
+        })
+        
         let seatMapSelectionViewController = SeatMapSelectionViewController()
+        seatMapSelectionViewController.seatEntity = selectedEntity
         seatMapSelectionViewController.headerInformation = headerInformation
-        seatMapSelectionViewController.headerInformation?.carNumber = "Car 4"
-        seatMapSelectionViewController.headerInformation?.className = "Green Car"
-        seatMapSelectionViewController.headerInformation?.price = "$14,230"
+        seatMapSelectionViewController.headerInformation?.carNumber = selectedEntity?.carNumber
+        seatMapSelectionViewController.headerInformation?.className = selectedEntity?.seatClass.name
+        seatMapSelectionViewController.headerInformation?.price = "¥14,230"
         navigationController?.pushViewController(seatMapSelectionViewController, animated: true)
     }
     
