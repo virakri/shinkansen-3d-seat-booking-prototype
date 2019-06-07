@@ -29,11 +29,12 @@ class SeatMapSelectionViewController: BookingViewController {
         mainContentView.addSubview(mainCardView,
                                    withConstaintEquals: .edges,
                                    insetsConstant: .init(bottom: -mainCardView.layer.cornerRadius))
-        mainCardView.isUserInteractionEnabled = false
         
         seatMapSceneView = SeatMapView()
         mainCardView.contentView.addSubview(seatMapSceneView,
                                             withConstaintEquals: .edges)
+        
+        mainCardView.contentView.isUserInteractionEnabled = true
     }
     
     override func setupInteraction() {

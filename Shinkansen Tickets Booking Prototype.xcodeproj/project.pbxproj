@@ -12,6 +12,7 @@
 		D0046994229F58CC0028A9D7 /* DesignValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046993229F58CC0028A9D7 /* DesignValues.swift */; };
 		D0046996229FCB550028A9D7 /* CardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046995229FCB550028A9D7 /* CardControl.swift */; };
 		D0046998229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */; };
+		D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */; };
 		D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */; };
 		D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */; };
 		D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */; };
@@ -21,6 +22,7 @@
 		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
 		D01B2EC622A3F4B300C3FAF3 /* SegmentedCardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */; };
 		D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042A71422A70C7600A0CBFC /* CALayer.swift */; };
+		D050625F22A9C6BF003A8565 /* SeatMap.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D050625E22A9C6BF003A8565 /* SeatMap.scnassets */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
 		D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCE229CB476007CCFFE /* UIStackView.swift */; };
 		D053EBD1229CB772007CCFFE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD0229CB772007CCFFE /* UIView.swift */; };
@@ -45,7 +47,6 @@
 		D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3622A0B7A0001D3065 /* StationPairView.swift */; };
 		D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3822A13940001D3065 /* DescriptionSetView.swift */; };
 		D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */; };
-		D0EAF1BA228B7FB700F3D4F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */; };
 		D0EAF1BC228B7FB900F3D4F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */; };
 		D0EAF1BF228B7FB900F3D4F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */; };
 		D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF4AF22A43533002A9282 /* HeadlineWithContainerView.swift */; };
@@ -70,6 +71,7 @@
 		D0046993229F58CC0028A9D7 /* DesignValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignValues.swift; sourceTree = "<group>"; };
 		D0046995229FCB550028A9D7 /* CardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControl.swift; sourceTree = "<group>"; };
 		D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDirectionalEdgeInsets.swift; sourceTree = "<group>"; };
+		D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecayFunction.swift; sourceTree = "<group>"; };
 		D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassIconImageView.swift; sourceTree = "<group>"; };
 		D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCardControl.swift; sourceTree = "<group>"; };
 		D042A71422A70C7600A0CBFC /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
+		D050625E22A9C6BF003A8565 /* SeatMap.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SeatMap.scnassets; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
 		D053EBCE229CB476007CCFFE /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		D053EBD0229CB772007CCFFE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -104,7 +107,6 @@
 		D0C26E3822A13940001D3065 /* DescriptionSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSetView.swift; sourceTree = "<group>"; };
 		D0EAF1B1228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shinkansen Tickets Booking Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0EAF1B9228B7FB700F3D4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0EAF1BE228B7FB900F3D4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0EAF1C0228B7FB900F3D4F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,9 +143,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D00C5E0522AA73AB00FB8CF0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		D053EBCC229CB413007CCFFE /* Resuables */ = {
 			isa = PBXGroup;
 			children = (
+				D00C5E0522AA73AB00FB8CF0 /* Helpers */,
 				D074B1E6228B926100791F94 /* DesignSystem */,
 				D053EBDD229D52A3007CCFFE /* MoleculeComponents */,
 				D053EBD7229D4BFC007CCFFE /* OrganismComponents */,
@@ -266,8 +277,8 @@
 				D074B1D9228B90AC00791F94 /* Booking */,
 				D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */,
 				D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */,
-				D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */,
 				D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */,
+				D050625E22A9C6BF003A8565 /* SeatMap.scnassets */,
 				D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */,
 				D0EAF1C0228B7FB900F3D4F6 /* Info.plist */,
 			);
@@ -343,8 +354,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0EAF1BF228B7FB900F3D4F6 /* LaunchScreen.storyboard in Resources */,
+				D050625F22A9C6BF003A8565 /* SeatMap.scnassets in Resources */,
 				D0EAF1BC228B7FB900F3D4F6 /* Assets.xcassets in Resources */,
-				D0EAF1BA228B7FB700F3D4F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +431,7 @@
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
 				D0AD0AC522A9712600F2E976 /* SeatMapView.swift in Sources */,
 				D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */,
+				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
 				D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
@@ -451,14 +463,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D0EAF1B8228B7FB700F3D4F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D0EAF1B9228B7FB700F3D4F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
