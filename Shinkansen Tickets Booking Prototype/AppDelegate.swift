@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Interfaces Initializer
         window = UIWindow(frame: UIScreen.main.bounds)
-//        let prototypeInitialViewController = PrototypeInitialViewController()
-        let prototypeInitialViewController = SeatMapSelectionViewController()
+        let prototypeInitialViewController = PrototypeInitialViewController()
+//        let prototypeInitialViewController = SeatMapSelectionViewController()
         window?.rootViewController = prototypeInitialViewController
         window?.makeKeyAndVisible()
         

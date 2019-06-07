@@ -9,7 +9,17 @@
 import UIKit
 import SceneKit
 
+protocol SeatMapSceneViewDelegate {
+    func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint)
+}
+
+extension SeatMapSceneViewDelegate {
+    func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint) { }
+}
+
 class SeatMapSceneView: SCNView {
+    
+    var seatMapDelegate: SeatMapSceneViewDelegate?
     
     var bottomOffset: CGFloat = 0
     
@@ -78,9 +88,18 @@ class SeatMapSceneView: SCNView {
     
     var currectContentNodePosition: SCNVector3? {
         didSet {
+            
+            contentNode.position = currectContentNodePosition ?? contentNode.position
+            
             guard let currectContentNodePosition = currectContentNodePosition, let oldValue = oldValue else { return }
             perspectiveVelocity = (currectContentNodePosition.z - oldValue.z) / (1 / 60)
-            print(perspectiveVelocity)
+            
+            // Conform to the delegate
+            let upperBoundLimitOffsetY: CGFloat = CGFloat(contentZPositionLimit.upperBound - currectContentNodePosition.z)
+            seatMapDelegate?
+                .sceneViewDidPanFurtherUpperBoundLimit(by: CGPoint(x: 0,
+                                                                   y: upperBoundLimitOffsetY / 0.04))
+            
         }
     }
     
@@ -117,10 +136,10 @@ class SeatMapSceneView: SCNView {
                 let hitTestPositionWhereCurrentTouch = hitTestPositionWhereCurrentTouch,
                 let contentNodePositionWhereTouchBegan = contentNodePositionWhereTouchBegan{
                 let zPosition = zPositionClamp(hitTestPositionWhereCurrentTouch.z - hitTestPositionWhereTouchBegan.z + contentNodePositionWhereTouchBegan.z)
-                contentNode.position.z = zPosition
+                self.currectContentNodePosition?.z = zPosition
             }
             
-            currectContentNodePosition = contentNode.position
+//            currectContentNodePosition = contentNode.position
             
             
             
@@ -146,7 +165,9 @@ class SeatMapSceneView: SCNView {
                         
                         let newZPosition = self.contentNode.position.z + Float(yDisplacment)
                         
-                        self.contentNode.position.z = (newZPosition + self.zPositionClamp(newZPosition)) / 2
+                        self.currectContentNodePosition?.z = (newZPosition + self.zPositionClamp(newZPosition)) / 2
+                        
+                        self.currectContentNodePosition = self.contentNode.position
                         
                         currentVelocity = newStep.velocity
                         currentTime = elapsedTime
@@ -157,12 +178,12 @@ class SeatMapSceneView: SCNView {
                                       completionHandler:{
                                         
                                         // reset the position of the content if it goes beyond the position limit after the panDrift animation
-                                        if self.contentNode.position.z > self.contentZPositionLimit.upperBound {
-                                            self.contentNode.position.z = self.contentZPositionLimit.upperBound
+                                        if (self.currectContentNodePosition?.z ?? 0) > self.contentZPositionLimit.upperBound {
+                                            self.currectContentNodePosition?.z = self.contentZPositionLimit.upperBound
                                         }
                                         
-                                        else if self.contentNode.position.z < self.contentZPositionLimit.lowerBound {
-                                            self.contentNode.position.z = self.contentZPositionLimit.lowerBound
+                                        else if (self.currectContentNodePosition?.z ?? 0) < self.contentZPositionLimit.lowerBound {
+                                            self.currectContentNodePosition?.z = self.contentZPositionLimit.lowerBound
                                         }
             })
         

@@ -31,7 +31,7 @@ class SeatMapSelectionViewController: BookingViewController {
                                    insetsConstant: .init(bottom: -mainCardView.layer.cornerRadius))
         
         seatMapSceneView = SeatMapSceneView()
-
+        seatMapSceneView.seatMapDelegate = self
         mainCardView.contentView.addSubview(seatMapSceneView,
                                             withConstaintEquals: .edges)
         
@@ -54,6 +54,14 @@ class SeatMapSelectionViewController: BookingViewController {
         mainCallToActionButton.setTitle("Pick a Seat")
     }
     
+    func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat)  {
+        guard contentOffsetY < 0 else {
+            mainCardView.transform.ty = 0
+            return
+        }
+        mainCardView.transform.ty = -contentOffsetY
+    }
+    
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
         let bookingConfirmationViewController = BookingConfirmationViewController()
         bookingConfirmationViewController.headerInformation = headerInformation
@@ -64,4 +72,23 @@ class SeatMapSelectionViewController: BookingViewController {
     @objc func backButtonDidTouch(_ sender: Button) {
         navigationController?.popViewController(animated: true)
     }
+}
+
+extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
+    
+    func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint) {
+        
+        DispatchQueue.main.async {
+           self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
+            self.headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
+            let translateX = offset.y <= 0 ? -offset.y / 6 : 0
+            self.backButton.shapeView.transform.tx = translateX
+            
+        }
+        
+        if offset.y < -72 {
+            isPopPerforming = true
+        }
+    }
+    
 }
