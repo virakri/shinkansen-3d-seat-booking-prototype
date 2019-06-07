@@ -17,51 +17,40 @@ class SeatMapSceneView: SCNView {
     
     init() {
         super.init(frame: .zero, options: nil)
-        backgroundColor = .clear
         
-        // Temporary
-        let floorScene = SCNScene(named: "floor_demo.scn",
-                                  inDirectory: "SeatMap.scnassets",
-                                  options: nil)
-        guard let floorNode = floorScene?.rootNode.childNode(withName: "floor", recursively: false) else {
-            print("No Model")
-            return }
-        
-        let hitTestFloor = SCNFloor()
-        let hitTestFloorNode = SCNNode(geometry: hitTestFloor)
-        hitTestFloorNode.position.y = 1.3
-        hitTestFloorNode.categoryBitMask = 1 << 1
-        
-        
-        let scene = SCNScene()
-        
-        // Camera
-        let camera = SCNCamera()
-        camera.projectionDirection = .vertical
-        camera.fieldOfView = 70
-        camera.zNear = 1
-        camera.zFar = 100
-        let cameraNode = SCNNode()
-        cameraNode.camera = camera
-        cameraNode.position.y = 7.5
-        cameraNode.look(at: SCNVector3(0, 0, -6))
-        
-        
-        // Add Node
-        contentNode.addChildNode(floorNode)
-        
-        scene.rootNode.addChildNode(hitTestFloorNode)
-        scene.rootNode.addChildNode(contentNode)
-        scene.rootNode.addChildNode(cameraNode)
-        
-        self.scene = scene
-        
+        setupView()
+        setupScene()
         setupInteraction()
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        backgroundColor = .clear
+    }
+    
+    private func setupScene() {
+        
+        // Temporary
+        let dummyNode = DummyNode()
+        
+        let hitTestFloorNode = HitTestFloorNode()
+        
+        let cameraNode = CameraNode()
+        
+        let scene = SCNScene()
+        
+        contentNode.addChildNode(dummyNode)
+        
+        scene.rootNode.addChildNode(hitTestFloorNode)
+        scene.rootNode.addChildNode(contentNode)
+        
+        scene.rootNode.addChildNode(cameraNode)
+        
+        self.scene = scene
     }
     
     private func setupInteraction() {

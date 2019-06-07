@@ -13,6 +13,10 @@
 		D0046996229FCB550028A9D7 /* CardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046995229FCB550028A9D7 /* CardControl.swift */; };
 		D0046998229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */; };
 		D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */; };
+		D016655422AABD4600BFD6DB /* CameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655322AABD4600BFD6DB /* CameraNode.swift */; };
+		D016655622AABDEC00BFD6DB /* ContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655522AABDEC00BFD6DB /* ContentNode.swift */; };
+		D016655822AABE1D00BFD6DB /* HitTestFloorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */; };
+		D016655A22AABF5400BFD6DB /* DummyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655922AABF5400BFD6DB /* DummyNode.swift */; };
 		D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */; };
 		D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */; };
 		D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */; };
@@ -78,6 +82,10 @@
 		D0046995229FCB550028A9D7 /* CardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControl.swift; sourceTree = "<group>"; };
 		D0046997229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDirectionalEdgeInsets.swift; sourceTree = "<group>"; };
 		D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecayFunction.swift; sourceTree = "<group>"; };
+		D016655322AABD4600BFD6DB /* CameraNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraNode.swift; sourceTree = "<group>"; };
+		D016655522AABDEC00BFD6DB /* ContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNode.swift; sourceTree = "<group>"; };
+		D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitTestFloorNode.swift; sourceTree = "<group>"; };
+		D016655922AABF5400BFD6DB /* DummyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyNode.swift; sourceTree = "<group>"; };
 		D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassIconImageView.swift; sourceTree = "<group>"; };
 		D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
@@ -312,6 +320,10 @@
 			isa = PBXGroup;
 			children = (
 				D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */,
+				D016655922AABF5400BFD6DB /* DummyNode.swift */,
+				D016655322AABD4600BFD6DB /* CameraNode.swift */,
+				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
+				D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */,
 			);
 			path = SeatMapNodes;
 			sourceTree = "<group>";
@@ -453,6 +465,7 @@
 				D074B1E3228B90AC00791F94 /* BookingConfirmationViewController.swift in Sources */,
 				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
 				D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */,
+				D016655A22AABF5400BFD6DB /* DummyNode.swift in Sources */,
 				D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */,
 				D074B1E5228B90BD00791F94 /* NavigationController.swift in Sources */,
 				D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */,
@@ -460,6 +473,7 @@
 				D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */,
 				D053EBDF229D52BB007CCFFE /* Label.swift in Sources */,
 				D074B1EC228B928100791F94 /* LayerStyle.swift in Sources */,
+				D016655822AABE1D00BFD6DB /* HitTestFloorNode.swift in Sources */,
 				E0CF322A22AAB44900BC4788 /* SeatClassEntity.swift in Sources */,
 				D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */,
 				D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */,
@@ -480,6 +494,7 @@
 				D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */,
 				E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */,
 				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
+				D016655622AABDEC00BFD6DB /* ContentNode.swift in Sources */,
 				D09F3F1322A20239005E59C0 /* HeaderRouteInformationView.swift in Sources */,
 				D053EBD3229D29B3007CCFFE /* UILabel.swift in Sources */,
 				D0EAF4B422A449BC002A9282 /* ViewControllerAnimatedTransitioning.swift in Sources */,
@@ -492,6 +507,7 @@
 				D0046990229F559C0028A9D7 /* Button.swift in Sources */,
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
+				D016655422AABD4600BFD6DB /* CameraNode.swift in Sources */,
 				D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */,
 				E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */,
 				D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */,
