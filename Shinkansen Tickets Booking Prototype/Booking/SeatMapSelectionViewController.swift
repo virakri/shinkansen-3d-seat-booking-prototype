@@ -67,7 +67,6 @@ class SeatMapSelectionViewController: BookingViewController {
             BoxTesterNode(reservableEntity: $0)
         })
         nodes.forEach { node in
-            print(node.position)
             seatMapSceneView.contentNode.addChildNode(node)
         }
         
@@ -108,5 +107,9 @@ extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
         if offset.y < -72 {
             isPopPerforming = true
         }
+    }
+    
+    func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity) {
+        print(reservableEntity)
     }
 }

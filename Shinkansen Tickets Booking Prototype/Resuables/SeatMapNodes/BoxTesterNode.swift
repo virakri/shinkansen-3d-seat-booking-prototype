@@ -10,11 +10,12 @@ import SceneKit
 
 class BoxTesterNode: ReservableNode {
     
-    var isHighlighted: Bool = false
-    
-    var isSelected: Bool = false
-    
-    var isEnabled: Bool = true
+    override var isHighlighted: Bool {
+        didSet {
+            super.isHighlighted = isHighlighted
+            setupTheme()
+        }
+    }
     
     override init(reservableEntity: ReservableEntity) {
         super.init(reservableEntity: reservableEntity)
@@ -26,20 +27,23 @@ class BoxTesterNode: ReservableNode {
         setupTheme()
     }
     
+    private var material: SCNMaterial? {
+        return geometry?.firstMaterial
+    }
+    
     func setupTheme() {
-        let material = geometry?.firstMaterial
         
         material?.diffuse.contents = UIColor.yellow
         
-        if isHighlighted {
+        if self.isHighlighted {
             material?.diffuse.contents = UIColor.red
         }
         
-        if isSelected {
+        if self.isSelected {
             material?.diffuse.contents = UIColor.yellow
         }
         
-        if !isEnabled {
+        if !self.isEnabled {
             material?.diffuse.contents = UIColor.gray
         }
     }

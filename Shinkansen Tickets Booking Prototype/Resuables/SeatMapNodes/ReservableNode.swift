@@ -9,11 +9,21 @@
 import SceneKit
 
 class ReservableNode: SCNNode {
+    
+    static let defaultBitMask = 1 << 2
+    
     let reservableEntity: ReservableEntity
+    
+    var isHighlighted: Bool = false
+    
+    var isSelected: Bool = false
+    
+    var isEnabled: Bool = true
     
     init(reservableEntity: ReservableEntity) {
         self.reservableEntity = reservableEntity
         super.init()
+        categoryBitMask = Self.defaultBitMask
     }
     
     required init?(coder: NSCoder) {

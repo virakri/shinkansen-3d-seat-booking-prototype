@@ -11,10 +11,12 @@ import SceneKit
 
 protocol SeatMapSceneViewDelegate {
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint)
+    func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity)
 }
 
 extension SeatMapSceneViewDelegate {
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint) { }
+    func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity) {}
 }
 
 class SeatMapSceneView: SCNView {
@@ -68,17 +70,44 @@ class SeatMapSceneView: SCNView {
         addGestureRecognizer(panGesture)
     }
     
+    private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> ReservableNode? {
+        if let touch = touches.first {
+            let firstHitTestResult = hitTest(touch.location(in: self), options: [.categoryBitMask: ReservableNode.defaultBitMask]).first
+            if let node = firstHitTestResult?.node as? ReservableNode {
+                return node
+            }
+        }
+        return nil
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        super.touchesBegan(touches, with: event)
         contentNode.removeAction(forKey: "panDrift")
+        
+        if let node = filterReservationNodeFrom(touches){
+            selectingSeat = node
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        super.touchesMoved(touches, with: event)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        if let node = filterReservationNodeFrom(touches), node == selectingSeat {
+            node.isHighlighted = false
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        if let node = filterReservationNodeFrom(touches) {
+            if node != selectingSeat {
+                selectingSeat?.isHighlighted = false
+            }
+            selectingSeat = nil
+            selectedSeat = node
+        }
     }
     
     // Dirty zones
@@ -100,6 +129,31 @@ class SeatMapSceneView: SCNView {
                 .sceneViewDidPanFurtherUpperBoundLimit(by: CGPoint(x: 0,
                                                                    y: upperBoundLimitOffsetY / 0.04))
             
+        }
+    }
+    
+    private var selectingSeat: ReservableNode? {
+        didSet {
+            if let selectingSeat = selectingSeat, selectingSeat != selectingSeat {
+                selectingSeat.isHighlighted = true
+            }
+        }
+    }
+    
+    private var selectedSeat: ReservableNode? {
+        didSet {
+            if oldValue != selectedSeat {
+                oldValue?.isHighlighted = false
+                if selectingSeat != selectedSeat {
+                    selectingSeat?.isHighlighted = false
+                }
+                selectedSeat?.isHighlighted = true
+                selectingSeat = nil
+                
+                if let reservableEntity = selectedSeat?.reservableEntity {
+                    seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
+                }
+            }
         }
     }
     
