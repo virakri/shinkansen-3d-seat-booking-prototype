@@ -59,6 +59,11 @@
 		D0F6D8BA22A0869400872B5B /* HeadlineLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8B922A0869400872B5B /* HeadlineLabelSetView.swift */; };
 		D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8BB22A0930100872B5B /* CGFloat.swift */; };
 		D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9E35B22A87C57003B339D /* BackButtonControl.swift */; };
+		E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04BCCF522AAA626002E29DE /* SeatMap.swift */; };
+		E0CF322A22AAB44900BC4788 /* SeatClassEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322922AAB44900BC4788 /* SeatClassEntity.swift */; };
+		E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */; };
+		E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */; };
+		E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */; };
 		F3B92A8562906132AD800542 /* Pods_Shinkansen_Tickets_Booking_Prototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +125,11 @@
 		D0F6D8B922A0869400872B5B /* HeadlineLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineLabelSetView.swift; sourceTree = "<group>"; };
 		D0F6D8BB22A0930100872B5B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		D0F9E35B22A87C57003B339D /* BackButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonControl.swift; sourceTree = "<group>"; };
+		E04BCCF522AAA626002E29DE /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
+		E0CF322922AAB44900BC4788 /* SeatClassEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassEntity.swift; sourceTree = "<group>"; };
+		E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableEntity.swift; sourceTree = "<group>"; };
+		E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformedModelEntity.swift; sourceTree = "<group>"; };
+		E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +168,7 @@
 				D074B1E6228B926100791F94 /* DesignSystem */,
 				D053EBDD229D52A3007CCFFE /* MoleculeComponents */,
 				D053EBD7229D4BFC007CCFFE /* OrganismComponents */,
+				E04BCCF422AAA602002E29DE /* SeatMapNodes */,
 				D053EBD8229D4C0E007CCFFE /* ViewControllers */,
 				D053EBCD229CB432007CCFFE /* Extensions */,
 			);
@@ -176,6 +187,7 @@
 				D053EBD0229CB772007CCFFE /* UIView.swift */,
 				D053EBDB229D4D3D007CCFFE /* Notification.swift */,
 				D042A71422A70C7600A0CBFC /* CALayer.swift */,
+				E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +287,7 @@
 				D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */,
 				D053EBCC229CB413007CCFFE /* Resuables */,
 				D074B1D9228B90AC00791F94 /* Booking */,
+				E04BCCF722AAA686002E29DE /* Models */,
 				D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */,
 				D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */,
 				D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */,
@@ -291,6 +304,24 @@
 				2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E04BCCF422AAA602002E29DE /* SeatMapNodes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SeatMapNodes;
+			sourceTree = "<group>";
+		};
+		E04BCCF722AAA686002E29DE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E04BCCF522AAA626002E29DE /* SeatMap.swift */,
+				E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */,
+				E0CF322922AAB44900BC4788 /* SeatClassEntity.swift */,
+				E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,9 +457,12 @@
 				D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */,
 				D053EBDF229D52BB007CCFFE /* Label.swift in Sources */,
 				D074B1EC228B928100791F94 /* LayerStyle.swift in Sources */,
+				E0CF322A22AAB44900BC4788 /* SeatClassEntity.swift in Sources */,
 				D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */,
 				D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */,
+				E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */,
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
+				E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */,
 				D0AD0AC522A9712600F2E976 /* SeatMapView.swift in Sources */,
 				D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */,
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
@@ -440,6 +474,7 @@
 				D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */,
 				D0F175BD22A29AFE0095631F /* UIEdgeInsets.swift in Sources */,
 				D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */,
+				E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */,
 				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
 				D09F3F1322A20239005E59C0 /* HeaderRouteInformationView.swift in Sources */,
 				D053EBD3229D29B3007CCFFE /* UILabel.swift in Sources */,
@@ -454,6 +489,7 @@
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
 				D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */,
+				E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */,
 				D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */,
 				D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */,
 				D074B1E2228B90AC00791F94 /* SeatMapSelectionViewController.swift in Sources */,

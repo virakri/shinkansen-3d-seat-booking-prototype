@@ -58,19 +58,19 @@ extension UIColor {
         var contentOnCallToAction: UIColor
     }
     
-    struct SeatClass {
+    struct _SeatClass {
         var granClass: UIColor
         var green: UIColor
         var ordinary: UIColor
     }
     
-    static let lightModeSeatClass: SeatClass = SeatClass(granClass: UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0.4235294118, green: 0.3568627451, blue: 0, alpha: 1) : #colorLiteral(red: 0.7333333333, green: 0.6196078431, blue: 0, alpha: 1),
+    static let lightModeSeatClass: _SeatClass = _SeatClass(granClass: UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0.4235294118, green: 0.3568627451, blue: 0, alpha: 1) : #colorLiteral(red: 0.7333333333, green: 0.6196078431, blue: 0, alpha: 1),
                                                          green:
         UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0.2588235294, green: 0.4980392157, blue: 0, alpha: 1) : #colorLiteral(red: 0.4941176471, green: 0.8274509804, blue: 0.1294117647, alpha: 1),
                                                          ordinary:
         UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0, green: 0.3333333333, blue: 0.1529411765, alpha: 1) : #colorLiteral(red: 0, green: 0.5450980392, blue: 0.2470588235, alpha: 1))
     
-    static let darkModeSeatClass: SeatClass = SeatClass(granClass:#colorLiteral(red: 0.8745098039, green: 0.831372549, blue: 0.5803921569, alpha: 1),
+    static let darkModeSeatClass: _SeatClass = _SeatClass(granClass:#colorLiteral(red: 0.8745098039, green: 0.831372549, blue: 0.5803921569, alpha: 1),
                                                          green: #colorLiteral(red: 0.7450980392, green: 0.9450980392, blue: 0.5254901961, alpha: 1),
                                                          ordinary:#colorLiteral(red: 0.6862745098, green: 0.9098039216, blue: 0.7882352941, alpha: 1))
     
