@@ -1,0 +1,1720 @@
+{
+  "fromStationName" : "Tokyo",
+  "id" : 0,
+  "trainSchedules" : [
+    {
+      "toTime" : "1970-01-01T06:38:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 0,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T06:12:00+09:00",
+      "trainNumber" : "Yamabiko 121"
+    },
+    {
+      "toTime" : "1970-01-01T06:38:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 1,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T06:12:00+09:00",
+      "trainNumber" : "Tsubasa 121"
+    },
+    {
+      "toTime" : "1970-01-01T06:42:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 2,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T06:16:00+09:00",
+      "trainNumber" : "Kagayaki 501"
+    },
+    {
+      "toTime" : "1970-01-01T06:54:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 3,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T06:28:00+09:00",
+      "trainNumber" : "Hakutaka 551"
+    },
+    {
+      "toTime" : "1970-01-01T06:58:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 4,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T06:32:00+09:00",
+      "trainNumber" : "Hayabusa 1"
+    },
+    {
+      "toTime" : "1970-01-01T06:58:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 5,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T06:32:00+09:00",
+      "trainNumber" : "Komachi 1"
+    },
+    {
+      "toTime" : "1970-01-01T07:02:00+09:00",
+      "trainImageName" : "e4-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 6,
+      "trainName" : "E4 Series",
+      "fromTime" : "1970-01-01T06:36:00+09:00",
+      "trainNumber" : "Tanigawa 401"
+    },
+    {
+      "toTime" : "1970-01-01T07:18:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 7,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T06:52:00+09:00",
+      "trainNumber" : "Asama 601"
+    },
+    {
+      "toTime" : "1970-01-01T07:34:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 8,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T07:08:00+09:00",
+      "trainNumber" : "Yamabiko 123"
+    },
+    {
+      "toTime" : "1970-01-01T07:34:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 9,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T07:08:00+09:00",
+      "trainNumber" : "Tsubasa 123"
+    },
+    {
+      "toTime" : "1970-01-01T07:50:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 10,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T07:24:00+09:00",
+      "trainNumber" : "Asama 603"
+    },
+    {
+      "toTime" : "1970-01-01T07:58:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 11,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T07:32:00+09:00",
+      "trainNumber" : "Yamabiko 125"
+    },
+    {
+      "toTime" : "1970-01-01T08:02:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+
+          "price" : 4000
+        }
+      ],
+      "id" : 12,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T07:36:00+09:00",
+      "trainNumber" : "Hayabusa 3"
+    },
+    {
+      "toTime" : "1970-01-01T08:02:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 13,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T07:36:00+09:00",
+      "trainNumber" : "Komachi 3"
+    },
+    {
+      "toTime" : "1970-01-01T08:14:00+09:00",
+      "trainImageName" : "e4-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 14,
+      "trainName" : "E4 Series",
+      "fromTime" : "1970-01-01T07:48:00+09:00",
+      "trainNumber" : "Max Toki 305"
+    },
+    {
+      "toTime" : "1970-01-01T08:18:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 15,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T07:52:00+09:00",
+      "trainNumber" : "Hakutaka 553"
+    },
+    {
+      "toTime" : "1970-01-01T08:26:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 16,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T08:00:00+09:00",
+      "trainNumber" : "Yamabiko 175"
+    },
+    {
+      "toTime" : "1970-01-01T08:26:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 17,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T08:00:00+09:00",
+      "trainNumber" : "Tsubasa 175"
+    },
+    {
+      "toTime" : "1970-01-01T08:34:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 18,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T08:08:00+09:00",
+      "trainNumber" : "Yamabiko 127"
+    },
+    {
+      "toTime" : "1970-01-01T08:34:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 19,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T08:08:00+09:00",
+      "trainNumber" : "Tsubasa 127"
+    },
+    {
+      "toTime" : "1970-01-01T08:38:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 20,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T08:12:00+09:00",
+      "trainNumber" : "Kagayaki 512"
+    },
+    {
+      "toTime" : "1970-01-01T08:44:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 21,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T08:20:00+09:00",
+      "trainNumber" : "Hayabusa 5"
+    },
+    {
+      "toTime" : "1970-01-01T08:58:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 22,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T08:32:00+09:00",
+      "trainNumber" : "Asama 655"
+    },
+    {
+      "toTime" : "1970-01-01T09:02:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 23,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T08:36:00+09:00",
+      "trainNumber" : "Kagayaki 505"
+    },
+    {
+      "toTime" : "1970-01-01T09:06:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 24,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T08:40:00+09:00",
+      "trainNumber" : "Hayabusa 7"
+    },
+    {
+      "toTime" : "1970-01-01T09:06:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 25,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T08:40:00+09:00",
+      "trainNumber" : "Komachi 7"
+    },
+    {
+      "toTime" : "1970-01-01T09:09:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 26,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T08:44:00+09:00",
+      "trainNumber" : "Hakutaka 555"
+    },
+    {
+      "toTime" : "1970-01-01T09:22:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 27,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T08:56:00+09:00",
+      "trainNumber" : "Yamabiko 129"
+    },
+    {
+      "toTime" : "1970-01-01T09:22:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 28,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T08:56:00+09:00",
+      "trainNumber" : "Tsubasa 129"
+    },
+    {
+      "toTime" : "1970-01-01T09:33:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+
+        }
+      ],
+      "id" : 29,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T09:08:00+09:00",
+      "trainNumber" : "Hayabusa 9"
+    },
+    {
+      "toTime" : "1970-01-01T09:33:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 30,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T09:08:00+09:00",
+      "trainNumber" : "Komachi 9"
+    },
+    {
+      "toTime" : "1970-01-01T09:46:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 31,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T09:20:00+09:00",
+      "trainNumber" : "Kagayaki 507"
+    },
+    {
+      "toTime" : "1970-01-01T09:48:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 32,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T09:24:00+09:00",
+      "trainNumber" : "Yamabiko 131"
+    },
+    {
+      "toTime" : "1970-01-01T09:48:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 33,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T09:24:00+09:00",
+      "trainNumber" : "Tsubasa 131"
+    },
+    {
+      "toTime" : "1970-01-01T10:10:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 34,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T09:44:00+09:00",
+      "trainNumber" : "Asama 607"
+    },
+    {
+      "toTime" : "1970-01-01T10:00:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 35,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T09:48:00+09:00",
+      "trainNumber" : "Yamabiko 177"
+    },
+    {
+      "toTime" : "1970-01-01T10:00:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 36,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T09:48:00+09:00",
+      "trainNumber" : "Tsubasa 177"
+    },
+    {
+      "toTime" : "1970-01-01T10:18:00+09:00",
+      "trainImageName" : "e4-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 37,
+      "trainName" : "E4 Series",
+      "fromTime" : "1970-01-01T09:52:00+09:00",
+      "trainNumber" : "Max Toki 361"
+    },
+    {
+      "toTime" : "1970-01-01T10:34:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 38,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T10:08:00+09:00",
+      "trainNumber" : "Kagayaki 523"
+    },
+    {
+      "toTime" : "1970-01-01T10:26:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 39,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T10:14:00+09:00",
+      "trainNumber" : "Yamabiko 133"
+    },
+    {
+      "toTime" : "1970-01-01T10:26:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 40,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T10:14:00+09:00",
+      "trainNumber" : "Tsubasa 133"
+    },
+    {
+      "toTime" : "1970-01-01T10:30:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 41,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T10:04:00+09:00",
+      "trainNumber" : "Hayabusa 13"
+    },
+    {
+      "toTime" : "1970-01-01T10:30:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 42,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T10:04:00+09:00",
+      "trainNumber" : "Komachi 13"
+    },
+    {
+      "toTime" : "1970-01-01T10:38:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 43,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T10:12:00+09:00",
+      "trainNumber" : "Yamabiko 207"
+    },
+    {
+      "toTime" : "1970-01-01T10:46:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 44,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T10:20:00+09:00",
+      "trainNumber" : "Hayabusa 15"
+    },
+    {
+      "toTime" : "1970-01-01T10:46:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 45,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T10:20:00+09:00",
+      "trainNumber" : "Komachi 15"
+    },
+    {
+      "toTime" : "1970-01-01T10:48:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 46,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T10:24:00+09:00",
+      "trainNumber" : "Kagayaki 509"
+    },
+    {
+      "toTime" : "1970-01-01T10:54:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 47,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T10:28:00+09:00",
+      "trainNumber" : "Yamabiko 161"
+    },
+    {
+      "toTime" : "1970-01-01T11:10:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 48,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T10:44:00+09:00",
+      "trainNumber" : "Hayabusa 17"
+    },
+    {
+      "toTime" : "1970-01-01T11:10:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 49,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T10:44:00+09:00",
+      "trainNumber" : "Komachi 17"
+    },
+    {
+      "toTime" : "1970-01-01T11:14:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 50,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T10:48:00+09:00",
+      "trainNumber" : "Kagayaki 525"
+    },
+    {
+      "toTime" : "1970-01-01T11:26:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 51,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T11:00:00+09:00",
+      "trainNumber" : "Yamabiko 135"
+    },
+    {
+      "toTime" : "1970-01-01T11:26:00+09:00",
+      "trainImageName" : "e3-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 52,
+      "trainName" : "E3 Series",
+      "fromTime" : "1970-01-01T11:00:00+09:00",
+      "trainNumber" : "Tsubasa 135"
+    },
+    {
+      "toTime" : "1970-01-01T11:46:00+09:00",
+      "trainImageName" : "e5-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 53,
+      "trainName" : "E5 Series",
+      "fromTime" : "1970-01-01T11:20:00+09:00",
+      "trainNumber" : "Hayabusa 19"
+    },
+    {
+      "toTime" : "1970-01-01T11:46:00+09:00",
+      "trainImageName" : "e6-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 54,
+      "trainName" : "E6 Series",
+      "fromTime" : "1970-01-01T11:20:00+09:00",
+      "trainNumber" : "Komachi 19"
+    },
+    {
+      "toTime" : "1970-01-01T11:50:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 55,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T11:24:00+09:00",
+      "trainNumber" : "Hakutaka 561"
+    },
+    {
+      "toTime" : "1970-01-01T11:54:00+09:00",
+      "trainImageName" : "e2-series",
+      "seatClasses" : [
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 56,
+      "trainName" : "E2 Series",
+      "fromTime" : "1970-01-01T11:28:00+09:00",
+      "trainNumber" : "Yamabiko 163"
+    },
+    {
+      "toTime" : "1970-01-01T11:58:00+09:00",
+      "trainImageName" : "e7-series",
+      "seatClasses" : [
+        {
+          "id" : 0,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Gran Class",
+          "description" : "A first class travel with an experience of luxury.",
+          "price" : 11000
+        },
+        {
+          "id" : 1,
+          "seatClass" : "green",
+          "isAvailable" : true,
+          "name" : "Green",
+          "description" : "A larger seat, a footrest, more space between the seats.",
+          "price" : 7000
+        },
+        {
+          "id" : 2,
+          "seatClass" : "granClass",
+          "isAvailable" : true,
+          "name" : "Ordinary",
+          "description" : "seat arranged in 3+2 abreast configuration.",
+          "price" : 4000
+        }
+      ],
+      "id" : 57,
+      "trainName" : "E7 Series",
+      "fromTime" : "1970-01-01T11:32:00+09:00",
+      "trainNumber" : "Asama 637"
+    }
+  ],
+  "date" : "1970-01-01T00:00:00+09:00",
+  "toStationJPName" : "大宮",
+  "toStationName" : "Ōmiya",
+  "fromStationJPName" : "東京"
+}

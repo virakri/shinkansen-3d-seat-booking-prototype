@@ -9,7 +9,7 @@
 import Foundation
 
 struct TrainSchedule: Codable {
-    let id: String
+    let id: Int
     let fromTime: Date
     let toTime: Date
     let trainNumber: String
