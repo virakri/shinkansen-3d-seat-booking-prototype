@@ -95,6 +95,10 @@ class SeatMapSceneView: SCNView {
         }
     }
     
+    func setupValue(seatMap: SeatMap) {
+        
+    }
+    
     var perspectiveVelocity: Float?
     
     var contentZPositionLimit: ClosedRange<Float> = -1...25
@@ -181,24 +185,5 @@ class SeatMapSceneView: SCNView {
         default:
         break
         }
-    }
-}
-
-class SeatMapView: UIView {
-    
-    var seatMapSceneView: SeatMapSceneView!
-    
-    init() {
-        seatMapSceneView = SeatMapSceneView()
-        super.init(frame: .zero)
-        setupView()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupView() {
-        addSubview(seatMapSceneView, withConstaintEquals: .edges)
     }
 }

@@ -1,0 +1,128 @@
+{
+  "id" : 0,
+  "transformedModelEntity" : {
+    "rotation" : {
+      "x" : 0,
+      "y" : 0,
+      "z" : 0
+    },
+    "modelEntity" : "emptyModelEntity",
+    "position" : {
+      "x" : 0,
+      "y" : 0,
+      "z" : 0
+    }
+  },
+  "name" : "E7 Series",
+  "seatClassEntities" : [
+    {
+      "reservableEntities" : [
+        {
+            "id" : 0,
+            "isAvailable" : true,
+            "transformedModelEntity" : {
+              "rotation" : {
+                "x" : 0,
+                "y" : 0,
+                "z" : 0
+              },
+              "modelEntity" : "boxModelEntity",
+              "position" : {
+                "x" : 0,
+                "y" : 1.3,
+                "z" : 5
+              }
+            },
+            "name" : "A1",
+            "carNumber" : "Car 1"
+          },
+          {
+            "id" : 1,
+            "isAvailable" : true,
+            "transformedModelEntity" : {
+              "rotation" : {
+                "x" : 0,
+                "y" : 0,
+                "z" : 0
+              },
+              "modelEntity" : "boxModelEntity",
+              "position" : {
+                "x" : 0,
+                "y" : 1.3,
+                "z" : 6
+              }
+            },
+            "name" : "A2",
+            "carNumber" : "Car 1"
+          },
+          {
+            "id" : 2,
+            "isAvailable" : true,
+            "transformedModelEntity" : {
+              "rotation" : {
+                "x" : 0,
+                "y" : 0,
+                "z" : 0
+              },
+              "modelEntity" : "boxModelEntity",
+              "position" : {
+                "x" : 0,
+                "y" : 1.3,
+                "z" : 7
+              }
+            },
+            "name" : "A3",
+            "carNumber" : "Car 1"
+          },
+          {
+            "id" : 3,
+            "isAvailable" : true,
+            "transformedModelEntity" : {
+              "rotation" : {
+                "x" : 0,
+                "y" : 0,
+                "z" : 0
+              },
+              "modelEntity" : "boxModelEntity",
+              "position" : {
+                "x" : 0,
+                "y" : 1.3,
+                "z" : 8
+              }
+            },
+            "name" : "A4",
+            "carNumber" : "Car 1"
+          }
+      ],
+      "id" : 0,
+      "viewableRange" : [
+        {
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        },
+        {
+          "x" : 1,
+          "y" : 1,
+          "z" : 1
+        }
+      ],
+      "transformedModelEntity" : {
+        "rotation" : {
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        },
+        "modelEntity" : "boxModelEntity",
+        "position" : {
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }
+      },
+      "carNumber" : "Car 1–7",
+      "seatClass" : "granClass",
+      "name" : "Gran Class"
+    }
+  ]
+}

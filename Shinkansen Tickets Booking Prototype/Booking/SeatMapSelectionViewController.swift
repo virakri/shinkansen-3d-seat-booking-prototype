@@ -12,7 +12,7 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var mainCardView: CardControl!
     
-    var seatMapSceneView: SeatMapView!
+    var seatMapSceneView: SeatMapSceneView!
     
     var selectedSeatID: Int?
     
@@ -30,7 +30,7 @@ class SeatMapSelectionViewController: BookingViewController {
                                    withConstaintEquals: .edges,
                                    insetsConstant: .init(bottom: -mainCardView.layer.cornerRadius))
         
-        seatMapSceneView = SeatMapView()
+        seatMapSceneView = SeatMapSceneView()
         mainCardView.contentView.addSubview(seatMapSceneView,
                                             withConstaintEquals: .edges)
         
