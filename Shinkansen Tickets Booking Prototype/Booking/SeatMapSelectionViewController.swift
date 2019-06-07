@@ -31,6 +31,7 @@ class SeatMapSelectionViewController: BookingViewController {
                                    insetsConstant: .init(bottom: -mainCardView.layer.cornerRadius))
         
         seatMapSceneView = SeatMapSceneView()
+
         mainCardView.contentView.addSubview(seatMapSceneView,
                                             withConstaintEquals: .edges)
         

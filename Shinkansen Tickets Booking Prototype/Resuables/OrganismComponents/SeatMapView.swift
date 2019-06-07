@@ -84,10 +84,6 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    func setupValue(seatMap: SeatMap) {
-        
-    }
-    
     var perspectiveVelocity: Float?
     
     var contentZPositionLimit: ClosedRange<Float> = -1...25

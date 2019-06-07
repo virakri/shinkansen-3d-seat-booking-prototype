@@ -26,25 +26,29 @@ class TrainSelectionViewController: BookingViewController {
         super.viewDidAppear(animated)
         if !didFirstLoad {
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                [weak self] in
-                
-                self?.mainTableView.visibleCells.enumerated().forEach { (index, cell) in
-                    guard let cell = cell as? TrainScheduleTableViewCell else { return }
-                    cell.preparePropertiesForAnimation()
-                    cell.transform.ty = 24 * CGFloat(index)
-                    var animationStyle = UIViewAnimationStyle.transitionAnimationStyle
-                    animationStyle.duration = 0.05 * TimeInterval(index) + 0.5
-                    UIView.animate(withStyle: animationStyle, animations: {
-                        cell.setPropertiesToIdentity()
-                        cell.transform.ty = 0
-                    })
+            fetchData { result in
+                if case .success(let seatMap) = result {
+                    
+                    DispatchQueue.main.async {
+                        [weak self] in
+                        
+                        self?.mainTableView.visibleCells.enumerated().forEach { (index, cell) in
+                            guard let cell = cell as? TrainScheduleTableViewCell else { return }
+                            cell.preparePropertiesForAnimation()
+                            cell.transform.ty = 24 * CGFloat(index)
+                            var animationStyle = UIViewAnimationStyle.transitionAnimationStyle
+                            animationStyle.duration = 0.05 * TimeInterval(index) + 0.5
+                            UIView.animate(withStyle: animationStyle, animations: {
+                                cell.setPropertiesToIdentity()
+                                cell.transform.ty = 0
+                            })
+                        }
+                        self?.didFirstLoad = true
+                        self?.mainTableView.isUserInteractionEnabled = true
+                        self?.loadingActivityIndicatorView.stopAnimating()
+                    }
                 }
-                self?.didFirstLoad = true
-                self?.mainTableView.isUserInteractionEnabled = true
-                self?.loadingActivityIndicatorView.stopAnimating()
             }
-            
         }
     }
     
@@ -110,5 +114,21 @@ extension TrainSelectionViewController: UITableViewDataSource {
         seatClassSelectionViewController.headerInformation?.trainNumber = "Hayabusa 14"
         seatClassSelectionViewController.headerInformation?.trainName = "E6 Series"
         navigationController?.pushViewController(seatClassSelectionViewController, animated: true)
+    }
+    
+    private func fetchData(completion: @escaping (Result<SeatMap, Error>) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            sleep(1)
+            guard let data = NSDataAsset(name: "SeatMap")?.data else {
+                return completion(.failure(NSError(domain: "SeatMap", code: -900, userInfo: [NSLocalizedFailureReasonErrorKey: "Please check SeatMap.json in assets directory."])))
+            }
+            do {
+                let decoder = JSONDecoder()
+                let seatMap = try decoder.decode(SeatMap.self, from: data)
+                completion(.success(seatMap))
+            } catch (let error) {
+                completion(.failure(error))
+            }
+        }
     }
 }
