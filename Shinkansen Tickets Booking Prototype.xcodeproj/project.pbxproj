@@ -31,6 +31,7 @@
 		D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD9229D4C31007CCFFE /* ViewController.swift */; };
 		D053EBDC229D4D3D007CCFFE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBDB229D4D3D007CCFFE /* Notification.swift */; };
 		D053EBDF229D52BB007CCFFE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBDE229D52BB007CCFFE /* Label.swift */; };
+		D0689C1C22AABBAC00EE5660 /* BoxTesterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */; };
 		D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */; };
 		D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */; };
 		D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */; };
@@ -95,6 +96,7 @@
 		D053EBD9229D4C31007CCFFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D053EBDB229D4D3D007CCFFE /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D053EBDE229D52BB007CCFFE /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxTesterNode.swift; sourceTree = "<group>"; };
 		D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeInitialViewController.swift; sourceTree = "<group>"; };
 		D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCriteriaViewController.swift; sourceTree = "<group>"; };
 		D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainSelectionViewController.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 		E04BCCF422AAA602002E29DE /* SeatMapNodes */ = {
 			isa = PBXGroup;
 			children = (
+				D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */,
 			);
 			path = SeatMapNodes;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */,
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
 				E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */,
+				D0689C1C22AABBAC00EE5660 /* BoxTesterNode.swift in Sources */,
 				D0AD0AC522A9712600F2E976 /* SeatMapView.swift in Sources */,
 				D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */,
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
