@@ -110,14 +110,15 @@ class SeatClassTableViewCell: UITableViewCell {
         seatImageViewHeightConstraint?.constant = CGFloat(basedHeight).systemSizeMuliplier()
     }
     
-    public func setupValue(seatClass: SeatClassIconImageView.SeatClass,
+    public func setupValue(seatClassType: SeatClassType,
                            seatClassName: String,
                            price: String? = nil,
                            description: String? = nil,
-                           trainImage: UIImage? = nil) {
-        seatClassIconImageView.setSeatClass(to: seatClass)
+                           seatImage: UIImage? = nil) {
+        seatClassIconImageView.setSeatClass(to: seatClassType)
         seatClassNameSetView.setupValue(title: seatClassName, subtitle: price)
         descriptionLabel.text = description
+        setupTheme()
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {

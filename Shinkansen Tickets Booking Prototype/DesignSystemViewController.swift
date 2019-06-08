@@ -529,11 +529,11 @@ class DesignSystemViewController: ViewController {
                                     let seatClassTableViewCell =
                                         SeatClassTableViewCell(style: .default, reuseIdentifier: nil)
                                     seatClassTableViewCell
-                                        .setupValue(seatClass: .green,
+                                        .setupValue(seatClassType: .green,
                                                     seatClassName: "GranClass",
                                                     price: "¥24,000",
                                                     description: "a first class travel with an experience of luxury ",
-                                                    trainImage: nil)
+                                                    seatImage: nil)
                                     let seatClassTableViewCellContentView = seatClassTableViewCell.contentView
                                     return seatClassTableViewCellContentView
                                 }(), title: "Seat Class Table View Cell",

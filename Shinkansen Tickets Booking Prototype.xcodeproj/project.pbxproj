@@ -65,6 +65,8 @@
 		D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8BB22A0930100872B5B /* CGFloat.swift */; };
 		D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9E35B22A87C57003B339D /* BackButtonControl.swift */; };
 		E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04BCCF522AAA626002E29DE /* SeatMap.swift */; };
+		E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA439422AC4A0F00FC3A72 /* Formatter.swift */; };
+		E0BA439722AC4B7300FC3A72 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA439622AC4B7300FC3A72 /* Date.swift */; };
 		E0CF322A22AAB44900BC4788 /* SeatClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322922AAB44900BC4788 /* SeatClass.swift */; };
 		E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */; };
 		E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */; };
@@ -139,6 +141,8 @@
 		D0F6D8BB22A0930100872B5B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		D0F9E35B22A87C57003B339D /* BackButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonControl.swift; sourceTree = "<group>"; };
 		E04BCCF522AAA626002E29DE /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
+		E0BA439422AC4A0F00FC3A72 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		E0BA439622AC4B7300FC3A72 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E0CF322922AAB44900BC4788 /* SeatClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClass.swift; sourceTree = "<group>"; };
 		E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableEntity.swift; sourceTree = "<group>"; };
 		E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformedModelEntity.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */,
+				E0BA439422AC4A0F00FC3A72 /* Formatter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				D053EBDB229D4D3D007CCFFE /* Notification.swift */,
 				D042A71422A70C7600A0CBFC /* CALayer.swift */,
 				E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */,
+				E0BA439622AC4B7300FC3A72 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 				D0EAF4B222A442DD002A9282 /* StationCardControl.swift in Sources */,
 				E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */,
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
+				E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
 				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,
 				D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */,
@@ -497,6 +504,7 @@
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
 				D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */,
+				E0BA439722AC4B7300FC3A72 /* Date.swift in Sources */,
 				E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,

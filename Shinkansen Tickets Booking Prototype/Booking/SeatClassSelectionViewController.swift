@@ -12,6 +12,8 @@ class SeatClassSelectionViewController: BookingViewController {
     
     var selectedIndexPath: IndexPath?
     
+    var seatClasses: [SeatClass] = []
+    
     var seatMap: SeatMap?
     
     override func viewDidLoad() {
@@ -51,18 +53,19 @@ class SeatClassSelectionViewController: BookingViewController {
 
 extension SeatClassSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return seatClasses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SeatClassTableViewCell",
                                                        for: indexPath) as? SeatClassTableViewCell else { return UITableViewCell() }
+        let seatClass = seatClasses[indexPath.row]
         
-        cell.setupValue(seatClass: .granClass,
-                        seatClassName: "Green Car",
-                        price: "$14,320",
-                        description: "a first class travel with an experience of luxury ",
-                        trainImage: nil)
+        cell.setupValue(seatClassType: seatClass.seatClass,
+                        seatClassName: seatClass.name,
+                        price: YenFormatter().string(for: seatClass.price),
+                        description: seatClass.description,
+                        seatImage: nil)
         return cell
     }
     

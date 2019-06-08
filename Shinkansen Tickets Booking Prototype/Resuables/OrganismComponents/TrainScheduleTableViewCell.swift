@@ -107,15 +107,23 @@ class TrainScheduleTableViewCell: UITableViewCell {
                            amountOfTime: String? = nil,
                            trainNumber: String? = nil,
                            trainName: String? = nil,
+                           showGranClassIcon: Bool = true,
                            isGranClassAvailable: Bool = true,
+                           showGreenIcon: Bool = true,
                            isGreenAvailable: Bool = true,
+                           showOrdinaryIcon: Bool = true,
                            isOrdinaryAvailable: Bool = true,
                            price: String? = nil,
                            trainImage: UIImage? = nil) {
         timeLabelSetView.setupValue(title: time, subtitle: amountOfTime)
         trainLabelSetView.setupValue(title: trainNumber, subtitle: trainName)
+        granClassIconImageView.isHidden = !showGranClassIcon
         granClassIconImageView.isAvailable = isGranClassAvailable
+        
+        greenIconImageView.isHidden = !showGreenIcon
         greenIconImageView.isAvailable = isGreenAvailable
+        
+        ordinaryIconImageView.isHidden = !showOrdinaryIcon
         ordinaryIconImageView.isAvailable = isOrdinaryAvailable
         priceLabel.text = price
     }

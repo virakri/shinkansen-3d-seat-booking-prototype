@@ -7,51 +7,50 @@
 //
 
 import UIKit
+
+
+extension SeatClassType {
+    func image() -> UIImage {
+        switch self {
+        case .granClass:
+            return #imageLiteral(resourceName: "Icon Gran").withRenderingMode(.alwaysTemplate)
+        case .green:
+            return #imageLiteral(resourceName: "Icon Green Car").withRenderingMode(.alwaysTemplate)
+        case .ordinary:
+            return #imageLiteral(resourceName: "Icon Ordinary").withRenderingMode(.alwaysTemplate)
+        }
+    }
+    
+    func color() -> UIColor {
+        switch self {
+        case .granClass:
+            return currentColorTheme.seatClassColor.granClass
+        case .green:
+            return currentColorTheme.seatClassColor.green
+        case .ordinary:
+            return currentColorTheme.seatClassColor.ordinary
+        }
+    }
+}
+
+enum IconSize {
+    case regular
+    case small
+    
+    func width() -> CGFloat {
+        switch self {
+        case .regular:
+            return 24
+        case .small:
+            return CGFloat(16).systemSizeMuliplier().clamped(to: 12...24)
+        }
+    }
+}
+
+
 class SeatClassIconImageView: UIImageView {
     
-    enum SeatClass {
-        case granClass
-        case green
-        case ordinary
-        
-        func image() -> UIImage {
-            switch self {
-            case .granClass:
-                return #imageLiteral(resourceName: "Icon Gran").withRenderingMode(.alwaysTemplate)
-            case .green:
-                return #imageLiteral(resourceName: "Icon Green Car").withRenderingMode(.alwaysTemplate)
-            case .ordinary:
-                return #imageLiteral(resourceName: "Icon Ordinary").withRenderingMode(.alwaysTemplate)
-            }
-        }
-        
-        func color() -> UIColor {
-            switch self {
-            case .granClass:
-                return currentColorTheme.seatClassColor.granClass
-            case .green:
-                return currentColorTheme.seatClassColor.green
-            case .ordinary:
-                return currentColorTheme.seatClassColor.ordinary
-            }
-        }
-    }
-    
-    enum IconSize {
-        case regular
-        case small
-        
-        func width() -> CGFloat {
-            switch self {
-            case .regular:
-                return 24
-            case .small:
-                return CGFloat(16).systemSizeMuliplier().clamped(to: 12...24)
-            }
-        }
-    }
-    
-    private(set) var seatClass: SeatClass {
+    private(set) var seatClass: SeatClassType {
         didSet {
             image = seatClass.image()
         }
@@ -65,7 +64,7 @@ class SeatClassIconImageView: UIImageView {
         }
     }
     
-    init(seatClass: SeatClass,
+    init(seatClass: SeatClassType,
          iconSize: IconSize) {
         self.seatClass = seatClass
         self.iconSize = iconSize
@@ -91,7 +90,7 @@ class SeatClassIconImageView: UIImageView {
         alpha = isAvailable ? 1 : DesignSystem.alpha.disabled
     }
     
-    public func setSeatClass(to seatClass: SeatClass) {
+    public func setSeatClass(to seatClass: SeatClassType) {
         self.seatClass = seatClass
     }
 }

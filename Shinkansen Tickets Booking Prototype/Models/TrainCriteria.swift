@@ -24,7 +24,7 @@ extension TrainCriteria {
         DispatchQueue.global(qos: .background).async {
             sleep(1)
             guard let data = NSDataAsset(name: "TrainCriteria")?.data else {
-                return completion(.failure(NSError(domain: "SeatMap", code: -900, userInfo: [NSLocalizedFailureReasonErrorKey: "Please check SeatMap.json in assets directory."])))
+                return completion(.failure(NSError(domain: "SeatMap", code: -900, userInfo: [NSLocalizedFailureReasonErrorKey: "Please check TrainCriteria.json in assets directory."])))
             }
             do {
                 let decoder = JSONDecoder()

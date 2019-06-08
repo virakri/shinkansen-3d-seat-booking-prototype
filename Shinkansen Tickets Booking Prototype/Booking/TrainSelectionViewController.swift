@@ -17,7 +17,11 @@ class TrainSelectionViewController: BookingViewController {
     
     var loadingActivityIndicatorView: UIActivityIndicatorView!
     
-    var trainCriteria: TrainCriteria?
+    var trainCriteria: TrainCriteria? {
+        didSet {
+            mainTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +34,9 @@ class TrainSelectionViewController: BookingViewController {
             
             TrainCriteria.fetchData { [weak self] result in
                 if case .success(let trainCriteria) = result {
-                    self?.trainCriteria = trainCriteria
                     DispatchQueue.main.async {
                         [weak self] in
-                        
+                        self?.trainCriteria = trainCriteria
                         self?.mainTableView.visibleCells.enumerated().forEach { (index, cell) in
                             guard let cell = cell as? TrainScheduleTableViewCell else { return }
                             cell.preparePropertiesForAnimation()
@@ -86,22 +89,46 @@ class TrainSelectionViewController: BookingViewController {
 
 extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return trainCriteria?.trainSchedules.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrainScheduleTableViewCell",
                                                        for: indexPath) as? TrainScheduleTableViewCell else { return UITableViewCell() }
-        
-        cell.setupValue(time: "12:12",
-                        amountOfTime: "5hr 21m",
-                        trainNumber: "Hayabusa 8",
-                        trainName: "E7 Series",
-                        isGranClassAvailable: true,
-                        isGreenAvailable: true,
-                        isOrdinaryAvailable: true,
-                        price: "from $9,000",
-                        trainImage: nil)
+        if let trainSchedule = trainCriteria?.trainSchedules[indexPath.row] {
+            
+            let granClassObject = trainSchedule.seatClasses.first(where: {
+                $0.seatClass == .granClass
+            })
+            
+            let greenObject = trainSchedule.seatClasses.first(where: {
+                $0.seatClass == .green
+            })
+            
+            let ordinaryObject = trainSchedule.seatClasses.first(where: {
+                $0.seatClass == .ordinary
+            })
+            
+            let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap({$0})
+            print(trainSchedule.seatClasses)
+            let cheapestPrice = availableObjects.sorted(by: { (classL, classR) -> Bool in
+                return classL.price < classR.price
+            }).first?.price
+            
+            
+            cell.setupValue(time: "\(trainSchedule.fromTime.time)–\(trainSchedule.toTime.time)",
+                    amountOfTime: trainSchedule.toTime.offset(from: trainSchedule.fromTime),
+                            trainNumber: trainSchedule.trainNumber,
+                            trainName: trainSchedule.trainName,
+                            showGranClassIcon: granClassObject != nil,
+                            isGranClassAvailable: granClassObject?.isAvailable ?? false,
+                            showGreenIcon: greenObject != nil,
+                            isGreenAvailable: greenObject?.isAvailable ?? false,
+                            showOrdinaryIcon: ordinaryObject != nil,
+                            isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
+                            price: YenFormatter().string(for: cheapestPrice ?? 0), // cheapest
+                            trainImage: UIImage(named: trainSchedule.trainImageName))
+        }
         cell.contentView.alpha = didFirstLoad ? 1 : 0
         return cell
     }
@@ -109,12 +136,15 @@ extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
         selectedIndexPath = indexPath
+        let trainSchedule = trainCriteria?.trainSchedules[indexPath.row]
+        let seatClasses = trainSchedule?.seatClasses
         let seatClassSelectionViewController = SeatClassSelectionViewController()
+        seatClassSelectionViewController.seatClasses = seatClasses ?? []
         seatClassSelectionViewController.headerInformation = headerInformation
-        seatClassSelectionViewController.headerInformation?.fromTime = "8:42"
-        seatClassSelectionViewController.headerInformation?.toTime = "11:23"
-        seatClassSelectionViewController.headerInformation?.trainNumber = "Hayabusa 14"
-        seatClassSelectionViewController.headerInformation?.trainName = "E6 Series"
+        seatClassSelectionViewController.headerInformation?.fromTime = trainSchedule?.fromTime.time
+        seatClassSelectionViewController.headerInformation?.toTime = trainSchedule?.toTime.time
+        seatClassSelectionViewController.headerInformation?.trainNumber = trainSchedule?.trainNumber
+        seatClassSelectionViewController.headerInformation?.trainName = trainSchedule?.trainName
         navigationController?.pushViewController(seatClassSelectionViewController, animated: true)
     }
     

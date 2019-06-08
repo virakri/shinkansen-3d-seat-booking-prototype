@@ -175,7 +175,7 @@ class BookingCriteriaViewController: BookingViewController {
         destinationStationContainerView.setTitle(title: "Destination")
         
         fromStationCardControl.setupValue(stationNameJP: "東京", stationName: "Tokyo")
-        destinationStationCardControl.setupValue(stationNameJP: "富山", stationName: "Toyama")
+        destinationStationCardControl.setupValue(stationNameJP: "大宮", stationName: "Ōmiya")
         
         dateSegmentedContainerView.setTitle(title: "Date")
         dateSegmentedControl.items = [(title: "Today", subtitle: "Jun 3, 2019"),

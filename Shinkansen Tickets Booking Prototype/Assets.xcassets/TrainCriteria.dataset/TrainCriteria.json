@@ -16,7 +16,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -42,7 +42,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -76,7 +76,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -110,7 +110,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -144,7 +144,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -170,7 +170,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -196,7 +196,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -230,7 +230,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -256,7 +256,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -282,7 +282,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -316,7 +316,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -342,7 +342,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -376,7 +376,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -403,7 +403,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -429,7 +429,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -463,7 +463,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -489,7 +489,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -515,7 +515,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -541,7 +541,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -567,7 +567,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -601,7 +601,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -635,7 +635,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -669,7 +669,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -703,7 +703,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -737,7 +737,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -763,7 +763,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -797,7 +797,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -823,7 +823,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -849,7 +849,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -883,7 +883,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -910,7 +910,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -944,7 +944,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -970,7 +970,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -996,7 +996,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1030,7 +1030,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1056,7 +1056,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1082,7 +1082,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1108,7 +1108,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1142,7 +1142,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1168,7 +1168,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1194,7 +1194,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1228,7 +1228,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1254,7 +1254,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1280,7 +1280,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1314,7 +1314,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1340,7 +1340,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1374,7 +1374,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1400,7 +1400,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1434,7 +1434,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1460,7 +1460,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1494,7 +1494,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1520,7 +1520,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1546,7 +1546,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1580,7 +1580,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1606,7 +1606,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1640,7 +1640,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1666,7 +1666,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
@@ -1700,7 +1700,7 @@
         },
         {
           "id" : 2,
-          "seatClass" : "granClass",
+          "seatClass" : "ordinary",
           "isAvailable" : true,
           "name" : "Ordinary",
           "description" : "seat arranged in 3+2 abreast configuration.",
