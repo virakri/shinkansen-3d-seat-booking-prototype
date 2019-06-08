@@ -23,7 +23,7 @@ class ReservableNode: SCNNode {
     init(reservableEntity: ReservableEntity) {
         self.reservableEntity = reservableEntity
         super.init()
-        categoryBitMask = Self.defaultBitMask
+        categoryBitMask = ReservableNode.defaultBitMask
     }
     
     required init?(coder: NSCoder) {

@@ -75,9 +75,15 @@ class SeatMapSelectionViewController: BookingViewController {
     func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat)  {
         guard contentOffsetY < 0 else {
             mainCardView.transform.ty = 0
+            headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: 0)
+            backButton.shapeView.transform.tx = 0
             return
         }
         mainCardView.transform.ty = -contentOffsetY
+        
+        headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: contentOffsetY)
+        let translateX = contentOffsetY <= 0 ? -contentOffsetY / 6 : 0
+        backButton.shapeView.transform.tx = translateX
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
@@ -95,14 +101,18 @@ class SeatMapSelectionViewController: BookingViewController {
 extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
     
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint) {
+        
         if !isPopPerforming {
+            
+            isPopPerforming = offset.y < -72
+            
+            // Perform interaction
+            DispatchQueue.main.async {
+                self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
+            }
         }
         
-        if offset.y < -72 {
-//            seatMapSceneView.contentNode.removeAction(forKey: "panDrift")
-//            seatMapSceneView.isUserInteractionEnabled = false
-            isPopPerforming = true
-        }
+        
     }
     
     func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity) {
