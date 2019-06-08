@@ -16,11 +16,18 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var selectedSeatID: Int?
     
-    var seatEntity: SeatClassEntity?
+    var seatClassEntity: SeatClassEntity?
+    
+    private var isTransitionPerforming: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStaticContent()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        isTransitionPerforming = false
     }
     
     override func setupView() {
@@ -39,7 +46,7 @@ class SeatMapSelectionViewController: BookingViewController {
         
         mainCardView.contentView.isUserInteractionEnabled = true
         
-        placeSeats()
+        setupScene()
     }
     
     override func setupInteraction() {
@@ -58,18 +65,10 @@ class SeatMapSelectionViewController: BookingViewController {
         mainCallToActionButton.setTitle("Pick a Seat")
     }
     
-    private func placeSeats() {
-        print(seatEntity?.reservableEntities.count ?? 0)
-        guard let seatEntity = seatEntity else {
-            return
-        }
-        let nodes: [ReservableNode] = seatEntity.reservableEntities.map({
-            BoxTesterNode(reservableEntity: $0)
-        })
-        nodes.forEach { node in
-            seatMapSceneView.contentNode.addChildNode(node)
-        }
+    private func setupScene() {
+        print(seatClassEntity?.reservableEntities.count ?? 0)
         
+        seatMapSceneView.setupContent(seatClassEntity: seatClassEntity)
     }
     
     func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat)  {
@@ -87,6 +86,8 @@ class SeatMapSelectionViewController: BookingViewController {
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
+        isTransitionPerforming = true
+        
         let bookingConfirmationViewController = BookingConfirmationViewController()
         bookingConfirmationViewController.headerInformation = headerInformation
         bookingConfirmationViewController.headerInformation?.seatNumber = "5A"
@@ -94,6 +95,8 @@ class SeatMapSelectionViewController: BookingViewController {
     }
     
     @objc func backButtonDidTouch(_ sender: Button) {
+        isTransitionPerforming = true
+        
         navigationController?.popViewController(animated: true)
     }
 }
@@ -107,12 +110,12 @@ extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
             isPopPerforming = offset.y < -72
             
             // Perform interaction
-            DispatchQueue.main.async {
-                self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
+            if !isTransitionPerforming {
+                DispatchQueue.main.async {
+                    self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
+                }
             }
         }
-        
-        
     }
     
     func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity) {

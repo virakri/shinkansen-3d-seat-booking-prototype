@@ -71,7 +71,7 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
         })
         
         let seatMapSelectionViewController = SeatMapSelectionViewController()
-        seatMapSelectionViewController.seatEntity = selectedEntity
+        seatMapSelectionViewController.seatClassEntity = selectedEntity
         seatMapSelectionViewController.headerInformation = headerInformation
         seatMapSelectionViewController.headerInformation?.carNumber = selectedEntity?.carNumber
         seatMapSelectionViewController.headerInformation?.className = selectedEntity?.seatClass.name

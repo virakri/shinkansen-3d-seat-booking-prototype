@@ -328,6 +328,9 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         // MARK: Transition views in SeatMapSelectionViewController to BookingConfirmationViewController
         if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController,
             let bookingConfirmationVC = toViewController as? BookingConfirmationViewController {
+            
+//            seatMapSelectionVC.seatMapSceneView.contentNode.removeAction(forKey: "panDrift")
+            
             seatMapSelectionVC.mainCardView.translateAndFade(as: .transitionOut,
                                                            animationStyle: animationStyle,
                                                            percentageEndPoint: 1,

@@ -27,6 +27,57 @@ class SeatMapSceneView: SCNView {
     
     var contentNode: SCNNode = SCNNode()
     
+    // Dirty zones
+    var hitTestPositionWhenTouchBegan: SCNVector3?
+    
+    var contentNodePositionWhenTouchBegan: SCNVector3?
+    
+    var currectContentNodePosition: SCNVector3? {
+        didSet {
+            print(currectContentNodePosition)
+            contentNode.position = currectContentNodePosition ?? contentNode.position
+            
+            guard let currectContentNodePosition = currectContentNodePosition, let oldValue = oldValue else { return }
+            perspectiveVelocity = (currectContentNodePosition.z - oldValue.z) / (1 / 60)
+            
+            // Conform to the delegate
+            let upperBoundLimitOffsetY: CGFloat = CGFloat(contentZPositionLimit.upperBound - currectContentNodePosition.z)
+            seatMapDelegate?
+                .sceneViewDidPanFurtherUpperBoundLimit(by: CGPoint(x: 0,
+                                                                   y: upperBoundLimitOffsetY / 0.04))
+            
+        }
+    }
+    
+    private var selectingSeat: ReservableNode? {
+        didSet {
+            if let selectingSeat = selectingSeat, selectingSeat != selectingSeat {
+                selectingSeat.isHighlighted = true
+            }
+        }
+    }
+    
+    private var selectedSeat: ReservableNode? {
+        didSet {
+            if oldValue != selectedSeat {
+                oldValue?.isHighlighted = false
+                if selectingSeat != selectedSeat {
+                    selectingSeat?.isHighlighted = false
+                }
+                selectedSeat?.isHighlighted = true
+                selectingSeat = nil
+                
+                if let reservableEntity = selectedSeat?.reservableEntity {
+                    seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
+                }
+            }
+        }
+    }
+    
+    var perspectiveVelocity: Float?
+    
+    var contentZPositionLimit: ClosedRange<Float> = -2...25
+    
     init() {
         super.init(frame: .zero, options: nil)
         
@@ -50,17 +101,18 @@ class SeatMapSceneView: SCNView {
         let dummyNode = DummyNode()
         
         let hitTestFloorNode = HitTestFloorNode()
-        
+
         let cameraNode = CameraNode()
         
         let scene = SCNScene()
         scene.background.contents = UIColor.clear
         
         contentNode.addChildNode(dummyNode)
+        currectContentNodePosition = contentNode.position
         
         scene.rootNode.addChildNode(hitTestFloorNode)
         scene.rootNode.addChildNode(contentNode)
-        
+
         scene.rootNode.addChildNode(cameraNode)
         
         self.scene = scene
@@ -69,6 +121,23 @@ class SeatMapSceneView: SCNView {
     private func setupInteraction() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidPan))
         addGestureRecognizer(panGesture)
+    }
+    
+    public func setupContent(seatClassEntity: SeatClassEntity?) {
+        
+        guard let seatClassEntity = seatClassEntity else {
+            return
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
+                BoxTesterNode(reservableEntity: $0)
+            })
+            
+            nodes.forEach { node in
+                self.contentNode.addChildNode(node)
+            }
+        }
     }
     
     private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> ReservableNode? {
@@ -111,57 +180,6 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    // Dirty zones
-    var hitTestPositionWhereTouchBegan: SCNVector3?
-    
-    var contentNodePositionWhereTouchBegan: SCNVector3?
-    
-    var currectContentNodePosition: SCNVector3? {
-        didSet {
-            
-            contentNode.position = currectContentNodePosition ?? contentNode.position
-            
-            guard let currectContentNodePosition = currectContentNodePosition, let oldValue = oldValue else { return }
-            perspectiveVelocity = (currectContentNodePosition.z - oldValue.z) / (1 / 60)
-            
-            // Conform to the delegate
-            let upperBoundLimitOffsetY: CGFloat = CGFloat(contentZPositionLimit.upperBound - currectContentNodePosition.z)
-            seatMapDelegate?
-                .sceneViewDidPanFurtherUpperBoundLimit(by: CGPoint(x: 0,
-                                                                   y: upperBoundLimitOffsetY / 0.04))
-            
-        }
-    }
-    
-    private var selectingSeat: ReservableNode? {
-        didSet {
-            if let selectingSeat = selectingSeat, selectingSeat != selectingSeat {
-                selectingSeat.isHighlighted = true
-            }
-        }
-    }
-    
-    private var selectedSeat: ReservableNode? {
-        didSet {
-            if oldValue != selectedSeat {
-                oldValue?.isHighlighted = false
-                if selectingSeat != selectedSeat {
-                    selectingSeat?.isHighlighted = false
-                }
-                selectedSeat?.isHighlighted = true
-                selectingSeat = nil
-                
-                if let reservableEntity = selectedSeat?.reservableEntity {
-                    seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
-                }
-            }
-        }
-    }
-    
-    var perspectiveVelocity: Float?
-    
-    var contentZPositionLimit: ClosedRange<Float> = -1...25
-    
     private func zPositionClamp(_ value: Float) -> Float {
         let trimmedMaxValue = value > contentZPositionLimit.upperBound ? contentZPositionLimit.upperBound * (1 + log10(value/contentZPositionLimit.upperBound)) : value
 //
@@ -170,6 +188,7 @@ class SeatMapSceneView: SCNView {
     
     private func positionOfFloorHitTest(_ point: CGPoint) -> SCNVector3? {
         let hitTests = hitTest(point, options: [.categoryBitMask : 1 << 1])
+        print(hitTests)
         return hitTests.first?.worldCoordinates
     }
     
@@ -179,22 +198,23 @@ class SeatMapSceneView: SCNView {
         
         switch sender.state {
         case .began:
-            hitTestPositionWhereTouchBegan = positionOfFloorHitTest(location)
-            contentNodePositionWhereTouchBegan = contentNode.position
+            hitTestPositionWhenTouchBegan = positionOfFloorHitTest(location)
+            contentNodePositionWhenTouchBegan = contentNode.position
             
         case .changed:
             // Temporary
             
             let hitTestPositionWhereCurrentTouch = positionOfFloorHitTest(location)
             
-            if let hitTestPositionWhereTouchBegan = hitTestPositionWhereTouchBegan,
+            if let hitTestPositionWhereTouchBegan = hitTestPositionWhenTouchBegan,
                 let hitTestPositionWhereCurrentTouch = hitTestPositionWhereCurrentTouch,
-                let contentNodePositionWhereTouchBegan = contentNodePositionWhereTouchBegan{
+                let contentNodePositionWhereTouchBegan = contentNodePositionWhenTouchBegan {
+                
                 let zPosition = zPositionClamp(hitTestPositionWhereCurrentTouch.z - hitTestPositionWhereTouchBegan.z + contentNodePositionWhereTouchBegan.z)
                 self.currectContentNodePosition?.z = zPosition
             }
             
-//            currectContentNodePosition = contentNode.position
+            //            currectContentNodePosition = contentNode.position
             
             
             
