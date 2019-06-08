@@ -17,6 +17,12 @@ class SeatClassSelectionViewController: BookingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        SeatMap.fetchData { result in
+            if case .success(let seatMap) = result {
+                self.seatMap = seatMap
+            }
+        }
     }
     
     override func setupView() {

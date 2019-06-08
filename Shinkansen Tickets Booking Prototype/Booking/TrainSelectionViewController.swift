@@ -17,7 +17,7 @@ class TrainSelectionViewController: BookingViewController {
     
     var loadingActivityIndicatorView: UIActivityIndicatorView!
     
-    var seatMap: SeatMap?
+    var trainCriteria: TrainCriteria?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +28,9 @@ class TrainSelectionViewController: BookingViewController {
         super.viewDidAppear(animated)
         if !didFirstLoad {
             
-            SeatMap.fetchData { [weak self] result in
-                if case .success(let seatMap) = result {
-                    self?.seatMap = seatMap
+            TrainCriteria.fetchData { [weak self] result in
+                if case .success(let trainCriteria) = result {
+                    self?.trainCriteria = trainCriteria
                     DispatchQueue.main.async {
                         [weak self] in
                         
@@ -110,7 +110,6 @@ extension TrainSelectionViewController: UITableViewDataSource {
         //
         selectedIndexPath = indexPath
         let seatClassSelectionViewController = SeatClassSelectionViewController()
-        seatClassSelectionViewController.seatMap = seatMap
         seatClassSelectionViewController.headerInformation = headerInformation
         seatClassSelectionViewController.headerInformation?.fromTime = "8:42"
         seatClassSelectionViewController.headerInformation?.toTime = "11:23"
