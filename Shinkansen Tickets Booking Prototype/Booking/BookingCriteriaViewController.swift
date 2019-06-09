@@ -198,9 +198,22 @@ class BookingCriteriaViewController: BookingViewController {
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
+        
+        let selectedDate: Date
+        switch dateSegmentedControl.selectedIndex {
+        case 0:
+            selectedDate = Date()
+        case 1:
+            selectedDate = Date(timeIntervalSinceNow: 60 * 60 * 24)
+        default:
+            selectedDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 2)
+        }
+        let formatter = FullDateFormatter()
+        
         let trainSelectionViewController = TrainSelectionViewController()
+        
         trainSelectionViewController.headerInformation =
-            HeaderInformation(dayOfWeek: "Monday", date: "June 3, 2019",
+            HeaderInformation(dayOfWeek: Calendar.current.weekdaySymbols[Calendar.current.component(.weekday, from: selectedDate) - 1], date: formatter.string(from: selectedDate),
                               fromStation: "Tokyo", toStation: "Ōmiya")
         navigationController?.pushViewController(trainSelectionViewController, animated: true)
     }
