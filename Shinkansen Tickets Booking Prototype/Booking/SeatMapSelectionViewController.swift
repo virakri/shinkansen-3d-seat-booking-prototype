@@ -26,6 +26,7 @@ class SeatMapSelectionViewController: BookingViewController {
         didSet {
             headerInformation?.carNumber = selectedEntity?.carNumber
             mainCallToActionButton.isEnabled = selectedEntity != nil
+            mainCallToActionButton.setTitle("Pick a Seat—\(selectedEntity?.name ?? "*")")
         }
     }
     
@@ -54,7 +55,7 @@ class SeatMapSelectionViewController: BookingViewController {
                                             withConstaintEquals: .edges)
         
         mainCardView.contentView.isUserInteractionEnabled = true
-        
+        mainCallToActionButton.isEnabled = false
         setupScene()
     }
     
@@ -104,7 +105,7 @@ class SeatMapSelectionViewController: BookingViewController {
         let bookingConfirmationViewController = BookingConfirmationViewController()
         bookingConfirmationViewController.headerInformation = headerInformation
         bookingConfirmationViewController.headerInformation?.seatNumber = selectedEntity.name
-        bookingConfirmationViewController.headerInformation?.price = YenFormatter().string(for: seatClass?.price)
+        bookingConfirmationViewController.headerInformation?.price = seatClass?.price.yen
         navigationController?.pushViewController(bookingConfirmationViewController, animated: true)
     }
     

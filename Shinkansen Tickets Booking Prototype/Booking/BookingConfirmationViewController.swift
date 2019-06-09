@@ -91,7 +91,7 @@ class BookingConfirmationViewController: BookingViewController {
     }
     
     private func setupStaticContent() {
-        mainCallToActionButton.setTitle("Purchase this Ticket—¥24,000")
+        mainCallToActionButton.setTitle("Purchase this Ticket—\(headerInformation?.price ?? "")")
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {

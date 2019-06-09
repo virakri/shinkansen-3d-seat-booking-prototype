@@ -126,7 +126,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
                             isGreenAvailable: greenObject?.isAvailable ?? false,
                             showOrdinaryIcon: ordinaryObject != nil,
                             isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
-                            price: "from \(YenFormatter().string(for: cheapestPrice ?? 0) ?? "")",
+                            price: "from \(cheapestPrice?.yen ?? "-")",
                             trainImage: UIImage(named: trainSchedule.trainImageName))
         }
         cell.contentView.alpha = didFirstLoad ? 1 : 0

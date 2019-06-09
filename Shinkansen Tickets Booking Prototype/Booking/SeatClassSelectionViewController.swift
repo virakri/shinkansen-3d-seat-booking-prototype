@@ -63,7 +63,7 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
         
         cell.setupValue(seatClassType: seatClass.seatClass,
                         seatClassName: seatClass.name,
-                        price: YenFormatter().string(for: seatClass.price),
+                        price: seatClass.price.yen,
                         description: seatClass.description,
                         seatImage: nil)
         return cell
@@ -86,7 +86,7 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
         seatMapSelectionViewController.headerInformation = headerInformation
         seatMapSelectionViewController.headerInformation?.carNumber = selectedEntity?.carNumber
         seatMapSelectionViewController.headerInformation?.className = seatClass.name
-        seatMapSelectionViewController.headerInformation?.price = (YenFormatter().string(for: seatClass.price) ?? "")
+        seatMapSelectionViewController.headerInformation?.price = seatClass.price.yen
         navigationController?.pushViewController(seatMapSelectionViewController, animated: true)
     }
     
