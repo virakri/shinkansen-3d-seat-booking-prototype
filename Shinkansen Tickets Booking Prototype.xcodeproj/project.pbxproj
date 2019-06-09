@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90E6F7DC22AD760700C3AD6F /* Numuric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numuric.swift */; };
+		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
+		90ED74E622ADA28C007D8DDF /* ModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED74E522ADA28C007D8DDF /* ModelFactory.swift */; };
 		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
 		D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046991229F58BB0028A9D7 /* AnimationStyle.swift */; };
 		D0046994229F58CC0028A9D7 /* DesignValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046993229F58CC0028A9D7 /* DesignValues.swift */; };
@@ -81,7 +82,8 @@
 /* Begin PBXFileReference section */
 		2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_Tickets_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
-		90E6F7DB22AD760700C3AD6F /* Numuric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numuric.swift; sourceTree = "<group>"; };
+		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
+		90ED74E522ADA28C007D8DDF /* ModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFactory.swift; sourceTree = "<group>"; };
 		9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
 		D004698F229F559C0028A9D7 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		D0046991229F58BB0028A9D7 /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */,
 				E0BA439422AC4A0F00FC3A72 /* Formatter.swift */,
+				90ED74E522ADA28C007D8DDF /* ModelFactory.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -212,7 +215,7 @@
 				D042A71422A70C7600A0CBFC /* CALayer.swift */,
 				E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */,
 				E0BA439622AC4B7300FC3A72 /* Date.swift */,
-				90E6F7DB22AD760700C3AD6F /* Numuric.swift */,
+				90E6F7DB22AD760700C3AD6F /* Numeric.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
 				D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */,
 				D016655A22AABF5400BFD6DB /* DummyNode.swift in Sources */,
+				90ED74E622ADA28C007D8DDF /* ModelFactory.swift in Sources */,
 				D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */,
 				D074B1E5228B90BD00791F94 /* NavigationController.swift in Sources */,
 				D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */,
@@ -512,7 +516,7 @@
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,
 				D01B2EC622A3F4B300C3FAF3 /* SegmentedCardControl.swift in Sources */,
-				90E6F7DC22AD760700C3AD6F /* Numuric.swift in Sources */,
+				90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */,
 				D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */,
 				D0F175BD22A29AFE0095631F /* UIEdgeInsets.swift in Sources */,
 				D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */,

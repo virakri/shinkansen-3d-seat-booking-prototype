@@ -36,12 +36,12 @@ struct ConstraintEqual : OptionSet {
     static let centerVerticalSafeArea = ConstraintEqual(rawValue: 1 << 16)
     static let centerHorizontalSafeArea = ConstraintEqual(rawValue: 1 << 17)
     
-    static let edges:ConstraintEqual = [top, leading, bottom, trailing]
-    static let marginEdges:ConstraintEqual = [topMargin, leadingMargin, bottomMargin, trailingMargin]
-    static let safeAreaEdges:ConstraintEqual = [topSafeArea, leadingSafeArea, bottomSafeArea, trailingSafeArea]
-    static let center:ConstraintEqual = [centerVertical, centerHorizontal]
-    static let centerMargin:ConstraintEqual = [centerVerticalMargin, centerHorizontalMargin]
-    static let centerSafeArea:ConstraintEqual = [centerVerticalSafeArea, centerHorizontalSafeArea]
+    static let edges: ConstraintEqual = [top, leading, bottom, trailing]
+    static let marginEdges: ConstraintEqual = [topMargin, leadingMargin, bottomMargin, trailingMargin]
+    static let safeAreaEdges: ConstraintEqual = [topSafeArea, leadingSafeArea, bottomSafeArea, trailingSafeArea]
+    static let center: ConstraintEqual = [centerVertical, centerHorizontal]
+    static let centerMargin: ConstraintEqual = [centerVerticalMargin, centerHorizontalMargin]
+    static let centerSafeArea: ConstraintEqual = [centerVerticalSafeArea, centerHorizontalSafeArea]
 }
 
 extension UIView {

@@ -14,13 +14,9 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
     
     var isPresenting : Bool
     
-    lazy var animationStyle: UIViewAnimationStyle = {
-        UIViewAnimationStyle.transitionAnimationStyle
-    }()
+    lazy var animationStyle: UIViewAnimationStyle = UIViewAnimationStyle.transitionAnimationStyle
     
-    lazy var CAAnimationStyle: CABasicAnimationStyle = {
-        CABasicAnimationStyle.transitionAnimationStyle
-    }()
+    lazy var CAAnimationStyle: CABasicAnimationStyle = CABasicAnimationStyle.transitionAnimationStyle
     
     init(isPresenting : Bool) {
         self.isPresenting = isPresenting
@@ -91,13 +87,13 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         
                         // MARK: Hidden views will be slide up
                         if fromView.isHidden  {
-                            displacement.x = CGFloat(-basedHorizontalAnimationOffset).systemSizeMuliplier()
-                            displacement.y = CGFloat(-basedVerticalAnimationOffset).systemSizeMuliplier()
+                            displacement.x = (-basedHorizontalAnimationOffset).systemSizeMuliplier()
+                            displacement.y = (-basedVerticalAnimationOffset).systemSizeMuliplier()
                         }
                         
                         if toView.isHidden  {
-                            displacement.x = CGFloat(basedHorizontalAnimationOffset).systemSizeMuliplier()
-                            displacement.y = CGFloat(basedVerticalAnimationOffset).systemSizeMuliplier()
+                            displacement.x = basedHorizontalAnimationOffset.systemSizeMuliplier()
+                            displacement.y = basedVerticalAnimationOffset.systemSizeMuliplier()
                         }
                         
                     } else {

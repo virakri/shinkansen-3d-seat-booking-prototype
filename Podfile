@@ -7,5 +7,6 @@ target 'Shinkansen Tickets Booking Prototype' do
 
   # Pods for Shinkansen Tickets Booking Prototype
   pod "Kumi", :git=>"https://github.com/prolificinteractive/Kumi-iOS.git", :branch => 'mutant'
+  pod "BrightFutures" 
 
 end

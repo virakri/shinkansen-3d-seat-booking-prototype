@@ -36,7 +36,7 @@ class NavigationController: UINavigationController {
                                       preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Exit",
                                       style: .destructive,
-                                      handler: {(_: UIAlertAction!) in
+                                      handler: { _ in
                                         self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel",
