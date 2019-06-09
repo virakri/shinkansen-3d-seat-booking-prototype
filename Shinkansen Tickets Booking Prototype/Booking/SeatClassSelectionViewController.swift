@@ -76,15 +76,15 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
         
         let seatClass = seatClasses[indexPath.row]
         
-        // TODO: Fix this
         let selectedEntity = seatMap?.seatClassEntities.first(where: {
-            $0.seatClass == .granClass
+            $0.seatClass == seatClass.seatClass
         })
         
         let seatMapSelectionViewController = SeatMapSelectionViewController()
+        seatMapSelectionViewController.seatClass = seatClass
         seatMapSelectionViewController.seatClassEntity = selectedEntity
         seatMapSelectionViewController.headerInformation = headerInformation
-        seatMapSelectionViewController.headerInformation?.carNumber = selectedEntity?.carNumber // TODO: Need to obtain from `seatClass`
+        seatMapSelectionViewController.headerInformation?.carNumber = selectedEntity?.carNumber
         seatMapSelectionViewController.headerInformation?.className = seatClass.name
         seatMapSelectionViewController.headerInformation?.price = (YenFormatter().string(for: seatClass.price) ?? "")
         navigationController?.pushViewController(seatMapSelectionViewController, animated: true)

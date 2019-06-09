@@ -16,9 +16,17 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var selectedSeatID: Int?
     
+    var seatClass: SeatClass?
+    
     var seatClassEntity: SeatClassEntity?
     
     private var isTransitionPerforming: Bool = true
+    
+    private var selectedEntity: ReservableEntity? {
+        didSet {
+            mainCallToActionButton.isEnabled = selectedEntity != nil
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,11 +94,16 @@ class SeatMapSelectionViewController: BookingViewController {
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
+        
+        guard let selectedEntity = selectedEntity else {
+            return
+        }
         isTransitionPerforming = true
         
         let bookingConfirmationViewController = BookingConfirmationViewController()
         bookingConfirmationViewController.headerInformation = headerInformation
-        bookingConfirmationViewController.headerInformation?.seatNumber = "5A"
+        bookingConfirmationViewController.headerInformation?.seatNumber = selectedEntity.name
+        bookingConfirmationViewController.headerInformation?.price = YenFormatter().string(for: seatClass?.price)
         navigationController?.pushViewController(bookingConfirmationViewController, animated: true)
     }
     
@@ -119,6 +132,6 @@ extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
     }
     
     func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity) {
-        print(reservableEntity)
+        selectedEntity = reservableEntity
     }
 }
