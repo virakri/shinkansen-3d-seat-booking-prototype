@@ -197,7 +197,7 @@ class BookingCriteriaViewController: BookingViewController {
         let trainSelectionViewController = TrainSelectionViewController()
         trainSelectionViewController.headerInformation =
             HeaderInformation(dayOfWeek: "Monday", date: "June 3, 2019",
-                              fromStation: "Osaka", toStation: "Tokyo")
+                              fromStation: "Tokyo", toStation: "Ōmiya")
         navigationController?.pushViewController(trainSelectionViewController, animated: true)
     }
     

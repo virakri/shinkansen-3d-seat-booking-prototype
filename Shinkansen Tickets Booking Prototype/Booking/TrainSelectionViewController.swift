@@ -116,7 +116,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
             }).first?.price
             
             
-            cell.setupValue(time: "\(trainSchedule.fromTime.time)–\(trainSchedule.toTime.time)",
+            cell.setupValue(time: "\(trainSchedule.fromTime.time) – \(trainSchedule.toTime.time)",
                     amountOfTime: trainSchedule.toTime.offset(from: trainSchedule.fromTime),
                             trainNumber: trainSchedule.trainNumber,
                             trainName: trainSchedule.trainName,
@@ -126,7 +126,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
                             isGreenAvailable: greenObject?.isAvailable ?? false,
                             showOrdinaryIcon: ordinaryObject != nil,
                             isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
-                            price: YenFormatter().string(for: cheapestPrice ?? 0), // cheapest
+                            price: "from \(YenFormatter().string(for: cheapestPrice ?? 0) ?? "")",
                             trainImage: UIImage(named: trainSchedule.trainImageName))
         }
         cell.contentView.alpha = didFirstLoad ? 1 : 0
