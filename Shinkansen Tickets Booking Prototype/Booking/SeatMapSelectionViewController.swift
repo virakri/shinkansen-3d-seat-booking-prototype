@@ -24,6 +24,7 @@ class SeatMapSelectionViewController: BookingViewController {
     
     private var selectedEntity: ReservableEntity? {
         didSet {
+            headerInformation?.carNumber = selectedEntity?.carNumber
             mainCallToActionButton.isEnabled = selectedEntity != nil
         }
     }
