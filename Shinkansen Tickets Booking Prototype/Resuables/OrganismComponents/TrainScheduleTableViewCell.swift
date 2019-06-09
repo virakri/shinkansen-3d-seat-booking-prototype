@@ -90,7 +90,7 @@ class TrainScheduleTableViewCell: UITableViewCell {
         trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .vertical)
         trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .horizontal)
        
-        trainImageView.image = #imageLiteral(resourceName: "image-example-train")
+        trainImageView.image = nil
     }
     
     public func setupTheme() {
@@ -126,6 +126,8 @@ class TrainScheduleTableViewCell: UITableViewCell {
         ordinaryIconImageView.isHidden = !showOrdinaryIcon
         ordinaryIconImageView.isAvailable = isOrdinaryAvailable
         priceLabel.text = price
+        
+        trainImageView.image = trainImage
     }
     
     public func preparePropertiesForAnimation() {

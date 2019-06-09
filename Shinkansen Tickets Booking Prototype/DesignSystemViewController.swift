@@ -519,7 +519,8 @@ class DesignSystemViewController: ViewController {
                                                                           amountOfTime: "3hr 12min",
                                                                           trainNumber: "Hayabusa 231",
                                                                           trainName: "E6 Series",
-                                                                          price: "$13,930", trainImage: nil)
+                                                                          price: "$13,930",
+                                                                          trainImage: #imageLiteral(resourceName: "e7-series"))
                                     let trainScheduleTableViewCellContentView = trainScheduleTableViewCell.contentView
                                     return trainScheduleTableViewCellContentView
                                 }(), title: "Train Schedule Table View Cell",
