@@ -178,8 +178,12 @@ class BookingCriteriaViewController: BookingViewController {
         destinationStationCardControl.setupValue(stationNameJP: "大宮", stationName: "Ōmiya")
         
         dateSegmentedContainerView.setTitle(title: "Date")
-        dateSegmentedControl.items = [(title: "Today", subtitle: "Jun 3, 2019"),
-                                      (title: "Tomorrow", subtitle: "Jun 4, 2019"),
+        
+        let today = Date()
+        let tomorrow = today.addingTimeInterval(60 * 60 * 24)
+        let formatter = FullDateFormatter()
+        dateSegmentedControl.items = [(title: "Today", subtitle: formatter.string(from: today)),
+                                      (title: "Tomorrow", subtitle: formatter.string(from: tomorrow)),
                                       (title: "Pick a Date", subtitle: " ")]
         dateSegmentedControl.selectedIndex = 0
         
