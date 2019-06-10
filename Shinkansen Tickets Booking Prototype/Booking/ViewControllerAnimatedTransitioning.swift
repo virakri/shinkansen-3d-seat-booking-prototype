@@ -351,11 +351,6 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                                                               animationStyle: animationStyle,
                                                               percentageEndPoint: 1,
                                                               translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height))
-            
-//            bookingConfirmationVC.dateLabel.translateAndFade(as: .transitionOut,
-//                                                           animationStyle: animationStyle,
-//                                                           percentageEndPoint: 1,
-//                                                           translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
         }
         
         

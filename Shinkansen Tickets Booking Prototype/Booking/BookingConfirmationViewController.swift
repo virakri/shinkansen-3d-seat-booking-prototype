@@ -25,10 +25,6 @@ class BookingConfirmationViewController: BookingViewController {
         super.setupView()
         mainViewType = .view
         
-//        dateLabelSetView.isHidden = true
-//        topBarStackView.addArrangedSubview(UIView())
-        
-        dateLabel = Label()
         dateLabelContainerView = UIView(containingView: dateLabel,
                                         withConstaintEquals: [.centerHorizontal, .top, .bottom],
                                         insetsConstant: .init(top: 4, leading: 0, bottom: 0, trailing: 0))
@@ -67,8 +63,6 @@ class BookingConfirmationViewController: BookingViewController {
     
     override func setupTheme() {
         super.setupTheme()
-        dateLabel.textStyle = textStyle.headline()
-        dateLabel.textColor = currentColorTheme.componentColor.primaryText
     }
     
     override func setupInteraction() {
@@ -85,9 +79,6 @@ class BookingConfirmationViewController: BookingViewController {
     
     override func setHeaderInformationValue(_ headerInformation: BookingViewController.HeaderInformation?) {
         super.setHeaderInformationValue(headerInformation)
-        guard let headerInformation = headerInformation,
-            let dateLabel = dateLabel else { return }
-        dateLabel.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
     }
     
     private func setupStaticContent() {

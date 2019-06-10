@@ -23,7 +23,6 @@
 		D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */; };
 		D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */; };
 		D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */; };
-		D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */; };
 		D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBF22A316B000C3FAF3 /* UITableView.swift */; };
 		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
 		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
@@ -100,7 +99,6 @@
 		D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassIconImageView.swift; sourceTree = "<group>"; };
 		D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
-		D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabelSetView.swift; sourceTree = "<group>"; };
 		D01B2EBF22A316B000C3FAF3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
 		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 				D0C26E3622A0B7A0001D3065 /* StationPairView.swift */,
 				D0C26E3822A13940001D3065 /* DescriptionSetView.swift */,
 				D09F3F1222A20239005E59C0 /* HeaderRouteInformationView.swift */,
-				D01B2EBD22A307A100C3FAF3 /* DateLabelSetView.swift */,
 				D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */,
 				D09F3F1422A20ACE005E59C0 /* TrainScheduleTableViewCell.swift */,
 				D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */,
@@ -510,7 +507,6 @@
 				E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */,
 				D0689C1C22AABBAC00EE5660 /* BoxTesterNode.swift in Sources */,
 				D0AD0AC522A9712600F2E976 /* SeatMapView.swift in Sources */,
-				D01B2EBE22A307A100C3FAF3 /* DateLabelSetView.swift in Sources */,
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
 				D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */,

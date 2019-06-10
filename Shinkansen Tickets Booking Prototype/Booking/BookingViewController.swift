@@ -81,15 +81,9 @@ class BookingViewController: ViewController {
     
     var mainStackView: UIStackView!
     
-//    var topBarStackView: UIStackView!
-    
     var headerWithTopBarStackView: UIStackView!
     
     var backButton: BackButtonControl!
-    
-//    private var datePlaceholderLabelSetView: DateLabelSetView!
-    
-//    var dateLabelSetView: DateLabelSetView!
     
     var dateLabel: Label!
     
@@ -108,19 +102,15 @@ class BookingViewController: ViewController {
     override func setupView() {
         super.setupView()
         
-        // MARK: Header
-//        datePlaceholderLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
-//        dateLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
-        
         dateLabel = Label()
         
         datePlaceholderLabel = Label()
+        datePlaceholderLabel
+            .translatesAutoresizingMaskIntoConstraints = false
+        datePlaceholderLabel.heightAnchor
+            .constraint(equalToConstant: 44)
+            .isActive = true
         datePlaceholderLabel.text = " "
-        
-//        topBarStackView = UIStackView([dateLabel],
-//                                          axis: .horizontal,
-//                                          distribution: .equalSpacing,
-//                                          alignment: .center)
         
         headerRouteInformationView = HeaderRouteInformationView(fromStation: " ", toStation: " ")
         
@@ -129,7 +119,7 @@ class BookingViewController: ViewController {
                                                 axis: .vertical,
                                                 distribution: .fill,
                                                 alignment: .fill,
-                                                spacing: 20)
+                                                spacing: 8)
         
         let headerWithTopBarContainerView = UIView(containingView: headerWithTopBarStackView, withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom])
         headerWithTopBarContainerView.preservesSuperviewLayoutMargins = true
@@ -185,8 +175,8 @@ class BookingViewController: ViewController {
         mainCallToActionButtonWidthConstraint.isActive = true
         
         view.addSubview(dateLabel)
-        dateLabel
-            .addConstraints(toView: datePlaceholderLabel,
+        datePlaceholderLabel
+            .addConstraints(toView: dateLabel,
                             withConstaintEquals: .center)
         
         backButton = BackButtonControl()
@@ -214,16 +204,14 @@ class BookingViewController: ViewController {
         
         mainCallToActionButton.setupTheme()
         backButton.setupTheme()
-//        dateLabelSetView.setupTheme()
-//        datePlaceholderLabelSetView.setupTheme()
         headerRouteInformationView.setupTheme()
         mainTableView.setupTheme()
         
         dateLabel.textStyle = textStyle.headline()
+        dateLabel.textAlignment = .center
         dateLabel.textColor = currentColorTheme.componentColor.primaryText
         
-        datePlaceholderLabel.textStyle = textStyle.headline()
-        datePlaceholderLabel.textColor = currentColorTheme.componentColor.primaryText
+        datePlaceholderLabel.textStyle = dateLabel.textStyle
         
     }
     
