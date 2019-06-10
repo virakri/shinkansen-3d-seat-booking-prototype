@@ -81,15 +81,19 @@ class BookingViewController: ViewController {
     
     var mainStackView: UIStackView!
     
-    var topBarStackView: UIStackView!
+//    var topBarStackView: UIStackView!
     
     var headerWithTopBarStackView: UIStackView!
     
     var backButton: BackButtonControl!
     
-    private var datePlaceholderLabelSetView: DateLabelSetView!
+//    private var datePlaceholderLabelSetView: DateLabelSetView!
     
-    var dateLabelSetView: DateLabelSetView!
+//    var dateLabelSetView: DateLabelSetView!
+    
+    var dateLabel: Label!
+    
+    var datePlaceholderLabel: Label!
     
     var headerRouteInformationView: HeaderRouteInformationView!
     
@@ -105,16 +109,23 @@ class BookingViewController: ViewController {
         super.setupView()
         
         // MARK: Header
-        datePlaceholderLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
-        dateLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
-        topBarStackView = UIStackView([datePlaceholderLabelSetView, dateLabelSetView],
-                                          axis: .horizontal,
-                                          distribution: .equalSpacing,
-                                          alignment: .center)
+//        datePlaceholderLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
+//        dateLabelSetView = DateLabelSetView(dayOfWeek: " ", date: " ")
+        
+        dateLabel = Label()
+        
+        datePlaceholderLabel = Label()
+        datePlaceholderLabel.text = " "
+        
+//        topBarStackView = UIStackView([dateLabel],
+//                                          axis: .horizontal,
+//                                          distribution: .equalSpacing,
+//                                          alignment: .center)
         
         headerRouteInformationView = HeaderRouteInformationView(fromStation: " ", toStation: " ")
         
-        headerWithTopBarStackView = UIStackView([topBarStackView, headerRouteInformationView],
+        headerWithTopBarStackView = UIStackView([datePlaceholderLabel,
+                                                 headerRouteInformationView],
                                                 axis: .vertical,
                                                 distribution: .fill,
                                                 alignment: .fill,
@@ -173,10 +184,26 @@ class BookingViewController: ViewController {
         mainCallToActionButtonWidthConstraint.priority = .defaultHigh
         mainCallToActionButtonWidthConstraint.isActive = true
         
+        view.addSubview(dateLabel)
+        dateLabel
+            .addConstraints(toView: datePlaceholderLabel,
+                            withConstaintEquals: .center)
+        
         backButton = BackButtonControl()
         view.addSubview(backButton)
-        backButton.centerYAnchor.constraint(equalTo: topBarStackView.centerYAnchor).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: topBarStackView.leadingAnchor, constant: -10).isActive = true
+        backButton
+            .centerYAnchor
+            .constraint(equalTo:
+                datePlaceholderLabel
+                    .centerYAnchor)
+            .isActive = true
+        backButton
+            .leadingAnchor
+            .constraint(equalTo:
+                datePlaceholderLabel
+                .leadingAnchor,
+                        constant: -10)
+            .isActive = true
         
         setHeaderInformationValue(headerInformation)
         
@@ -187,10 +214,16 @@ class BookingViewController: ViewController {
         
         mainCallToActionButton.setupTheme()
         backButton.setupTheme()
-        dateLabelSetView.setupTheme()
-        datePlaceholderLabelSetView.setupTheme()
+//        dateLabelSetView.setupTheme()
+//        datePlaceholderLabelSetView.setupTheme()
         headerRouteInformationView.setupTheme()
         mainTableView.setupTheme()
+        
+        dateLabel.textStyle = textStyle.headline()
+        dateLabel.textColor = currentColorTheme.componentColor.primaryText
+        
+        datePlaceholderLabel.textStyle = textStyle.headline()
+        datePlaceholderLabel.textColor = currentColorTheme.componentColor.primaryText
         
     }
     
@@ -200,10 +233,10 @@ class BookingViewController: ViewController {
     
     func setHeaderInformationValue(_ headerInformation: HeaderInformation?) {
         guard let headerInformation = headerInformation,
-            let dateLabelSetView = dateLabelSetView,
+            let dateLabel = dateLabel,
             let headerRouteInformationView = headerRouteInformationView else { return }
-        dateLabelSetView.setupValue(dayOfWeek: headerInformation.dayOfWeek,
-                                    date: headerInformation.date)
+        
+        dateLabel.text = "\(headerInformation.dayOfWeek), \(headerInformation.date)"
         headerRouteInformationView.setupValue(fromStation: headerInformation.fromStation,
                                               fromTime: headerInformation.fromTime,
                                               toStation: headerInformation.toStation,
@@ -224,17 +257,6 @@ extension BookingViewController: UITableViewDelegate {
        
         if !isPopPerforming {
             headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: verticalContentOffset)
-            let translateX = verticalContentOffset <= 0 ? -verticalContentOffset / 6 : 0
-            backButton.shapeView.transform.tx = translateX
-            if verticalContentOffset < 0  {
-                backButton.shapeLayer.removeAnimation(forKey: "ActualAnimation")
-            }
-            backButton.setShapeProgress(to: verticalContentOffset < 0 ? CFTimeInterval(-verticalContentOffset / 128) : 0)
         }
-        
-        if verticalContentOffset < -128 {
-            isPopPerforming = true
-        }
-        
     }
 }

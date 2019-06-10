@@ -157,7 +157,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
             
             let animateObject = AnimateObject(fromVC: fromBookingVC, toVC: toBookingVC)
             
-            animateObject.animate(view: {$0.dateLabelSetView},
+            animateObject.animate(view: {$0.dateLabel},
                                   parentView: {$0.view},
                                   basedVerticalAnimationOffset: 18)
             
@@ -336,10 +336,10 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                                                            animationStyle: animationStyle,
                                                            percentageEndPoint: 0,
                                                            translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height))
-            bookingConfirmationVC.dateLabel.translateAndFade(as: .transitionIn,
-                                                              animationStyle: animationStyle,
-                                                              percentageEndPoint: 0,
-                                                              translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
+//            bookingConfirmationVC.dateLabel.translateAndFade(as: .transitionIn,
+//                                                              animationStyle: animationStyle,
+//                                                              percentageEndPoint: 0,
+//                                                              translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
         } else if let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController,
             let bookingConfirmationVC = fromViewController as? BookingConfirmationViewController {
             seatMapSelectionVC.mainCardView.translateAndFade(as: .transitionIn,
@@ -352,10 +352,10 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                                                               percentageEndPoint: 1,
                                                               translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height))
             
-            bookingConfirmationVC.dateLabel.translateAndFade(as: .transitionOut,
-                                                           animationStyle: animationStyle,
-                                                           percentageEndPoint: 1,
-                                                           translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
+//            bookingConfirmationVC.dateLabel.translateAndFade(as: .transitionOut,
+//                                                           animationStyle: animationStyle,
+//                                                           percentageEndPoint: 1,
+//                                                           translate: .init(x: 0, y: -bookingConfirmationVC.mainCardView.bounds.height + bookingConfirmationVC.dateLabel.bounds.height))
         }
         
         

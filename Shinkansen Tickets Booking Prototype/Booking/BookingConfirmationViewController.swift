@@ -14,7 +14,7 @@ class BookingConfirmationViewController: BookingViewController {
     
     var dateLabelContainerView: UIView!
     
-    var dateLabel: Label!
+//    var dateLabel: Label!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +25,8 @@ class BookingConfirmationViewController: BookingViewController {
         super.setupView()
         mainViewType = .view
         
-        dateLabelSetView.isHidden = true
-        topBarStackView.addArrangedSubview(UIView())
+//        dateLabelSetView.isHidden = true
+//        topBarStackView.addArrangedSubview(UIView())
         
         dateLabel = Label()
         dateLabelContainerView = UIView(containingView: dateLabel,
@@ -35,19 +35,19 @@ class BookingConfirmationViewController: BookingViewController {
         
         let placeholderView = UIView()
         
-        mainStackView.removeArrangedSubview(topBarStackView)
+        mainStackView.removeArrangedSubview(datePlaceholderLabel)
         mainStackView.removeArrangedSubview(mainContentView)
         mainStackView.insertArrangedSubview(mainContentView, at: 0)
         mainStackView.insertArrangedSubview(dateLabelContainerView, at: 1)
         mainStackView.addArrangedSubview(UIView())
         mainStackView.addArrangedSubview(placeholderView)
         
-        view.addSubview(topBarStackView, withConstaintEquals: [.topSafeArea, .centerHorizontal])
-        view.addConstraints(toView: topBarStackView, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+        view.addSubview(datePlaceholderLabel, withConstaintEquals: [.topSafeArea, .centerHorizontal])
+        view.addConstraints(toView: datePlaceholderLabel, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
         
-        let topBarStackViewWidthConstraint = topBarStackView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
-        topBarStackViewWidthConstraint.priority = .defaultHigh
-        topBarStackViewWidthConstraint.isActive = true
+        let datePlaceholderLabelWidthConstraint = datePlaceholderLabel.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        datePlaceholderLabelWidthConstraint.priority = .defaultHigh
+        datePlaceholderLabelWidthConstraint.isActive = true
         
         mainCardView = CardControl(type: .large)
         mainContentView.addSubview(mainCardView,

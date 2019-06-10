@@ -91,8 +91,6 @@ class SeatMapSelectionViewController: BookingViewController {
         mainCardView.transform.ty = -contentOffsetY
         
         headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: contentOffsetY)
-        let translateX = contentOffsetY <= 0 ? -contentOffsetY / 6 : 0
-        backButton.shapeView.transform.tx = translateX
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
@@ -121,8 +119,6 @@ extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint) {
         
         if !isPopPerforming {
-            
-            isPopPerforming = offset.y < -72
             
             // Perform interaction
             if !isTransitionPerforming {
