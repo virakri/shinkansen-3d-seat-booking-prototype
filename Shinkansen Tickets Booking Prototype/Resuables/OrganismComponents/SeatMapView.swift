@@ -129,12 +129,10 @@ class SeatMapSceneView: SCNView {
             return
         }
         
-        let factory = NodeFactory(url: URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
-        factory.onComplete = { _factory in
-            
+        func placeNodeFromNodeFactory(factory: NodeFactory) {
             DispatchQueue.main.async {
                 let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
-                    let node: BoxTesterNode = _factory.create(name: "box")!
+                    let node: BoxTesterNode = factory.create(name: "box")!
                     node.reservableEntity = $0
                     return node
                 })
@@ -143,6 +141,19 @@ class SeatMapSceneView: SCNView {
                     self.contentNode.addChildNode(node)
                 }
             }
+        }
+        
+        if let factory = NodeFactory.shared {
+            if factory.isLoaded {
+                placeNodeFromNodeFactory(factory: factory)
+            }else{
+                // TODO: display loading view.
+                factory.onComplete = {
+                    placeNodeFromNodeFactory(factory: $0)
+                }
+            }
+        }else{
+            fatalError("NodeFactory not define before used")
         }
     }
     

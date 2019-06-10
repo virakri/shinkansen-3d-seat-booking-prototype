@@ -30,6 +30,7 @@ class SeatClassSelectionViewController: BookingViewController {
                 self.seatMap = seatMap
             }
         }
+        NodeFactory.shared = NodeFactory(url: URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
     }
     
     override func setupView() {

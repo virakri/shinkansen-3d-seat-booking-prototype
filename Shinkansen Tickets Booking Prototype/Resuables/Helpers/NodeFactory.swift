@@ -63,6 +63,8 @@ class StateNode: SCNNode, InteractibleNode {
 
 class NodeFactory {
     
+    static var shared: NodeFactory?
+    
     let url: URL
     
     var isLoaded = false {
