@@ -140,6 +140,7 @@ extension TrainSelectionViewController: UITableViewDataSource {
         let seatClasses = trainSchedule?.seatClasses
         let seatClassSelectionVC = SeatClassSelectionViewController()
         seatClassSelectionVC.seatClasses = seatClasses ?? []
+        seatClassSelectionVC.trainImage = UIImage(named: trainSchedule?.trainImageName ?? "")
         seatClassSelectionVC.headerInformation = headerInformation
         seatClassSelectionVC.headerInformation?.fromTime = trainSchedule?.fromTime.time
         seatClassSelectionVC.headerInformation?.toTime = trainSchedule?.toTime.time

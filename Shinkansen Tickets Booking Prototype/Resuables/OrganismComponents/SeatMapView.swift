@@ -34,7 +34,7 @@ class SeatMapSceneView: SCNView {
     
     var currectContentNodePosition: SCNVector3? {
         didSet {
-            print(currectContentNodePosition)
+            print(currectContentNodePosition ?? "This is Nil")
             contentNode.position = currectContentNodePosition ?? contentNode.position
             
             guard let currectContentNodePosition = currectContentNodePosition, let oldValue = oldValue else { return }

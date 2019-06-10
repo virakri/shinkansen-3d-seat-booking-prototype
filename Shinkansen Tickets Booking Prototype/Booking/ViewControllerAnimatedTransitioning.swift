@@ -363,6 +363,15 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         if let trainSelectionVC = fromViewController as? TrainSelectionViewController,
             let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController {
             
+            // MARK: Transition Train Image View
+            seatClassSelectionVC
+                .trainImageView
+                .translateAndFade(
+                    as: .transitionIn,
+                    animationStyle: animationStyle,
+                    percentageEndPoint: percentageEndPoint,
+                    translate: .init(x: 0, y: 18))
+            
             // Demo
             if let selectedIndexPath = trainSelectionVC.selectedIndexPath {
                 guard let cell = trainSelectionVC.mainTableView.cellForRow(at: selectedIndexPath) as? TrainScheduleTableViewCell else { return }
@@ -443,6 +452,15 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         // MARK: Transition views in SeatClassSelectionViewController to TrainSelectionViewController (Backward)
         if let trainSelectionVC = toViewController as? TrainSelectionViewController,
             let seatClassSelectionVC = fromViewController as? SeatClassSelectionViewController {
+            
+            // MARK: Transition Train Image View
+            seatClassSelectionVC
+                .trainImageView
+                .translateAndFade(
+                    as: .transitionOut,
+                    animationStyle: animationStyle,
+                    percentageEndPoint: percentageEndPoint,
+                    translate: .init(x: 0, y: 18))
             
             // Demo
             if let selectedIndexPath = trainSelectionVC.selectedIndexPath {
@@ -529,6 +547,15 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         // MARK: Transition views in SeatClassSelectionViewController to SeatMapSelectionViewController
         if let seatClassSelectionVC = fromViewController as? SeatClassSelectionViewController,
             let seatMapSelectionVC = toViewController as? SeatMapSelectionViewController {
+            
+            // MARK: Transition Train Image View
+            seatClassSelectionVC
+                .trainImageView
+                .translateAndFade(
+                    as: .transitionOut,
+                    animationStyle: animationStyle,
+                    percentageEndPoint: percentageEndPoint,
+                    translate: .init(x: 0, y: -18))
             
             seatClassSelectionVC.mainTableView.clipsToBounds = false
             // Demo
@@ -644,6 +671,15 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
         // MARK: Transition views in SeatClassSelectionViewController to SeatMapSelectionViewController
         if let seatMapSelectionVC = fromViewController as? SeatMapSelectionViewController ,
             let seatClassSelectionVC = toViewController as? SeatClassSelectionViewController{
+            
+            // MARK: Transition Train Image View
+            seatClassSelectionVC
+                .trainImageView
+                .translateAndFade(
+                    as: .transitionIn,
+                    animationStyle: animationStyle,
+                    percentageEndPoint: percentageEndPoint,
+                    translate: .init(x: 0, y: -18))
             
             seatClassSelectionVC.mainTableView.clipsToBounds = false
             // Demo

@@ -10,6 +10,10 @@ import UIKit
 
 class SeatClassSelectionViewController: BookingViewController {
     
+    var trainImage: UIImage?
+    
+    var trainImageView: UIImageView!
+    
     var selectedIndexPath: IndexPath?
     
     var seatClasses: [SeatClass] = []
@@ -19,6 +23,7 @@ class SeatClassSelectionViewController: BookingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupStaticContent()
         
         SeatMap.fetchData { result in
             if case .success(let seatMap) = result {
@@ -30,6 +35,55 @@ class SeatClassSelectionViewController: BookingViewController {
     override func setupView() {
         super.setupView()
         mainViewType = .tableView
+        
+        headerRouteInformationView
+            .descriptionSetView.addArrangedSubview(UIView())
+        
+        trainImageView = UIImageView()
+        
+        headerRouteInformationView.addSubview(trainImageView)
+        trainImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        trainImageView
+            .leadingAnchor
+            .constraint(
+                greaterThanOrEqualTo:
+                headerRouteInformationView
+                    .descriptionSetView
+                    .trainNumberSetView
+                    .trailingAnchor,
+                constant: 24)
+            .isActive = true
+        
+        let trainImageViewTrailingConstraint =
+        trainImageView
+            .trailingAnchor
+            .constraint(
+                equalTo:
+                view.trailingAnchor)
+        
+        trainImageViewTrailingConstraint.priority = .defaultHigh
+        trainImageViewTrailingConstraint.isActive = true
+        
+        headerRouteInformationView
+            .descriptionSetView
+            .trainNumberSetView
+            .centerYAnchor
+            .constraint(equalTo: trainImageView.centerYAnchor)
+            .isActive = true
+        
+        headerRouteInformationView
+            .descriptionSetView.topAnchor.constraint(equalTo: trainImageView.topAnchor).isActive = true
+        
+        trainImageView.widthAnchor.constraint(equalTo: trainImageView.heightAnchor, multiplier: 6).isActive = true
+        trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .vertical)
+        trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .horizontal)
+        
+    }
+    
+
+    func setupStaticContent() {
+        trainImageView.image = trainImage
     }
     
     override func setupInteraction() {
