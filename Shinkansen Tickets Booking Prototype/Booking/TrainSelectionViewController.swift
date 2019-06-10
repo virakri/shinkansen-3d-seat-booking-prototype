@@ -138,14 +138,14 @@ extension TrainSelectionViewController: UITableViewDataSource {
         selectedIndexPath = indexPath
         let trainSchedule = trainCriteria?.trainSchedules[indexPath.row]
         let seatClasses = trainSchedule?.seatClasses
-        let seatClassSelectionViewController = SeatClassSelectionViewController()
-        seatClassSelectionViewController.seatClasses = seatClasses ?? []
-        seatClassSelectionViewController.headerInformation = headerInformation
-        seatClassSelectionViewController.headerInformation?.fromTime = trainSchedule?.fromTime.time
-        seatClassSelectionViewController.headerInformation?.toTime = trainSchedule?.toTime.time
-        seatClassSelectionViewController.headerInformation?.trainNumber = trainSchedule?.trainNumber
-        seatClassSelectionViewController.headerInformation?.trainName = trainSchedule?.trainName
-        navigationController?.pushViewController(seatClassSelectionViewController, animated: true)
+        let seatClassSelectionVC = SeatClassSelectionViewController()
+        seatClassSelectionVC.seatClasses = seatClasses ?? []
+        seatClassSelectionVC.headerInformation = headerInformation
+        seatClassSelectionVC.headerInformation?.fromTime = trainSchedule?.fromTime.time
+        seatClassSelectionVC.headerInformation?.toTime = trainSchedule?.toTime.time
+        seatClassSelectionVC.headerInformation?.trainNumber = trainSchedule?.trainNumber
+        seatClassSelectionVC.headerInformation?.trainName = trainSchedule?.trainName
+        navigationController?.pushViewController(seatClassSelectionVC, animated: true)
     }
     
 }

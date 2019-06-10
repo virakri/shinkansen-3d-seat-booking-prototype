@@ -80,14 +80,14 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
             $0.seatClass == seatClass.seatClass
         })
         
-        let seatMapSelectionViewController = SeatMapSelectionViewController()
-        seatMapSelectionViewController.seatClass = seatClass
-        seatMapSelectionViewController.seatClassEntity = selectedEntity
-        seatMapSelectionViewController.headerInformation = headerInformation
-        seatMapSelectionViewController.headerInformation?.carNumber = selectedEntity?.carNumber
-        seatMapSelectionViewController.headerInformation?.className = seatClass.name
-        seatMapSelectionViewController.headerInformation?.price = seatClass.price.yen
-        navigationController?.pushViewController(seatMapSelectionViewController, animated: true)
+        let seatMapSelectionVC = SeatMapSelectionViewController()
+        seatMapSelectionVC.seatClass = seatClass
+        seatMapSelectionVC.seatClassEntity = selectedEntity
+        seatMapSelectionVC.headerInformation = headerInformation
+        seatMapSelectionVC.headerInformation?.carNumber = selectedEntity?.carNumber
+        seatMapSelectionVC.headerInformation?.className = seatClass.name
+        seatMapSelectionVC.headerInformation?.price = seatClass.price.yen
+        navigationController?.pushViewController(seatMapSelectionVC, animated: true)
     }
     
 }

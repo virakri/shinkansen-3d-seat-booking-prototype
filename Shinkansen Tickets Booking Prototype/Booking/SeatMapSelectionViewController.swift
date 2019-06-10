@@ -102,11 +102,11 @@ class SeatMapSelectionViewController: BookingViewController {
         }
         isTransitionPerforming = true
         
-        let bookingConfirmationViewController = BookingConfirmationViewController()
-        bookingConfirmationViewController.headerInformation = headerInformation
-        bookingConfirmationViewController.headerInformation?.seatNumber = selectedEntity.name
-        bookingConfirmationViewController.headerInformation?.price = seatClass?.price.yen
-        navigationController?.pushViewController(bookingConfirmationViewController, animated: true)
+        let bookingConfirmationVC = BookingConfirmationViewController()
+        bookingConfirmationVC.headerInformation = headerInformation
+        bookingConfirmationVC.headerInformation?.seatNumber = selectedEntity.name
+        bookingConfirmationVC.headerInformation?.price = seatClass?.price.yen
+        navigationController?.pushViewController(bookingConfirmationVC, animated: true)
     }
     
     @objc func backButtonDidTouch(_ sender: Button) {

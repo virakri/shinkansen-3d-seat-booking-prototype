@@ -43,8 +43,6 @@ class BookingCriteriaViewController: BookingViewController {
     
     private var logoImageAlignmentConstraint: NSLayoutConstraint!
     
-//    var
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStaticContent()
@@ -95,9 +93,6 @@ class BookingCriteriaViewController: BookingViewController {
                                        spacing: 12)
         
         arrowImageView.centerYAnchor.constraint(equalTo: fromStationContainerView.view.centerYAnchor).isActive = true
-        
-//        arrowImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
-//        arrowImageView.setContentCompressionResistancePriority(.required, for: .vertical)
         
         fromStationContainerView.widthAnchor.constraint(equalTo: destinationStationContainerView.widthAnchor).isActive = true
         
@@ -208,14 +203,21 @@ class BookingCriteriaViewController: BookingViewController {
         default:
             selectedDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 2)
         }
+        
+        let trainSelectionVC = TrainSelectionViewController()
+        
         let formatter = FullDateFormatter()
+        let dayOfWeek = Calendar.current.weekdaySymbols[Calendar.current.component(.weekday, from: selectedDate) - 1]
+        let date = formatter.string(from: selectedDate)
+        let fromStation = "Tokyo"
+        let toStation = "Ōmiya"
         
-        let trainSelectionViewController = TrainSelectionViewController()
-        
-        trainSelectionViewController.headerInformation =
-            HeaderInformation(dayOfWeek: Calendar.current.weekdaySymbols[Calendar.current.component(.weekday, from: selectedDate) - 1], date: formatter.string(from: selectedDate),
-                              fromStation: "Tokyo", toStation: "Ōmiya")
-        navigationController?.pushViewController(trainSelectionViewController, animated: true)
+        trainSelectionVC.headerInformation =
+            HeaderInformation(dayOfWeek: dayOfWeek,
+                              date: date,
+                              fromStation: fromStation,
+                              toStation: toStation)
+        navigationController?.pushViewController(trainSelectionVC, animated: true)
     }
     
     @objc func backButtonDidTouch(_ sender: Button) {
