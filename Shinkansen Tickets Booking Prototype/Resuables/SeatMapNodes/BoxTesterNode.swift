@@ -17,6 +17,15 @@ class BoxTesterNode: ReservableNode {
         }
     }
     
+    override var reservableEntity: ReservableEntity? {
+        didSet {
+            super.reservableEntity = reservableEntity
+            if let reservableEntity = reservableEntity {
+                updateReservableEntity(reservableEntity: reservableEntity)
+            }
+        }
+    }
+    
     override init(reservableEntity: ReservableEntity) {
         super.init(reservableEntity: reservableEntity)
         self.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
@@ -38,23 +47,23 @@ class BoxTesterNode: ReservableNode {
         return geometry?.firstMaterial
     }
     
-    func updateReservableEntity(reservableEntity: ReservableEntity) {
+    private func updateReservableEntity(reservableEntity: ReservableEntity) {
         position = reservableEntity.transformedModelEntity.position
         eulerAngles = reservableEntity.transformedModelEntity.rotation
     }
     
     func setupTheme() {
         
-        material?.diffuse.contents = UIColor.yellow
-        
+        material?.diffuse.contents = UIColor.red
+
         if self.isHighlighted {
-            material?.diffuse.contents = UIColor.red
+            material?.diffuse.contents = UIColor.green
         }
-        
+
         if self.isSelected {
             material?.diffuse.contents = UIColor.yellow
         }
-        
+
         if !self.isEnabled {
             material?.diffuse.contents = UIColor.gray
         }

@@ -129,13 +129,19 @@ class SeatMapSceneView: SCNView {
             return
         }
         
-        DispatchQueue.global(qos: .background).async {
-            let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
-                BoxTesterNode(reservableEntity: $0)
-            })
+        let factory = NodeFactory(url: URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
+        factory.onComplete = { _factory in
             
-            nodes.forEach { node in
-                self.contentNode.addChildNode(node)
+            DispatchQueue.main.async {
+                let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
+                    let node: BoxTesterNode = _factory.create(name: "box")!
+                    node.reservableEntity = $0
+                    return node
+                })
+                
+                nodes.forEach { node in
+                    self.contentNode.addChildNode(node)
+                }
             }
         }
     }
@@ -143,8 +149,21 @@ class SeatMapSceneView: SCNView {
     private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> ReservableNode? {
         if let touch = touches.first {
             let firstHitTestResult = hitTest(touch.location(in: self), options: [.categoryBitMask: ReservableNode.defaultBitMask]).first
-            if let node = firstHitTestResult?.node as? ReservableNode {
-                return node
+            if let node = firstHitTestResult?.node {
+                if let node = node as? ReservableNode  {
+                    return node
+                }else{
+                    func findParent<T>(of node: SCNNode?) -> T? where T : SCNNode {
+                        if let parent = node?.parent {
+                            if parent is T {
+                                return parent as? T
+                            }
+                            return findParent(of: parent)
+                        }
+                        return nil
+                    }
+                    return findParent(of: node)
+                }
             }
         }
         return nil

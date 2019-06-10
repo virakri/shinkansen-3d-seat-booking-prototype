@@ -1,5 +1,5 @@
 //
-//  ModelFactory.swift
+//  NodeFactory.swift
 //  Shinkansen Tickets Booking Prototype
 //
 //  Created by Nattawut Singhchai on 9/6/2562 BE.
@@ -14,9 +14,15 @@ struct ModelData: Codable {
     let name: String
     let modelObject: URL
     let isInteractible: Bool
-    
-    let normal: ModelState
-    let highlighted: ModelState
+    let states: ModelDataState?
+}
+
+struct ModelDataState: Codable {
+    let normal: ModelState?
+    let highlighted: ModelState?
+    let disabled: ModelState?
+    let selected: ModelState?
+    let focused: ModelState?
 }
 
 struct ModelState: Codable {
@@ -55,39 +61,52 @@ class StateNode: SCNNode, InteractibleNode {
     }
 }
 
-
 class NodeFactory {
     
     let url: URL
     
-    var prototypeNode: SCNReferenceNode?
-    
-    var isLoaded = false
+    var isLoaded = false {
+        didSet {
+            onComplete?(self)
+        }
+    }
     
     private var onCompleted: ((NodeFactory) -> Void)?
     
     private var modelData: [ModelData]?
     
-    private var modelPrototypes: [String: SCNReferenceNode] = [:]
+    var modelPrototypes: [String: SCNNode?] = [:]
+    
+    var onComplete: ((NodeFactory) -> Void)?
     
     init(url: URL) {
         self.url = url
-        fetchModelData(url).flatMap { [weak self] (modelData) -> Future<[String: SCNReferenceNode], Error> in
+        fetchModelData(url).flatMap { [weak self] (modelData) -> Future<[String: SCNNode?], Error> in
             guard let weakSelf = self else {
-                return Future(error: NSError(domain: "NodeFactory", code: -9004, userInfo: [:]))
+                return Future(error: NSError(
+                    domain: "NodeFactory",
+                    code: -9004, userInfo: [NSLocalizedFailureReasonErrorKey: "Memory of self release before use it"]
+                ))
             }
             weakSelf.modelData = modelData
-            let data = Dictionary(uniqueKeysWithValues: modelData.map { ($0.name, $0.modelObject) })
-            return weakSelf.loadModels(from: data)
+            return weakSelf.loadModels(
+                from: Dictionary(
+                    uniqueKeysWithValues: modelData.map {
+                        ($0.name, $0.modelObject)
+                    }
+                )
+            )
         }.onSuccess { modelPrototypes in
-            self.isLoaded = true
             self.modelPrototypes = modelPrototypes
+            self.isLoaded = true
+        }.onFailure { error in
+                print(error)
         }
     }
     
     private func fetchModelData(_ url: URL) -> Future<[ModelData], Error> {
         return Future { complete in
-            URLSession().dataTask(with: url) { (data, response, error) in
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
                     let decoder = JSONDecoder()
                     let data = try? decoder.decode([ModelData].self, from: data)
@@ -109,11 +128,11 @@ class NodeFactory {
                         code: -9001,
                         userInfo: [NSLocalizedFailureReasonErrorKey: "Something wrong"])))
                 }
-            }
+            }.resume()
         }
     }
     
-    func loadModels(from data: [String: URL]) -> Future<[String: SCNReferenceNode], Error> {
+    func loadModels(from data: [String: URL]) -> Future<[String: SCNNode?], Error> {
         return data.map({ loadModel(name: $0, from: $1) })
             .sequence()
             .flatMap {
@@ -121,31 +140,60 @@ class NodeFactory {
         }
     }
     
-    func loadModel(name: String, from url: URL) -> Future<((String, SCNReferenceNode)), Error> {
+    func loadModel(name: String, from url: URL) -> Future<((String, SCNNode?)), Error> {
         return Future { complete in
             DispatchQueue.global(qos: .background).async {
                 if let node = SCNReferenceNode(url: url) {
                     node.load()
                     DispatchQueue.main.async {
-                        complete(.success((name, node)))
+                        complete(
+                            .success(
+                                (name, node.childNodes.first )
+                            )
+                        )
                     }
                 }else{
                     complete(.failure(NSError(domain: "NodeFactory",
                                               code: -9001,
-                                              userInfo: [NSLocalizedFailureReasonErrorKey: "Something wrong"])))
+                                              userInfo: [NSLocalizedFailureReasonErrorKey: "URL of model seems wrong"])))
                 }
             }
         }
     }
     
-    
     func create<T>(name: String) -> T? where T : SCNNode & StaticNode {
         guard
-            let prototypeNode = prototypeNode,
-            let modelData = modelData?.first(where: { $0.name == name }),
-            prototypeNode.isLoaded
+            let prototypeNode = modelPrototypes[name] as? SCNNode,
+            let modelData = modelData?.first(where: { $0.name == name })
             else { return nil }
-        return T(geometry: prototypeNode.geometry, modelData: modelData)
+        
+        let clone = prototypeNode.clone()
+        clone.geometry = prototypeNode.geometry?.copy() as? SCNGeometry
+        if let g = prototypeNode.geometry {
+            clone.geometry?.materials = g.materials.map{ $0.copy() as! SCNMaterial }
+        }
+        
+        let node = T(
+            geometry: clone.geometry,
+            modelData: modelData
+        )
+        
+        prototypeNode.childNodes.forEach { childNode in
+            childNode.categoryBitMask = ReservableNode.defaultBitMask
+            node.addChildNode(childNode.clone())
+        }
+        
+        if modelData.isInteractible {
+            func setNodeBitmask(node: SCNNode) {
+                node.categoryBitMask = ReservableNode.defaultBitMask
+                node.childNodes.forEach { child in
+                    setNodeBitmask(node: child)
+                }
+            }
+            setNodeBitmask(node: node)
+        }
+        
+        return node
     }
     
     func create<T>(name: String, count: Int) -> [T] where T : SCNNode & StaticNode {
@@ -155,5 +203,3 @@ class NodeFactory {
     }
     
 }
-
-
