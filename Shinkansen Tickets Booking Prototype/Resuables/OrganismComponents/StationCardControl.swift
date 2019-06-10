@@ -13,7 +13,7 @@ class StationCardControl: CardControl {
     
     var basedHeight: CGFloat = DesignSystem.isNarrowScreen ? 64 : 72 {
         didSet {
-            heightConstraint.constant = basedHeight
+            heightConstraint.constant = basedHeight.systemSizeMuliplier()
         }
     }
     
@@ -48,21 +48,25 @@ class StationCardControl: CardControl {
         
         translatesAutoresizingMaskIntoConstraints = false
         heightConstraint = heightAnchor.constraint(equalToConstant: basedHeight)
+        
         heightConstraint.isActive = true
+        contentStackView.spacing = 0
+        
+        stationNameJPLabel.textAlignment = .center
+        stationNameLabel.textAlignment = .center
         
         contentStackView.addArrangedSubview(stationNameJPLabel)
         contentStackView.addArrangedSubview(stationNameLabel)
         
         contentStackView.axis = .vertical
         
-        addSubview(contentStackView, withConstaintEquals: .center)
-        addConstraints(toView: contentStackView, withConstaintGreaterThanOrEquals: .marginEdges)
+        contentView.addSubview(contentStackView, withConstaintEquals: .center)
+        contentView.addConstraints(toView: contentStackView, withConstaintGreaterThanOrEquals: .marginEdges)
         
-        stationNameJPLabel.textAlignment = .center
-        stationNameLabel.textAlignment = .center
+        contentView.directionalLayoutMargins = DesignSystem.layoutMargins.itemCardControl()
     }
     
-    func setupValue(stationNameJP: String? = nil,
+    public func setupValue(stationNameJP: String? = nil,
                     stationName: String? = nil) {
         stationNameJPLabel.text = stationNameJP
         stationNameLabel.text = stationName
@@ -71,7 +75,7 @@ class StationCardControl: CardControl {
     public override func setupTheme() {
         super.setupTheme()
         
-        contentStackView.spacing = 0
+        heightConstraint.constant = basedHeight.systemSizeMuliplier()
         
         stationNameJPLabel.textStyle = textStyle.title1()
         stationNameLabel.textStyle = textStyle.caption1Alt()

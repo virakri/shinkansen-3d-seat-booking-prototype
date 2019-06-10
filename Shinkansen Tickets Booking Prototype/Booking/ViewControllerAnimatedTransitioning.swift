@@ -583,7 +583,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                     
                     let dummyView = UIView()
                     seatMapSelectionVC.mainContentView.addSubview(dummyView)
-                   seatMapSelectionVC.mainContentView.sendSubviewToBack(dummyView)
+                    seatMapSelectionVC.mainContentView.sendSubviewToBack(dummyView)
                     dummyView.layer.setLayer(selectedCell.cardView.layer.layerStyle)
                     dummyView.layer.setShadow(selectedCell.cardView.layer.shadowStyle)
                     dummyView.frame = originRectInMainContentView

@@ -41,8 +41,12 @@ class SeatClassSelectionViewController: BookingViewController {
         
         trainImageView = UIImageView()
         
-        headerRouteInformationView.addSubview(trainImageView)
-        trainImageView.translatesAutoresizingMaskIntoConstraints = false
+        headerRouteInformationView
+            .descriptionSetView
+            .addSubview(trainImageView)
+        
+        trainImageView
+            .translatesAutoresizingMaskIntoConstraints = false
         
         trainImageView
             .leadingAnchor
@@ -52,7 +56,7 @@ class SeatClassSelectionViewController: BookingViewController {
                     .descriptionSetView
                     .trainNumberSetView
                     .trailingAnchor,
-                constant: 24)
+                constant: 48)
             .isActive = true
         
         let trainImageViewTrailingConstraint =
@@ -62,18 +66,24 @@ class SeatClassSelectionViewController: BookingViewController {
                 equalTo:
                 view.trailingAnchor)
         
-        trainImageViewTrailingConstraint.priority = .defaultHigh
+        trainImageViewTrailingConstraint.priority = .defaultLow
         trainImageViewTrailingConstraint.isActive = true
         
-        headerRouteInformationView
-            .descriptionSetView
-            .trainNumberSetView
-            .centerYAnchor
-            .constraint(equalTo: trainImageView.centerYAnchor)
+        trainImageView
+            .topAnchor
+            .constraint(
+                equalTo: headerRouteInformationView
+                    .stationPairView
+                    .bottomAnchor,
+                constant: 12)
             .isActive = true
         
         headerRouteInformationView
-            .descriptionSetView.topAnchor.constraint(equalTo: trainImageView.topAnchor).isActive = true
+            .descriptionSetView
+            .bottomAnchor
+            .constraint(
+                equalTo: trainImageView.bottomAnchor)
+            .isActive = true
         
         trainImageView.widthAnchor.constraint(equalTo: trainImageView.heightAnchor, multiplier: 6).isActive = true
         trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .vertical)
