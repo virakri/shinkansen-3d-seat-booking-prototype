@@ -19,16 +19,28 @@ class BoxTesterNode: ReservableNode {
     
     override init(reservableEntity: ReservableEntity) {
         super.init(reservableEntity: reservableEntity)
-        
-        let box = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
-        geometry = box
-        position = reservableEntity.transformedModelEntity.position
-        eulerAngles = reservableEntity.transformedModelEntity.rotation
+        self.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
+        updateReservableEntity(reservableEntity: reservableEntity)
+        setupTheme()
+    }
+    
+    required init(geometry: SCNGeometry?, modelData: ModelData?) {
+        super.init(geometry: geometry, modelData: modelData)
+        if let geometry = geometry {
+            self.geometry = geometry
+        }else{
+            self.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
+        }
         setupTheme()
     }
     
     private var material: SCNMaterial? {
         return geometry?.firstMaterial
+    }
+    
+    func updateReservableEntity(reservableEntity: ReservableEntity) {
+        position = reservableEntity.transformedModelEntity.position
+        eulerAngles = reservableEntity.transformedModelEntity.rotation
     }
     
     func setupTheme() {

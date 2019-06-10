@@ -8,11 +8,13 @@
 
 import SceneKit
 
-class ReservableNode: SCNNode {
+class ReservableNode: SCNNode, InteractibleNode {
     
     static let defaultBitMask = 1 << 2
     
-    let reservableEntity: ReservableEntity
+    var reservableEntity: ReservableEntity?
+    
+    var modelData: ModelData?
     
     var isHighlighted: Bool = false
     
@@ -23,6 +25,13 @@ class ReservableNode: SCNNode {
     init(reservableEntity: ReservableEntity) {
         self.reservableEntity = reservableEntity
         super.init()
+        categoryBitMask = ReservableNode.defaultBitMask
+    }
+    
+    required init(geometry: SCNGeometry?, modelData: ModelData?) {
+        super.init()
+        self.geometry = geometry
+        self.modelData = modelData
         categoryBitMask = ReservableNode.defaultBitMask
     }
     

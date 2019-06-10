@@ -25,7 +25,7 @@ struct ModelState: Codable {
 }
 
 protocol StaticNode {
-    init(geometry: SCNGeometry?, modelData: ModelData)
+    init(geometry: SCNGeometry?, modelData: ModelData?)
     var isEnabled: Bool { get set }
 }
 
@@ -42,9 +42,9 @@ class StateNode: SCNNode, InteractibleNode {
     
     var isEnabled: Bool = true
     
-    let modelData: ModelData
+    let modelData: ModelData?
     
-    required init(geometry: SCNGeometry?, modelData: ModelData) {
+    required init(geometry: SCNGeometry?, modelData: ModelData?) {
         self.modelData = modelData
         super.init()
         self.geometry = geometry
