@@ -29,11 +29,11 @@ class SegmentedControl: UIControl {
         }
     }
     
-    var itemCardControls: [SegmentedItemControl]
+    var segmentedItemControls: [SegmentedItemControl]
     
     init(items: [(title: String, subtitle: String)]? = nil) {
         stackView = UIStackView()
-        itemCardControls = []
+        segmentedItemControls = []
         super.init(frame: .zero)
         self.items = items
         
@@ -46,13 +46,14 @@ class SegmentedControl: UIControl {
     }
     
     private func setupView() {
-        addSubview(stackView, withConstaintEquals: .edges)
+        directionalLayoutMargins = DesignSystem.layoutMargins.segmentedControl()
+        addSubview(stackView, withConstaintEquals: .marginEdges)
         
         stackView.distribution = .fillEqually
         stackView.spacing = DesignSystem.spacing.cardGutter
         stackView.isUserInteractionEnabled = false
         
-        itemCardControls = []
+        segmentedItemControls = []
         
         // Setup Items
         setupItems()
@@ -60,18 +61,18 @@ class SegmentedControl: UIControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         var isTouchOnItemCards = false
-        itemCardControls.forEach { (itemCardControl) in
-            if itemCardControl.bounds.contains(touch.location(in: itemCardControl)) {
+        segmentedItemControls.forEach { (segmentedItemControl) in
+            if segmentedItemControl.bounds.contains(touch.location(in: segmentedItemControl)) {
                 isTouchOnItemCards = true
-                itemCardControl.isHighlighted = true
+                segmentedItemControl.isHighlighted = true
             }
         }
         return isTouchOnItemCards
     }
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        itemCardControls.forEach { (itemCardControl) in
-            itemCardControl.isHighlighted = itemCardControl.bounds.contains(touch.location(in: itemCardControl))
+        segmentedItemControls.forEach { (segmentedItemControl) in
+            segmentedItemControl.isHighlighted = segmentedItemControl.bounds.contains(touch.location(in: segmentedItemControl))
         }
         return bounds.contains(touch.location(in: self))
     }
@@ -84,10 +85,10 @@ class SegmentedControl: UIControl {
         
         var newSelectedIndex: Int?
         
-        itemCardControls.forEach { (itemCardControl) in
-            let isTouchOnItemCards = itemCardControl.bounds.contains(touch.location(in: itemCardControl))
+        segmentedItemControls.forEach { (segmentedItemControl) in
+            let isTouchOnItemCards = segmentedItemControl.bounds.contains(touch.location(in: segmentedItemControl))
             if isTouchOnItemCards {
-                newSelectedIndex = itemCardControl.tag
+                newSelectedIndex = segmentedItemControl.tag
             }
         }
         
@@ -106,22 +107,23 @@ class SegmentedControl: UIControl {
             let itemCardControl = SegmentedItemControl(title: item.title,
                                                   subtitle: item.subtitle)
             itemCardControl.tag = index
-            itemCardControls.append(itemCardControl)
+            segmentedItemControls.append(itemCardControl)
             stackView.addArrangedSubview(itemCardControl)
         }
     }
     
     private func setSelectedIndexItemCardControlSelected() {
-        itemCardControls.forEach { (itemCardControl) in
-            itemCardControl.isSelected = selectedIndex == itemCardControl.tag
-            itemCardControl.isHighlighted = false
+        segmentedItemControls.forEach { (segmentedItemControl) in
+            segmentedItemControl.isSelected = selectedIndex == segmentedItemControl.tag
+            segmentedItemControl.isHighlighted = false
         }
     }
     
     func setupTheme() {
-        stackView.arrangedSubviews.forEach { (itemCardControl) in
-            guard let itemCardControl = itemCardControl as? SegmentedItemControl else { return }
-            itemCardControl.setupTheme()
+        layer.setLayer(layerStyle.segmentedControl.normal())
+        stackView.arrangedSubviews.forEach { (segmentedItemControl) in
+            guard let segmentedItemControl = segmentedItemControl as? SegmentedItemControl else { return }
+            segmentedItemControl.setupTheme()
         }
     }
 }

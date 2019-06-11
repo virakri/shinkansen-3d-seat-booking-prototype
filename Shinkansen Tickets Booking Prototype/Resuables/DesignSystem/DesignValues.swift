@@ -44,6 +44,9 @@ extension DesignSystem {
     }
     
     class layoutMargins {
+        class func segmentedControl() -> NSDirectionalEdgeInsets {
+            return .init(vertical: 6, horizontal: 6) }
+        
         class func segmentedItemControl() -> NSDirectionalEdgeInsets {
             return .init(vertical: 8, horizontal: 8) }
         

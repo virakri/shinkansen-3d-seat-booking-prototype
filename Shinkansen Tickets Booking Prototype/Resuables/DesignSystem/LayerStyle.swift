@@ -122,7 +122,7 @@ extension DesignSystem {
                 return LayerStyle(opacity: 1,
                                   cornerRadius: DesignSystem
                                     .radiusCorner
-                                    .segmentedItem(),
+                                    .segmentedControl(),
                                   backgroundColor: currentColorTheme
                                     .componentColor
                                     .cardDisabledBackground
