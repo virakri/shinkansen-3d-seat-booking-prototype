@@ -28,7 +28,8 @@ extension DesignSystem {
     
     class radiusCorner {
         class func button() -> CGFloat { return CGFloat(8).systemSizeMuliplier() }
-        
+        class func segmentedItem() -> CGFloat { return CGFloat(2).systemSizeMuliplier() }
+        class func segmentedControl() -> CGFloat { return CGFloat(8).systemSizeMuliplier() }
         class func card() -> CGFloat { return CGFloat(8).systemSizeMuliplier() }
         class func largeCard() -> CGFloat { return CGFloat(20).systemSizeMuliplier() }
     }
@@ -43,7 +44,7 @@ extension DesignSystem {
     }
     
     class layoutMargins {
-        class func itemCardControl() -> NSDirectionalEdgeInsets {
+        class func segmentedItemControl() -> NSDirectionalEdgeInsets {
             return .init(vertical: 8, horizontal: 8) }
         
         class func card() -> NSDirectionalEdgeInsets {

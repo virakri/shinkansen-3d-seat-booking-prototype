@@ -63,7 +63,7 @@ class StationCardControl: CardControl {
         contentView.addSubview(contentStackView, withConstaintEquals: .center)
         contentView.addConstraints(toView: contentStackView, withConstaintGreaterThanOrEquals: .marginEdges)
         
-        contentView.directionalLayoutMargins = DesignSystem.layoutMargins.itemCardControl()
+        contentView.directionalLayoutMargins = DesignSystem.layoutMargins.segmentedItemControl()
     }
     
     public func setupValue(stationNameJP: String? = nil,

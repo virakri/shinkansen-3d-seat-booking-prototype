@@ -37,6 +37,8 @@
 		D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBD9229D4C31007CCFFE /* ViewController.swift */; };
 		D053EBDC229D4D3D007CCFFE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBDB229D4D3D007CCFFE /* Notification.swift */; };
 		D053EBDF229D52BB007CCFFE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBDE229D52BB007CCFFE /* Label.swift */; };
+		D05C760222AF20B900AC1461 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C760122AF20B900AC1461 /* SegmentedControl.swift */; };
+		D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */; };
 		D0689C1C22AABBAC00EE5660 /* BoxTesterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */; };
 		D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */; };
 		D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */; };
@@ -113,6 +115,8 @@
 		D053EBD9229D4C31007CCFFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D053EBDB229D4D3D007CCFFE /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D053EBDE229D52BB007CCFFE /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		D05C760122AF20B900AC1461 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedItemControl.swift; sourceTree = "<group>"; };
 		D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxTesterNode.swift; sourceTree = "<group>"; };
 		D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeInitialViewController.swift; sourceTree = "<group>"; };
 		D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCriteriaViewController.swift; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 				D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */,
 				D0046995229FCB550028A9D7 /* CardControl.swift */,
 				D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */,
+				D05C760122AF20B900AC1461 /* SegmentedControl.swift */,
+				D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */,
 				D0F9E35B22A87C57003B339D /* BackButtonControl.swift */,
 			);
 			path = MoleculeComponents;
@@ -480,6 +486,7 @@
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
 				E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
+				D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */,
 				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,
 				D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */,
 				D074B1EA228B927600791F94 /* Colors.swift in Sources */,
@@ -510,6 +517,7 @@
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
 				D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */,
+				D05C760222AF20B900AC1461 /* SegmentedControl.swift in Sources */,
 				E0BA439722AC4B7300FC3A72 /* Date.swift in Sources */,
 				E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,

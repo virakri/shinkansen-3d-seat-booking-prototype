@@ -37,9 +37,9 @@ class BookingCriteriaViewController: BookingViewController {
     
     var timeSegmentedContainerView: HeadlineWithContainerView!
     
-    var dateSegmentedControl : SegmentedCardControl!
+    var dateSegmentedControl : SegmentedControl!
     
-    var timeSegmentedControl: SegmentedCardControl!
+    var timeSegmentedControl: SegmentedControl!
     
     private var logoImageAlignmentConstraint: NSLayoutConstraint!
     
@@ -96,10 +96,10 @@ class BookingCriteriaViewController: BookingViewController {
         
         fromStationContainerView.widthAnchor.constraint(equalTo: destinationStationContainerView.widthAnchor).isActive = true
         
-        dateSegmentedControl = SegmentedCardControl()
+        dateSegmentedControl = SegmentedControl()
         dateSegmentedContainerView = HeadlineWithContainerView(containingView: dateSegmentedControl)
         
-        timeSegmentedControl = SegmentedCardControl()
+        timeSegmentedControl = SegmentedControl()
         timeSegmentedContainerView = HeadlineWithContainerView(containingView: timeSegmentedControl)
         
         inputStackView = UIStackView([horizontalStationStackView,

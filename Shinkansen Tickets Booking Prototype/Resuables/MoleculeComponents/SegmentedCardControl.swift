@@ -41,12 +41,6 @@ class SegmentedCardControl: UIControl {
             }
         }
         
-//        override var isEnabled: Bool {
-//            didSet {
-//                currentState = isEnabled ? .normal : .disabled
-//            }
-//        }
-        
         static let hipticGenerator = UISelectionFeedbackGenerator()
         
         override var isHighlighted: Bool {
@@ -93,7 +87,7 @@ class SegmentedCardControl: UIControl {
             subtitleLabel.adjustsFontSizeToFitWidth = true
             
             // Override the margin
-            cardControl.contentView.directionalLayoutMargins = DesignSystem.layoutMargins.itemCardControl()
+            cardControl.contentView.directionalLayoutMargins = DesignSystem.layoutMargins.segmentedItemControl()
             
             // Initialize Height Constraint
             heightConstraint = heightAnchor.constraint(equalToConstant: basedHeight.systemSizeMuliplier())

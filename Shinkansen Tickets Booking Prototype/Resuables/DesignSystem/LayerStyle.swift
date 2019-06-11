@@ -87,12 +87,75 @@ extension DesignSystem {
                 return normal().withBorderColor(currentColorTheme.componentColor.callToActionDisabled.cgColor)
             }
         }
+        
+        class segmentedItem {
+            
+            
+            class func normal() -> LayerStyle {
+                return LayerStyle(opacity: 1,
+                                  cornerRadius: DesignSystem
+                                    .radiusCorner
+                                    .segmentedItem(),
+                                  backgroundColor: currentColorTheme
+                                    .componentColor
+                                    .cardBackground
+                                    .withAlphaComponent(0)
+                                    .cgColor,
+                                  shadowStyle: shadowStyle.segmentedItem.normal()
+                )
+            }
+            
+            class func selected() -> LayerStyle {
+                return normal()
+                    .withBackgroundColor(currentColorTheme
+                        .componentColor
+                        .cardBackground
+                        .cgColor)
+                    .withShadowStyle(shadowStyle
+                        .segmentedItem
+                        .selected())
+            }
+        }
+        
+        class segmentedControl {
+            class func normal() -> LayerStyle {
+                return LayerStyle(opacity: 1,
+                                  cornerRadius: DesignSystem
+                                    .radiusCorner
+                                    .segmentedItem(),
+                                  backgroundColor: currentColorTheme
+                                    .componentColor
+                                    .cardDisabledBackground
+                                    .cgColor,
+                                  shadowStyle: shadowStyle
+                                    .card
+                                    .disabled()
+                )
+            }
+        }
     }
     
     class shadowStyle {
         
         class func noShadow() -> ShadowStyle {
             return ShadowStyle(shadowOpacity: 0, shadowRadius: 0, shadowOffset: .zero, shadowColor: currentColorTheme.componentColor.shadow.cgColor)
+        }
+        
+        class segmentedItem {
+            
+            class func normal() -> ShadowStyle {
+                return ShadowStyle(shadowOpacity: 0,
+                                   shadowRadius: 0,
+                                   shadowOffset: .init(width: 0, height: 0),
+                                   shadowColor: currentColorTheme.componentColor.shadow.cgColor)
+            }
+            
+            class func selected() -> ShadowStyle {
+                return ShadowStyle(shadowOpacity: 0.12,
+                                   shadowRadius: 10,
+                                   shadowOffset: .init(width: 0, height: 5),
+                                   shadowColor: currentColorTheme.componentColor.shadow.cgColor)
+            }
         }
         
         class card {
