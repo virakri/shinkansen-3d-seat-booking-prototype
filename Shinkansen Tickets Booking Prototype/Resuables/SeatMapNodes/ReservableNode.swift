@@ -28,9 +28,10 @@ class ReservableNode: SCNNode, InteractibleNode {
         categoryBitMask = ReservableNode.defaultBitMask
     }
     
-    required init(geometry: SCNGeometry?, modelData: ModelData?) {
+    required init(geometry: SCNGeometry?, childNodes: [SCNNode], modelData: ModelData?) {
         super.init()
         self.geometry = geometry
+        childNodes.forEach { addChildNode($0) }
         self.modelData = modelData
         categoryBitMask = ReservableNode.defaultBitMask
     }

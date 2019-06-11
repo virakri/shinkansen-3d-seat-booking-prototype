@@ -10,6 +10,8 @@ import SceneKit
 
 class BoxTesterNode: ReservableNode {
     
+    var materialMap: [String: Any] = [:]
+    
     override var isHighlighted: Bool {
         didSet {
             super.isHighlighted = isHighlighted
@@ -33,13 +35,48 @@ class BoxTesterNode: ReservableNode {
         setupTheme()
     }
     
-    required init(geometry: SCNGeometry?, modelData: ModelData?) {
-        super.init(geometry: geometry, modelData: modelData)
+    required init(geometry: SCNGeometry?, childNodes: [SCNNode], modelData: ModelData?) {
+        super.init(geometry: geometry, childNodes: childNodes, modelData: modelData)
         if let geometry = geometry {
             self.geometry = geometry
         }else{
             self.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
         }
+        
+        func createMaterialMap(from node: SCNNode) -> [String: Any] {
+            var result = [String: Any]()
+            if let materials = node.geometry?.materials {
+                result["materials"] = materials.map { $0 }
+            }
+
+            node.geometry?.materials = node.geometry?.materials.compactMap({ material  in
+                if let name = material.name, name.contains("-") {
+                    var nameComponent = Array(name.split(separator: "-"))
+                    if let last = nameComponent.last,
+                        nameComponent.count > 1,
+                        ["normal", "highlighted", "disabled", "selected", "focused"].contains(last)
+                    {
+                        if last == "normal" {
+                            nameComponent.removeLast()
+                            let newName = nameComponent.joined(separator: "-")
+                            return SCNMaterial().clone(from: material, name: newName)
+                        }else{
+                            return nil
+                        }
+                    }
+                }
+
+                return material
+            }) ?? []
+            node.childNodes.forEach { child in
+                if child.geometry != nil {
+                    result[child.name ?? "undefined"] = createMaterialMap(from: child)
+                }
+            }
+            return result
+        }
+        materialMap = createMaterialMap(from: self)
+        
         setupTheme()
     }
     
@@ -53,20 +90,23 @@ class BoxTesterNode: ReservableNode {
     }
     
     func setupTheme() {
-        
-        material?.diffuse.contents = UIColor.red
-
-        if self.isHighlighted {
-            material?.diffuse.contents = UIColor.green
+        let state = isHighlighted ? "highlighted" : "normal"
+        func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
+            if let materials = materialMap["materials"] as? [SCNMaterial] {
+                node.geometry?.materials.forEach({ currentMaterial in
+                    if let name = currentMaterial.name?.appending("-\(state)"),
+                        let newMaterial = materials.first(where: { $0.name == name }) {
+                        currentMaterial.clone(from: newMaterial)
+                    }
+                })
+            }
+            node.childNodes.forEach { child in
+                if let map = materialMap[child.name ?? "undefined"] as? [String: Any] {
+                    updateMaterial(node: child, materialMap: map)
+                }
+            }
         }
-
-        if self.isSelected {
-            material?.diffuse.contents = UIColor.yellow
-        }
-
-        if !self.isEnabled {
-            material?.diffuse.contents = UIColor.gray
-        }
+        updateMaterial(node: self, materialMap: materialMap)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -34,7 +34,6 @@ class SeatMapSceneView: SCNView {
     
     var currectContentNodePosition: SCNVector3? {
         didSet {
-            print(currectContentNodePosition ?? "This is Nil")
             contentNode.position = currectContentNodePosition ?? contentNode.position
             
             guard let currectContentNodePosition = currectContentNodePosition, let oldValue = oldValue else { return }
@@ -132,7 +131,7 @@ class SeatMapSceneView: SCNView {
         func placeNodeFromNodeFactory(factory: NodeFactory) {
             DispatchQueue.main.async {
                 let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
-                    let node: BoxTesterNode = factory.create(name: "box")!
+                    let node: BoxTesterNode = factory.create(name: "seat")!
                     node.reservableEntity = $0
                     return node
                 })
@@ -218,7 +217,6 @@ class SeatMapSceneView: SCNView {
     
     private func positionOfFloorHitTest(_ point: CGPoint) -> SCNVector3? {
         let hitTests = hitTest(point, options: [.categoryBitMask : 1 << 1])
-        print(hitTests)
         return hitTests.first?.worldCoordinates
     }
     

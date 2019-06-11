@@ -31,7 +31,7 @@ struct ModelState: Codable {
 }
 
 protocol StaticNode {
-    init(geometry: SCNGeometry?, modelData: ModelData?)
+    init(geometry: SCNGeometry?, childNodes: [SCNNode], modelData: ModelData?)
     var isEnabled: Bool { get set }
 }
 
@@ -50,10 +50,11 @@ class StateNode: SCNNode, InteractibleNode {
     
     let modelData: ModelData?
     
-    required init(geometry: SCNGeometry?, modelData: ModelData?) {
+    required init(geometry: SCNGeometry?, childNodes: [SCNNode], modelData: ModelData?) {
         self.modelData = modelData
         super.init()
         self.geometry = geometry
+        childNodes.forEach { self.addChildNode($0) }
     }
     
     required init?(coder: NSCoder) {
@@ -170,31 +171,28 @@ class NodeFactory {
             else { return nil }
         
         let clone = prototypeNode.clone()
-        clone.geometry = prototypeNode.geometry?.copy() as? SCNGeometry
-        if let g = prototypeNode.geometry {
-            clone.geometry?.materials = g.materials.map{ $0.copy() as! SCNMaterial }
+        
+        func cloneGeometry(from: SCNNode, to: SCNNode) {
+            to.geometry = from.geometry?.copy() as? SCNGeometry
+            to.geometry?.materials = from.geometry?.materials.map {
+                SCNMaterial().clone(from: $0, name: $0.name)
+                } ?? []
+            if modelData.isInteractible {
+                to.categoryBitMask = ReservableNode.defaultBitMask
+            }
+            zip(from.childNodes, to.childNodes).forEach {
+                cloneGeometry(from: $0, to: $1)
+            }
         }
+        
+        cloneGeometry(from: prototypeNode, to: clone)
         
         let node = T(
             geometry: clone.geometry,
+            childNodes: clone.childNodes,
             modelData: modelData
         )
-        
-        prototypeNode.childNodes.forEach { childNode in
-            childNode.categoryBitMask = ReservableNode.defaultBitMask
-            node.addChildNode(childNode.clone())
-        }
-        
-        if modelData.isInteractible {
-            func setNodeBitmask(node: SCNNode) {
-                node.categoryBitMask = ReservableNode.defaultBitMask
-                node.childNodes.forEach { child in
-                    setNodeBitmask(node: child)
-                }
-            }
-            setNodeBitmask(node: node)
-        }
-        
+
         return node
     }
     

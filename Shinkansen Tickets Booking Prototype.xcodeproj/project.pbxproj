@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9044513A22B00FA700E6FF45 /* SCNMaterial.swift */; };
 		90CA078222AEC21C002C204E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CA078122AEC21C002C204E /* UIColor.swift */; };
 		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
 		90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED74E522ADA28C007D8DDF /* NodeFactory.swift */; };
@@ -83,6 +84,7 @@
 /* Begin PBXFileReference section */
 		2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_Tickets_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
+		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
 		90CA078122AEC21C002C204E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		90ED74E522ADA28C007D8DDF /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				D01B2EBF22A316B000C3FAF3 /* UITableView.swift */,
 				D0F175BC22A29AFE0095631F /* UIEdgeInsets.swift */,
 				D0F6D8BB22A0930100872B5B /* CGFloat.swift */,
+				9044513A22B00FA700E6FF45 /* SCNMaterial.swift */,
 				D053EBCE229CB476007CCFFE /* UIStackView.swift */,
 				D053EBD2229D29B3007CCFFE /* UILabel.swift */,
 				90CA078122AEC21C002C204E /* UIColor.swift */,
@@ -481,6 +484,7 @@
 				D0EAF4B222A442DD002A9282 /* StationCardControl.swift in Sources */,
 				E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */,
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
+				9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */,
 				E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
 				D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */,

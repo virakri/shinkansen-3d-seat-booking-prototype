@@ -112,7 +112,6 @@ extension TrainSelectionViewController: UITableViewDataSource {
             })
             
             let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap({$0})
-            print(trainSchedule.seatClasses)
             let cheapestPrice = availableObjects.sorted(by: { (classL, classR) -> Bool in
                 return classL.price < classR.price
             }).first?.price
