@@ -13,6 +13,8 @@ class SegmentedItemControl: UIControl {
     
     private var heightConstraint: NSLayoutConstraint!
     
+    static let feedbackGenerator = UISelectionFeedbackGenerator()
+    
     var titleLabel: Label
     
     var unselectedTitleLabel: Label
@@ -38,7 +40,9 @@ class SegmentedItemControl: UIControl {
             if !isSelected {
                 currentState = isHighlighted ? .highlighted : .normal
                 if oldValue != isHighlighted && isHighlighted {
-                    SegmentedCardControl.ItemCardControl.hipticGenerator.selectionChanged()
+                    SegmentedItemControl
+                        .feedbackGenerator
+                        .selectionChanged()
                 }
             }
         }

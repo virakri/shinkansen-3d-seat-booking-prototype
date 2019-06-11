@@ -431,12 +431,12 @@ class DesignSystemViewController: ViewController {
                                      constaintEquals: .edges),
                                 
                                 DesignSystemBlockView(withView: {
-                                    let segmentedCardControl =
-                                        SegmentedCardControl(items: [(title: "Item 1", subtitle: "Lorem Ipsum"),
+                                    let segmentedControl =
+                                        SegmentedControl(items: [(title: "Item 1", subtitle: "Lorem Ipsum"),
                                             (title: "Item 2", subtitle: "Lorem Ipsum"),
                                             (title: "Item 3", subtitle: "Lorem Ipsum")])
-                                    segmentedCardControl.translatesAutoresizingMaskIntoConstraints = false
-                                    return segmentedCardControl
+                                    segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+                                    return segmentedControl
                                 }(), title: "Segmented Card Control",
                                      constaintEquals: [.leading, .top, .bottom]),
                                 

@@ -12,12 +12,12 @@ class SegmentedControl: UIControl {
     
     var stackView: UIStackView
     
-    static let hipticGenerator = UIImpactFeedbackGenerator(style: .light)
+    static let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     var selectedIndex: Int = 0 {
         didSet {
             if oldValue != selectedIndex {
-                SegmentedCardControl.hipticGenerator.impactOccurred()
+                SegmentedControl.feedbackGenerator.impactOccurred()
             }
             setSelectedIndexItemCardControlSelected()
         }

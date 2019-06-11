@@ -66,13 +66,13 @@ class BookingViewController: ViewController {
         }
     }
     
-    static let hipticGenerator = UIImpactFeedbackGenerator(style: .medium)
+    static let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
     var isPopPerforming: Bool = false {
         didSet {
             if oldValue != isPopPerforming && isPopPerforming == true {
                 navigationController?.popViewController(animated: true)
-                BookingViewController.hipticGenerator.impactOccurred()
+                BookingViewController.feedbackGenerator.impactOccurred()
             }
         }
     }

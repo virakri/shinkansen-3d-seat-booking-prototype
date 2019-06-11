@@ -26,7 +26,6 @@
 		D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBF22A316B000C3FAF3 /* UITableView.swift */; };
 		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
 		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
-		D01B2EC622A3F4B300C3FAF3 /* SegmentedCardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */; };
 		D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042A71422A70C7600A0CBFC /* CALayer.swift */; };
 		D050625F22A9C6BF003A8565 /* SeatMap.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D050625E22A9C6BF003A8565 /* SeatMap.scnassets */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
@@ -104,7 +103,6 @@
 		D01B2EBF22A316B000C3FAF3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
 		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
-		D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCardControl.swift; sourceTree = "<group>"; };
 		D042A71422A70C7600A0CBFC /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		D050625E22A9C6BF003A8565 /* SeatMap.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SeatMap.scnassets; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
@@ -259,7 +257,6 @@
 				D004698F229F559C0028A9D7 /* Button.swift */,
 				D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */,
 				D0046995229FCB550028A9D7 /* CardControl.swift */,
-				D01B2EC522A3F4B300C3FAF3 /* SegmentedCardControl.swift */,
 				D05C760122AF20B900AC1461 /* SegmentedControl.swift */,
 				D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */,
 				D0F9E35B22A87C57003B339D /* BackButtonControl.swift */,
@@ -522,7 +519,6 @@
 				E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,
-				D01B2EC622A3F4B300C3FAF3 /* SegmentedCardControl.swift in Sources */,
 				90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */,
 				D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */,
 				D0F175BD22A29AFE0095631F /* UIEdgeInsets.swift in Sources */,
