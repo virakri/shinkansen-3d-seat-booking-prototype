@@ -182,10 +182,18 @@ class BookingCriteriaViewController: BookingViewController {
                                       (title: "Pick a Date", subtitle: " ")]
         dateSegmentedControl.selectedIndex = 0
         
+        // Specify date components
+//        var dateComponents = DateComponents()
+//        dateComponents.timeZone = TimeZone(abbreviation: "JST") // Japan Standard Time
+//        dateComponents.hour = 8
+//        dateComponents.minute = 0
+//        let someDateTime = Calendar.current.date(from: dateComponents)
+        
+        
         timeSegmentedContainerView.setTitle(title: "Time")
-        timeSegmentedControl.items = [(title: "Morning", subtitle: "6AM - 12PM"),
-                                      (title: "Afternoon", subtitle: "12PM - 6PM"),
-                                      (title: "Evening", subtitle: "6PM - 12AM")]
+        timeSegmentedControl.items = [(title: "Morning", subtitle: "\(Date(byHourOf: 6).timeHour) - \(Date(byHourOf: 12).timeHour)"),
+                                      (title: "Afternoon", subtitle: "\(Date(byHourOf: 12).timeHour) - \(Date(byHourOf: 18).timeHour)"),
+                                      (title: "Evening", subtitle: "\(Date(byHourOf: 18).timeHour) - \(Date(byHourOf: 24).timeHour)")]
         
         timeSegmentedControl.selectedIndex = 0
         

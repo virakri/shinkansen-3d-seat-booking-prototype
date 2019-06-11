@@ -59,5 +59,34 @@ extension Date {
     var time: String {
         return TimeFormatter().string(from: self)
     }
+    
+    var timeHour: String {
+        
+        guard let checkingFormatter: String =
+            DateFormatter
+                .dateFormat(fromTemplate: "j",
+                            options:0,
+                            locale:NSLocale.current)
+            else { return "" }
+        
+        let dateFormatter = DateFormatter()
+        if checkingFormatter.contains("a") {
+            dateFormatter.dateFormat = "ha"
+            return dateFormatter.string(from: self)
+        } else {
+            dateFormatter.dateFormat = "H"
+            return dateFormatter.string(from: self)
+        }
+    }
+    
+    init(byHourOf hour: Int = 0, minute: Int = 0, second: Int = 0) {
+        // Specify date components
+        var dateComponents = DateComponents()
+//        dateComponents.timeZone = Date.JPCalendar.timeZone //TimeZone(abbreviation: "JST") // Japan Standard Time
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        dateComponents.second = second
+        self = Calendar.current.date(from: dateComponents) ?? Date()
+    }
 }
 

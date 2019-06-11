@@ -23,6 +23,8 @@ class TrainSelectionViewController: BookingViewController {
         }
     }
     
+    var timeOffset: TimeInterval?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
