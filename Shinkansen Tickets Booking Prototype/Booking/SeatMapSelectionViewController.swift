@@ -24,9 +24,25 @@ class SeatMapSelectionViewController: BookingViewController {
     
     private var selectedEntity: ReservableEntity? {
         didSet {
-            headerInformation?.carNumber = selectedEntity?.carNumber
+            
+           
+           if headerInformation?.carNumber != selectedEntity?.carNumber {
+           headerInformation?.carNumber = selectedEntity?.carNumber
+            headerRouteInformationView.descriptionSetView.carNumberSetView.alpha = 0
+            }
+            
             mainCallToActionButton.isEnabled = selectedEntity != nil
             mainCallToActionButton.setTitle("Pick a Seat—\(selectedEntity?.name ?? "*")")
+            mainCallToActionButton.titleLabel?.alpha = 0
+            
+            UIView.animate(withDuration: 0.35,
+                           animations: {
+                            self.headerRouteInformationView
+                                .descriptionSetView
+                                .carNumberSetView.alpha = 1
+                            self.mainCallToActionButton
+                                .titleLabel?.alpha = 1
+            })
         }
     }
     
