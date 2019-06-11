@@ -24,13 +24,7 @@ class SeatClassSelectionViewController: BookingViewController {
         super.viewDidLoad()
         setupTableView()
         setupStaticContent()
-        
-        SeatMap.fetchData { result in
-            if case .success(let seatMap) = result {
-                self.seatMap = seatMap
-            }
-        }
-        NodeFactory.shared = NodeFactory(url: URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
+        obtainData()
     }
     
     override func setupView() {
@@ -92,6 +86,19 @@ class SeatClassSelectionViewController: BookingViewController {
         
     }
     
+    func obtainData() {
+        SeatMap.fetchData { result in
+            if case .success(let seatMap) = result {
+                self.seatMap = seatMap
+            }
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            NodeFactory.shared =
+                NodeFactory(url:
+                    URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
+        }
+    }
 
     func setupStaticContent() {
         trainImageView.image = trainImage
