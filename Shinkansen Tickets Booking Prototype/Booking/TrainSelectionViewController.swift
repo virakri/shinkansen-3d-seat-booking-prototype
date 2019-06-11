@@ -23,7 +23,7 @@ class TrainSelectionViewController: BookingViewController {
         }
     }
     
-    var timeOffset: TimeInterval?
+    var timeOffset: TimeInterval = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,19 +117,21 @@ extension TrainSelectionViewController: UITableViewDataSource {
                 return classL.price < classR.price
             }).first?.price
             
-            
-            cell.setupValue(time: "\(trainSchedule.fromTime.time) – \(trainSchedule.toTime.time)",
-                    amountOfTime: trainSchedule.toTime.offset(from: trainSchedule.fromTime),
-                            trainNumber: trainSchedule.trainNumber,
-                            trainName: trainSchedule.trainName,
-                            showGranClassIcon: granClassObject != nil,
-                            isGranClassAvailable: granClassObject?.isAvailable ?? false,
-                            showGreenIcon: greenObject != nil,
-                            isGreenAvailable: greenObject?.isAvailable ?? false,
-                            showOrdinaryIcon: ordinaryObject != nil,
-                            isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
-                            price: "from \(cheapestPrice?.yen ?? "-")",
-                            trainImage: UIImage(named: trainSchedule.trainImageName))
+            // MARK: Offset of time is only for a sake of mock data
+            let fromTimeString = trainSchedule.fromTime.addingTimeInterval(timeOffset).time
+            let toTimeString = trainSchedule.toTime.addingTimeInterval(timeOffset).time
+            cell.setupValue(time: "\(fromTimeString) – \(toTimeString)",
+                amountOfTime: trainSchedule.toTime.offset(from: trainSchedule.fromTime),
+                trainNumber: trainSchedule.trainNumber,
+                trainName: trainSchedule.trainName,
+                showGranClassIcon: granClassObject != nil,
+                isGranClassAvailable: granClassObject?.isAvailable ?? false,
+                showGreenIcon: greenObject != nil,
+                isGreenAvailable: greenObject?.isAvailable ?? false,
+                showOrdinaryIcon: ordinaryObject != nil,
+                isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
+                price: "from \(cheapestPrice?.yen ?? "-")",
+                trainImage: UIImage(named: trainSchedule.trainImageName))
         }
         cell.contentView.alpha = didFirstLoad ? 1 : 0
         return cell

@@ -212,6 +212,16 @@ class BookingCriteriaViewController: BookingViewController {
             selectedDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 2)
         }
         
+        let timeOffset: TimeInterval
+        switch timeSegmentedControl.selectedIndex {
+        case 0:
+            timeOffset = 0
+        case 1:
+            timeOffset = TimeInterval(60 * 60 * 6)
+        default:
+            timeOffset = TimeInterval(60 * 60 * 12)
+        }
+        
         let trainSelectionVC = TrainSelectionViewController()
         
         let formatter = FullDateFormatter()
@@ -225,6 +235,7 @@ class BookingCriteriaViewController: BookingViewController {
                               date: date,
                               fromStation: fromStation,
                               toStation: toStation)
+        trainSelectionVC.timeOffset = timeOffset
         navigationController?.pushViewController(trainSelectionVC, animated: true)
     }
     
