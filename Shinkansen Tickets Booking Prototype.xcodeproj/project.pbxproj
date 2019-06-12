@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */; };
 		9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9044513A22B00FA700E6FF45 /* SCNMaterial.swift */; };
 		90CA078222AEC21C002C204E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CA078122AEC21C002C204E /* UIColor.swift */; };
 		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_Tickets_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
+		9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitAnimator.swift; sourceTree = "<group>"; };
 		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
 		90CA078122AEC21C002C204E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				D00C5E0622AA73BA00FB8CF0 /* DecayFunction.swift */,
 				E0BA439422AC4A0F00FC3A72 /* Formatter.swift */,
 				90ED74E522ADA28C007D8DDF /* NodeFactory.swift */,
+				9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
 				D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */,
+				9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */,
 				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,
 				D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */,
 				D074B1EA228B927600791F94 /* Colors.swift in Sources */,

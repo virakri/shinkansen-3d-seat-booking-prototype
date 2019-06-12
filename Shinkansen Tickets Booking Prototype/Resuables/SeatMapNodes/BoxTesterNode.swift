@@ -139,6 +139,8 @@ class BoxTesterNode: ReservableNode {
         let state: State =  isHighlighted ? .highlighted: isSelected ? .selected : .normal
         
         if let childNode = transformMapNode.childNode(withName: state.stringValue, recursively: false) {
+            node.transform = SCNMatrix4Identity
+            node.transform = node.parent!.convertTransform(transformMapNode.transform, from: node)
             node.transform = node.parent!.convertTransform(childNode.transform, from: node)
         }else{
             node.transform = SCNMatrix4Identity
@@ -152,8 +154,10 @@ class BoxTesterNode: ReservableNode {
     }
     
     func setupTheme() {
-        updateMaterial(node: self, materialMap: materialMap)
-        updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
+        SceneKitAnimator.animateWithDuration(duration: 0.175, animations: {
+            updateMaterial(node: self, materialMap: materialMap)
+            updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {
