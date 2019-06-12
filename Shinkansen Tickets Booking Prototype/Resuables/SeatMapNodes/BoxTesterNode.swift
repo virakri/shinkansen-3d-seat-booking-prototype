@@ -89,24 +89,47 @@ class BoxTesterNode: ReservableNode {
         eulerAngles = reservableEntity.transformedModelEntity.rotation
     }
     
-    func setupTheme() {
+    func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
+        
+        
+        
         let state = isHighlighted ? "highlighted" : "normal"
-        func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
-            if let materials = materialMap["materials"] as? [SCNMaterial] {
-                node.geometry?.materials.forEach({ currentMaterial in
-                    if let name = currentMaterial.name?.appending("-\(state)"),
-                        let newMaterial = materials.first(where: { $0.name == name }) {
-                        currentMaterial.clone(from: newMaterial)
-                    }
-                })
-            }
-            node.childNodes.forEach { child in
-                if let map = materialMap[child.name ?? "undefined"] as? [String: Any] {
-                    updateMaterial(node: child, materialMap: map)
+        
+        if let materials = materialMap["materials"] as? [SCNMaterial] {
+            node.geometry?.materials.forEach({ currentMaterial in
+                if let name = currentMaterial.name?.appending("-\(state)"),
+                    let newMaterial = materials.first(where: { $0.name == name }) {
+                    currentMaterial.clone(from: newMaterial)
                 }
+            })
+        }
+        node.childNodes.forEach { child in
+            if let map = materialMap[child.name ?? "undefined"] as? [String: Any] {
+                updateMaterial(node: child, materialMap: map)
             }
         }
+    }
+    
+    func updateTransfrom(node: SCNNode) {
+        
+        let state = isHighlighted ? "highlighted" : "normal"
+        
+        if let childNode = node.childNode(withName: state, recursively: false) {
+//            a.tranfrom = a.parent.convertTransform(b.transform, from: b.parent)
+            
+            let tempTransform = node.transform
+            node.transform = node.parent!.convertTransform(childNode.transform, from: node)
+//                .convertTransform(childNode.transform, from: node)
+        }
+        
+        node.childNodes.forEach { node in
+            updateTransfrom(node: node)
+        }
+    }
+    
+    func setupTheme() {
         updateMaterial(node: self, materialMap: materialMap)
+        updateTransfrom(node: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
