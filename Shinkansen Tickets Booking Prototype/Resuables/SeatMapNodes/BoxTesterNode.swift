@@ -12,6 +12,8 @@ class BoxTesterNode: ReservableNode {
     
     var materialMap: [String: Any] = [:]
     
+    let transformMapNode = SCNNode()
+    
     enum State: String, CodingKey, Equatable {
         case normal, highlighted, disabled, focus
         
@@ -49,6 +51,9 @@ class BoxTesterNode: ReservableNode {
     
     required init(node: SCNNode, modelData: ModelData?) {
         super.init(node: node, modelData: modelData)
+        transformMapNode.transform = transform
+        transformMapNode.addChildNode(removeAllGeomery(from: node.clone()))
+        
         func createMaterialMap(from node: SCNNode) -> [String: Any] {
             var result = [String: Any]()
             if let materials = node.geometry?.materials {
@@ -93,6 +98,13 @@ class BoxTesterNode: ReservableNode {
         eulerAngles = reservableEntity.transformedModelEntity.rotation
     }
     
+    @discardableResult
+    private func removeAllGeomery(from node: SCNNode) -> SCNNode {
+        node.geometry = nil
+        node.childNodes.forEach { removeAllGeomery(from: $0) }
+        return node
+    }
+    
     func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
         
         let state: State = isHighlighted ? .highlighted: .normal
@@ -112,26 +124,26 @@ class BoxTesterNode: ReservableNode {
         }
     }
     
-    func updateTransfrom(node: SCNNode) {
+    func updateTransfrom(node: SCNNode, transformMapNode: SCNNode) {
         
         let state: State = isHighlighted ? .highlighted : .normal
         
-        if let childNode = node.childNode(withName: state.stringValue, recursively: false) {
-//            a.tranfrom = a.parent.convertTransform(b.transform, from: b.parent)
-            
-            let tempTransform = node.transform
+        if let childNode = transformMapNode.childNode(withName: state.stringValue, recursively: false) {
             node.transform = node.parent!.convertTransform(childNode.transform, from: node)
-//                .convertTransform(childNode.transform, from: node)
+        }else if state == .normal {
+            node.transform = SCNMatrix4Identity
+            node.transform = node.parent!.convertTransform(transformMapNode.transform, from: node)
         }
         
-        node.childNodes.forEach { node in
-            updateTransfrom(node: node)
+        zip(node.childNodes, transformMapNode.childNodes).forEach {
+            updateTransfrom(node: $0, transformMapNode: $1)
         }
+        
     }
     
     func setupTheme() {
         updateMaterial(node: self, materialMap: materialMap)
-        updateTransfrom(node: self)
+        updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
     }
     
     required init?(coder aDecoder: NSCoder) {
