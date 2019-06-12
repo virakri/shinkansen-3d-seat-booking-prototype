@@ -15,7 +15,7 @@ class BoxTesterNode: ReservableNode {
     let transformMapNode = SCNNode()
     
     enum State: String, CodingKey, Equatable {
-        case normal, highlighted, disabled, focus
+        case normal, highlighted, selected, disabled, focus
         
         static func == (lhs: String, rhs: State) -> Bool {
             return lhs == rhs.stringValue
@@ -29,6 +29,13 @@ class BoxTesterNode: ReservableNode {
     override var isHighlighted: Bool {
         didSet {
             super.isHighlighted = isHighlighted
+            setupTheme()
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            super.isSelected = isSelected
             setupTheme()
         }
     }
@@ -107,11 +114,14 @@ class BoxTesterNode: ReservableNode {
     
     func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
         
-        let state: State = isHighlighted ? .highlighted: .normal
+        let state: State =  isHighlighted ? .highlighted: isSelected ? .selected : .normal
         
         if let materials = materialMap["materials"] as? [SCNMaterial] {
             node.geometry?.materials.forEach({ currentMaterial in
                 if let name = currentMaterial.name?.appending("-\(state.stringValue)"),
+                    let newMaterial = materials.first(where: { $0.name == name }) {
+                    currentMaterial.clone(from: newMaterial)
+                }else if let name = currentMaterial.name?.appending("-\(State.normal.stringValue)"),
                     let newMaterial = materials.first(where: { $0.name == name }) {
                     currentMaterial.clone(from: newMaterial)
                 }
@@ -126,11 +136,11 @@ class BoxTesterNode: ReservableNode {
     
     func updateTransfrom(node: SCNNode, transformMapNode: SCNNode) {
         
-        let state: State = isHighlighted ? .highlighted : .normal
+        let state: State =  isHighlighted ? .highlighted: isSelected ? .selected : .normal
         
         if let childNode = transformMapNode.childNode(withName: state.stringValue, recursively: false) {
             node.transform = node.parent!.convertTransform(childNode.transform, from: node)
-        }else if state == .normal {
+        }else{
             node.transform = SCNMatrix4Identity
             node.transform = node.parent!.convertTransform(transformMapNode.transform, from: node)
         }

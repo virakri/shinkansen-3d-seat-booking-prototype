@@ -48,10 +48,12 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    private var selectingSeat: ReservableNode? {
+    private var highlightedSeat: ReservableNode? {
         didSet {
-            if let selectingSeat = selectingSeat, selectingSeat != selectingSeat {
+            if let selectingSeat = highlightedSeat, selectingSeat != oldValue {
                 selectingSeat.isHighlighted = true
+            }else{
+                oldValue?.isHighlighted = false
             }
         }
     }
@@ -59,13 +61,9 @@ class SeatMapSceneView: SCNView {
     private var selectedSeat: ReservableNode? {
         didSet {
             if oldValue != selectedSeat {
-                oldValue?.isHighlighted = false
-                if selectingSeat != selectedSeat {
-                    selectingSeat?.isHighlighted = false
-                }
-                selectedSeat?.isHighlighted = true
-                selectingSeat = nil
-                
+                highlightedSeat = nil
+                oldValue?.isSelected = false
+                selectedSeat?.isSelected = true
                 if let reservableEntity = selectedSeat?.reservableEntity {
                     seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
                 }
@@ -184,7 +182,7 @@ class SeatMapSceneView: SCNView {
         contentNode.removeAction(forKey: "panDrift")
         
         if let node = filterReservationNodeFrom(touches){
-            selectingSeat = node
+            highlightedSeat = node
         }
     }
     
@@ -194,19 +192,17 @@ class SeatMapSceneView: SCNView {
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        if let node = filterReservationNodeFrom(touches), node == selectingSeat {
-            node.isHighlighted = false
-        }
+        highlightedSeat = nil
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let node = filterReservationNodeFrom(touches) {
-            if node != selectingSeat {
-                selectingSeat?.isHighlighted = false
+            if node != highlightedSeat {
+                highlightedSeat?.isHighlighted = false
             }
-            selectingSeat = nil
             selectedSeat = node
         }
+        highlightedSeat = nil
     }
     
     private func zPositionClamp(_ value: Float) -> Float {
