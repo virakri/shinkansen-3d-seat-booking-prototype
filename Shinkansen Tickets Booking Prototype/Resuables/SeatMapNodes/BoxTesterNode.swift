@@ -29,6 +29,7 @@ class BoxTesterNode: ReservableNode {
     override var isHighlighted: Bool {
         didSet {
             super.isHighlighted = isHighlighted
+            print("\(reservableEntity?.name ?? "-") = \(isHighlighted)")
             setupTheme()
         }
     }

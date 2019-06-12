@@ -50,26 +50,23 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    private var highlightedSeat: ReservableNode? {
+    private var highlightedSeats = Set<ReservableNode>() {
         didSet {
-            if let selectingSeat = highlightedSeat, selectingSeat != oldValue {
-                selectingSeat.isHighlighted = true
+            oldValue.subtracting(highlightedSeats).forEach { $0.isHighlighted = false }
+            highlightedSeats.subtracting(oldValue).forEach {
+                $0.isHighlighted = true
                 lightFeedbackGenerator.impactOccurred()
-            }else{
-                oldValue?.isHighlighted = false
             }
         }
     }
     
     private var selectedSeat: ReservableNode? {
         didSet {
-            if oldValue != selectedSeat {
-                highlightedSeat = nil
-                oldValue?.isSelected = false
-                selectedSeat?.isSelected = true
-                if let reservableEntity = selectedSeat?.reservableEntity {
-                    seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
-                }
+            highlightedSeats.removeAll()
+            oldValue?.isSelected = false
+            selectedSeat?.isSelected = true
+            if let reservableEntity = selectedSeat?.reservableEntity {
+                seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
             }
         }
     }
@@ -93,6 +90,7 @@ class SeatMapSceneView: SCNView {
     
     private func setupView() {
         backgroundColor = .clear
+        isExclusiveTouch = true
     }
     
     private func setupScene() {
@@ -157,8 +155,8 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> ReservableNode? {
-        if let touch = touches.first {
+    private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> [ReservableNode] {
+        return touches.compactMap { touch in
             let firstHitTestResult = hitTest(touch.location(in: self), options: [.categoryBitMask: ReservableNode.defaultBitMask]).first
             if let node = firstHitTestResult?.node {
                 if let node = node as? ReservableNode  {
@@ -176,37 +174,40 @@ class SeatMapSceneView: SCNView {
                     return findParent(of: node)
                 }
             }
+            return nil
         }
-        return nil
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         contentNode.removeAction(forKey: "panDrift")
         
-        if let node = filterReservationNodeFrom(touches){
-            highlightedSeat = node
+        if let node =  filterReservationNodeFrom(touches).first {
+            print("\(#function): \(node.reservableEntity?.name ?? "-")")
+            highlightedSeats.insert(node)
         }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        highlightedSeat = nil
+        if highlightedSeats.count > 0 {
+            highlightedSeats.removeAll()
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        print(touches.count)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let node = filterReservationNodeFrom(touches) {
-            if node != highlightedSeat {
-                highlightedSeat?.isHighlighted = false
-            }
+        print(#function)
+        super.touchesEnded(touches, with: event)
+        if let node = filterReservationNodeFrom(touches).first {
+            print("\(#function): \(node.reservableEntity?.name ?? "-")")
             selectedSeat = node
         }
-        highlightedSeat = nil
     }
+    
     
     private func zPositionClamp(_ value: Float) -> Float {
         let trimmedMaxValue = value > contentZPositionLimit.upperBound ? contentZPositionLimit.upperBound * (1 + log10(value/contentZPositionLimit.upperBound)) : value
