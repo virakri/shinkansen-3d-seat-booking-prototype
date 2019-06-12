@@ -12,6 +12,18 @@ class BoxTesterNode: ReservableNode {
     
     var materialMap: [String: Any] = [:]
     
+    enum State: String, CodingKey, Equatable {
+        case normal, highlighted, disabled, focus
+        
+        static func == (lhs: String, rhs: State) -> Bool {
+            return lhs == rhs.stringValue
+        }
+        
+        static func == (lhs: State, rhs: String) -> Bool {
+            return lhs.stringValue == rhs
+        }
+    }
+    
     override var isHighlighted: Bool {
         didSet {
             super.isHighlighted = isHighlighted
@@ -47,10 +59,10 @@ class BoxTesterNode: ReservableNode {
                 if let name = material.name, name.contains("-") {
                     var nameComponent = Array(name.split(separator: "-"))
                     if let last = nameComponent.last,
-                        nameComponent.count > 1,
-                        ["normal", "highlighted", "disabled", "selected", "focused"].contains(last)
+                        let state = State(stringValue: String(last)),
+                        nameComponent.count > 1
                     {
-                        if last == "normal" {
+                        if state == .normal {
                             nameComponent.removeLast()
                             let newName = nameComponent.joined(separator: "-")
                             return SCNMaterial().clone(from: material, name: newName)
@@ -83,11 +95,11 @@ class BoxTesterNode: ReservableNode {
     
     func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
         
-        let state = isHighlighted ? "highlighted" : "normal"
+        let state: State = isHighlighted ? .highlighted: .normal
         
         if let materials = materialMap["materials"] as? [SCNMaterial] {
             node.geometry?.materials.forEach({ currentMaterial in
-                if let name = currentMaterial.name?.appending("-\(state)"),
+                if let name = currentMaterial.name?.appending("-\(state.stringValue)"),
                     let newMaterial = materials.first(where: { $0.name == name }) {
                     currentMaterial.clone(from: newMaterial)
                 }
@@ -102,9 +114,9 @@ class BoxTesterNode: ReservableNode {
     
     func updateTransfrom(node: SCNNode) {
         
-        let state = isHighlighted ? "highlighted" : "normal"
+        let state: State = isHighlighted ? .highlighted : .normal
         
-        if let childNode = node.childNode(withName: state, recursively: false) {
+        if let childNode = node.childNode(withName: state.stringValue, recursively: false) {
 //            a.tranfrom = a.parent.convertTransform(b.transform, from: b.parent)
             
             let tempTransform = node.transform
