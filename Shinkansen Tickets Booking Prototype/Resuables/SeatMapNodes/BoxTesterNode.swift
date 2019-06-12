@@ -154,7 +154,7 @@ class BoxTesterNode: ReservableNode {
     }
     
     func setupTheme() {
-        SceneKitAnimator.animateWithDuration(duration: 0.175, animations: {
+        SceneKitAnimator.animateWithDuration(duration: 0.35 / 4, animations: {
             updateMaterial(node: self, materialMap: materialMap)
             updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
         })
