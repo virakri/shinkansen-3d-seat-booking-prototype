@@ -21,6 +21,8 @@ extension SeatMapSceneViewDelegate {
 
 class SeatMapSceneView: SCNView {
     
+    let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     var seatMapDelegate: SeatMapSceneViewDelegate?
     
     var bottomOffset: CGFloat = 0
@@ -52,6 +54,7 @@ class SeatMapSceneView: SCNView {
         didSet {
             if let selectingSeat = highlightedSeat, selectingSeat != oldValue {
                 selectingSeat.isHighlighted = true
+                lightFeedbackGenerator.impactOccurred()
             }else{
                 oldValue?.isHighlighted = false
             }
