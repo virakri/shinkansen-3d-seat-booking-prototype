@@ -31,7 +31,7 @@ struct ModelState: Codable {
 }
 
 protocol StaticNode {
-    init(geometry: SCNGeometry?, childNodes: [SCNNode], modelData: ModelData?)
+    init(node: SCNNode, modelData: ModelData?)
     var isEnabled: Bool { get set }
 }
 
@@ -50,11 +50,10 @@ class StateNode: SCNNode, InteractibleNode {
     
     let modelData: ModelData?
     
-    required init(geometry: SCNGeometry?, childNodes: [SCNNode], modelData: ModelData?) {
+    required init(node: SCNNode, modelData: ModelData?) {
         self.modelData = modelData
         super.init()
-        self.geometry = geometry
-        childNodes.forEach { self.addChildNode($0) }
+        addChildNode(node)
     }
     
     required init?(coder: NSCoder) {
@@ -188,8 +187,7 @@ class NodeFactory {
         cloneGeometry(from: prototypeNode, to: clone)
         
         let node = T(
-            geometry: clone.geometry,
-            childNodes: clone.childNodes,
+            node: clone,
             modelData: modelData
         )
 

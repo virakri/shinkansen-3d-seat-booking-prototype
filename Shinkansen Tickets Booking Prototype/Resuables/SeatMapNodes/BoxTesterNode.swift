@@ -35,14 +35,8 @@ class BoxTesterNode: ReservableNode {
         setupTheme()
     }
     
-    required init(geometry: SCNGeometry?, childNodes: [SCNNode], modelData: ModelData?) {
-        super.init(geometry: geometry, childNodes: childNodes, modelData: modelData)
-        if let geometry = geometry {
-            self.geometry = geometry
-        }else{
-            self.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
-        }
-        
+    required init(node: SCNNode, modelData: ModelData?) {
+        super.init(node: node, modelData: modelData)
         func createMaterialMap(from node: SCNNode) -> [String: Any] {
             var result = [String: Any]()
             if let materials = node.geometry?.materials {
@@ -69,14 +63,12 @@ class BoxTesterNode: ReservableNode {
                 return material
             }) ?? []
             node.childNodes.forEach { child in
-                if child.geometry != nil {
-                    result[child.name ?? "undefined"] = createMaterialMap(from: child)
-                }
+                result[child.name ?? "undefined"] = createMaterialMap(from: child)
             }
             return result
         }
-        materialMap = createMaterialMap(from: self)
         
+        materialMap = createMaterialMap(from: self)
         setupTheme()
     }
     
@@ -90,8 +82,6 @@ class BoxTesterNode: ReservableNode {
     }
     
     func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
-        
-        
         
         let state = isHighlighted ? "highlighted" : "normal"
         
