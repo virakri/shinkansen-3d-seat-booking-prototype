@@ -10,22 +10,12 @@ import SceneKit
 
 class SeatNode: ReservableNode {
     
-    var materialMap: [String: Any] = [:]
-    
-    let transformMapNode = SCNNode()
-    
-    enum State: String, CodingKey, Equatable {
+    /// All states
+    enum State: String, CodingKey {
         case normal, highlighted, selected, disabled, focus
-        
-        static func == (lhs: String, rhs: State) -> Bool {
-            return lhs == rhs.stringValue
-        }
-        
-        static func == (lhs: State, rhs: String) -> Bool {
-            return lhs.stringValue == rhs
-        }
     }
     
+    /// setter-getter for hightlighted state
     override var isHighlighted: Bool {
         didSet {
             super.isHighlighted = isHighlighted
@@ -33,6 +23,7 @@ class SeatNode: ReservableNode {
         }
     }
     
+    /// setter-getter for selected state
     override var isSelected: Bool {
         didSet {
             super.isSelected = isSelected
@@ -40,6 +31,30 @@ class SeatNode: ReservableNode {
         }
     }
     
+    /// setter-getter for enabled/disabled state
+    override var isEnabled: Bool {
+        didSet {
+            super.isEnabled = isEnabled
+            setupTheme()
+        }
+    }
+    
+    /// getter for determine current state
+    var state: State {
+        return isHighlighted ?
+            .highlighted:
+            isSelected ?
+                .selected :
+            .normal
+    }
+    
+    /// Materials to apply for each state
+    var materialMap: [String: Any] = [:]
+    
+    /// Stored original transform
+    let transformMapNode = SCNNode()
+    
+    /// Current node's entity information
     override var reservableEntity: ReservableEntity? {
         didSet {
             super.reservableEntity = reservableEntity
@@ -49,73 +64,41 @@ class SeatNode: ReservableNode {
         }
     }
     
-    override init(reservableEntity: ReservableEntity) {
-        super.init(reservableEntity: reservableEntity)
-        self.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
-        updateReservableEntity(reservableEntity: reservableEntity)
-        setupTheme()
-    }
+    // MARK: Intialializer
     
     required init(node: SCNNode, modelData: ModelData?) {
         super.init(node: node, modelData: modelData)
         transformMapNode.transform = transform
         transformMapNode.addChildNode(removeAllGeomery(from: node.clone()))
-        
-        func createMaterialMap(from node: SCNNode) -> [String: Any] {
-            var result = [String: Any]()
-            if let materials = node.geometry?.materials {
-                result["materials"] = materials.map { $0 }
-            }
-
-            node.geometry?.materials = node.geometry?.materials.compactMap({ material  in
-                if let name = material.name, name.contains("-") {
-                    var nameComponent = Array(name.split(separator: "-"))
-                    if let last = nameComponent.last,
-                        let state = State(stringValue: String(last)),
-                        nameComponent.count > 1
-                    {
-                        if state == .normal {
-                            nameComponent.removeLast()
-                            let newName = nameComponent.joined(separator: "-")
-                            return SCNMaterial().clone(from: material, name: newName)
-                        }else{
-                            return nil
-                        }
-                    }
-                }
-
-                return material
-            }) ?? []
-            node.childNodes.forEach { child in
-                result[child.name ?? "undefined"] = createMaterialMap(from: child)
-            }
-            return result
-        }
-        
         materialMap = createMaterialMap(from: self)
         setupTheme()
     }
     
-    private var material: SCNMaterial? {
-        return geometry?.firstMaterial
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Node Setup
+    
+    /// Change material and transform for each state
+    private func setupTheme() {
+        SceneKitAnimator.animateWithDuration(duration: 0.35 / 4, animations: {
+            updateMaterial(node: self, materialMap: materialMap)
+            updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
+        })
+    }
+    
+    /// Function to update transform from `reservableEntity`
+    /// - Parameter reservableEntity: Target tranfrom data
     private func updateReservableEntity(reservableEntity: ReservableEntity) {
         position = reservableEntity.transformedModelEntity.position
         eulerAngles = reservableEntity.transformedModelEntity.rotation
     }
     
-    @discardableResult
-    private func removeAllGeomery(from node: SCNNode) -> SCNNode {
-        node.geometry = nil
-        node.childNodes.forEach { removeAllGeomery(from: $0) }
-        return node
-    }
-    
-    func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
-        
-        let state: State =  isHighlighted ? .highlighted: isSelected ? .selected : .normal
-        
+    /// Update material from state
+    /// - Parameter node: Target node to apply material
+    /// - Parameter materialMap: Material map to apply for each state
+    private func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
         if let materials = materialMap["materials"] as? [SCNMaterial] {
             node.geometry?.materials.forEach({ currentMaterial in
                 if let name = currentMaterial.name?.appending("-\(state.stringValue)"),
@@ -134,33 +117,74 @@ class SeatNode: ReservableNode {
         }
     }
     
-    func updateTransfrom(node: SCNNode, transformMapNode: SCNNode) {
-        
-        let state: State =  isHighlighted ? .highlighted: isSelected ? .selected : .normal
-        
-        if let childNode = transformMapNode.childNode(withName: state.stringValue, recursively: false) {
+    /// Function for update node's transform from `transformMapNode`
+    /// - Parameter node: Target node to apply transform
+    /// - Parameter transformMapNode: Map node that contained each state's transform
+    private func updateTransfrom(node: SCNNode, transformMapNode: SCNNode) {
+        if let parent = node.parent {
             node.transform = SCNMatrix4Identity
-            node.transform = node.parent!.convertTransform(transformMapNode.transform, from: node)
-            node.transform = node.parent!.convertTransform(childNode.transform, from: node)
-        }else{
-            node.transform = SCNMatrix4Identity
-            node.transform = node.parent!.convertTransform(transformMapNode.transform, from: node)
+            node.transform = parent.convertTransform(transformMapNode.transform, from: node)
+            if let childNode = transformMapNode.childNode(withName: state.stringValue, recursively: false) {
+                node.transform = node.parent!.convertTransform(childNode.transform, from: node)
+            }
         }
         
         zip(node.childNodes, transformMapNode.childNodes).forEach {
             updateTransfrom(node: $0, transformMapNode: $1)
         }
-        
     }
     
-    func setupTheme() {
-        SceneKitAnimator.animateWithDuration(duration: 0.35 / 4, animations: {
-            updateMaterial(node: self, materialMap: materialMap)
-            updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
-        })
+    // MARK: Utility
+    
+    /// Function for remove all geometry from node
+    /// - Parameter node: Target node to remove geometry
+    @discardableResult
+    private func removeAllGeomery(from node: SCNNode) -> SCNNode {
+        node.geometry = nil
+        node.childNodes.forEach { removeAllGeomery(from: $0) }
+        return node
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    /// Build material recursively map for `transformMapNode`
+    /// - Parameter node: Target node to create
+    private func createMaterialMap(from node: SCNNode) -> [String: Any] {
+        var result = [String: Any]()
+        if let materials = node.geometry?.materials {
+            result["materials"] = materials.map { $0 }
+        }
+        node.geometry?.materials = node.geometry?.materials.compactMap({ material  in
+            if let name = material.name, name.contains("-") {
+                var nameComponent = Array(name.split(separator: "-"))
+                if let last = nameComponent.last,
+                    let state = State(stringValue: String(last)),
+                    nameComponent.count > 1
+                {
+                    if state == .normal {
+                        nameComponent.removeLast()
+                        let newName = nameComponent.joined(separator: "-")
+                        return SCNMaterial().clone(from: material, name: newName)
+                    }else{
+                        return nil
+                    }
+                }
+            }
+            return material
+        }) ?? []
+        node.childNodes.forEach { child in
+            result[child.name ?? "undefined"] = createMaterialMap(from: child)
+        }
+        return result
+    }
+    
+}
+
+// MARK:- Extension
+
+extension SeatNode.State: Equatable {
+    static func == (lhs: String, rhs: SeatNode.State) -> Bool {
+        return lhs == rhs.stringValue
+    }
+    static func == (lhs: SeatNode.State, rhs: String) -> Bool {
+        return lhs.stringValue == rhs
     }
 }
