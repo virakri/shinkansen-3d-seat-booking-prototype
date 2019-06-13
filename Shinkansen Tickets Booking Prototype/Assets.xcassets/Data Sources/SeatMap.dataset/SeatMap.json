@@ -26,7 +26,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -1,
                             "y" : 1.3,
@@ -45,7 +45,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -1,
                             "y" : 1.3,
@@ -64,7 +64,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -1,
                             "y" : 1.3,
@@ -83,7 +83,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -1,
                             "y" : 1.3,
@@ -102,7 +102,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -0.5,
                             "y" : 1.3,
@@ -121,7 +121,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -0.5,
                             "y" : 1.3,
@@ -140,7 +140,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -0.5,
                             "y" : 1.3,
@@ -159,7 +159,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : -0.5,
                             "y" : 1.3,
@@ -177,7 +177,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 0.5,
                             "y" : 1.3,
@@ -196,7 +196,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 0.5,
                             "y" : 1.3,
@@ -215,7 +215,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 0.5,
                             "y" : 1.3,
@@ -234,7 +234,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 0.5,
                             "y" : 1.3,
@@ -253,7 +253,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 1,
                             "y" : 1.3,
@@ -272,7 +272,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 1,
                             "y" : 1.3,
@@ -291,7 +291,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 1,
                             "y" : 1.3,
@@ -310,7 +310,7 @@
                             "y" : 0,
                             "z" : 0
                         },
-                        "modelEntity" : "boxModelEntity",
+                        "modelEntity" : "seat",
                         "position" : {
                             "x" : 1,
                             "y" : 1.3,
@@ -340,7 +340,7 @@
                     "y" : 0,
                     "z" : 0
                 },
-                "modelEntity" : "boxModelEntity",
+                "modelEntity" : "seat",
                 "position" : {
                     "x" : 0,
                     "y" : 0,
