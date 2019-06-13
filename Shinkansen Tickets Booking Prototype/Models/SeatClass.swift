@@ -41,5 +41,5 @@ struct SeatClassEntity: Codable {
     let carNumber: String
     let reservableEntities: [ReservableEntity]
     let viewableRange: ClosedRange<SCNVector3>
-    let transformedModelEntity: TransformedModelEntity
+    let transformedModelEntities: [TransformedModelEntity]
 }

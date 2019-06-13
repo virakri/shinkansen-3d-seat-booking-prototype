@@ -15,7 +15,7 @@ struct SeatMap: Codable {
     let id: Int
     let name: String
     let seatClassEntities: [SeatClassEntity]
-    let transformedModelEntity: TransformedModelEntity
+    let transformedModelEntities: [TransformedModelEntity]
 }
 
 extension SeatMap {
