@@ -93,9 +93,20 @@ class SeatClassSelectionViewController: BookingViewController {
             }
         }
         
-        NodeFactory.shared =
-            NodeFactory(url:
-                URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
+        DispatchQueue.global(qos: .background).async {
+            let decoder = JSONDecoder()
+            if let data = NSDataAsset(name: "ModelData")?.data,
+                let modelData = try? decoder.decode([ModelData].self, from: data) {
+                    NodeFactory.shared =
+                        NodeFactory(modelData: modelData)
+            }else{
+                NodeFactory.shared =
+                    NodeFactory(url:
+                        URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
+            }
+        }
+        
+        
     }
 
     func setupStaticContent() {

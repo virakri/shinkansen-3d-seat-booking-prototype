@@ -65,7 +65,7 @@ class NodeFactory {
     
     static var shared: NodeFactory?
     
-    let url: URL
+    var url: URL!
     
     var isLoaded = false {
         didSet {
@@ -83,7 +83,15 @@ class NodeFactory {
     
     init(url: URL) {
         self.url = url
-        fetchModelData(url).flatMap { [weak self] (modelData) -> Future<[String: SCNNode?], Error> in
+        loadNodeFrom(fetchModelData(url))
+    }
+    
+    init(modelData: [ModelData]) {
+        loadNodeFrom(Future(value: modelData))
+    }
+    
+    private func loadNodeFrom(_ future: Future<[ModelData], Error>) {
+        future.flatMap { [weak self] (modelData) -> Future<[String: SCNNode?], Error> in
             guard let weakSelf = self else {
                 return Future(error: NSError(
                     domain: "NodeFactory",
@@ -98,10 +106,10 @@ class NodeFactory {
                     }
                 )
             )
-        }.onSuccess { modelPrototypes in
-            self.modelPrototypes = modelPrototypes
-            self.isLoaded = true
-        }.onFailure { error in
+            }.onSuccess { modelPrototypes in
+                self.modelPrototypes = modelPrototypes
+                self.isLoaded = true
+            }.onFailure { error in
                 print(error)
         }
     }
