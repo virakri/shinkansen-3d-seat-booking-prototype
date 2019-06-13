@@ -162,10 +162,11 @@ class SeatMapSceneView: SCNView {
                 if let node = node as? ReservableNode  {
                     return node
                 }else{
-                    func findParent<T>(of node: SCNNode?) -> T? where T : SCNNode {
+                    func findParent(of node: SCNNode?) -> ReservableNode? {
                         if let parent = node?.parent {
-                            if parent is T {
-                                return parent as? T
+                            if let parent = parent as? ReservableNode {
+                                parent.touch = touch
+                                return parent
                             }
                             return findParent(of: parent)
                         }
@@ -182,8 +183,7 @@ class SeatMapSceneView: SCNView {
         super.touchesBegan(touches, with: event)
         contentNode.removeAction(forKey: "panDrift")
         
-        if let node =  filterReservationNodeFrom(touches).first {
-            print("\(#function): \(node.reservableEntity?.name ?? "-")")
+        for node in filterReservationNodeFrom(touches) {
             highlightedSeats.insert(node)
         }
     }
@@ -202,9 +202,17 @@ class SeatMapSceneView: SCNView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         print(#function)
         super.touchesEnded(touches, with: event)
-        if let node = filterReservationNodeFrom(touches).first {
-            print("\(#function): \(node.reservableEntity?.name ?? "-")")
-            selectedSeat = node
+        
+        let node = touches.compactMap { (touch)  in
+            return highlightedSeats.first {
+                $0.touch == touch
+            }
+            }.sorted {
+                $0.touch!.timestamp < $1.touch!.timestamp
+        }.first
+
+        if let n = node {
+            selectedSeat = n
         }
     }
     
