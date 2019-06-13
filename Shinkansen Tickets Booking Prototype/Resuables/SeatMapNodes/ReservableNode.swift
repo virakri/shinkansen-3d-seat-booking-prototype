@@ -22,7 +22,7 @@ class ReservableNode: SCNNode, InteractibleNode {
     
     var isEnabled: Bool = true
     
-    var touch: UITouch?
+    weak var touch: UITouch?
     
     init(reservableEntity: ReservableEntity) {
         self.reservableEntity = reservableEntity

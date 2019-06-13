@@ -90,7 +90,6 @@ class SeatMapSceneView: SCNView {
     
     private func setupView() {
         backgroundColor = .clear
-        isExclusiveTouch = true
     }
     
     private func setupScene() {
@@ -118,6 +117,7 @@ class SeatMapSceneView: SCNView {
     
     private func setupInteraction() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidPan))
+        panGesture.maximumNumberOfTouches = 1
         addGestureRecognizer(panGesture)
     }
     
@@ -182,7 +182,6 @@ class SeatMapSceneView: SCNView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         contentNode.removeAction(forKey: "panDrift")
-        
         for node in filterReservationNodeFrom(touches) {
             highlightedSeats.insert(node)
         }
@@ -200,22 +199,18 @@ class SeatMapSceneView: SCNView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
         super.touchesEnded(touches, with: event)
         
-        let node = touches.compactMap { (touch)  in
-            return highlightedSeats.first {
-                $0.touch == touch
+        if let node = touches.compactMap ({ touch in
+             highlightedSeats.first { $0.touch == touch }
+        }).first {
+            if highlightedSeats.count <= 1 {
+                selectedSeat = node
+            }else{
+                highlightedSeats.remove(node)
             }
-            }.sorted {
-                $0.touch!.timestamp < $1.touch!.timestamp
-        }.first
-
-        if let n = node {
-            selectedSeat = n
         }
     }
-    
     
     private func zPositionClamp(_ value: Float) -> Float {
         let trimmedMaxValue = value > contentZPositionLimit.upperBound ? contentZPositionLimit.upperBound * (1 + log10(value/contentZPositionLimit.upperBound)) : value
