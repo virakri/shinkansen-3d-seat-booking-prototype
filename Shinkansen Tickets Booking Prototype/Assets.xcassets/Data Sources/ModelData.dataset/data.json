@@ -104,4 +104,86 @@
           }
        }
     }
+
+    ,
+    {
+       "isInteractible":true,
+       "modelObject":"https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+       "name":"seat-green-a",
+       "states":{
+          "highlighted":{
+             "color":"#FFFF0000",
+             "scale":1
+          },
+          "normal":{
+             "color":"#FF000000",
+             "scale":1
+          }
+       }
+    },
+    {
+       "isInteractible":true,
+       "modelObject":"https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+       "name":"seat-green-b",
+       "states":{
+          "highlighted":{
+             "color":"#FFFF0000",
+             "scale":1
+          },
+          "normal":{
+             "color":"#FF000000",
+             "scale":1
+          }
+       }
+    }
+
+
+    ,
+    {
+       "isInteractible":true,
+       "modelObject":"https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+       "name":"seat-gran-class-a",
+       "states":{
+          "highlighted":{
+             "color":"#FFFF0000",
+             "scale":1
+          },
+          "normal":{
+             "color":"#FF000000",
+             "scale":1
+          }
+       }
+    }
+    ,
+    {
+       "isInteractible":true,
+       "modelObject":"https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+       "name":"seat-gran-class-b",
+       "states":{
+          "highlighted":{
+             "color":"#FFFF0000",
+             "scale":1
+          },
+          "normal":{
+             "color":"#FF000000",
+             "scale":1
+          }
+       }
+    }
+    ,
+    {
+       "isInteractible":true,
+       "modelObject":"https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+       "name":"seat-gran-class-c",
+       "states":{
+          "highlighted":{
+             "color":"#FFFF0000",
+             "scale":1
+          },
+          "normal":{
+             "color":"#FF000000",
+             "scale":1
+          }
+       }
+    }
  ]
