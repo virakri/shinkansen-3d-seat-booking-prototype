@@ -40,7 +40,7 @@
 		D053EBDF229D52BB007CCFFE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBDE229D52BB007CCFFE /* Label.swift */; };
 		D05C760222AF20B900AC1461 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C760122AF20B900AC1461 /* SegmentedControl.swift */; };
 		D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */; };
-		D0689C1C22AABBAC00EE5660 /* BoxTesterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */; };
+		D0689C1C22AABBAC00EE5660 /* SeatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0689C1B22AABBAC00EE5660 /* SeatNode.swift */; };
 		D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */; };
 		D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */; };
 		D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */; };
@@ -119,7 +119,7 @@
 		D053EBDE229D52BB007CCFFE /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		D05C760122AF20B900AC1461 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedItemControl.swift; sourceTree = "<group>"; };
-		D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxTesterNode.swift; sourceTree = "<group>"; };
+		D0689C1B22AABBAC00EE5660 /* SeatNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatNode.swift; sourceTree = "<group>"; };
 		D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeInitialViewController.swift; sourceTree = "<group>"; };
 		D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCriteriaViewController.swift; sourceTree = "<group>"; };
 		D074B1DB228B90AC00791F94 /* TrainSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainSelectionViewController.swift; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 		E04BCCF422AAA602002E29DE /* SeatMapNodes */ = {
 			isa = PBXGroup;
 			children = (
-				D0689C1B22AABBAC00EE5660 /* BoxTesterNode.swift */,
+				D0689C1B22AABBAC00EE5660 /* SeatNode.swift */,
 				D016655922AABF5400BFD6DB /* DummyNode.swift */,
 				D016655322AABD4600BFD6DB /* CameraNode.swift */,
 				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
@@ -517,7 +517,7 @@
 				E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */,
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
 				E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */,
-				D0689C1C22AABBAC00EE5660 /* BoxTesterNode.swift in Sources */,
+				D0689C1C22AABBAC00EE5660 /* SeatNode.swift in Sources */,
 				D0AD0AC522A9712600F2E976 /* SeatMapView.swift in Sources */,
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
@@ -693,7 +693,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EJ5UD9292F;
+				DEVELOPMENT_TEAM = 7J5JZ3G2QB;
 				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -715,7 +715,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EJ5UD9292F;
+				DEVELOPMENT_TEAM = 7J5JZ3G2QB;
 				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

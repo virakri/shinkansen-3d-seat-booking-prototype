@@ -8,7 +8,7 @@
 
 import SceneKit
 
-class BoxTesterNode: ReservableNode {
+class SeatNode: ReservableNode {
     
     var materialMap: [String: Any] = [:]
     
