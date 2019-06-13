@@ -54,7 +54,6 @@ class SeatMapSceneView: SCNView {
     
     private var selectedSeat: ReservableNode? {
         didSet {
-            highlightedSeats.removeAll()
             oldValue?.isSelected = false
             selectedSeat?.isSelected = true
             if let reservableEntity = selectedSeat?.reservableEntity {
@@ -186,11 +185,8 @@ class SeatMapSceneView: SCNView {
         if let node = touches.compactMap ({ touch in
              highlightedSeats.first { $0.touch == touch }
         }).first {
-            if highlightedSeats.count <= 1 {
-                selectedSeat = node
-            }else{
-                highlightedSeats.remove(node)
-            }
+            selectedSeat = node
+            highlightedSeats.remove(node)
         }
     }
     
