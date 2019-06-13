@@ -91,7 +91,7 @@ class SeatMapSceneView: SCNView {
         let dummyNode = DummyNode()
         
         let hitTestFloorNode = HitTestFloorNode()
-
+        
         let cameraNode = CameraNode()
         
         let scene = SCNScene()
@@ -148,7 +148,7 @@ class SeatMapSceneView: SCNView {
     }
     
     // MARK: State Change / Update
-
+    
     private func setCurrectContentNodePosition(currectContentNodePosition: SCNVector3?, oldValue: SCNVector3?) {
         contentNode.position = currectContentNodePosition ?? contentNode.position
         
@@ -183,7 +183,7 @@ class SeatMapSceneView: SCNView {
         super.touchesEnded(touches, with: event)
         
         if let node = touches.compactMap ({ touch in
-             highlightedSeats.first { $0.touch == touch }
+            highlightedSeats.first { $0.touch == touch }
         }).first {
             selectedSeat = node
             highlightedSeats.remove(node)
@@ -224,7 +224,7 @@ class SeatMapSceneView: SCNView {
                             .step(timeElapsed: CFTimeInterval(elapsedTime - currentTime),
                                   velocity: currentVelocity)
                         
-//                        let xDisplacment = newStep.displacement.x
+                        //                        let xDisplacment = newStep.displacement.x
                         let yDisplacment = newStep.displacement.y
                         
                         let newZPosition = self.contentNode.position.z + Float(yDisplacment)
@@ -238,48 +238,49 @@ class SeatMapSceneView: SCNView {
                 })
             
             contentNode.runAction(driftAction,
-                                      forKey: "panDrift",
-                                      completionHandler:{
+                                  forKey: "panDrift",
+                                  completionHandler:{
+                                    
+                                    // reset the position of the content if it goes beyond the position limit after the panDrift animation
+                                    if (self.currectContentNodePosition?.z ?? 0) > self.contentZPositionLimit.upperBound {
+                                        self.currectContentNodePosition?.z = self.contentZPositionLimit.upperBound
+                                    }
                                         
-                                        // reset the position of the content if it goes beyond the position limit after the panDrift animation
-                                        if (self.currectContentNodePosition?.z ?? 0) > self.contentZPositionLimit.upperBound {
-                                            self.currectContentNodePosition?.z = self.contentZPositionLimit.upperBound
-                                        }
-                                        
-                                        else if (self.currectContentNodePosition?.z ?? 0) < self.contentZPositionLimit.lowerBound {
-                                            self.currectContentNodePosition?.z = self.contentZPositionLimit.lowerBound
-                                        }
+                                    else if (self.currectContentNodePosition?.z ?? 0) < self.contentZPositionLimit.lowerBound {
+                                        self.currectContentNodePosition?.z = self.contentZPositionLimit.lowerBound
+                                    }
             })
-        
-        
+            
+            
         default:
-        break
+            break
         }
     }
     
     // MARK: Utility & Helper
     
+    /// Recursive find parent node that be `ReservableNode` class
+    /// - Parameter node: Target node to find
+    func findParent(of node: SCNNode?) -> ReservableNode? {
+        guard let node = node else {
+            return nil
+        }
+        if let node = node as? ReservableNode {
+            return node
+        }
+        return findParent(of: node.parent)
+    }
+    
     /// Get nodes from touches position
     /// - Parameter touches: Set of touch to determine
     private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> [ReservableNode] {
         return touches.compactMap { touch in
-            let firstHitTestResult = hitTest(touch.location(in: self), options: [.categoryBitMask: ReservableNode.defaultBitMask]).first
+            let firstHitTestResult = hitTest(touch.location(in: self),
+                                             options: [.categoryBitMask: ReservableNode.defaultBitMask]).first
             if let node = firstHitTestResult?.node {
-                if let node = node as? ReservableNode  {
-                    return node
-                }else{
-                    func findParent(of node: SCNNode?) -> ReservableNode? {
-                        if let parent = node?.parent {
-                            if let parent = parent as? ReservableNode {
-                                parent.touch = touch
-                                return parent
-                            }
-                            return findParent(of: parent)
-                        }
-                        return nil
-                    }
-                    return findParent(of: node)
-                }
+                let parent = findParent(of: node)
+                parent?.touch = touch
+                return parent
             }
             return nil
         }
@@ -295,5 +296,5 @@ class SeatMapSceneView: SCNView {
         let hitTests = hitTest(point, options: [.categoryBitMask : 1 << 1])
         return hitTests.first?.worldCoordinates
     }
-
+    
 }
