@@ -113,6 +113,16 @@ class SeatMapSceneView: SCNView {
             return
         }
         
+        // Set Seat Range
+        contentZPositionLimit = seatClassEntity
+            .viewableRange
+            .lowerBound.z...seatClassEntity
+                .viewableRange
+                .upperBound.z
+        
+        // Set origin of the content
+        currectContentNodePosition?.z = seatClassEntity.viewableRange.lowerBound.z
+        
         func placeNodeFromNodeFactory(factory: NodeFactory) {
             DispatchQueue.main.async {
                 let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
