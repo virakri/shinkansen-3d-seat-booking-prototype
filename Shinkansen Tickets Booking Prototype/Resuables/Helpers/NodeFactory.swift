@@ -12,9 +12,53 @@ import BrightFutures
 
 struct ModelData: Codable {
     let name: String
-    var url: URL?
-    var fileName: String?
+    let resource: ModelData.Resource
     let isInteractible: Bool
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ModelDataKey.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        if let string = try? container.decode(String.self, forKey: .resource) {
+            if let _ = URL.resource(name: string) {
+                self.resource = .fileName(string)
+            }else if let url = URL(string: string) {
+                self.resource = .url(url)
+            }else{
+                self.resource = .none
+            }
+        }else{
+            self.resource = .none
+        }
+        self.isInteractible = try container.decode(Bool.self, forKey: .isInteractible)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ModelDataKey.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(resource.encode(), forKey: .resource)
+        try container.encode(isInteractible, forKey: .isInteractible)
+    }
+    
+    enum Resource {
+        case url(URL)
+        case fileName(String)
+        case none
+        
+        func encode() -> String? {
+            switch self {
+            case .url(let url):
+                return url.absoluteString
+            case .fileName(let name):
+                return name
+            default:
+                return nil
+            }
+        }
+    }
+    
+    enum ModelDataKey: String, CodingKey {
+        case name, resource, isInteractible
+    }
 }
 
 protocol StaticNode {
@@ -27,27 +71,6 @@ protocol InteractibleNode: StaticNode {
     var isSelected: Bool { get set }
 }
 
-class StateNode: SCNNode, InteractibleNode {
-    
-    var isHighlighted: Bool = false
-    
-    var isSelected: Bool = true
-    
-    var isEnabled: Bool = true
-    
-    let modelData: ModelData?
-    
-    required init(node: SCNNode, modelData: ModelData?) {
-        self.modelData = modelData
-        super.init()
-        addChildNode(node)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 class NodeFactory {
     
     static var shared: NodeFactory?
@@ -56,7 +79,9 @@ class NodeFactory {
     
     var isLoaded = false {
         didSet {
-            onComplete?(self)
+            onFactoryLoadedCompletionBuffer.forEach { (callback) in
+                callback(self)
+            }
         }
     }
     
@@ -66,7 +91,11 @@ class NodeFactory {
     
     var modelPrototypes: [String: SCNNode?] = [:]
     
-    var onComplete: ((NodeFactory) -> Void)?
+    private var onFactoryLoadedCompletionBuffer: [(NodeFactory) -> Void] = []
+    
+    func onComplete(callback: @escaping (NodeFactory) -> Void) {
+        onFactoryLoadedCompletionBuffer.append(callback)
+    }
     
     init(url: URL) {
         self.url = url
@@ -89,10 +118,14 @@ class NodeFactory {
             return weakSelf.loadModels(
                 from: Dictionary(
                     uniqueKeysWithValues: modelData.compactMap {
-                        guard $0.fileName != nil || $0.url != nil else {
+                        switch $0.resource {
+                        case .fileName(let filename):
+                            return ($0.name, URL.resource(name: filename)) as? (String, URL)
+                        case .url(let url):
+                            return ($0.name, url)
+                        default:
                             return nil
                         }
-                        return ($0.name, $0.url ?? URL.resource(name: $0.fileName ?? "")!)
                     }
                 )
             )
