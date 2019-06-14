@@ -19,10 +19,12 @@ struct ModelData: Codable {
         let container = try decoder.container(keyedBy: ModelDataKey.self)
         self.name = try container.decode(String.self, forKey: .name)
         if let string = try? container.decode(String.self, forKey: .resource) {
-            if let url = URL(string: string) {
+            if let _ = URL.resource(name: string) {
+                self.resource = .fileName(string)
+            }else if let url = URL(string: string) {
                 self.resource = .url(url)
             }else{
-                self.resource = .fileName(string)
+                self.resource = .none
             }
         }else{
             self.resource = .none
