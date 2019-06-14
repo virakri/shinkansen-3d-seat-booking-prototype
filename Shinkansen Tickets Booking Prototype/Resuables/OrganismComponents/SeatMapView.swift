@@ -132,6 +132,7 @@ class SeatMapSceneView: SCNView {
                 let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
                     if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
                         node.reservableEntity = $0
+                        node.isEnabled = $0.isAvailable
                         return node
                     }
                     /// Show Error node
@@ -296,9 +297,10 @@ class SeatMapSceneView: SCNView {
         return touches.compactMap { touch in
             let firstHitTestResult = hitTest(touch.location(in: self),
                                              options: [.categoryBitMask: ReservableNode.defaultBitMask]).first
-            if let node = firstHitTestResult?.node {
-                let parent = findParent(of: node)
-                parent?.touch = touch
+            if let node = firstHitTestResult?.node,
+                let parent = findParent(of: node),
+                parent.isEnabled {
+                parent.touch = touch
                 return parent
             }
             return nil
