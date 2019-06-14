@@ -20,10 +20,9 @@ class DummyNode: SCNNode {
     }
     
     private func setupNode() {
-        let floorScene = SCNScene(named: "floor_demo.scn",
-                                  inDirectory: "SeatMap.scnassets",
-                                  options: nil)
-        guard let floorNode = floorScene?.rootNode.childNode(withName: "floor", recursively: false) else {
+        let floorRootNode = SCNReferenceNode(url: .resource(name: "floor_demo.scn")!)
+        floorRootNode?.load()
+        guard let floorNode = floorRootNode?.childNode(withName: "floor", recursively: false) else {
             print("No Model")
             return }
         

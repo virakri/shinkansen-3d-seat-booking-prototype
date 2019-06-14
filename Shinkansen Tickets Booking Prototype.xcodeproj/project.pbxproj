@@ -10,6 +10,7 @@
 		9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */; };
 		9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9044513A22B00FA700E6FF45 /* SCNMaterial.swift */; };
 		90CA078222AEC21C002C204E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CA078122AEC21C002C204E /* UIColor.swift */; };
+		90D7776222B3DB1B00170E24 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776122B3DB1B00170E24 /* URL.swift */; };
 		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
 		90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED74E522ADA28C007D8DDF /* NodeFactory.swift */; };
 		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
@@ -88,6 +89,7 @@
 		9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitAnimator.swift; sourceTree = "<group>"; };
 		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
 		90CA078122AEC21C002C204E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		90D7776122B3DB1B00170E24 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		90ED74E522ADA28C007D8DDF /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
 		9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */,
 				E0BA439622AC4B7300FC3A72 /* Date.swift */,
 				90E6F7DB22AD760700C3AD6F /* Numeric.swift */,
+				90D7776122B3DB1B00170E24 /* URL.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,
 				90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */,
 				D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */,
+				90D7776222B3DB1B00170E24 /* URL.swift in Sources */,
 				D0F175BD22A29AFE0095631F /* UIEdgeInsets.swift in Sources */,
 				D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */,
 				E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */,
