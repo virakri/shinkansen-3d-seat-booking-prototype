@@ -83,7 +83,7 @@ class SeatMapSceneView: SCNView {
     private func setupView() {
         backgroundColor = .clear
         
-        // Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
+        // Set Antialiasing Mode d1 1epending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
     }
