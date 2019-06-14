@@ -18,7 +18,7 @@ struct ModelData: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: ModelDataKey.self)
         self.name = try container.decode(String.self, forKey: .name)
-        if let string = try? container.decode(String.self, forKey: .name) {
+        if let string = try? container.decode(String.self, forKey: .resource) {
             if let url = URL(string: string) {
                 self.resource = .url(url)
             }else{
