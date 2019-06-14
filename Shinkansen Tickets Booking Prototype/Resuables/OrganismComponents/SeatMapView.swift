@@ -111,14 +111,26 @@ class SeatMapSceneView: SCNView {
         self.scene = scene
     }
     
-    public func setupContent(seatClassEntity: SeatClassEntity?, isCurrentEntity: Bool = true) {
-        
-        print(isCurrentEntity)
-        
-        guard let seatClassEntity = seatClassEntity else {
-            return
+    private func placeNodeFromNodeFactory(factory: NodeFactory, seatClassEntity: SeatClassEntity, isCurrentEntity: Bool) {
+        DispatchQueue.main.async {
+            let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
+                if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
+                    node.reservableEntity = $0
+                    node.isEnabled = $0.isAvailable && isCurrentEntity
+                    return node
+                }
+                /// Show Error node
+                let node = RedBoxNode()
+                node.reservableEntity = $0
+                return node
+            })
+            nodes.forEach { node in
+                self.contentNode.addChildNode(node)
+            }
         }
-        
+    }
+    
+    public func setupContent(seatClassEntity: SeatClassEntity, isCurrentEntity: Bool = true) {
         
         if isCurrentEntity {
             // Set Seat Range
@@ -132,33 +144,12 @@ class SeatMapSceneView: SCNView {
             currectContentNodePosition?.z = seatClassEntity.viewableRange.lowerBound.z
         }
         
-        func placeNodeFromNodeFactory(factory: NodeFactory) {
-            DispatchQueue.main.async {
-                let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
-                    if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
-                        node.reservableEntity = $0
-                        node.isEnabled = $0.isAvailable && isCurrentEntity
-                        return node
-                    }
-                    /// Show Error node
-                    let node = RedBoxNode()
-                    node.reservableEntity = $0
-                    return node
-                })
-                
-                nodes.forEach { node in
-                    self.contentNode.addChildNode(node)
-                }
-            }
-        }
-        
         if let factory = NodeFactory.shared {
             if factory.isLoaded {
-                placeNodeFromNodeFactory(factory: factory)
+                placeNodeFromNodeFactory(factory: factory, seatClassEntity: seatClassEntity, isCurrentEntity: isCurrentEntity)
             }else{
-                // TODO: display loading view.
-                factory.onComplete = {
-                    placeNodeFromNodeFactory(factory: $0)
+                factory.onComplete { [weak self] in
+                    self?.placeNodeFromNodeFactory(factory: $0, seatClassEntity: seatClassEntity, isCurrentEntity: isCurrentEntity)
                 }
             }
         }else{

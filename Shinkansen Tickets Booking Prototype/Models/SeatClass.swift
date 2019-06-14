@@ -34,7 +34,7 @@ enum SeatClassType: String, Codable {
     }
 }
 
-struct SeatClassEntity: Codable {
+class SeatClassEntity: Codable {
     let id: Int
     let seatClass: SeatClassType
     let name: String

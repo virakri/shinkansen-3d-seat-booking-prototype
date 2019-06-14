@@ -98,7 +98,9 @@ class NodeFactory {
     
     var isLoaded = false {
         didSet {
-            onComplete?(self)
+            onFactoryLoadedCompletionBuffer.forEach { (callback) in
+                callback(self)
+            }
         }
     }
     
@@ -108,7 +110,11 @@ class NodeFactory {
     
     var modelPrototypes: [String: SCNNode?] = [:]
     
-    var onComplete: ((NodeFactory) -> Void)?
+    private var onFactoryLoadedCompletionBuffer: [(NodeFactory) -> Void] = []
+    
+    func onComplete(callback: @escaping (NodeFactory) -> Void) {
+        onFactoryLoadedCompletionBuffer.append(callback)
+    }
     
     init(url: URL) {
         self.url = url

@@ -94,12 +94,15 @@ class SeatMapSelectionViewController: BookingViewController {
     }
     
     private func setupScene() {
-        seatMapSceneView.setupContent(seatClassEntity: seatClassEntity)
         
         print("Scene has been setup with \(seatClassEntity?.reservableEntities.count ?? 0) interactible nodes.")
         print(seatClassEntity?.reservableEntities.count ?? 0)
+        guard  let seatClassEntity = seatClassEntity else {
+            return
+        }
+        print("Scene has been setup with \(seatClassEntity.reservableEntities.count) interactible nodes.")
         seatClassEntities.forEach {
-            seatMapSceneView.setupContent(seatClassEntity: $0, isCurrentEntity: $0.name == seatClassEntity?.name)
+            seatMapSceneView.setupContent(seatClassEntity: $0, isCurrentEntity: $0 === seatClassEntity)
         }
     }
     
