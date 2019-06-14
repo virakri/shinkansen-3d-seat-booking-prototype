@@ -82,6 +82,10 @@ class SeatMapSceneView: SCNView {
     /// View setup
     private func setupView() {
         backgroundColor = .clear
+        
+        // Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
+        antialiasingMode = UIScreen.main.scale > 2 ?
+            .multisampling2X : .multisampling4X
     }
     
     /// Scene setup
@@ -113,6 +117,16 @@ class SeatMapSceneView: SCNView {
             return
         }
         
+        // Set Seat Range
+        contentZPositionLimit = seatClassEntity
+            .viewableRange
+            .lowerBound.z...seatClassEntity
+                .viewableRange
+                .upperBound.z
+        
+        // Set origin of the content
+        currectContentNodePosition?.z = seatClassEntity.viewableRange.lowerBound.z
+        
         func placeNodeFromNodeFactory(factory: NodeFactory) {
             DispatchQueue.main.async {
                 let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
@@ -137,7 +151,7 @@ class SeatMapSceneView: SCNView {
                 }
             }
         }else{
-            fatalError("NodeFactory not define before used")
+            fatalError("NodeFactory is not defined before used")
         }
     }
     
@@ -288,7 +302,7 @@ class SeatMapSceneView: SCNView {
     
     private func zPositionClamp(_ value: Float) -> Float {
         let trimmedMaxValue = value > contentZPositionLimit.upperBound ? contentZPositionLimit.upperBound * (1 + log10(value/contentZPositionLimit.upperBound)) : value
-        //
+        
         return value < contentZPositionLimit.lowerBound ? contentZPositionLimit.lowerBound * (1 + log10( trimmedMaxValue  / contentZPositionLimit.lowerBound )) : trimmedMaxValue
     }
     
