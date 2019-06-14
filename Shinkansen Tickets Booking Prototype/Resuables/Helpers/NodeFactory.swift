@@ -131,10 +131,14 @@ class NodeFactory {
             return weakSelf.loadModels(
                 from: Dictionary(
                     uniqueKeysWithValues: modelData.compactMap {
-                        guard $0.fileName != nil || $0.url != nil else {
+                        switch $0.resource {
+                        case .fileName(let filename):
+                            return ($0.name, URL.resource(name: filename)) as? (String, URL)
+                        case .url(let url):
+                            return ($0.name, url)
+                        default:
                             return nil
                         }
-                        return ($0.name, $0.url ?? URL.resource(name: $0.fileName ?? "")!)
                     }
                 )
             )
