@@ -46,12 +46,12 @@
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/seat-green-a.scn?alt=media&token=3cd3492d-2180-41c4-92fb-c05f6e515013",
+      "resource": "seat-green-a.scn",
       "name": "seat-green-a"
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/seat-green-b.scn?alt=media&token=e2c300a9-6261-46db-ac7b-7a4679340a49",
+      "resource": "seat-green-b.scn",
       "name": "seat-green-b"
    },
    {
