@@ -41,11 +41,13 @@ class SeatNode: ReservableNode {
     
     /// getter for determine current state
     var state: State {
-        return isHighlighted ?
-            .highlighted:
-            isSelected ?
-                .selected :
-            .normal
+        return !isEnabled ?
+                    .disabled:
+                    isHighlighted ?
+                        .highlighted:
+                        isSelected ?
+                            .selected :
+                            .normal
     }
     
     /// Materials to apply for each state

@@ -12,22 +12,9 @@ import BrightFutures
 
 struct ModelData: Codable {
     let name: String
-    let modelObject: URL
+    var url: URL?
+    var fileName: String?
     let isInteractible: Bool
-    let states: ModelDataState?
-}
-
-struct ModelDataState: Codable {
-    let normal: ModelState?
-    let highlighted: ModelState?
-    let disabled: ModelState?
-    let selected: ModelState?
-    let focused: ModelState?
-}
-
-struct ModelState: Codable {
-    let color: String
-    let scale: CGFloat
 }
 
 protocol StaticNode {
@@ -101,8 +88,11 @@ class NodeFactory {
             weakSelf.modelData = modelData
             return weakSelf.loadModels(
                 from: Dictionary(
-                    uniqueKeysWithValues: modelData.map {
-                        ($0.name, $0.modelObject)
+                    uniqueKeysWithValues: modelData.compactMap {
+                        guard $0.fileName != nil || $0.url != nil else {
+                            return nil
+                        }
+                        return ($0.name, $0.url ?? URL.resource(name: $0.fileName ?? "")!)
                     }
                 )
             )
