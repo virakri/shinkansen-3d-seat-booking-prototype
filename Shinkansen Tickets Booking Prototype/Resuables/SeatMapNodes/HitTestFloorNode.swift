@@ -21,6 +21,7 @@ class HitTestFloorNode: SCNNode {
     
     private func setupNode() {
         let hitTestFloor = SCNFloor()
+        hitTestFloor.reflectivity = 0
         hitTestFloor.firstMaterial?.transparency = 0
         geometry = hitTestFloor
         position.y = 1.3

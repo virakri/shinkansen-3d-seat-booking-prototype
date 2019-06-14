@@ -83,7 +83,7 @@ class SeatMapSceneView: SCNView {
     private func setupView() {
         backgroundColor = .clear
         
-        // Set Antialiasing Mode d1 1epending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
+        // Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
     }
@@ -151,7 +151,7 @@ class SeatMapSceneView: SCNView {
                 }
             }
         }else{
-            fatalError("NodeFactory not define before used")
+            fatalError("NodeFactory is not defined before used")
         }
     }
     
@@ -302,7 +302,7 @@ class SeatMapSceneView: SCNView {
     
     private func zPositionClamp(_ value: Float) -> Float {
         let trimmedMaxValue = value > contentZPositionLimit.upperBound ? contentZPositionLimit.upperBound * (1 + log10(value/contentZPositionLimit.upperBound)) : value
-        //
+        
         return value < contentZPositionLimit.lowerBound ? contentZPositionLimit.lowerBound * (1 + log10( trimmedMaxValue  / contentZPositionLimit.lowerBound )) : trimmedMaxValue
     }
     
