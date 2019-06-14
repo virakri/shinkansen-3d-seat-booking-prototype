@@ -71,27 +71,6 @@ protocol InteractibleNode: StaticNode {
     var isSelected: Bool { get set }
 }
 
-class StateNode: SCNNode, InteractibleNode {
-    
-    var isHighlighted: Bool = false
-    
-    var isSelected: Bool = true
-    
-    var isEnabled: Bool = true
-    
-    let modelData: ModelData?
-    
-    required init(node: SCNNode, modelData: ModelData?) {
-        self.modelData = modelData
-        super.init()
-        addChildNode(node)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 class NodeFactory {
     
     static var shared: NodeFactory?

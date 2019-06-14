@@ -68,5 +68,20 @@
       "isInteractible": true,
       "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
       "name": "seat-gran-class-c"
+   },
+   {
+      "isInteractible": false,
+      "resource": "floor-section-ordinary.scn",
+      "name": "floor-section-ordinary"
+   },
+   {
+      "isInteractible": false,
+      "resource": "leg-ordinary-a-to-c.scn",
+      "name": "leg-ordinary-a-to-c"
+   },
+   {
+      "isInteractible": false,
+      "resource": "leg-ordinary-d-to-e.scn",
+      "name": "leg-ordinary-d-to-e"
    }
 ]

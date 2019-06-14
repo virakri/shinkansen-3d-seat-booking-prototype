@@ -127,6 +127,16 @@ class SeatMapSceneView: SCNView {
             nodes.forEach { node in
                 self.contentNode.addChildNode(node)
             }
+            
+            seatClassEntity.transformedModelEntities.compactMap({
+                if let node: ObjectNode = factory.create(name: $0.modelEntity) {
+                    node.transformedModelEntity = $0
+                    return node
+                }
+                return nil
+            }).forEach {
+                self.contentNode.addChildNode($0)
+            }
         }
     }
     
