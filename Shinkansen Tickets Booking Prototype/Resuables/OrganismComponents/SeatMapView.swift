@@ -130,7 +130,12 @@ class SeatMapSceneView: SCNView {
         func placeNodeFromNodeFactory(factory: NodeFactory) {
             DispatchQueue.main.async {
                 let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
-                    let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity)!
+                    if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
+                        node.reservableEntity = $0
+                        return node
+                    }
+                    /// Show Error node
+                    let node = RedBoxNode()
                     node.reservableEntity = $0
                     return node
                 })
