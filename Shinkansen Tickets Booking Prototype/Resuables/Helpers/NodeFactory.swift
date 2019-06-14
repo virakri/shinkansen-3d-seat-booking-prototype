@@ -12,9 +12,51 @@ import BrightFutures
 
 struct ModelData: Codable {
     let name: String
-    var url: URL?
-    var fileName: String?
+    let resource: ModelData.Resource
     let isInteractible: Bool
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ModelDataKey.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        if let string = try? container.decode(String.self, forKey: .name) {
+            if let url = URL(string: string) {
+                self.resource = .url(url)
+            }else{
+                self.resource = .fileName(string)
+            }
+        }else{
+            self.resource = .none
+        }
+        self.isInteractible = try container.decode(Bool.self, forKey: .isInteractible)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: ModelDataKey.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(resource.encode(), forKey: .resource)
+        try container.encode(isInteractible, forKey: .isInteractible)
+    }
+    
+    enum Resource {
+        case url(URL)
+        case fileName(String)
+        case none
+        
+        func encode() -> String? {
+            switch self {
+            case .url(let url):
+                return url.absoluteString
+            case .fileName(let name):
+                return name
+            default:
+                return nil
+            }
+        }
+    }
+    
+    enum ModelDataKey: String, CodingKey {
+        case name, resource, isInteractible
+    }
 }
 
 protocol StaticNode {
