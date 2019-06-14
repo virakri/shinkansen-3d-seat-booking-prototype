@@ -111,28 +111,33 @@ class SeatMapSceneView: SCNView {
         self.scene = scene
     }
     
-    public func setupContent(seatClassEntity: SeatClassEntity?) {
+    public func setupContent(seatClassEntity: SeatClassEntity?, isCurrentEntity: Bool = true) {
+        
+        print(isCurrentEntity)
         
         guard let seatClassEntity = seatClassEntity else {
             return
         }
         
-        // Set Seat Range
-        contentZPositionLimit = seatClassEntity
-            .viewableRange
-            .lowerBound.z...seatClassEntity
-                .viewableRange
-                .upperBound.z
         
-        // Set origin of the content
-        currectContentNodePosition?.z = seatClassEntity.viewableRange.lowerBound.z
+        if isCurrentEntity {
+            // Set Seat Range
+            contentZPositionLimit = seatClassEntity
+                .viewableRange
+                .lowerBound.z...seatClassEntity
+                    .viewableRange
+                    .upperBound.z
+            
+            // Set origin of the content
+            currectContentNodePosition?.z = seatClassEntity.viewableRange.lowerBound.z
+        }
         
         func placeNodeFromNodeFactory(factory: NodeFactory) {
             DispatchQueue.main.async {
                 let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
                     if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
                         node.reservableEntity = $0
-                        node.isEnabled = $0.isAvailable
+                        node.isEnabled = $0.isAvailable && isCurrentEntity
                         return node
                     }
                     /// Show Error node

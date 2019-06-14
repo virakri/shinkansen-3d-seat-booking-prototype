@@ -18,6 +18,8 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var seatClass: SeatClass?
     
+    var seatClassEntities: [SeatClassEntity] = []
+    
     var seatClassEntity: SeatClassEntity?
     
     private var isTransitionPerforming: Bool = true
@@ -93,8 +95,9 @@ class SeatMapSelectionViewController: BookingViewController {
     
     private func setupScene() {
         print(seatClassEntity?.reservableEntities.count ?? 0)
-        
-        seatMapSceneView.setupContent(seatClassEntity: seatClassEntity)
+        seatClassEntities.forEach {
+            seatMapSceneView.setupContent(seatClassEntity: $0, isCurrentEntity: $0.name == seatClassEntity?.name)
+        }
     }
     
     func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat)  {
