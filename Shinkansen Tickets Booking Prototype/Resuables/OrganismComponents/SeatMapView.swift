@@ -111,7 +111,9 @@ class SeatMapSceneView: SCNView {
         self.scene = scene
     }
     
-    private func placeNodeFromNodeFactory(factory: NodeFactory, seatClassEntity: SeatClassEntity, isCurrentEntity: Bool) {
+    private func placeNodeFromNodeFactory(factory: NodeFactory,
+                                          seatClassEntity: SeatClassEntity,
+                                          isCurrentEntity: Bool) {
         DispatchQueue.main.async {
             let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
                 if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
@@ -131,6 +133,7 @@ class SeatMapSceneView: SCNView {
             seatClassEntity.transformedModelEntities.compactMap({
                 if let node: ObjectNode = factory.create(name: $0.modelEntity) {
                     node.transformedModelEntity = $0
+                    node.isEnabled = isCurrentEntity
                     return node
                 }
                 return nil

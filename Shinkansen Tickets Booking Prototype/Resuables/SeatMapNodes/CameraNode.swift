@@ -23,12 +23,12 @@ class CameraNode: SCNNode {
         
         let camera = SCNCamera()
         camera.projectionDirection = .vertical
-        camera.fieldOfView = 50
+        camera.fieldOfView = 64
         camera.zNear = 1
         camera.zFar = 100
         
         self.camera = camera
-        position.y = 8
-        look(at: SCNVector3(0, 0, -7.5))
+        position.y = 7.2
+        look(at: SCNVector3(0, 0, -5))
     }
 }

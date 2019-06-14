@@ -83,5 +83,10 @@
       "isInteractible": false,
       "resource": "leg-ordinary-d-to-e.scn",
       "name": "leg-ordinary-d-to-e"
+   },
+   {
+      "isInteractible": false,
+      "resource": "floor-section-green.scn",
+      "name": "floor-section-green"
    }
 ]

@@ -26,6 +26,6 @@ class DummyNode: SCNNode {
             print("No Model")
             return }
         
-        self.addChildNode(floorNode)
+//        self.addChildNode(floorNode)
     }
 }
