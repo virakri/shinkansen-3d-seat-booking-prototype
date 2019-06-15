@@ -14843,19 +14843,84 @@
                 }
             ],
             "transformedModelEntities": [
-                {
-                    "rotation": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                    },
-                    "modelEntity": "seat",
-                    "position": {
-                        "x": 0,
-                        "y": 0,
-                        "z": 0
-                    }
-                }
+               {
+   "rotation":{
+      "x":0,
+      "y":0,
+      "z":0
+   },
+   "modelEntity":"floor-section-gran-class",
+   "position":{
+      "x":0,
+      "y":0,
+      "z":-183.40802
+   }
+},
+{
+   "rotation":{
+      "x":0,
+      "y":0,
+      "z":0
+   },
+   "modelEntity":"floor-section-gran-class",
+   "position":{
+      "x":0,
+      "y":0,
+      "z":-184.70659
+   }
+},
+{
+   "rotation":{
+      "x":0,
+      "y":0,
+      "z":0
+   },
+   "modelEntity":"floor-section-gran-class",
+   "position":{
+      "x":0,
+      "y":0,
+      "z":-186.00516
+   }
+},
+{
+   "rotation":{
+      "x":0,
+      "y":0,
+      "z":0
+   },
+   "modelEntity":"floor-section-gran-class",
+   "position":{
+      "x":0,
+      "y":0,
+      "z":-187.30373
+   }
+},
+{
+   "rotation":{
+      "x":0,
+      "y":0,
+      "z":0
+   },
+   "modelEntity":"floor-section-gran-class",
+   "position":{
+      "x":0,
+      "y":0,
+      "z":-188.6023
+   }
+},
+{
+   "rotation":{
+      "x":0,
+      "y":0,
+      "z":0
+   },
+   "modelEntity":"floor-section-gran-class",
+   "position":{
+      "x":0,
+      "y":0,
+      "z":-189.90087
+   }
+}
             ],
             "carNumber": "Car 8",
             "seatClass": "granClass",

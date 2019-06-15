@@ -145,8 +145,8 @@ extension TrainSelectionViewController: UITableViewDataSource {
         seatClassSelectionVC.seatClasses = seatClasses ?? []
         seatClassSelectionVC.trainImage = UIImage(named: trainSchedule?.trainImageName ?? "")
         seatClassSelectionVC.headerInformation = headerInformation
-        seatClassSelectionVC.headerInformation?.fromTime = trainSchedule?.fromTime.time
-        seatClassSelectionVC.headerInformation?.toTime = trainSchedule?.toTime.time
+        seatClassSelectionVC.headerInformation?.fromTime = trainSchedule?.fromTime.addingTimeInterval(timeOffset).time
+        seatClassSelectionVC.headerInformation?.toTime = trainSchedule?.toTime.addingTimeInterval(timeOffset).time
         seatClassSelectionVC.headerInformation?.trainNumber = trainSchedule?.trainNumber
         seatClassSelectionVC.headerInformation?.trainName = trainSchedule?.trainName
         navigationController?.pushViewController(seatClassSelectionVC, animated: true)

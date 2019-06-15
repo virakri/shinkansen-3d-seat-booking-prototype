@@ -11,37 +11,27 @@
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+      "resource": "seat-ordinary-a.scn",
       "name": "seat-ordinary-a"
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+      "resource": "seat-ordinary-b.scn",
       "name": "seat-ordinary-b"
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
-      "name": "seat-ordinary-c",
-      "states": {
-         "highlighted": {
-            "color": "#FFFF0000",
-            "scale": 1
-         },
-         "normal": {
-            "color": "#FF000000",
-            "scale": 1
-         }
-      }
+      "resource": "seat-ordinary-c.scn",
+      "name": "seat-ordinary-c"
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+      "resource": "seat-ordinary-d.scn",
       "name": "seat-ordinary-d"
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
+      "resource": "seat-ordinary-e.scn",
       "name": "seat-ordinary-e"
    },
    {
@@ -56,12 +46,12 @@
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/seat-gran-class-a.scn?alt=media&token=705e3a68-2ddb-42df-a400-40e380c54974",
+      "resource": "seat-gran-class-a.scn",
       "name": "seat-gran-class-a"
    },
    {
       "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/seat-gran-class-b.scn?alt=media&token=ab8871c4-7de0-4602-a585-52b6e086c849",
+      "resource": "seat-gran-class-b.scn",
       "name": "seat-gran-class-b"
    },
    {
@@ -88,5 +78,10 @@
       "isInteractible": false,
       "resource": "floor-section-green.scn",
       "name": "floor-section-green"
+   },
+   {
+      "isInteractible": false,
+      "resource": "floor-section-gran-class.scn",
+      "name": "floor-section-gran-class"
    }
 ]

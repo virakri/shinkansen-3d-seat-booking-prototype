@@ -34,8 +34,12 @@ class SeatMapSelectionViewController: BookingViewController {
             }
             
             mainCallToActionButton.isEnabled = selectedEntity != nil
-            mainCallToActionButton.setTitle("Pick a Seat—\(selectedEntity?.name ?? "*")")
-            mainCallToActionButton.titleLabel?.alpha = 0
+            
+            let buttonTitle = "Continue with a Seat \(selectedEntity?.name ?? "*")"
+            if mainCallToActionButton.titleLabel?.text != buttonTitle {
+                mainCallToActionButton.setTitle(buttonTitle)
+                mainCallToActionButton.titleLabel?.alpha = 0
+            }
             
             UIView.animate(withDuration: 0.35,
                            animations: {
@@ -90,7 +94,7 @@ class SeatMapSelectionViewController: BookingViewController {
     }
     
     private func setupStaticContent() {
-        mainCallToActionButton.setTitle("Pick a Seat")
+        mainCallToActionButton.setTitle("Please Select a Seat")
     }
     
     private func setupScene() {

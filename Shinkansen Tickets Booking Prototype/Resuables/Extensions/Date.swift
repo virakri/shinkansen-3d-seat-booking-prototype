@@ -74,15 +74,13 @@ extension Date {
             dateFormatter.dateFormat = "ha"
             return dateFormatter.string(from: self)
         } else {
-            dateFormatter.dateFormat = "H"
+            dateFormatter.dateFormat = "H:mm"
             return dateFormatter.string(from: self)
         }
     }
     
     init(byHourOf hour: Int = 0, minute: Int = 0, second: Int = 0) {
-        // Specify date components
         var dateComponents = DateComponents()
-//        dateComponents.timeZone = Date.JPCalendar.timeZone //TimeZone(abbreviation: "JST") // Japan Standard Time
         dateComponents.hour = hour
         dateComponents.minute = minute
         dateComponents.second = second
