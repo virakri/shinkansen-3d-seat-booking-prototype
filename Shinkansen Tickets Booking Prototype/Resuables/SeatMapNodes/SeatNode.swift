@@ -154,6 +154,32 @@ class SeatNode: ReservableNode {
         if let materials = node.geometry?.materials {
             result["materials"] = materials.map { $0 }
         }
+        
+        let materialNames = node.geometry?.materials.compactMap { $0.name } ?? []
+        node.geometry?.materials = node.geometry?.materials.compactMap({ material in
+            if let name = material.name,
+                let last = name.split(separator: "-").last,
+                last == "darkMode" {
+                print(name)
+                var component = Array(name.split(separator: "-"))
+                let newName = component.joined(separator: "-")
+                component.removeLast()
+                if currentColorTheme == .dark {
+                    material.name = newName
+                    return material
+                }else if !materialNames.contains(newName) {
+                    material.name = newName
+                    return material
+                }
+                return nil
+            }else{
+                if currentColorTheme == .dark && materialNames.contains( "\(material.name ?? "")-darkMode") {
+                    return nil
+                }else{
+                    return material
+                }
+            }
+        }) ?? []
         node.geometry?.materials = node.geometry?.materials.compactMap({ material  in
             if let name = material.name, name.contains("-") {
                 var nameComponent = Array(name.split(separator: "-"))
