@@ -29,6 +29,8 @@ class SeatMapSceneView: SCNView {
     
     private var contentNode: SCNNode = SCNNode()
     
+    private let cameraNode = CameraNode()
+    
     private var hitTestPositionWhenTouchBegan: SCNVector3?
     
     private var contentNodePositionWhenTouchBegan: SCNVector3?
@@ -103,7 +105,7 @@ class SeatMapSceneView: SCNView {
         }
         
         //TODO: Change it to camera node
-        addMotionEffect(TiltNodeMotionEffect(node: contentNode))
+        addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
     }
     
     /// Scene setup
@@ -113,8 +115,6 @@ class SeatMapSceneView: SCNView {
         let dummyNode = DummyNode()
         
         let hitTestFloorNode = HitTestFloorNode()
-        
-        let cameraNode = CameraNode()
         
         let scene = SCNScene()
         scene.background.contents = UIColor.clear
