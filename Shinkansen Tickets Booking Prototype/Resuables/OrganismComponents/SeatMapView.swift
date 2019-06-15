@@ -91,18 +91,13 @@ class SeatMapSceneView: SCNView {
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
         
-        if let factory = NodeFactory.shared, !factory.isLoaded {
-            loadingActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
-            loadingActivityIndicatorView.color = currentColorTheme.componentColor.secondaryText
-            loadingActivityIndicatorView.startAnimating()
-            addSubview(loadingActivityIndicatorView,
-                            withConstaintEquals: .centerSafeArea)
-            factory.onComplete {  _ in
-                DispatchQueue.main.async { [weak self] in
-                    self?.loadingActivityIndicatorView?.removeFromSuperview()
-                }
-            }
-        }
+        
+        loadingActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
+        loadingActivityIndicatorView.color = currentColorTheme.componentColor.secondaryText
+        loadingActivityIndicatorView.startAnimating()
+        addSubview(loadingActivityIndicatorView,
+                        withConstaintEquals: .centerSafeArea)
+       
         
         //TODO: Change it to camera node
         addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
@@ -158,6 +153,7 @@ class SeatMapSceneView: SCNView {
             }).forEach {
                 self.contentNode.addChildNode($0)
             }
+            self.loadingActivityIndicatorView?.removeFromSuperview()
         }
     }
     

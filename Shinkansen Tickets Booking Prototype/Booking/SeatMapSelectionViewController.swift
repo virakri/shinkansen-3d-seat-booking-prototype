@@ -105,6 +105,12 @@ class SeatMapSelectionViewController: BookingViewController {
             return
         }
         print("Scene has been setup with \(seatClassEntity.reservableEntities.count) interactible nodes.")
+        
+        if let index = seatClassEntities.firstIndex(where: { $0 === seatClassEntity }) {
+            seatClassEntities.remove(at: index)
+            seatClassEntities.insert(seatClassEntity, at: 0)
+        }
+        
         seatClassEntities.forEach {
             seatMapSceneView.setupContent(seatClassEntity: $0, isCurrentEntity: $0 === seatClassEntity)
         }
