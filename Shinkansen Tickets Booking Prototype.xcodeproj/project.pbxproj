@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */; };
+		901F107B22B563CF00FB03D8 /* TiltNodeMotionEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */; };
 		9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9044513A22B00FA700E6FF45 /* SCNMaterial.swift */; };
 		904756F322B4283F00971014 /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904756F222B4283F00971014 /* ObjectNode.swift */; };
 		90CA078222AEC21C002C204E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CA078122AEC21C002C204E /* UIColor.swift */; };
@@ -89,6 +90,7 @@
 		2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_Tickets_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
 		9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitAnimator.swift; sourceTree = "<group>"; };
+		901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltNodeMotionEffect.swift; sourceTree = "<group>"; };
 		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
 		904756F222B4283F00971014 /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
 		90CA078122AEC21C002C204E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */,
 				E0CF325522AAF10800BC4788 /* TrainSchedule.swift */,
 				90D7776322B3E88300170E24 /* RedBoxNode.swift */,
+				901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */,
 				E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
+				901F107B22B563CF00FB03D8 /* TiltNodeMotionEffect.swift in Sources */,
 				D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */,
 				9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */,
 				D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */,

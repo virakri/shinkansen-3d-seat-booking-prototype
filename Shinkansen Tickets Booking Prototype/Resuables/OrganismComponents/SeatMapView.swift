@@ -101,6 +101,9 @@ class SeatMapSceneView: SCNView {
                 }
             }
         }
+        
+        //TODO: Change it to camera node
+        addMotionEffect(TiltNodeMotionEffect(node: contentNode))
     }
     
     /// Scene setup
