@@ -21,14 +21,23 @@ class CameraNode: SCNNode {
     
     private func setupNode() {
         
+        let cameraPosition = SCNVector3(0, 7.2, 5)
+        let offsetPosition = SCNVector3(0, 2, 1.5)
+        
         let camera = SCNCamera()
         camera.projectionDirection = .vertical
         camera.fieldOfView = 64
         camera.zNear = 1
         camera.zFar = 100
         
-        self.camera = camera
-        position.y = 7.2
-        look(at: SCNVector3(0, 0, -5))
+        let actualCameraNode = SCNNode()
+        actualCameraNode.camera = camera
+        actualCameraNode.position.y = cameraPosition.y - offsetPosition.y
+        actualCameraNode.position.z = cameraPosition.z - offsetPosition.z
+        actualCameraNode.look(at: SCNVector3(0, -offsetPosition.y, -offsetPosition.z))
+        
+        addChildNode(actualCameraNode)
+        position.y = offsetPosition.y
+        position.z = -cameraPosition.z + offsetPosition.z
     }
 }

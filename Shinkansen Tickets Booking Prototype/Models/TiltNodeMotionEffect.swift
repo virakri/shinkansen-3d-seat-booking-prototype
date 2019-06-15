@@ -10,18 +10,26 @@ import SceneKit
 
 class TiltNodeMotionEffect: UIMotionEffect {
     
-    var node: SCNNode? // The object you want to tilt
-    var baseOrientation = SCNVector3Zero
-    var basePosition = SCNVector3Zero
+    private var basedEulerAngles = SCNVector3Zero
+    private var basedPosition = SCNVector3Zero
     
-    //TODO: Change intensity
-    var verticalAngle: CGFloat = 0.5
-    var horizontalAngle: CGFloat = 0.3
+    /// `SCNNode` that will be tilted or reposition based on visual effect
+    var node: SCNNode?
     
+    /// Intensity of vertical tilt
+    var verticalAngleIntensity: CGFloat = 1 / 4
+    
+    /// Intensity of horizontal tilt
+    var horizontalAngleIntensity: CGFloat = 1 / 4
+    
+    /// Add motion effect to `SCNNode`
+    ///
+    /// - Parameter node: `SCNNode` that will be tilted or reposition based on visual effect
     init(node: SCNNode) {
         super.init()
         self.node = node // Set value at init
-        basePosition = node.position
+        basedPosition = node.position
+        basedEulerAngles = node.eulerAngles
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,13 +37,14 @@ class TiltNodeMotionEffect: UIMotionEffect {
     }
     
     override func keyPathsAndRelativeValues(forViewerOffset viewerOffset: UIOffset) -> [String : Any]? {
-        // TODO: Change this to position instead.
-        /// ตัวอย่าง
+        /// Example for position manipulation
+/*
         node?.position = SCNVector3Make(
             basePosition.x + Float(viewerOffset.horizontal * horizontalAngle),
             basePosition.y - Float(viewerOffset.vertical * verticalAngle),
             basePosition.z )
-//        node?.eulerAngles = SCNVector3Make(baseOrientation.x + Float(viewerOffset.vertical * verticalAngle), baseOrientation.y + Float(viewerOffset.horizontal * horizontalAngle), baseOrientation.z)
+ */
+        node?.eulerAngles = SCNVector3Make(basedEulerAngles.x + Float(viewerOffset.vertical * verticalAngleIntensity), basedEulerAngles.y + Float(viewerOffset.horizontal * horizontalAngleIntensity), basedEulerAngles.z)
         return nil
     }
 }
