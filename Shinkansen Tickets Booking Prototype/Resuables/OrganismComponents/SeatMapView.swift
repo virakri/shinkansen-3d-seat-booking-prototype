@@ -97,9 +97,8 @@ class SeatMapSceneView: SCNView {
         loadingActivityIndicatorView.startAnimating()
         addSubview(loadingActivityIndicatorView,
                         withConstaintEquals: .centerSafeArea)
-       
         
-        //TODO: Change it to camera node
+        // MARK: Add visual effect
         addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
     }
     
@@ -154,6 +153,11 @@ class SeatMapSceneView: SCNView {
                 self.contentNode.addChildNode($0)
             }
             self.loadingActivityIndicatorView?.removeFromSuperview()
+            
+            self.alpha = 0
+            UIView.animate(withDuration: 0.35, animations: {
+                self.alpha = 1
+            })
         }
     }
     
