@@ -33,6 +33,8 @@ class SeatMapSceneView: SCNView {
     
     private var contentNodePositionWhenTouchBegan: SCNVector3?
     
+    private var loadingActivityIndicatorView: UIActivityIndicatorView!
+    
     private var currectContentNodePosition: SCNVector3? {
         didSet {
             setCurrectContentNodePosition(
@@ -86,6 +88,19 @@ class SeatMapSceneView: SCNView {
         // Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
+        
+        if let factory = NodeFactory.shared, !factory.isLoaded {
+            loadingActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
+            loadingActivityIndicatorView.color = currentColorTheme.componentColor.secondaryText
+            loadingActivityIndicatorView.startAnimating()
+            addSubview(loadingActivityIndicatorView,
+                            withConstaintEquals: .centerSafeArea)
+            factory.onComplete {  _ in
+                DispatchQueue.main.async { [weak self] in
+                    self?.loadingActivityIndicatorView?.removeFromSuperview()
+                }
+            }
+        }
     }
     
     /// Scene setup
