@@ -160,10 +160,10 @@ class SeatNode: ReservableNode {
             if let name = material.name,
                 let last = name.split(separator: "-").last,
                 last == "darkMode" {
-                print(name)
                 var component = Array(name.split(separator: "-"))
-                let newName = component.joined(separator: "-")
                 component.removeLast()
+                let newName = component.joined(separator: "-")
+                print(newName)
                 if currentColorTheme == .dark {
                     material.name = newName
                     return material
