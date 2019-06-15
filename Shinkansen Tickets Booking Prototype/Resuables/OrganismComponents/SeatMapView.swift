@@ -63,6 +63,15 @@ class SeatMapSceneView: SCNView {
             if let reservableEntity = selectedSeat?.reservableEntity {
                 seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
             }
+            if let selectedSeat = selectedSeat {
+                let center = positionOfFloorHitTest(.init(x: 0, y: frame.midY))?.z ?? 0
+                SceneKitAnimator.animateWithDuration(
+                    duration: 0.35 * 2,
+                    timingFunction: .easeOut,
+                    animations: {
+                    currectContentNodePosition?.z = -(selectedSeat.position.z) + center
+                })
+            }
         }
     }
     
