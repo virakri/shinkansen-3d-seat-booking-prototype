@@ -18,7 +18,9 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var seatClass: SeatClass?
     
-    var seatClassEntities: [SeatClassEntity] = []
+    var seatMap: SeatMap?
+    
+//    var seatClassEntities: [SeatClassEntity] = []
     
     var seatClassEntity: SeatClassEntity?
     
@@ -101,19 +103,16 @@ class SeatMapSelectionViewController: BookingViewController {
         
         print("Scene has been setup with \(seatClassEntity?.reservableEntities.count ?? 0) interactible nodes.")
         print(seatClassEntity?.reservableEntities.count ?? 0)
-        guard  let seatClassEntity = seatClassEntity else {
-            return
+        guard let seatMap = seatMap,
+            let seatClassEntity = seatClassEntity else {
+                return
         }
         print("Scene has been setup with \(seatClassEntity.reservableEntities.count) interactible nodes.")
         
-        if let index = seatClassEntities.firstIndex(where: { $0 === seatClassEntity }) {
-            seatClassEntities.remove(at: index)
-            seatClassEntities.insert(seatClassEntity, at: 0)
-        }
+        seatMapSceneView.setupContent(seatMap: seatMap,
+                                      currentEntity: seatClassEntity)
         
-        seatClassEntities.forEach {
-            seatMapSceneView.setupContent(seatClassEntity: $0, isCurrentEntity: $0 === seatClassEntity)
-        }
+        
     }
     
     func verticalRubberBandEffect(byVerticalContentOffset contentOffsetY: CGFloat)  {

@@ -132,13 +132,33 @@ class SeatMapSceneView: SCNView {
         self.scene = scene
     }
     
-    private func placeNodeFromNodeFactory(factory: NodeFactory,
+    private func placeStaticNodes(from factory: NodeFactory,
+                                  using transformedModelEntities: [TransformedModelEntity],
+                                  isEnabled: Bool = true) {
+        // Place static nodes
+        transformedModelEntities.compactMap({
+            if let node: ObjectNode = factory.create(name: $0.modelEntity) {
+                node.transformedModelEntity = $0
+                node.isEnabled = isEnabled
+                return node
+            }
+            return nil
+        }).forEach {
+            self.contentNode.addChildNode($0)
+        }
+    }
+    
+    private func placeSeatClassNodes(from factory: NodeFactory,
                                           seatClassEntity: SeatClassEntity,
                                           isCurrentEntity: Bool) {
         DispatchQueue.main.async {
+            
+            // Generate all interactible nodes with transform values
             let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
                 if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
+                    
+                    // Assign Enabled state of interactible nodes
                     node.isEnabled = $0.isAvailable && isCurrentEntity
                     return node
                 }
@@ -151,16 +171,10 @@ class SeatMapSceneView: SCNView {
                 self.contentNode.addChildNode(node)
             }
             
-            seatClassEntity.transformedModelEntities.compactMap({
-                if let node: ObjectNode = factory.create(name: $0.modelEntity) {
-                    node.transformedModelEntity = $0
-                    node.isEnabled = isCurrentEntity
-                    return node
-                }
-                return nil
-            }).forEach {
-                self.contentNode.addChildNode($0)
-            }
+            self.placeStaticNodes(from: factory,
+                                             using: seatClassEntity.transformedModelEntities,
+                                             isEnabled: isCurrentEntity)
+            
             self.loadingActivityIndicatorView?.removeFromSuperview()
             
             self.alpha = 0
@@ -170,26 +184,69 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    public func setupContent(seatClassEntity: SeatClassEntity, isCurrentEntity: Bool = true) {
+    public func setupContent(seatMap: SeatMap,
+                             currentEntity: SeatClassEntity) {
         
-        if isCurrentEntity {
-            // Set Seat Range
-            contentZPositionLimit = seatClassEntity
-                .viewableRange
-                .lowerBound.z...seatClassEntity
-                    .viewableRange
-                    .upperBound.z
-            
-            // Set origin of the content
-            currectContentNodePosition?.z = seatClassEntity.viewableRange.lowerBound.z
+        setupGlobalStaticContent(seatMap: seatMap)
+        
+        var seatClassEntities = seatMap.seatClassEntities
+        
+        // Reorder to have current seatClassEnity to be first memeber of the array
+        if let index = seatClassEntities.firstIndex(where: { $0 === currentEntity }) {
+            seatClassEntities.remove(at: index)
+            seatClassEntities.insert(currentEntity, at: 0)
         }
+        
+        seatClassEntities.forEach {
+            let isCurrentEntity = $0 === currentEntity
+            
+            if isCurrentEntity {
+                // Set Seat Range
+                contentZPositionLimit = $0
+                    .viewableRange
+                    .lowerBound.z...$0
+                        .viewableRange
+                        .upperBound.z
+                
+                // Set origin of the content
+                currectContentNodePosition?.z = $0.viewableRange.lowerBound.z
+            }
+            
+            setupSeatClassContent(seatClassEntity: $0,
+                                  isCurrentEntity: isCurrentEntity)
+        }
+    }
+    
+    private func setupGlobalStaticContent(seatMap: SeatMap) {
         
         if let factory = NodeFactory.shared {
             if factory.isLoaded {
-                placeNodeFromNodeFactory(factory: factory, seatClassEntity: seatClassEntity, isCurrentEntity: isCurrentEntity)
+                placeStaticNodes(from: factory,
+                                 using: seatMap.transformedModelEntities)
             }else{
                 factory.onComplete { [weak self] in
-                    self?.placeNodeFromNodeFactory(factory: $0, seatClassEntity: seatClassEntity, isCurrentEntity: isCurrentEntity)
+                    self?.placeStaticNodes(from: $0,
+                                           using: seatMap.transformedModelEntities)
+                }
+            }
+        }else{
+            fatalError("NodeFactory is not defined before used")
+        }
+    }
+    
+    private func setupSeatClassContent(seatClassEntity: SeatClassEntity,
+                                      isCurrentEntity: Bool = true) {
+        
+        if let factory = NodeFactory.shared {
+            if factory.isLoaded {
+                placeSeatClassNodes(from: factory,
+                                    seatClassEntity: seatClassEntity,
+                                    isCurrentEntity: isCurrentEntity)
+            }else{
+                factory.onComplete { [weak self] in
+                    self?.placeSeatClassNodes(from: $0,
+                                              seatClassEntity: seatClassEntity,
+                                              isCurrentEntity: isCurrentEntity)
                 }
             }
         }else{

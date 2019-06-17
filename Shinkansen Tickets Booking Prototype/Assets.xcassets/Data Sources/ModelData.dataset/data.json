@@ -83,5 +83,12 @@
       "isInteractible": false,
       "resource": "floor-section-gran-class.scn",
       "name": "floor-section-gran-class"
+   },
+   {
+      "isInteractible": false,
+      "resource": "e7-main-shadow.scn",
+      "name": "e7-main-shadow"
    }
+
+   
 ]

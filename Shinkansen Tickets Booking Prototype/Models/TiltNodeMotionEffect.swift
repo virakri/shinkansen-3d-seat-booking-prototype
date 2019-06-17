@@ -17,10 +17,16 @@ class TiltNodeMotionEffect: UIMotionEffect {
     var node: SCNNode?
     
     /// Intensity of vertical tilt
-    var verticalAngleIntensity: CGFloat = 1 / 4
+    var verticalTiltedIntensity: CGFloat = 1 / 4
     
     /// Intensity of horizontal tilt
-    var horizontalAngleIntensity: CGFloat = 1 / 4
+    var horizontalTiltedIntensity: CGFloat = 0
+    
+    /// Intensity of vertical shift
+    var verticalShiftedIntensity: CGFloat = 0
+    
+    /// Intensity of horizontal shift
+    var horizontalShiftedIntensity: CGFloat = 1 / 2
     
     /// Add motion effect to `SCNNode`
     ///
@@ -37,14 +43,15 @@ class TiltNodeMotionEffect: UIMotionEffect {
     }
     
     override func keyPathsAndRelativeValues(forViewerOffset viewerOffset: UIOffset) -> [String : Any]? {
-        /// Example for position manipulation
-/*
+
+        // Shifting position
         node?.position = SCNVector3Make(
-            basePosition.x + Float(viewerOffset.horizontal * horizontalAngle),
-            basePosition.y - Float(viewerOffset.vertical * verticalAngle),
-            basePosition.z )
- */
-        node?.eulerAngles = SCNVector3Make(basedEulerAngles.x + Float(viewerOffset.vertical * verticalAngleIntensity), basedEulerAngles.y + Float(viewerOffset.horizontal * horizontalAngleIntensity), basedEulerAngles.z)
+            basedPosition.x + Float(viewerOffset.horizontal * horizontalShiftedIntensity),
+            basedPosition.y - Float(viewerOffset.vertical * verticalShiftedIntensity),
+            basedPosition.z )
+ 
+        // Tilting Angle
+        node?.eulerAngles = SCNVector3Make(basedEulerAngles.x + Float(viewerOffset.vertical * verticalTiltedIntensity), basedEulerAngles.y + Float(viewerOffset.horizontal * horizontalTiltedIntensity), basedEulerAngles.z)
         return nil
     }
 }
