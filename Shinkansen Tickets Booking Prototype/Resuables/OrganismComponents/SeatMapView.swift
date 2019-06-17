@@ -208,8 +208,10 @@ class SeatMapSceneView: SCNView {
                         .viewableRange
                         .upperBound.z
                 
-                // Set origin of the content
-                currectContentNodePosition?.z = $0.viewableRange.lowerBound.z
+                // Set origin of the content to be center between lowerBound and upperbound
+                currectContentNodePosition?.z =
+                ($0.viewableRange.lowerBound.z +
+                    $0.viewableRange.upperBound.z) / 2
             }
             
             setupSeatClassContent(seatClassEntity: $0,

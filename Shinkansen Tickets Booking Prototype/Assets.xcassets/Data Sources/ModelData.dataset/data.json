@@ -61,9 +61,23 @@
    },
    {
       "isInteractible": false,
-      "resource": "floor-section-ordinary.scn",
-      "name": "floor-section-ordinary"
+      "resource": "e7-ordinary-seat-section.scn",
+      "name": "e7-ordinary-seat-section"
    },
+
+   {
+      "isInteractible": false,
+      "resource": "e7-ordinary-seat-section-ending-a.scn",
+      "name": "e7-ordinary-seat-section-ending-a"
+   },
+
+   {
+      "isInteractible": false,
+      "resource": "e7-ordinary-seat-section-ending-b.scn",
+      "name": "e7-ordinary-seat-section-ending-b"
+   },
+
+
    {
       "isInteractible": false,
       "resource": "leg-ordinary-a-to-c.scn",
@@ -86,9 +100,33 @@
    },
    {
       "isInteractible": false,
+      "resource": "e7-train-head-chasis.scn",
+      "name": "e7-train-head-chasis"
+   },
+   {
+      "isInteractible": false,
       "resource": "e7-main-shadow.scn",
       "name": "e7-main-shadow"
    }
 
+   ,
+   {
+      "isInteractible": false,
+      "resource": "e7-gangway.scn",
+      "name": "e7-gangway"
+   },
+
+   {
+      "isInteractible": false,
+      "resource": "e7-entrance-section.scn",
+      "name": "e7-entrance-section"
+   },
+
+   {
+      "isInteractible": false,
+      "resource": "e7-accessible-entrance-section.scn",
+      "name": "e7-accessible-entrance-section"
+   }
+   
    
 ]
