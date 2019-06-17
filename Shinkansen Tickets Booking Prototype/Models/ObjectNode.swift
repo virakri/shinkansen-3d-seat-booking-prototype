@@ -39,7 +39,30 @@ class ObjectNode: SCNNode, StaticNode {
         if let materials = node.geometry?.materials {
             result["materials"] = materials.map { $0 }
         }
-        node.geometry?.materials = node.geometry?.materials.compactMap({ material  in
+        
+        let materialNames = node.geometry?.materials.compactMap { $0.name } ?? []
+        
+        // Filter dark/light mode
+        node.geometry?.materials = node.geometry?.materials.compactMap({ material -> SCNMaterial? in
+            if let name = material.name,
+                let last = name.split(separator: "-").last,
+                last == "darkMode" {
+                var component = Array(name.split(separator: "-"))
+                component.removeLast()
+                let newName = component.joined(separator: "-")
+                if currentColorTheme == .dark || (currentColorTheme != .dark && !materialNames.contains(newName)) {
+                    material.name = newName
+                    return material
+                }
+                return nil
+            }else{
+                if currentColorTheme == .dark && materialNames.contains( "\(material.name ?? "")-darkMode") {
+                    return nil
+                }else{
+                    return material
+                }
+            }
+        }).compactMap({ material  in
             if let name = material.name, name.contains("-") {
                 var nameComponent = Array(name.split(separator: "-"))
                 if let last = nameComponent.last,
