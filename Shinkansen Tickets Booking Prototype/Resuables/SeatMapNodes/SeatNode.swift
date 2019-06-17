@@ -156,18 +156,16 @@ class SeatNode: ReservableNode {
         }
         
         let materialNames = node.geometry?.materials.compactMap { $0.name } ?? []
-        node.geometry?.materials = node.geometry?.materials.compactMap({ material in
+        
+        // Filter dark/light mode
+        node.geometry?.materials = node.geometry?.materials.compactMap({ material -> SCNMaterial? in
             if let name = material.name,
                 let last = name.split(separator: "-").last,
                 last == "darkMode" {
                 var component = Array(name.split(separator: "-"))
                 component.removeLast()
                 let newName = component.joined(separator: "-")
-                print(newName)
-                if currentColorTheme == .dark {
-                    material.name = newName
-                    return material
-                }else if !materialNames.contains(newName) {
+                if currentColorTheme == .dark || (currentColorTheme != .dark && !materialNames.contains(newName)) {
                     material.name = newName
                     return material
                 }
@@ -179,8 +177,8 @@ class SeatNode: ReservableNode {
                     return material
                 }
             }
-        }) ?? []
-        node.geometry?.materials = node.geometry?.materials.compactMap({ material  in
+        }).compactMap({ material  in
+            // Material management
             if let name = material.name, name.contains("-") {
                 var nameComponent = Array(name.split(separator: "-"))
                 if let last = nameComponent.last,
