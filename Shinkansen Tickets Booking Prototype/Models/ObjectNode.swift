@@ -73,7 +73,7 @@ class ObjectNode: SCNNode, StaticNode {
                         let newName = nameComponent.joined(separator: "-")
                         return SCNMaterial().clone(from: material, name: newName)
                     }else{
-                        return nil
+                        return material
                     }
                 }
             }
