@@ -19,9 +19,17 @@ class TrainSelectionViewController: BookingViewController {
     
     var trainCriteria: TrainCriteria? {
         didSet {
+            let now = Date()
+            trainSchedules = (trainCriteria?.trainSchedules ?? []).filter {
+                let component = Calendar.current.dateComponents(in: Date.JPCalendar.timeZone, from: $0.fromTime)
+                let date = Date(byHourOf: component.hour, minute: component.minute, second: component.second)
+                return now < date.addingTimeInterval(timeOffset)
+            }
             mainTableView.reloadData()
         }
     }
+    
+    private var trainSchedules: [TrainSchedule] = []
     
     var timeOffset: TimeInterval = 0
     
@@ -91,47 +99,47 @@ class TrainSelectionViewController: BookingViewController {
 
 extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return trainCriteria?.trainSchedules.count ?? 0
+        return trainSchedules.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrainScheduleTableViewCell",
                                                        for: indexPath) as? TrainScheduleTableViewCell else { return UITableViewCell() }
-        if let trainSchedule = trainCriteria?.trainSchedules[indexPath.row] {
+         let trainSchedule = trainSchedules[indexPath.row]
             
-            let granClassObject = trainSchedule.seatClasses.first(where: {
-                $0.seatClass == .granClass
-            })
-            
-            let greenObject = trainSchedule.seatClasses.first(where: {
-                $0.seatClass == .green
-            })
-            
-            let ordinaryObject = trainSchedule.seatClasses.first(where: {
-                $0.seatClass == .ordinary
-            })
-            
-            let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap({$0})
-            let cheapestPrice = availableObjects.sorted(by: { (classL, classR) -> Bool in
-                return classL.price < classR.price
-            }).first?.price
-            
-            // MARK: Offset of time is only for a sake of mock data
-            let fromTimeString = trainSchedule.fromTime.addingTimeInterval(timeOffset).time
-            let toTimeString = trainSchedule.toTime.addingTimeInterval(timeOffset).time
-            cell.setupValue(time: "\(fromTimeString) – \(toTimeString)",
-                amountOfTime: trainSchedule.toTime.offset(from: trainSchedule.fromTime),
-                trainNumber: trainSchedule.trainNumber,
-                trainName: trainSchedule.trainName,
-                showGranClassIcon: granClassObject != nil,
-                isGranClassAvailable: granClassObject?.isAvailable ?? false,
-                showGreenIcon: greenObject != nil,
-                isGreenAvailable: greenObject?.isAvailable ?? false,
-                showOrdinaryIcon: ordinaryObject != nil,
-                isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
-                price: "from \(cheapestPrice?.yen ?? "-")",
-                trainImage: UIImage(named: trainSchedule.trainImageName))
-        }
+        let granClassObject = trainSchedule.seatClasses.first(where: {
+            $0.seatClass == .granClass
+        })
+        
+        let greenObject = trainSchedule.seatClasses.first(where: {
+            $0.seatClass == .green
+        })
+        
+        let ordinaryObject = trainSchedule.seatClasses.first(where: {
+            $0.seatClass == .ordinary
+        })
+        
+        let availableObjects = [granClassObject, greenObject, ordinaryObject].compactMap({$0})
+        let cheapestPrice = availableObjects.sorted(by: { (classL, classR) -> Bool in
+            return classL.price < classR.price
+        }).first?.price
+        
+        // MARK: Offset of time is only for a sake of mock data
+        let fromTimeString = trainSchedule.fromTime.addingTimeInterval(timeOffset).time
+        let toTimeString = trainSchedule.toTime.addingTimeInterval(timeOffset).time
+        cell.setupValue(time: "\(fromTimeString) – \(toTimeString)",
+            amountOfTime: trainSchedule.toTime.offset(from: trainSchedule.fromTime),
+            trainNumber: trainSchedule.trainNumber,
+            trainName: trainSchedule.trainName,
+            showGranClassIcon: granClassObject != nil,
+            isGranClassAvailable: granClassObject?.isAvailable ?? false,
+            showGreenIcon: greenObject != nil,
+            isGreenAvailable: greenObject?.isAvailable ?? false,
+            showOrdinaryIcon: ordinaryObject != nil,
+            isOrdinaryAvailable: ordinaryObject?.isAvailable ?? false,
+            price: "from \(cheapestPrice?.yen ?? "-")",
+            trainImage: UIImage(named: trainSchedule.trainImageName))
+        
         cell.contentView.alpha = didFirstLoad ? 1 : 0
         return cell
     }
@@ -139,16 +147,16 @@ extension TrainSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //
         selectedIndexPath = indexPath
-        let trainSchedule = trainCriteria?.trainSchedules[indexPath.row]
-        let seatClasses = trainSchedule?.seatClasses
+        let trainSchedule = trainSchedules[indexPath.row]
+        let seatClasses = trainSchedule.seatClasses
         let seatClassSelectionVC = SeatClassSelectionViewController()
-        seatClassSelectionVC.seatClasses = seatClasses ?? []
-        seatClassSelectionVC.trainImage = UIImage(named: trainSchedule?.trainImageName ?? "")
+        seatClassSelectionVC.seatClasses = seatClasses
+        seatClassSelectionVC.trainImage = UIImage(named: trainSchedule.trainImageName)
         seatClassSelectionVC.headerInformation = headerInformation
-        seatClassSelectionVC.headerInformation?.fromTime = trainSchedule?.fromTime.addingTimeInterval(timeOffset).time
-        seatClassSelectionVC.headerInformation?.toTime = trainSchedule?.toTime.addingTimeInterval(timeOffset).time
-        seatClassSelectionVC.headerInformation?.trainNumber = trainSchedule?.trainNumber
-        seatClassSelectionVC.headerInformation?.trainName = trainSchedule?.trainName
+        seatClassSelectionVC.headerInformation?.fromTime = trainSchedule.fromTime.addingTimeInterval(timeOffset).time
+        seatClassSelectionVC.headerInformation?.toTime = trainSchedule.toTime.addingTimeInterval(timeOffset).time
+        seatClassSelectionVC.headerInformation?.trainNumber = trainSchedule.trainNumber
+        seatClassSelectionVC.headerInformation?.trainName = trainSchedule.trainName
         navigationController?.pushViewController(seatClassSelectionVC, animated: true)
     }
     
