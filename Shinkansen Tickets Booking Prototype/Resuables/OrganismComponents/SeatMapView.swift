@@ -120,7 +120,7 @@ class SeatMapSceneView: SCNView {
         let hitTestFloorNode = HitTestFloorNode()
         
         let scene = SCNScene()
-        scene.background.contents = UIColor.clear
+        scene.background.contents = currentColorTheme.componentColor.cardBackground
         
         contentNode.addChildNode(dummyNode)
         currectContentNodePosition = contentNode.position

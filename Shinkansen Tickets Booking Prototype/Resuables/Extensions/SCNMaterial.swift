@@ -12,7 +12,7 @@ extension SCNMaterial {
     
     @discardableResult
     func clone(from: SCNMaterial, name: String? = nil) -> SCNMaterial {
-        let properties: [(SCNMaterial) -> SCNMaterialProperty] = [
+        let materialProperties: [(SCNMaterial) -> SCNMaterialProperty] = [
         { $0.diffuse },
         { $0.ambient },
         { $0.specular },
@@ -27,9 +27,15 @@ extension SCNMaterial {
         { $0.metalness },
         { $0.roughness },
         ]
-        properties.forEach { property in
+        materialProperties.forEach { property in
             copy(from: from, property: property)
         }
+        
+        // Copy Opacity and Blending
+        transparency = from.transparency
+        transparencyMode = from.transparencyMode
+        blendMode = from.blendMode
+        
         if let name = name {
             self.name = name
         }
