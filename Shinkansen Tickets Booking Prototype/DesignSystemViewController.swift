@@ -432,9 +432,9 @@ class DesignSystemViewController: ViewController {
                                 
                                 DesignSystemBlockView(withView: {
                                     let segmentedControl =
-                                        SegmentedControl(items: [(title: "Item 1", subtitle: "Lorem Ipsum"),
-                                            (title: "Item 2", subtitle: "Lorem Ipsum"),
-                                            (title: "Item 3", subtitle: "Lorem Ipsum")])
+                                        SegmentedControl(items: [(title: "Item 1", subtitle: "Lorem Ipsum", true),
+                                            (title: "Item 2", subtitle: "Lorem Ipsum", true),
+                                            (title: "Item 3", subtitle: "Lorem Ipsum", true)])
                                     segmentedControl.translatesAutoresizingMaskIntoConstraints = false
                                     return segmentedControl
                                 }(), title: "Segmented Card Control",

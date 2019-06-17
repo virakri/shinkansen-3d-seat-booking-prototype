@@ -80,7 +80,7 @@ extension Date {
     }
     
     init(byHourOf hour: Int = 0, minute: Int = 0, second: Int = 0) {
-        var dateComponents = DateComponents()
+        var dateComponents = Calendar.current.dateComponents(in: .current, from: Date())
         dateComponents.hour = hour
         dateComponents.minute = minute
         dateComponents.second = second

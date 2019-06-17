@@ -14,29 +14,34 @@ class SegmentedControl: UIControl {
     
     static let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
-    var selectedIndex: Int = 0 {
-        didSet {
-            if oldValue != selectedIndex {
+    private var _selectedIndex: Int = 0
+    
+    var selectedIndex: Int {
+        get {
+            return _selectedIndex
+        }set{
+            if selectedIndex != newValue {
                 SegmentedControl.feedbackGenerator.impactOccurred()
+                _selectedIndex = newValue
             }
             setSelectedIndexItemCardControlSelected()
         }
     }
     
-    var items: [(title: String, subtitle: String)]? {
+    var items: [(title: String, subtitle: String, isEnabled: Bool)]? {
         didSet {
             setupItems()
+            setSelectedIndexItemCardControlSelected()
         }
     }
     
     var segmentedItemControls: [SegmentedItemControl]
     
-    init(items: [(title: String, subtitle: String)]? = nil) {
+    init(items: [(title: String, subtitle: String, isEnabled: Bool)]? = nil) {
         stackView = UIStackView()
         segmentedItemControls = []
         super.init(frame: .zero)
         self.items = items
-        
         setupView()
         setSelectedIndexItemCardControlSelected()
     }
@@ -87,7 +92,7 @@ class SegmentedControl: UIControl {
         
         segmentedItemControls.forEach { (segmentedItemControl) in
             let isTouchOnItemCards = segmentedItemControl.bounds.contains(touch.location(in: segmentedItemControl))
-            if isTouchOnItemCards {
+            if isTouchOnItemCards && segmentedItemControl.isEnabled {
                 newSelectedIndex = segmentedItemControl.tag
             }
         }
@@ -107,14 +112,20 @@ class SegmentedControl: UIControl {
             let itemCardControl = SegmentedItemControl(title: item.title,
                                                   subtitle: item.subtitle)
             itemCardControl.tag = index
+            itemCardControl.isEnabled = item.isEnabled
             segmentedItemControls.append(itemCardControl)
             stackView.addArrangedSubview(itemCardControl)
+        }
+        if let selectedIndex = items.firstIndex(where: {
+            $0.isEnabled
+        }) {
+            self.selectedIndex = selectedIndex
         }
     }
     
     private func setSelectedIndexItemCardControlSelected() {
         segmentedItemControls.forEach { (segmentedItemControl) in
-            segmentedItemControl.isSelected = selectedIndex == segmentedItemControl.tag
+            segmentedItemControl.isSelected = selectedIndex == segmentedItemControl.tag && segmentedItemControl.isEnabled
             segmentedItemControl.isHighlighted = false
         }
     }

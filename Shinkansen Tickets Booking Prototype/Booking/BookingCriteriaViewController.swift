@@ -177,10 +177,9 @@ class BookingCriteriaViewController: BookingViewController {
         let today = Date()
         let tomorrow = today.addingTimeInterval(60 * 60 * 24)
         let formatter = FullDateFormatter()
-        dateSegmentedControl.items = [(title: "Today", subtitle: formatter.string(from: today)),
-                                      (title: "Tomorrow", subtitle: formatter.string(from: tomorrow)),
-                                      (title: "Pick a Date", subtitle: " ")]
-        dateSegmentedControl.selectedIndex = 0
+        dateSegmentedControl.items = [(title: "Today", subtitle: formatter.string(from: today), true),
+                                      (title: "Tomorrow", subtitle: formatter.string(from: tomorrow), true),
+                                      (title: "Pick a Date", subtitle: " ", true)]
         
         // Specify date components
 //        var dateComponents = DateComponents()
@@ -191,11 +190,15 @@ class BookingCriteriaViewController: BookingViewController {
         
         
         timeSegmentedContainerView.setTitle(title: "Time")
-        timeSegmentedControl.items = [(title: "Morning", subtitle: "\(Date(byHourOf: 6).timeHour) - \(Date(byHourOf: 12).timeHour)"),
-                                      (title: "Afternoon", subtitle: "\(Date(byHourOf: 12).timeHour) - \(Date(byHourOf: 18).timeHour)"),
-                                      (title: "Evening", subtitle: "\(Date(byHourOf: 18).timeHour) - \(Date(byHourOf: 24).timeHour)")]
         
-        timeSegmentedControl.selectedIndex = 0
+        let morning = Date(byHourOf: 6)...Date(byHourOf: 12)
+        let afternoon = Date(byHourOf: 12)...Date(byHourOf: 18)
+        let evening = Date(byHourOf: 18)...Date(byHourOf: 24)
+        let now = Date()
+        
+        timeSegmentedControl.items = [(title: "Morning", subtitle: morning.toString(), now < morning.upperBound),
+                                      (title: "Afternoon", subtitle: afternoon.toString(), now < afternoon.upperBound),
+                                      (title: "Evening", subtitle: evening.toString(), now < evening.upperBound)]
         
         mainCallToActionButton.setTitle("Search for Tickets")
     }
@@ -241,5 +244,11 @@ class BookingCriteriaViewController: BookingViewController {
     
     @objc func backButtonDidTouch(_ sender: Button) {
         
+    }
+}
+
+extension ClosedRange where Bound == Date {
+    func toString() -> String {
+        return "\(lowerBound.timeHour) - \(upperBound.timeHour)"
     }
 }
