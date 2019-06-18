@@ -20,7 +20,7 @@ class TiltNodeMotionEffect: UIMotionEffect {
     var verticalTiltedIntensity: CGFloat = 1 / 4
     
     /// Intensity of horizontal tilt
-    var horizontalTiltedIntensity: CGFloat = 0
+    var horizontalTiltedIntensity: CGFloat = 1 / 24
     
     /// Intensity of vertical shift
     var verticalShiftedIntensity: CGFloat = 0
