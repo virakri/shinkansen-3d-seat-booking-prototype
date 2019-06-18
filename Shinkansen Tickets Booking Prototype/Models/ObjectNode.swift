@@ -97,6 +97,9 @@ class ObjectNode: SCNNode, StaticNode {
                 }else if let name = currentMaterial.name?.appending("-normal"),
                     let newMaterial = materials.first(where: { $0.name == name }) {
                     currentMaterial.clone(from: newMaterial)
+                }else if let name = currentMaterial.name,
+                    let newMaterial = materials.first(where: { $0.name == name }) {
+                    currentMaterial.clone(from: newMaterial)
                 }
             })
         }
