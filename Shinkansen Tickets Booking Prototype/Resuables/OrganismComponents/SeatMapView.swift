@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-protocol SeatMapSceneViewDelegate {
+protocol SeatMapSceneViewDelegate: class {
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint)
     func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity)
 }
@@ -23,11 +23,11 @@ class SeatMapSceneView: SCNView {
     
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
-    var seatMapDelegate: SeatMapSceneViewDelegate?
+    weak var seatMapDelegate: SeatMapSceneViewDelegate?
     
     private var bottomOffset: CGFloat = 0
     
-    private var contentNode: SCNNode = SCNNode()
+    private var contentNode: SCNNode! = SCNNode()
     
     private let cameraNode = CameraNode()
     
@@ -150,7 +150,7 @@ class SeatMapSceneView: SCNView {
             staticNode.addChildNode($0)
         }
         DispatchQueue.main.async { [weak self] in
-            self?.contentNode.addChildNode(staticNode)
+            self?.contentNode?.addChildNode(staticNode)
         }
     }
     
@@ -178,11 +178,23 @@ class SeatMapSceneView: SCNView {
         }
     }
     
+    func cleanUp() {
+        motionEffects.removeAll()
+        contentNode.childNodes.forEach { $0.removeFromParentNode() }
+        contentNode.removeFromParentNode()
+        contentNode = nil
+        workItems.forEach { $0.cancel() }
+    }
+    
+    var workItems: [DispatchWorkItem] = []
+    
+    private let currentEntityQueue = DispatchQueue(label: "Current Entity Placing Queue", qos: .utility)
+    private let otherEntityQueue = DispatchQueue(label: "Placing Object Queue", qos: .background)
+    
     private func placeSeatClassNodes(from factory: NodeFactory,
                                      seatClassEntity: SeatClassEntity,
                                      isCurrentEntity: Bool) {
-        
-        DispatchQueue.global(qos: isCurrentEntity ? .utility : .background).async { [weak self] in
+        let workItem = DispatchWorkItem { [weak self] in
             // Generate all interactible nodes with transform values
             let containerNode = SCNNode()
             containerNode.name = seatClassEntity.name
@@ -206,7 +218,7 @@ class SeatMapSceneView: SCNView {
                                    using: seatClassEntity.transformedModelEntities,
                                    isEnabled: isCurrentEntity)
             DispatchQueue.main.async {
-                self?.contentNode.addChildNode(containerNode)
+                self?.contentNode?.addChildNode(containerNode)
                 if isCurrentEntity {
                     self?.loadingActivityIndicatorView?.removeFromSuperview()
                     if self?.loadingActivityIndicatorView.superview != nil {
@@ -218,7 +230,8 @@ class SeatMapSceneView: SCNView {
                 }
             }
         }
-        
+        (isCurrentEntity ? currentEntityQueue : otherEntityQueue).async(execute: workItem)
+        workItems.append(workItem)
     }
     
     public func setupContent(seatMap: SeatMap,

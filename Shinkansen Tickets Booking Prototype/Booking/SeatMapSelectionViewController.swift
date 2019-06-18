@@ -54,6 +54,10 @@ class SeatMapSelectionViewController: BookingViewController {
         }
     }
     
+    deinit {
+        seatMapSceneView.cleanUp()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStaticContent()

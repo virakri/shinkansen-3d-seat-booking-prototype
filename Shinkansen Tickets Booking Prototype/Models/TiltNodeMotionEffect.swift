@@ -14,7 +14,7 @@ class TiltNodeMotionEffect: UIMotionEffect {
     private var basedPosition = SCNVector3Zero
     
     /// `SCNNode` that will be tilted or reposition based on visual effect
-    var node: SCNNode?
+    weak var node: SCNNode?
     
     /// Intensity of vertical tilt
     var verticalTiltedIntensity: CGFloat = 1 / 4
