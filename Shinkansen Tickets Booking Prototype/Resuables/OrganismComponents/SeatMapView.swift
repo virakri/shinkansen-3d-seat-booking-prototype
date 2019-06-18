@@ -35,7 +35,7 @@ class SeatMapSceneView: SCNView {
     
     private var contentNodePositionWhenTouchBegan: SCNVector3?
     
-    private var loadingActivityIndicatorView: UIActivityIndicatorView!
+    private var loadingActivityIndicatorView: UIView! = UIView()
     
     private var currectContentNodePosition: SCNVector3? {
         didSet {
@@ -69,7 +69,7 @@ class SeatMapSceneView: SCNView {
                     duration: 0.35 * 2,
                     timingFunction: .easeOut,
                     animations: {
-                    currectContentNodePosition?.z = -(selectedSeat.position.z) + center
+                        currectContentNodePosition?.z = -(selectedSeat.position.z) + center
                 })
             }
         }
@@ -100,12 +100,13 @@ class SeatMapSceneView: SCNView {
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
         
-        
-        loadingActivityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
-        loadingActivityIndicatorView.color = currentColorTheme.componentColor.secondaryText
-        loadingActivityIndicatorView.startAnimating()
-        addSubview(loadingActivityIndicatorView,
-                        withConstaintEquals: .centerSafeArea)
+        loadingActivityIndicatorView.backgroundColor = .white
+        let indicatorView = UIActivityIndicatorView(style: .whiteLarge)
+        indicatorView.color = currentColorTheme.componentColor.secondaryText
+        indicatorView.startAnimating()
+        loadingActivityIndicatorView.addSubview(indicatorView,
+                   withConstaintEquals: .centerSafeArea)
+        addSubview(loadingActivityIndicatorView, withConstaintEquals: .safeAreaEdges)
         
         // MARK: Add visual effect
         addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
@@ -135,6 +136,8 @@ class SeatMapSceneView: SCNView {
     private func placeStaticNodes(from factory: NodeFactory,
                                   using transformedModelEntities: [TransformedModelEntity],
                                   isEnabled: Bool = true) {
+        let staticNode = SCNNode()
+        
         // Place static nodes
         transformedModelEntities.compactMap({
             if let node: ObjectNode = factory.create(name: $0.modelEntity) {
@@ -144,16 +147,45 @@ class SeatMapSceneView: SCNView {
             }
             return nil
         }).forEach {
-            self.contentNode.addChildNode($0)
+            staticNode.addChildNode($0)
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.contentNode.addChildNode(staticNode)
+        }
+    }
+    
+    var isStaticContentLoaded = false {
+        didSet{
+            checkLoaded()
+        }
+    }
+    
+    var seatLoaded = 0 {
+        didSet {
+            checkLoaded()
+        }
+    }
+    
+    func checkLoaded() {
+        if isStaticContentLoaded && seatLoaded > 0  {
+            DispatchQueue.main.async { [weak self] in
+                self?.loadingActivityIndicatorView?.removeFromSuperview()
+                self?.alpha = 0
+                UIView.animate(withDuration: 0.35, animations: {
+                    self?.alpha = 1
+                })
+            }
         }
     }
     
     private func placeSeatClassNodes(from factory: NodeFactory,
-                                          seatClassEntity: SeatClassEntity,
-                                          isCurrentEntity: Bool) {
-        DispatchQueue.main.async {
-            
+                                     seatClassEntity: SeatClassEntity,
+                                     isCurrentEntity: Bool) {
+        
+        DispatchQueue.global(qos: isCurrentEntity ? .utility : .background).async { [weak self] in
             // Generate all interactible nodes with transform values
+            let containerNode = SCNNode()
+            containerNode.name = seatClassEntity.name
             let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
                 if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
@@ -168,20 +200,25 @@ class SeatMapSceneView: SCNView {
                 return node
             })
             nodes.forEach { node in
-                self.contentNode.addChildNode(node)
+                containerNode.addChildNode(node)
             }
-            
-            self.placeStaticNodes(from: factory,
-                                             using: seatClassEntity.transformedModelEntities,
-                                             isEnabled: isCurrentEntity)
-            
-            self.loadingActivityIndicatorView?.removeFromSuperview()
-            
-            self.alpha = 0
-            UIView.animate(withDuration: 0.35, animations: {
-                self.alpha = 1
-            })
+            self?.placeStaticNodes(from: factory,
+                                   using: seatClassEntity.transformedModelEntities,
+                                   isEnabled: isCurrentEntity)
+            DispatchQueue.main.async {
+                self?.contentNode.addChildNode(containerNode)
+                if isCurrentEntity {
+                    self?.loadingActivityIndicatorView?.removeFromSuperview()
+                    if self?.loadingActivityIndicatorView.superview != nil {
+                        self?.alpha = 0
+                        UIView.animate(withDuration: 0.35, animations: {
+                            self?.alpha = 1
+                        })
+                    }
+                }
+            }
         }
+        
     }
     
     public func setupContent(seatMap: SeatMap,
@@ -210,8 +247,8 @@ class SeatMapSceneView: SCNView {
                 
                 // Set origin of the content to be center between lowerBound and upperbound
                 currectContentNodePosition?.z =
-                ($0.viewableRange.lowerBound.z +
-                    $0.viewableRange.upperBound.z) / 2
+                    ($0.viewableRange.lowerBound.z +
+                        $0.viewableRange.upperBound.z) / 2
             }
             
             setupSeatClassContent(seatClassEntity: $0,
@@ -237,7 +274,7 @@ class SeatMapSceneView: SCNView {
     }
     
     private func setupSeatClassContent(seatClassEntity: SeatClassEntity,
-                                      isCurrentEntity: Bool = true) {
+                                       isCurrentEntity: Bool = true) {
         
         if let factory = NodeFactory.shared {
             if factory.isLoaded {
