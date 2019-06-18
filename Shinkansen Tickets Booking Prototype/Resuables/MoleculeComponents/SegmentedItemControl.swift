@@ -36,7 +36,7 @@ class SegmentedItemControl: UIControl {
     override var isEnabled: Bool {
         didSet {
             currentState = isEnabled ? .normal : .disabled
-            unselectedTitleLabel.text = "~~\(title)~~"
+            unselectedTitleLabel.text = isEnabled ? title : "~~\(title)~~"
         }
     }
     
