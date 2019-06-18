@@ -25,26 +25,29 @@ class SegmentedControl: UIControl {
                 _selectedIndex = newValue
                 sendActions(for: .valueChanged)
             }
-            setSelectedIndexItemCardControlSelected()
+            setSelectedIndexItemCardControl()
         }
     }
     
     var items: [(title: String, subtitle: String, isEnabled: Bool)]? {
         didSet {
             setupItems()
-            setSelectedIndexItemCardControlSelected()
+            setSelectedIndexItemCardControl()
+            setItemCardControlAnimated(true)
         }
     }
     
     var segmentedItemControls: [SegmentedItemControl]
     
-    init(items: [(title: String, subtitle: String, isEnabled: Bool)]? = nil) {
+    init(items: [(title: String,
+        subtitle: String,
+        isEnabled: Bool)]? = nil) {
         stackView = UIStackView()
         segmentedItemControls = []
         super.init(frame: .zero)
         self.items = items
         setupView()
-        setSelectedIndexItemCardControlSelected()
+        setSelectedIndexItemCardControl()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -103,7 +106,7 @@ class SegmentedControl: UIControl {
     }
     
     override func cancelTracking(with event: UIEvent?) {
-        setSelectedIndexItemCardControlSelected()
+        setSelectedIndexItemCardControl()
     }
     
     private func setupItems() {
@@ -112,23 +115,34 @@ class SegmentedControl: UIControl {
         segmentedItemControls.removeAll()
         stackView.removeAllArrangedSubviews()
         items.enumerated().forEach { (index, item) in
-            let itemCardControl = SegmentedItemControl(title: item.title,
-                                                  subtitle: item.subtitle)
+            let itemCardControl =
+                SegmentedItemControl(title: item.title,
+                                     subtitle: item.subtitle)
             itemCardControl.tag = index
             itemCardControl.isEnabled = item.isEnabled
             segmentedItemControls.append(itemCardControl)
             stackView.addArrangedSubview(itemCardControl)
         }
-        if let selectedIndex = items.firstIndex(where: {
-            $0.isEnabled
-        }) {
-            self.selectedIndex = selectedIndex
+        setItemCardControlAnimated(false)
+        
+        // Make sure the item that is currently selected is enabled otherwise select the other first item that is enabled
+        if !items[selectedIndex].isEnabled {
+            if let selectedIndex = items.firstIndex(where: {
+                $0.isEnabled
+            }) {
+                self.selectedIndex = selectedIndex
+            }
         }
     }
     
-    private func setSelectedIndexItemCardControlSelected() {
+    private func setItemCardControlAnimated(_ animated: Bool = true) {
+        segmentedItemControls.forEach { $0.animated = animated }
+    }
+    
+    private func setSelectedIndexItemCardControl() {
         segmentedItemControls.forEach { (segmentedItemControl) in
-            segmentedItemControl.isSelected = selectedIndex == segmentedItemControl.tag && segmentedItemControl.isEnabled
+            segmentedItemControl.isSelected =
+                selectedIndex == segmentedItemControl.tag && segmentedItemControl.isEnabled
             segmentedItemControl.isHighlighted = false
         }
     }

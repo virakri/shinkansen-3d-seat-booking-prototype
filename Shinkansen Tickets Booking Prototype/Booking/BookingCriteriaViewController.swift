@@ -213,9 +213,15 @@ class BookingCriteriaViewController: BookingViewController {
         let evening = (Date(byHourOf: 18)...Date(byHourOf: 24)).addingTimeInterval(timeInterval)
         let now = Date()
         
-        timeSegmentedControl.items = [(title: "Morning", subtitle: morning.toString(), now < morning.upperBound),
-                                      (title: "Afternoon", subtitle: afternoon.toString(), now < afternoon.upperBound),
-                                      (title: "Evening", subtitle: evening.toString(), now < evening.upperBound)]
+        timeSegmentedControl.items = [(title: "Morning",
+                                       subtitle: morning.toString(),
+                                       isEnabled: now < morning.upperBound),
+                                      (title: "Afternoon",
+                                       subtitle: afternoon.toString(),
+                                       isEnabled: now < afternoon.upperBound),
+                                      (title: "Evening",
+                                       subtitle: evening.toString(),
+                                       isEnabled: now < evening.upperBound)]
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {

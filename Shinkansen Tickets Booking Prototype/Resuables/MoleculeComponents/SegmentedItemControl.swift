@@ -15,6 +15,10 @@ class SegmentedItemControl: UIControl {
     
     static let feedbackGenerator = UISelectionFeedbackGenerator()
     
+    var title: String
+    
+    var subtitle: String
+    
     var titleLabel: Label
     
     var unselectedTitleLabel: Label
@@ -32,6 +36,7 @@ class SegmentedItemControl: UIControl {
     override var isEnabled: Bool {
         didSet {
             currentState = isEnabled ? .normal : .disabled
+            unselectedTitleLabel.text = "~~\(title)~~"
         }
     }
     
@@ -54,15 +59,19 @@ class SegmentedItemControl: UIControl {
         }
     }
     
+    var animated: Bool = true
+    
     var currentState: State {
         didSet {
-            updateAppearance()
+            updateAppearance(animated: animated)
         }
     }
     
     init(title: String, subtitle: String) {
         contentView = UIView()
         currentState = .normal
+        self.title = title
+        self.subtitle = subtitle
         titleLabel = Label()
         unselectedTitleLabel = Label()
         subtitleLabel = Label()
@@ -73,16 +82,18 @@ class SegmentedItemControl: UIControl {
         setupTheme()
         
         // Setup Text in Labels
-        titleLabel.text = title
-        unselectedTitleLabel.text = title
-        subtitleLabel.text = subtitle
+        titleLabel.text = self.title
+        unselectedTitleLabel.text = self.title
+        subtitleLabel.text = self.subtitle
         
-        updateAppearance()  
+        updateAppearance(animated: false)
     }
     
     override init(frame: CGRect) {
         contentView = UIView()
         currentState = .normal
+        title = ""
+        subtitle = ""
         titleLabel = Label()
         unselectedTitleLabel = Label()
         subtitleLabel = Label()
@@ -174,14 +185,14 @@ class SegmentedItemControl: UIControl {
             .withTransform(transform),
                                using: CABasicAnimationStyle.layerAnimationStyle)
         
-        setLabelsToSelected(currentState == .selected)
+        setLabelsToSelected(currentState == .selected, animated: animated)
         
     }
     
     public func setupTheme() {
         
         titleLabel.textStyle = textStyle.headline()
-        unselectedTitleLabel.textStyle = textStyle.headline()
+        unselectedTitleLabel.textStyle = textStyle.headline().strikethrough()
         subtitleLabel.textStyle = textStyle.caption2()
         
         titleLabel.textColor = currentColorTheme.componentColor.callToAction
@@ -193,7 +204,7 @@ class SegmentedItemControl: UIControl {
         updateAppearance(animated: false)
     }
     
-    private func setLabelsToSelected(_ isSelected: Bool) {
+    private func setLabelsToSelected(_ isSelected: Bool, animated: Bool = true) {
         guard let contentSuperView = titleLabel.superview else { return }
         
         titleLabel.transform.ty = isSelected ? 0 : titleLabel.transform.ty
@@ -222,6 +233,11 @@ class SegmentedItemControl: UIControl {
             self.unselectedTitleLabel.alpha = isSelected ? 0 : 1
         }
         
-        UIView.animate(withStyle: .normalAnimationStyle, animations: action)
+        if animated {
+            UIView.animate(withStyle: .normalAnimationStyle, animations: action)
+        } else {
+            action()
+        }
+        
     }
 }

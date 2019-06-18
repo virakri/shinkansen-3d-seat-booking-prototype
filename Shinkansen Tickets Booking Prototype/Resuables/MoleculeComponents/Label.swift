@@ -26,7 +26,7 @@ class Label: UILabel {
     
     internal func textStyleUpdated() {
         if let text = text, let textStyle = textStyle {
-            setText(text, using: textStyle.with(newTextColor: textColor, newTextAlignment: textAlignment))
+            setMarkdownText(text, using: textStyle.with(newTextColor: textColor, newTextAlignment: textAlignment))
         }
     }
 }
