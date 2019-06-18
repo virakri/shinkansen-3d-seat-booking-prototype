@@ -55,7 +55,8 @@ class SeatMapSelectionViewController: BookingViewController {
     }
     
     deinit {
-        seatMapSceneView.cleanUp()
+        mainCardView.contentView.motionEffects.removeAll()
+        seatMapSceneView.removeFromSuperview()
     }
     
     override func viewDidLoad() {
@@ -160,8 +161,8 @@ extension SeatMapSelectionViewController: SeatMapSceneViewDelegate {
             
             // Perform interaction
             if !isTransitionPerforming {
-                DispatchQueue.main.async {
-                    self.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
+                DispatchQueue.main.async { [weak self] in
+                    self?.verticalRubberBandEffect(byVerticalContentOffset: offset.y)
                 }
             }
         }

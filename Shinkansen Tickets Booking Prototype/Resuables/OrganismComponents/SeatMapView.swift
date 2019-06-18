@@ -29,7 +29,7 @@ class SeatMapSceneView: SCNView {
     
     private var contentNode: SCNNode! = SCNNode()
     
-    private let cameraNode = CameraNode()
+    private var cameraNode: CameraNode! = CameraNode()
     
     private var hitTestPositionWhenTouchBegan: SCNVector3?
     
@@ -56,7 +56,7 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    private var selectedSeat: ReservableNode? {
+    private weak var selectedSeat: ReservableNode? {
         didSet {
             oldValue?.isSelected = false
             selectedSeat?.isSelected = true
@@ -108,8 +108,12 @@ class SeatMapSceneView: SCNView {
                    withConstaintEquals: .centerSafeArea)
         addSubview(loadingActivityIndicatorView, withConstaintEquals: .safeAreaEdges)
         
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
         // MARK: Add visual effect
-        addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
+        superview?.addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
     }
     
     /// Scene setup
@@ -154,36 +158,14 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    var isStaticContentLoaded = false {
-        didSet{
-            checkLoaded()
-        }
-    }
-    
-    var seatLoaded = 0 {
-        didSet {
-            checkLoaded()
-        }
-    }
-    
-    func checkLoaded() {
-        if isStaticContentLoaded && seatLoaded > 0  {
-            DispatchQueue.main.async { [weak self] in
-                self?.loadingActivityIndicatorView?.removeFromSuperview()
-                self?.alpha = 0
-                UIView.animate(withDuration: 0.35, animations: {
-                    self?.alpha = 1
-                })
-            }
-        }
-    }
-    
-    func cleanUp() {
-        motionEffects.removeAll()
-        contentNode.childNodes.forEach { $0.removeFromParentNode() }
-        contentNode.removeFromParentNode()
-        contentNode = nil
+    deinit {
         workItems.forEach { $0.cancel() }
+        workItems.removeAll()
+//        gestureRecognizers?.removeAll()
+//        contentNode.childNodes.forEach { $0.removeFromParentNode() }
+//        scene?.rootNode.childNodes.forEach { $0.removeFromParentNode() }
+//        cameraNode = nil
+//        contentNode = nil
     }
     
     var workItems: [DispatchWorkItem] = []
@@ -194,11 +176,16 @@ class SeatMapSceneView: SCNView {
     private func placeSeatClassNodes(from factory: NodeFactory,
                                      seatClassEntity: SeatClassEntity,
                                      isCurrentEntity: Bool) {
-        let workItem = DispatchWorkItem { [weak self] in
+        var workItem: DispatchWorkItem!
+        
+        workItem = DispatchWorkItem { [weak self] in
             // Generate all interactible nodes with transform values
             let containerNode = SCNNode()
             containerNode.name = seatClassEntity.name
-            let nodes: [ReservableNode] = seatClassEntity.reservableEntities.map({
+            let nodes: [ReservableNode] = seatClassEntity.reservableEntities.compactMap({
+                guard !workItem.isCancelled else {
+                    return nil
+                }
                 if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
                     
@@ -212,12 +199,15 @@ class SeatMapSceneView: SCNView {
                 return node
             })
             nodes.forEach { node in
-                containerNode.addChildNode(node)
+                if !workItem.isCancelled {
+                    containerNode.addChildNode(node)
+                }
             }
             self?.placeStaticNodes(from: factory,
                                    using: seatClassEntity.transformedModelEntities,
                                    isEnabled: isCurrentEntity)
             DispatchQueue.main.async {
+                print("\(seatClassEntity.name) loaded")
                 self?.contentNode?.addChildNode(containerNode)
                 if isCurrentEntity {
                     self?.loadingActivityIndicatorView?.removeFromSuperview()
@@ -230,8 +220,10 @@ class SeatMapSceneView: SCNView {
                 }
             }
         }
+        
         (isCurrentEntity ? currentEntityQueue : otherEntityQueue).async(execute: workItem)
         workItems.append(workItem)
+    
     }
     
     public func setupContent(seatMap: SeatMap,
@@ -384,7 +376,8 @@ class SeatMapSceneView: SCNView {
             let driftAction = SCNAction
                 .customAction(duration: DecayFunction
                     .timeToHalt(velocity: currentVelocity), action: {
-                        (node, elapsedTime) in
+                        [weak self] (node, elapsedTime) in
+                        guard let self = self else { return }
                         let newStep = DecayFunction
                             .step(timeElapsed: CFTimeInterval(elapsedTime - currentTime),
                                   velocity: currentVelocity)
@@ -404,8 +397,8 @@ class SeatMapSceneView: SCNView {
             
             contentNode.runAction(driftAction,
                                   forKey: "panDrift",
-                                  completionHandler:{
-                                    
+                                  completionHandler:{ [weak self] in
+                                    guard let self = self else { return }
                                     // reset the position of the content if it goes beyond the position limit after the panDrift animation
                                     if (self.currectContentNodePosition?.z ?? 0) > self.contentZPositionLimit.upperBound {
                                         self.currectContentNodePosition?.z = self.contentZPositionLimit.upperBound

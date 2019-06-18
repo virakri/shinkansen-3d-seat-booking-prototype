@@ -79,7 +79,8 @@ class NodeFactory {
     
     var isLoaded = false {
         didSet {
-            onFactoryLoadedCompletionBuffer.forEach { (callback) in
+            onFactoryLoadedCompletionBuffer.forEach { [weak self] (callback) in
+                guard let self = self else { return }
                 callback(self)
             }
         }
@@ -129,9 +130,9 @@ class NodeFactory {
                     }
                 )
             )
-            }.onSuccess { modelPrototypes in
-                self.modelPrototypes = modelPrototypes
-                self.isLoaded = true
+            }.onSuccess { [weak self] modelPrototypes in
+                self?.modelPrototypes = modelPrototypes
+                self?.isLoaded = true
             }.onFailure { error in
                 print(error)
         }

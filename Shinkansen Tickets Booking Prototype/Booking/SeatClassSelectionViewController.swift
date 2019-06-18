@@ -87,9 +87,9 @@ class SeatClassSelectionViewController: BookingViewController {
     }
     
     func obtainData() {
-        SeatMap.fetchData { result in
+        SeatMap.fetchData { [weak self] result in
             if case .success(let seatMap) = result {
-                self.seatMap = seatMap
+                self?.seatMap = seatMap
             }
         }
         
