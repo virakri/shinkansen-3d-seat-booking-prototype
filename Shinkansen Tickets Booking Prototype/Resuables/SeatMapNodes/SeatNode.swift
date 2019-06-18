@@ -73,7 +73,7 @@ class SeatNode: ReservableNode {
         transformMapNode.transform = transform
         transformMapNode.addChildNode(removeAllGeomery(from: node.clone()))
         materialMap = createMaterialMap(from: self)
-        setupTheme()
+        setupTheme(false)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -83,11 +83,16 @@ class SeatNode: ReservableNode {
     // MARK: Node Setup
     
     /// Change material and transform for each state
-    private func setupTheme() {
-        SceneKitAnimator.animateWithDuration(duration: 0.35 / 4, animations: {
+    private func setupTheme(_ animated: Bool = true) {
+        if animated {
+            SceneKitAnimator.animateWithDuration(duration: 0.35 / 4, animations: {
+                updateMaterial(node: self, materialMap: materialMap)
+                updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
+            })
+        }else{
             updateMaterial(node: self, materialMap: materialMap)
             updateTransfrom(node: self.childNodes[0], transformMapNode: transformMapNode.childNodes[0])
-        })
+        }
     }
     
     /// Function to update transform from `reservableEntity`
