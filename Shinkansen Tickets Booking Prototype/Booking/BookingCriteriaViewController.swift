@@ -208,9 +208,9 @@ class BookingCriteriaViewController: BookingViewController {
             timeInterval = 60 * 60 * 24 * 2
         }
         
-        let morning = Date(byHourOf: 6)...Date(byHourOf: 12).addingTimeInterval(timeInterval)
-        let afternoon = Date(byHourOf: 12)...Date(byHourOf: 18).addingTimeInterval(timeInterval)
-        let evening = Date(byHourOf: 18)...Date(byHourOf: 24).addingTimeInterval(timeInterval)
+        let morning = (Date(byHourOf: 6)...Date(byHourOf: 12)).addingTimeInterval(timeInterval)
+        let afternoon = (Date(byHourOf: 12)...Date(byHourOf: 18)).addingTimeInterval(timeInterval)
+        let evening = (Date(byHourOf: 18)...Date(byHourOf: 24)).addingTimeInterval(timeInterval)
         let now = Date()
         
         timeSegmentedControl.items = [(title: "Morning", subtitle: morning.toString(), now < morning.upperBound),
@@ -270,7 +270,7 @@ extension ClosedRange where Bound == Date {
         return "\(lowerBound.timeHour) - \(upperBound.timeHour)"
     }
     
-    func addintTimeInterval(_ timeInterval: TimeInterval) -> Self {
+    func addingTimeInterval(_ timeInterval: TimeInterval) -> ClosedRange {
         return lowerBound.addingTimeInterval(timeInterval)...upperBound.addingTimeInterval(timeInterval)
     }
 }
