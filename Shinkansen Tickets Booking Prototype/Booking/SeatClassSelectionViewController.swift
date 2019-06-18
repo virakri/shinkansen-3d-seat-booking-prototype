@@ -152,6 +152,9 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        guard !(navigationController?.viewControllers.last is SeatMapSelectionViewController?) else {
+            return
+        }
         //
         selectedIndexPath = indexPath
         

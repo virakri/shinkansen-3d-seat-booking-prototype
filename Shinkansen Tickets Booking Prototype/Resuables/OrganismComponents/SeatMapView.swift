@@ -9,7 +9,7 @@
 import UIKit
 import SceneKit
 
-protocol SeatMapSceneViewDelegate: class {
+protocol SeatMapSceneViewDelegate: AnyObject {
     func sceneViewDidPanFurtherUpperBoundLimit(by offset: CGPoint)
     func sceneView(sceneView: SeatMapSceneView, didSelected reservableEntity: ReservableEntity)
 }
@@ -100,7 +100,7 @@ class SeatMapSceneView: SCNView {
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
         
-        loadingActivityIndicatorView.backgroundColor = .white
+        loadingActivityIndicatorView.backgroundColor = currentColorTheme.componentColor.cardBackground
         let indicatorView = UIActivityIndicatorView(style: .whiteLarge)
         indicatorView.color = currentColorTheme.componentColor.secondaryText
         indicatorView.startAnimating()
@@ -161,11 +161,6 @@ class SeatMapSceneView: SCNView {
     deinit {
         workItems.forEach { $0.cancel() }
         workItems.removeAll()
-//        gestureRecognizers?.removeAll()
-//        contentNode.childNodes.forEach { $0.removeFromParentNode() }
-//        scene?.rootNode.childNodes.forEach { $0.removeFromParentNode() }
-//        cameraNode = nil
-//        contentNode = nil
     }
     
     var workItems: [DispatchWorkItem] = []
@@ -179,6 +174,7 @@ class SeatMapSceneView: SCNView {
         var workItem: DispatchWorkItem!
         
         workItem = DispatchWorkItem { [weak self] in
+            guard !workItem.isCancelled else { return }
             // Generate all interactible nodes with transform values
             let containerNode = SCNNode()
             containerNode.name = seatClassEntity.name
@@ -203,20 +199,18 @@ class SeatMapSceneView: SCNView {
                     containerNode.addChildNode(node)
                 }
             }
+            guard !workItem.isCancelled else { return }
             self?.placeStaticNodes(from: factory,
                                    using: seatClassEntity.transformedModelEntities,
                                    isEnabled: isCurrentEntity)
             DispatchQueue.main.async {
-                print("\(seatClassEntity.name) loaded")
                 self?.contentNode?.addChildNode(containerNode)
                 if isCurrentEntity {
                     self?.loadingActivityIndicatorView?.removeFromSuperview()
-                    if self?.loadingActivityIndicatorView.superview != nil {
-                        self?.alpha = 0
-                        UIView.animate(withDuration: 0.35, animations: {
-                            self?.alpha = 1
-                        })
-                    }
+                    self?.alpha = 0
+                    UIView.animate(withDuration: 0.35, animations: {
+                        self?.alpha = 1
+                    })
                 }
             }
         }
@@ -265,8 +259,10 @@ class SeatMapSceneView: SCNView {
         
         if let factory = NodeFactory.shared {
             if factory.isLoaded {
-                placeStaticNodes(from: factory,
-                                 using: seatMap.transformedModelEntities)
+                DispatchQueue.global(qos: .background).async { [weak self] in
+                    self?.placeStaticNodes(from: factory,
+                                           using: seatMap.transformedModelEntities)
+                }
             }else{
                 factory.onComplete { [weak self] in
                     self?.placeStaticNodes(from: $0,
@@ -283,9 +279,11 @@ class SeatMapSceneView: SCNView {
         
         if let factory = NodeFactory.shared {
             if factory.isLoaded {
-                placeSeatClassNodes(from: factory,
-                                    seatClassEntity: seatClassEntity,
-                                    isCurrentEntity: isCurrentEntity)
+                DispatchQueue.global(qos: .background).async { [weak self] in
+                    self?.placeSeatClassNodes(from: factory,
+                                              seatClassEntity: seatClassEntity,
+                                              isCurrentEntity: isCurrentEntity)
+                }
             }else{
                 factory.onComplete { [weak self] in
                     self?.placeSeatClassNodes(from: $0,
