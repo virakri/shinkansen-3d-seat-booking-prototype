@@ -97,6 +97,7 @@ class BookingCriteriaViewController: BookingViewController {
         fromStationContainerView.widthAnchor.constraint(equalTo: destinationStationContainerView.widthAnchor).isActive = true
         
         dateSegmentedControl = SegmentedControl()
+        dateSegmentedControl.addTarget(self, action: #selector(reloadTimeSegemtnedControl), for: .valueChanged)
         dateSegmentedContainerView = HeadlineWithContainerView(containingView: dateSegmentedControl)
         
         timeSegmentedControl = SegmentedControl()
@@ -188,32 +189,49 @@ class BookingCriteriaViewController: BookingViewController {
 //        dateComponents.minute = 0
 //        let someDateTime = Calendar.current.date(from: dateComponents)
         
-        
         timeSegmentedContainerView.setTitle(title: "Time")
         
-        let morning = Date(byHourOf: 6)...Date(byHourOf: 12)
-        let afternoon = Date(byHourOf: 12)...Date(byHourOf: 18)
-        let evening = Date(byHourOf: 18)...Date(byHourOf: 24)
+        reloadTimeSegemtnedControl()
+        
+        mainCallToActionButton.setTitle("Search for Tickets")
+    }
+    
+    @objc private func reloadTimeSegemtnedControl() {
+        
+        let timeInterval: TimeInterval
+        switch dateSegmentedControl.selectedIndex {
+        case 0:
+            timeInterval = 0
+        case 1:
+            timeInterval = 60 * 60 * 24
+        default:
+            timeInterval = 60 * 60 * 24 * 2
+        }
+        
+        let morning = Date(byHourOf: 6)...Date(byHourOf: 12).addingTimeInterval(timeInterval)
+        let afternoon = Date(byHourOf: 12)...Date(byHourOf: 18).addingTimeInterval(timeInterval)
+        let evening = Date(byHourOf: 18)...Date(byHourOf: 24).addingTimeInterval(timeInterval)
         let now = Date()
         
         timeSegmentedControl.items = [(title: "Morning", subtitle: morning.toString(), now < morning.upperBound),
                                       (title: "Afternoon", subtitle: afternoon.toString(), now < afternoon.upperBound),
                                       (title: "Evening", subtitle: evening.toString(), now < evening.upperBound)]
-        
-        mainCallToActionButton.setTitle("Search for Tickets")
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
         
-        let selectedDate: Date
+        
+        let dateOffset: TimeInterval
         switch dateSegmentedControl.selectedIndex {
         case 0:
-            selectedDate = Date()
+            dateOffset = 0
         case 1:
-            selectedDate = Date(timeIntervalSinceNow: 60 * 60 * 24)
+            dateOffset = 60 * 60 * 24
         default:
-            selectedDate = Date(timeIntervalSinceNow: 60 * 60 * 24 * 2)
+            dateOffset = 60 * 60 * 24 * 2
         }
+        
+        let selectedDate = Date(timeIntervalSinceNow: dateOffset)
         
         let timeOffset: TimeInterval
         switch timeSegmentedControl.selectedIndex {
@@ -224,7 +242,6 @@ class BookingCriteriaViewController: BookingViewController {
         default:
             timeOffset = TimeInterval(60 * 60 * 12)
         }
-        
         let trainSelectionVC = TrainSelectionViewController()
         
         let formatter = FullDateFormatter()
@@ -238,6 +255,7 @@ class BookingCriteriaViewController: BookingViewController {
                               date: date,
                               fromStation: fromStation,
                               toStation: toStation)
+        trainSelectionVC.dateOffset = dateOffset
         trainSelectionVC.timeOffset = timeOffset
         navigationController?.pushViewController(trainSelectionVC, animated: true)
     }
@@ -250,5 +268,9 @@ class BookingCriteriaViewController: BookingViewController {
 extension ClosedRange where Bound == Date {
     func toString() -> String {
         return "\(lowerBound.timeHour) - \(upperBound.timeHour)"
+    }
+    
+    func addintTimeInterval(_ timeInterval: TimeInterval) -> Self {
+        return lowerBound.addingTimeInterval(timeInterval)...upperBound.addingTimeInterval(timeInterval)
     }
 }

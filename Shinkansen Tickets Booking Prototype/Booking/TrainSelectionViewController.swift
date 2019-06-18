@@ -22,14 +22,16 @@ class TrainSelectionViewController: BookingViewController {
             let now = Date()
             trainSchedules = (trainCriteria?.trainSchedules ?? []).filter {
                 let component = Calendar.current.dateComponents(in: Date.JPCalendar.timeZone, from: $0.fromTime)
-                let date = Date(byHourOf: component.hour, minute: component.minute, second: component.second)
-                return now < date.addingTimeInterval(timeOffset)
+                let date = Date(byHourOf: component.hour, minute: component.minute, second: component.second).addingTimeInterval(dateOffset + timeOffset)
+                return now < date
             }
             mainTableView.reloadData()
         }
     }
     
     private var trainSchedules: [TrainSchedule] = []
+    
+    var dateOffset: TimeInterval = 0
     
     var timeOffset: TimeInterval = 0
     

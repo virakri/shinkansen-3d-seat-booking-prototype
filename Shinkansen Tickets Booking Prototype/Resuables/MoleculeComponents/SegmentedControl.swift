@@ -23,6 +23,7 @@ class SegmentedControl: UIControl {
             if selectedIndex != newValue {
                 SegmentedControl.feedbackGenerator.impactOccurred()
                 _selectedIndex = newValue
+                sendActions(for: .valueChanged)
             }
             setSelectedIndexItemCardControlSelected()
         }
@@ -108,6 +109,8 @@ class SegmentedControl: UIControl {
     private func setupItems() {
         // Setup Items
         guard let items = items else { return }
+        segmentedItemControls.removeAll()
+        stackView.removeAllArrangedSubviews()
         items.enumerated().forEach { (index, item) in
             let itemCardControl = SegmentedItemControl(title: item.title,
                                                   subtitle: item.subtitle)
