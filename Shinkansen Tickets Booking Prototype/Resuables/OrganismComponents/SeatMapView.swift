@@ -104,9 +104,11 @@ class SeatMapSceneView: SCNView {
         let indicatorView = UIActivityIndicatorView(style: .whiteLarge)
         indicatorView.color = currentColorTheme.componentColor.secondaryText
         indicatorView.startAnimating()
-        loadingActivityIndicatorView.addSubview(indicatorView,
-                   withConstaintEquals: .centerSafeArea)
-        addSubview(loadingActivityIndicatorView, withConstaintEquals: .safeAreaEdges)
+        loadingActivityIndicatorView
+            .addSubview(indicatorView,
+                        withConstaintEquals: .centerSafeArea,
+                        insetsConstant: .init(bottom: 48))
+        addSubview(loadingActivityIndicatorView, withConstaintEquals: .edges)
         
     }
     

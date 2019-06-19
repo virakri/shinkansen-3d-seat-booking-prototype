@@ -128,34 +128,34 @@ extension UIView {
         
         if equals.contains(.centerVertical) {
             view.centerYAnchor.constraint(equalTo: centerYAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
         }
         
         if equals.contains(.centerHorizontal) {
             view.centerXAnchor.constraint(equalTo:centerXAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
         }
         
         
         if equals.contains(.centerVerticalMargin) {
             view.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
         }
         
         if equals.contains(.centerHorizontalMargin) {
             view.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
         }
         
         
         if equals.contains(.centerVerticalSafeArea) {
             view.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
         }
         
         if equals.contains(.centerHorizontalSafeArea) {
             view.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
         }
         // for chaining function
         return self
@@ -230,34 +230,34 @@ extension UIView {
         
         if equals.contains(.centerVertical) {
             view.centerYAnchor.constraint(equalTo: centerYAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
         }
         
         if equals.contains(.centerHorizontal) {
             view.centerXAnchor.constraint(equalTo:centerXAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
         }
         
         
         if equals.contains(.centerVerticalMargin) {
             view.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
         }
         
         if equals.contains(.centerHorizontalMargin) {
             view.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
         }
         
         
         if equals.contains(.centerVerticalSafeArea) {
             view.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.top - insetsConstant.bottom).isActive = true
         }
         
         if equals.contains(.centerHorizontalSafeArea) {
             view.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor,
-                                          constant: 0).isActive = true
+                                          constant: insetsConstant.leading - insetsConstant.trailing).isActive = true
         }
     }
     

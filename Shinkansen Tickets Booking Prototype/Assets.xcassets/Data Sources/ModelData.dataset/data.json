@@ -97,6 +97,27 @@
 
 
 
+    {
+      "isInteractible": false,
+      "resource": "e7-gran-class-seat-section.scn",
+      "name": "e7-gran-class-seat-section"
+   },
+
+   {
+      "isInteractible": false,
+      "resource": "e7-gran-class-seat-section-ending-a.scn",
+      "name": "e7-gran-class-seat-section-ending-a"
+   },
+
+   {
+      "isInteractible": false,
+      "resource": "e7-gran-class-seat-section-ending-b.scn",
+      "name": "e7-gran-class-seat-section-ending-b"
+   },
+   
+
+
+
 
    {
       "isInteractible": false,

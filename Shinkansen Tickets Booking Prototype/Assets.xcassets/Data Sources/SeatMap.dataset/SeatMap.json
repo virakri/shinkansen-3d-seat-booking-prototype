@@ -15679,7 +15679,7 @@
                      "y":0,
                      "z":0
                   },
-                  "modelEntity":"e7-gran-class-seat-section-start-a",
+                  "modelEntity":"e7-gran-class-seat-section-ending-a",
                   "position":{
                      "x":0,
                      "y":0,
@@ -15692,7 +15692,7 @@
                      "y":0,
                      "z":0
                   },
-                  "modelEntity":"e7-gran-class-seat-section-start-b",
+                  "modelEntity":"e7-gran-class-seat-section-ending-b",
                   "position":{
                      "x":0,
                      "y":0,
@@ -15761,7 +15761,7 @@
       "y":0,
       "z":0
    },
-   "modelEntity":"floor-section-gran-class",
+   "modelEntity":"e7-gran-class-seat-section",
    "position":{
       "x":0,
       "y":0,
@@ -15774,7 +15774,7 @@
       "y":0,
       "z":0
    },
-   "modelEntity":"floor-section-gran-class",
+   "modelEntity":"e7-gran-class-seat-section",
    "position":{
       "x":0,
       "y":0,
@@ -15787,7 +15787,7 @@
       "y":0,
       "z":0
    },
-   "modelEntity":"floor-section-gran-class",
+   "modelEntity":"e7-gran-class-seat-section",
    "position":{
       "x":0,
       "y":0,
@@ -15800,7 +15800,7 @@
       "y":0,
       "z":0
    },
-   "modelEntity":"floor-section-gran-class",
+   "modelEntity":"e7-gran-class-seat-section",
    "position":{
       "x":0,
       "y":0,
@@ -15813,7 +15813,7 @@
       "y":0,
       "z":0
    },
-   "modelEntity":"floor-section-gran-class",
+   "modelEntity":"e7-gran-class-seat-section",
    "position":{
       "x":0,
       "y":0,
@@ -15826,7 +15826,7 @@
       "y":0,
       "z":0
    },
-   "modelEntity":"floor-section-gran-class",
+   "modelEntity":"e7-gran-class-seat-section",
    "position":{
       "x":0,
       "y":0,
