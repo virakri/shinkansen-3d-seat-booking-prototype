@@ -140,21 +140,7 @@ class SeatMapSceneView: SCNView {
         
         self.scene = scene
         
-        // TODO: Make this text node dynamic (exampleRightTextNode and exampleLeftTextNode are supposed to be seat number text)
-        let exampleRightTextNode = TextNode(text: "Ipsum",
-                                font: .systemFont(ofSize: 0.25, weight: .medium),
-                                textAlignment: .left,
-                                color: currentColorTheme.componentColor.secondaryText)
-        exampleRightTextNode.position = SCNVector3(2.2, 1.7, -11.40346)
         
-        let exampleLeftTextNode = TextNode(text: "Lorem",
-                                font: .systemFont(ofSize: 0.25, weight: .medium),
-                                textAlignment: .right,
-                                color: currentColorTheme.componentColor.secondaryText)
-        exampleLeftTextNode.position = SCNVector3(-2.2, 1.7, -11.40346)
-        
-        contentNode.addChildNode(exampleRightTextNode)
-        contentNode.addChildNode(exampleLeftTextNode)
     }
     
     private func placeStaticNodes(from factory: NodeFactory,
@@ -274,6 +260,10 @@ class SeatMapSceneView: SCNView {
             
             setupSeatClassContent(seatClassEntity: $0,
                                   isCurrentEntity: isCurrentEntity)
+        }
+        
+        seatMap.transformedTextModelEntities.forEach {
+            contentNode.addChildNode($0)
         }
         
         setupStationDirection(fromStation: fromStation, toStation: toStation)

@@ -11,11 +11,12 @@ import SceneKit
 
 typealias ModelEntity = String
 
-struct SeatMap: Codable {
+struct SeatMap: Decodable {
     let id: Int
     let name: String
     let seatClassEntities: [SeatClassEntity]
     let transformedModelEntities: [TransformedModelEntity]
+    let transformedTextModelEntities: [TextNode]
 }
 
 extension SeatMap {
