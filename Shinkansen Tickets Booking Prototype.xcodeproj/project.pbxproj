@@ -32,6 +32,7 @@
 		D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBF22A316B000C3FAF3 /* UITableView.swift */; };
 		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
 		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
+		D02710EC22BA809600D9FF4D /* TextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02710EB22BA809600D9FF4D /* TextNode.swift */; };
 		D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042A71422A70C7600A0CBFC /* CALayer.swift */; };
 		D050625F22A9C6BF003A8565 /* SeatMap.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D050625E22A9C6BF003A8565 /* SeatMap.scnassets */; };
 		D053EBCB229CB33A007CCFFE /* DesignSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */; };
@@ -115,6 +116,7 @@
 		D01B2EBF22A316B000C3FAF3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
 		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		D02710EB22BA809600D9FF4D /* TextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNode.swift; sourceTree = "<group>"; };
 		D042A71422A70C7600A0CBFC /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		D050625E22A9C6BF003A8565 /* SeatMap.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SeatMap.scnassets; sourceTree = "<group>"; };
 		D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemViewController.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				D0689C1B22AABBAC00EE5660 /* SeatNode.swift */,
+				D02710EB22BA809600D9FF4D /* TextNode.swift */,
 				D016655922AABF5400BFD6DB /* DummyNode.swift */,
 				D016655322AABD4600BFD6DB /* CameraNode.swift */,
 				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
@@ -498,6 +501,7 @@
 			files = (
 				D0EAF4B222A442DD002A9282 /* StationCardControl.swift in Sources */,
 				E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */,
+				D02710EC22BA809600D9FF4D /* TextNode.swift in Sources */,
 				D074B1E1228B90AC00791F94 /* SeatClassSelectionViewController.swift in Sources */,
 				9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */,
 				E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */,

@@ -27,6 +27,7 @@ class SeatMapSceneView: SCNView {
     
     private var bottomOffset: CGFloat = 0
     
+    /// The main node that contains all content which is repositioned according to the vertical pan gesture.
     private var contentNode: SCNNode! = SCNNode()
     
     private var cameraNode: CameraNode! = CameraNode()
@@ -107,9 +108,8 @@ class SeatMapSceneView: SCNView {
         loadingActivityIndicatorView
             .addSubview(indicatorView,
                         withConstaintEquals: .centerSafeArea,
-                        insetsConstant: .init(bottom: 48))
+                        insetsConstant: .init(bottom: 24))
         addSubview(loadingActivityIndicatorView, withConstaintEquals: .edges)
-        
     }
     
     override func didMoveToSuperview() {
@@ -137,6 +137,33 @@ class SeatMapSceneView: SCNView {
         scene.rootNode.addChildNode(cameraNode)
         
         self.scene = scene
+        
+        // TODO: Make this text node dynamic (exampleRightTextNode and exampleLeftTextNode are supposed to be seat number text)
+        let exampleRightTextNode = TextNode(text: "Ipsum",
+                                font: .systemFont(ofSize: 0.25, weight: .medium),
+                                textAlignment: .left,
+                                color: currentColorTheme.componentColor.secondaryText)
+        exampleRightTextNode.position = SCNVector3(2.2, 1.7, -11.40346)
+        
+        let exampleLeftTextNode = TextNode(text: "Lorem",
+                                font: .systemFont(ofSize: 0.25, weight: .medium),
+                                textAlignment: .right,
+                                color: currentColorTheme.componentColor.secondaryText)
+        exampleLeftTextNode.position = SCNVector3(-2.2, 1.7, -11.40346)
+        
+        contentNode.addChildNode(exampleRightTextNode)
+        contentNode.addChildNode(exampleLeftTextNode)
+        
+        // TODO: Make this text dynamic obtaining from the station info object
+        let exampleStationText = TextNode(text: "← Omiya     Tokyo →",
+                                       font: .systemFont(ofSize: 0.5,
+                                                         weight: .light),
+                                       textAlignment: .right,
+                                       color: currentColorTheme.componentColor.secondaryText)
+        exampleStationText.position = SCNVector3(-3.15, 1.2, -13)
+        exampleStationText.eulerAngles.y = .pi / 2
+        
+        scene.rootNode.addChildNode(exampleStationText)
     }
     
     private func placeStaticNodes(from factory: NodeFactory,
