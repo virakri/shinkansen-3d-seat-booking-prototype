@@ -8,11 +8,11 @@
 
 import SceneKit
 
-class TextNode: SCNNode {
+class TextNode: SCNNode, Decodable {
     
     private var textContentNode: SCNNode
     
-    enum TextAlignment {
+    enum TextAlignment: String, Codable {
         case left
         case center
         case right
@@ -54,6 +54,22 @@ class TextNode: SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    required init(from decoder: Decoder) throws {
+        textContentNode = SCNNode()
+        super.init()
+        let container = try decoder.container(keyedBy: Key.self)
+        let text = try container.decode(String.self, forKey: .text)
+        textAlignment = try container.decode(TextAlignment.self, forKey: .textAlignment)
+        let font = try container.decode(FontModel.self, forKey: .font).font()
+        setupNode(text: text,
+                  font: font,
+                  textAlignment: textAlignment,
+                  color: currentColorTheme.componentColor.secondaryText,
+                  estimatedWidth: 1)
+        position = try container.decode(SCNVector3.self, forKey: .position)
+        eulerAngles = try container.decode(SCNVector3.self, forKey: .rotation)
+    }
+    
     private func setupNode(text: String?,
                            font: UIFont,
                            textAlignment: TextAlignment,
@@ -75,5 +91,47 @@ class TextNode: SCNNode {
         
         addChildNode(textContentNode)
         
+    }
+    
+    enum Key: String, CodingKey {
+        case text, font, textAlignment, position, rotation
+    }
+}
+
+private struct FontModel: Decodable {
+    let size: CGFloat
+    let weight: UIFont.Weight
+    
+    enum Key: String, CodingKey {
+        case size, weight
+    }
+    
+    func font() -> UIFont {
+        return UIFont.systemFont(ofSize: size, weight: weight)
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Key.self)
+        size = try container.decode(CGFloat.self, forKey: .size)
+        switch try container.decode(String.self, forKey: .weight) {
+        case "black":
+            weight = .black
+        case "bold":
+            weight = .bold
+        case "medium":
+            weight = .medium
+        case "regular":
+            weight = .regular
+        case "semibold":
+            weight = .semibold
+        case "thin":
+            weight = .thin
+        case "light":
+            weight = .light
+        case "ultralight":
+            weight = .ultraLight
+        default:
+            weight = .regular
+        }
     }
 }
