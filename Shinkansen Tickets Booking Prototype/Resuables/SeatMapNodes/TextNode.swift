@@ -81,7 +81,6 @@ class TextNode: SCNNode, Decodable {
         text.font = font
         text.flatness = 0.6 / ( 36 / font.pointSize )
         text.containerFrame = CGRect(x: 0, y: 0, width: estimatedWidth, height: font.pointSize)
-        print((text.font.lineHeight))
         textContentNode.geometry = text
         textContentNode.eulerAngles.x = -.pi / 2
         textContentNode.position.z = Float(font.pointSize + text.font.capHeight / 2)
