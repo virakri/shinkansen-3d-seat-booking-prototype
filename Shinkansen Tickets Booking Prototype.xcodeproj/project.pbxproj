@@ -28,7 +28,6 @@
 		D016655422AABD4600BFD6DB /* CameraNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655322AABD4600BFD6DB /* CameraNode.swift */; };
 		D016655622AABDEC00BFD6DB /* ContentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655522AABDEC00BFD6DB /* ContentNode.swift */; };
 		D016655822AABE1D00BFD6DB /* HitTestFloorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */; };
-		D016655A22AABF5400BFD6DB /* DummyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D016655922AABF5400BFD6DB /* DummyNode.swift */; };
 		D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */; };
 		D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */; };
 		D01B2EBC22A304AA00C3FAF3 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */; };
@@ -115,7 +114,6 @@
 		D016655322AABD4600BFD6DB /* CameraNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraNode.swift; sourceTree = "<group>"; };
 		D016655522AABDEC00BFD6DB /* ContentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNode.swift; sourceTree = "<group>"; };
 		D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitTestFloorNode.swift; sourceTree = "<group>"; };
-		D016655922AABF5400BFD6DB /* DummyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyNode.swift; sourceTree = "<group>"; };
 		D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		D01B2EB922A2E3AD00C3FAF3 /* SeatClassIconImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassIconImageView.swift; sourceTree = "<group>"; };
 		D01B2EBB22A304AA00C3FAF3 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
@@ -367,7 +365,6 @@
 			children = (
 				D0689C1B22AABBAC00EE5660 /* SeatNode.swift */,
 				D02710EB22BA809600D9FF4D /* TextNode.swift */,
-				D016655922AABF5400BFD6DB /* DummyNode.swift */,
 				D016655322AABD4600BFD6DB /* CameraNode.swift */,
 				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
 				D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */,
@@ -527,7 +524,6 @@
 				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
 				D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */,
 				904756F322B4283F00971014 /* ObjectNode.swift in Sources */,
-				D016655A22AABF5400BFD6DB /* DummyNode.swift in Sources */,
 				90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */,
 				D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */,
 				D074B1E5228B90BD00791F94 /* NavigationController.swift in Sources */,
