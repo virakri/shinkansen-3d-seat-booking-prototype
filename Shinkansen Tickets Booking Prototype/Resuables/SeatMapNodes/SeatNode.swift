@@ -93,6 +93,7 @@ class SeatNode: ReservableNode {
     
     required init(node: SCNNode, modelData: ModelData?) {
         super.init(node: node, modelData: modelData)
+        name = node.name
         transformMapNode.transform = transform
         transformMapNode.addChildNode(removeAllGeomery(from: node.clone()))
         materialMap = createMaterialMap(from: self)
