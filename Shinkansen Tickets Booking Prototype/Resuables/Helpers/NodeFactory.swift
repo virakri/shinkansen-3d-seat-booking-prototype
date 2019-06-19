@@ -10,57 +10,6 @@ import Foundation
 import SceneKit
 import BrightFutures
 
-struct ModelData: Codable {
-    let name: String
-    let resource: ModelData.Resource
-    let isInteractible: Bool
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: ModelDataKey.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        if let string = try? container.decode(String.self, forKey: .resource) {
-            if let _ = URL.resource(name: string) {
-                self.resource = .fileName(string)
-            }else if let url = URL(string: string) {
-                self.resource = .url(url)
-            }else{
-                self.resource = .none
-            }
-        }else{
-            self.resource = .none
-        }
-        self.isInteractible = try container.decode(Bool.self, forKey: .isInteractible)
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: ModelDataKey.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(resource.encode(), forKey: .resource)
-        try container.encode(isInteractible, forKey: .isInteractible)
-    }
-    
-    enum Resource {
-        case url(URL)
-        case fileName(String)
-        case none
-        
-        func encode() -> String? {
-            switch self {
-            case .url(let url):
-                return url.absoluteString
-            case .fileName(let name):
-                return name
-            default:
-                return nil
-            }
-        }
-    }
-    
-    enum ModelDataKey: String, CodingKey {
-        case name, resource, isInteractible
-    }
-}
-
 protocol StaticNode {
     init(node: SCNNode, modelData: ModelData?)
     var isEnabled: Bool { get set }
@@ -71,14 +20,15 @@ protocol InteractibleNode: StaticNode {
     var isSelected: Bool { get set }
 }
 
-class NodeFactory {
+final class NodeFactory {
     
-    static var shared: NodeFactory?
+    static public var shared: NodeFactory?
     
-    var url: URL!
+    public var url: URL!
     
-    var isLoaded = false {
+    public var isLoaded = false {
         didSet {
+            // When all models are loaded, This method will execute all completion block.
             onFactoryLoadedCompletionBuffer.forEach { [weak self] (callback) in
                 guard let self = self else { return }
                 callback(self)
@@ -86,28 +36,31 @@ class NodeFactory {
         }
     }
     
-    private var onCompleted: ((NodeFactory) -> Void)?
-    
     private var modelData: [ModelData]?
     
-    var modelPrototypes: [String: SCNNode?] = [:]
+    public var modelPrototypes: [String: SCNNode?] = [:]
     
     private var onFactoryLoadedCompletionBuffer: [(NodeFactory) -> Void] = []
     
-    func onComplete(callback: @escaping (NodeFactory) -> Void) {
+    /// Ge callback when all models are loaded
+    /// - Parameter callback: Command to execute after models are loaded
+    public func onComplete(callback: @escaping (NodeFactory) -> Void) {
         onFactoryLoadedCompletionBuffer.append(callback)
     }
     
-    init(url: URL) {
+    public init(url: URL) {
         self.url = url
         loadNodeFrom(fetchModelData(url))
     }
     
-    init(modelData: [ModelData]) {
+    public init(modelData: [ModelData]) {
         loadNodeFrom(Future(value: modelData))
     }
     
+    /// Chained method to work after `[ModelData]` are generated
+    /// - Parameter future: `[ModelData]` future object
     private func loadNodeFrom(_ future: Future<[ModelData], Error>) {
+        // flatmap (convert) [ModelData] to [String: SCNNode?]
         future.flatMap { [weak self] (modelData) -> Future<[String: SCNNode?], Error> in
             guard let weakSelf = self else {
                 return Future(error: NSError(
@@ -116,6 +69,7 @@ class NodeFactory {
                 ))
             }
             weakSelf.modelData = modelData
+            // Load each model from model data
             return weakSelf.loadModels(
                 from: Dictionary(
                     uniqueKeysWithValues: modelData.compactMap {
@@ -130,6 +84,7 @@ class NodeFactory {
                     }
                 )
             )
+            // When all models are loaded store it to `modelPrototypes` and notify user by set isLoaded = true
             }.onSuccess { [weak self] modelPrototypes in
                 self?.modelPrototypes = modelPrototypes
                 self?.isLoaded = true
@@ -138,7 +93,11 @@ class NodeFactory {
         }
     }
     
+    
+    /// Fetch model data from URL
+    /// - Parameter url: URL that contain json of `[ModelData]`
     private func fetchModelData(_ url: URL) -> Future<[ModelData], Error> {
+        // return it as Future of `[ModelData]`
         return Future { complete in
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
@@ -166,7 +125,10 @@ class NodeFactory {
         }
     }
     
-    func loadModels(from data: [String: URL]) -> Future<[String: SCNNode?], Error> {
+    
+    /// Load all models by sequency
+    /// - Parameter data: String = refernced key of model, URL = url of `*.scn` file
+    public func loadModels(from data: [String: URL]) -> Future<[String: SCNNode?], Error> {
         return data.map({ loadModel(name: $0, from: $1) })
             .sequence()
             .flatMap {
@@ -174,7 +136,12 @@ class NodeFactory {
         }
     }
     
-    func loadModel(name: String, from url: URL) -> Future<((String, SCNNode?)), Error> {
+    
+    /// Load model (*.scn file) from url
+    /// - Parameter name: Refernced key of mode
+    /// - Parameter url: URL of `*.scn` file
+    public func loadModel(name: String, from url: URL) -> Future<((String, SCNNode?)), Error> {
+        /// returns pair of String, SCNNode
         return Future { complete in
             DispatchQueue.global(qos: .background).async {
                 if let node = SCNReferenceNode(url: url) {
@@ -195,7 +162,10 @@ class NodeFactory {
         }
     }
     
-    func create<T>(name: String) -> T? where T : SCNNode & StaticNode {
+    /// After models are loaded this function allow to create model from refferenced name
+    /// by provoide generic object that conform to `StaticNode` protocol
+    /// - Parameter name: Refferenced name of prototype node
+    public func create<T>(name: String) -> T? where T : SCNNode & StaticNode {
         guard
             let prototypeNode = modelPrototypes[name] as? SCNNode,
             let modelData = modelData?.first(where: { $0.name == name })
@@ -203,6 +173,7 @@ class NodeFactory {
         
         let clone = prototypeNode.clone()
         
+        /// Deep clone new geometry from prototype recursively
         func cloneGeometry(from: SCNNode, to: SCNNode) {
             to.geometry = from.geometry?.copy() as? SCNGeometry
             if modelData.isInteractible {
@@ -215,18 +186,13 @@ class NodeFactory {
         
         cloneGeometry(from: prototypeNode, to: clone)
         
+        // Create node object from provioded generic
         let node = T(
             node: clone,
             modelData: modelData
         )
 
         return node
-    }
-    
-    func create<T>(name: String, count: Int) -> [T] where T : SCNNode & StaticNode {
-        return (1...count).compactMap { [weak self] _ in
-            return self?.create(name: name)
-        }
     }
     
 }
