@@ -13,6 +13,17 @@ extension SeatClassType {
     func image() -> UIImage {
         switch self {
         case .granClass:
+            return #imageLiteral(resourceName: "gran")
+        case .green:
+            return #imageLiteral(resourceName: "green")
+        case .ordinary:
+            return #imageLiteral(resourceName: "ordinary")
+        }
+    }
+    
+    func iconImage() -> UIImage {
+        switch self {
+        case .granClass:
             return #imageLiteral(resourceName: "Icon Gran").withRenderingMode(.alwaysTemplate)
         case .green:
             return #imageLiteral(resourceName: "Icon Green Car").withRenderingMode(.alwaysTemplate)
@@ -52,7 +63,7 @@ class SeatClassIconImageView: UIImageView {
     
     private(set) var seatClass: SeatClassType {
         didSet {
-            image = seatClass.image()
+            image = seatClass.iconImage()
         }
     }
     
@@ -82,7 +93,7 @@ class SeatClassIconImageView: UIImageView {
         heightAnchor.constraint(equalTo: widthAnchor).isActive = true
         widthAnchor.constraint(equalToConstant: iconSize.width()).isActive = true
         contentMode = .scaleAspectFit
-        image = seatClass.image()
+        image = seatClass.iconImage()
     }
     
     public func setupTheme() {

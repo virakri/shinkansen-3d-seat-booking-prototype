@@ -76,7 +76,9 @@ class SeatClassTableViewCell: UITableViewCell {
         
 //        cardView.contentView.layoutMarginsGuide.bottomAnchor.constraint(greaterThanOrEqualTo: mainContentStackView.bottomAnchor).isActive = true
         
-        cardView.contentView.addSubview(seatImageView, withConstaintEquals: [.top, .bottom, .trailing])
+        cardView.contentView.addSubview(seatImageView,
+                                        withConstaintEquals: [.top, .bottom, .trailing],
+                                        insetsConstant: .init(trailing: 8))
         
         
         seatImageView.leadingAnchor.constraint(equalTo: mainContentStackView.trailingAnchor,
@@ -91,7 +93,7 @@ class SeatClassTableViewCell: UITableViewCell {
         seatImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .horizontal)
         
         seatImageView.image = nil
-        seatImageView.backgroundColor = currentColorTheme.componentColor.callToActionDisabled
+        seatImageView.contentMode = .scaleAspectFit
         
         contentView.addSubview(cardView,
                                withConstaintEquals: [.leadingMargin, .trailingMargin, .top, .bottom],
@@ -118,6 +120,7 @@ class SeatClassTableViewCell: UITableViewCell {
         seatClassIconImageView.setSeatClass(to: seatClassType)
         seatClassNameSetView.setupValue(title: seatClassName, subtitle: price)
         descriptionLabel.text = description
+        seatImageView.image = seatImage
         setupTheme()
     }
     

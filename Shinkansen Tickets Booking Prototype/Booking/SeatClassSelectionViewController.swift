@@ -146,7 +146,7 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
                         seatClassName: seatClass.name,
                         price: seatClass.price.yen,
                         description: seatClass.description,
-                        seatImage: nil)
+                        seatImage: seatClass.seatClass.image())
         return cell
     }
     
