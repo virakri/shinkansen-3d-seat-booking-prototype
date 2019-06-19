@@ -1,288 +1,247 @@
 [
    {
-      "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Box.scn?alt=media&token=bc1fd20b-7fbd-476e-a460-f27dc60f5b53",
-      "name": "box"
+      "isInteractible":true,
+      "resource":"e7-ordinary-seat-a.scn",
+      "name":"e7-ordinary-seat-a"
    },
    {
-      "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
-      "name": "seat"
+      "isInteractible":true,
+      "resource":"e7-ordinary-seat-b.scn",
+      "name":"e7-ordinary-seat-b"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-ordinary-a.scn",
-      "name": "seat-ordinary-a"
+      "isInteractible":true,
+      "resource":"e7-ordinary-seat-c.scn",
+      "name":"e7-ordinary-seat-c"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-ordinary-b.scn",
-      "name": "seat-ordinary-b"
+      "isInteractible":true,
+      "resource":"e7-ordinary-seat-d.scn",
+      "name":"e7-ordinary-seat-d"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-ordinary-c.scn",
-      "name": "seat-ordinary-c"
+      "isInteractible":true,
+      "resource":"e7-ordinary-seat-e.scn",
+      "name":"e7-ordinary-seat-e"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-ordinary-d.scn",
-      "name": "seat-ordinary-d"
+      "isInteractible":true,
+      "resource":"e7-green-seat-a.scn",
+      "name":"e7-green-seat-a"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-ordinary-e.scn",
-      "name": "seat-ordinary-e"
+      "isInteractible":true,
+      "resource":"e7-green-seat-b.scn",
+      "name":"e7-green-seat-b"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-green-a.scn",
-      "name": "seat-green-a"
+      "isInteractible":true,
+      "resource":"e7-gran-class-seat-a.scn",
+      "name":"e7-gran-class-seat-a"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-green-b.scn",
-      "name": "seat-green-b"
+      "isInteractible":true,
+      "resource":"e7-gran-class-seat-b.scn",
+      "name":"e7-gran-class-seat-b"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-gran-class-a.scn",
-      "name": "seat-gran-class-a"
+      "isInteractible":true,
+      "resource":"e7-gran-class-seat-c.scn",
+      "name":"e7-gran-class-seat-c"
    },
    {
-      "isInteractible": true,
-      "resource": "seat-gran-class-b.scn",
-      "name": "seat-gran-class-b"
+      "isInteractible":true,
+      "resource":"e7-gran-class-seat-separator.scn",
+      "name":"e7-gran-class-seat-separator"
    },
    {
-      "isInteractible": true,
-      "resource": "https://firebasestorage.googleapis.com/v0/b/v-eyes-tracking-prototype.appspot.com/o/Seat.scn?alt=media&token=a36428c5-f301-4174-96ee-6796074d29e9",
-      "name": "seat-gran-class-c"
+      "isInteractible":false,
+      "resource":"e7-ordinary-seat-section.scn",
+      "name":"e7-ordinary-seat-section"
    },
    {
-      "isInteractible": false,
-      "resource": "e7-ordinary-seat-section.scn",
-      "name": "e7-ordinary-seat-section"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-ordinary-seat-section-ending-a.scn",
-      "name": "e7-ordinary-seat-section-ending-a"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-ordinary-seat-section-ending-b.scn",
-      "name": "e7-ordinary-seat-section-ending-b"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-green-seat-section.scn",
-      "name": "e7-green-seat-section"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-green-seat-section-ending-a.scn",
-      "name": "e7-green-seat-section-ending-a"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-green-seat-section-ending-b.scn",
-      "name": "e7-green-seat-section-ending-b"
-   },
-
-
-
-    {
-      "isInteractible": false,
-      "resource": "e7-gran-class-seat-section.scn",
-      "name": "e7-gran-class-seat-section"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-gran-class-seat-section-ending-a.scn",
-      "name": "e7-gran-class-seat-section-ending-a"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-gran-class-seat-section-ending-b.scn",
-      "name": "e7-gran-class-seat-section-ending-b"
-   },
-   
-
-
-
-
-   {
-      "isInteractible": false,
-      "resource": "leg-ordinary-a-to-c.scn",
-      "name": "leg-ordinary-a-to-c"
+      "isInteractible":false,
+      "resource":"e7-ordinary-seat-section-ending-a.scn",
+      "name":"e7-ordinary-seat-section-ending-a"
    },
    {
-      "isInteractible": false,
-      "resource": "leg-ordinary-d-to-e.scn",
-      "name": "leg-ordinary-d-to-e"
+      "isInteractible":false,
+      "resource":"e7-ordinary-seat-section-ending-b.scn",
+      "name":"e7-ordinary-seat-section-ending-b"
    },
    {
-      "isInteractible": false,
-      "resource": "floor-section-green.scn",
-      "name": "floor-section-green"
+      "isInteractible":false,
+      "resource":"e7-green-seat-section.scn",
+      "name":"e7-green-seat-section"
    },
    {
-      "isInteractible": false,
-      "resource": "floor-section-gran-class.scn",
-      "name": "floor-section-gran-class"
+      "isInteractible":false,
+      "resource":"e7-green-seat-section-ending-a.scn",
+      "name":"e7-green-seat-section-ending-a"
    },
    {
-      "isInteractible": false,
-      "resource": "e7-train-head-chasis.scn",
-      "name": "e7-train-head-chasis"
+      "isInteractible":false,
+      "resource":"e7-green-seat-section-ending-b.scn",
+      "name":"e7-green-seat-section-ending-b"
    },
    {
-      "isInteractible": false,
-      "resource": "e7-main-shadow.scn",
-      "name": "e7-main-shadow"
+      "isInteractible":false,
+      "resource":"e7-gran-class-seat-section.scn",
+      "name":"e7-gran-class-seat-section"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-gran-class-seat-section-ending-a.scn",
+      "name":"e7-gran-class-seat-section-ending-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-gran-class-seat-section-ending-b.scn",
+      "name":"e7-gran-class-seat-section-ending-b"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-ordinary-leg-a-to-c.scn",
+      "name":"e7-ordinary-leg-a-to-c"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-ordinary-leg-d-to-e.scn",
+      "name":"e7-ordinary-leg-d-to-e"
+   },
+   {
+      "isInteractible":false,
+      "resource":"floor-section-green.scn",
+      "name":"floor-section-green"
+   },
+   {
+      "isInteractible":false,
+      "resource":"floor-section-gran-class.scn",
+      "name":"floor-section-gran-class"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-train-head-chasis.scn",
+      "name":"e7-train-head-chasis"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-main-shadow.scn",
+      "name":"e7-main-shadow"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-gangway.scn",
+      "name":"e7-gangway"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-entrance-section.scn",
+      "name":"e7-entrance-section"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-accessible-entrance-section.scn",
+      "name":"e7-accessible-entrance-section"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-ordinary-seat-partition-a.scn",
+      "name":"e7-ordinary-seat-partition-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-ordinary-seat-partition-b.scn",
+      "name":"e7-ordinary-seat-partition-b"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-green-seat-partition-a.scn",
+      "name":"e7-green-seat-partition-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-green-seat-partition-b.scn",
+      "name":"e7-green-seat-partition-b"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-gran-class-seat-partition-a.scn",
+      "name":"e7-gran-class-seat-partition-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-gran-class-seat-partition-b.scn",
+      "name":"e7-gran-class-seat-partition-b"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-alley-a.scn",
+      "name":"e7-alley-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-alley-b.scn",
+      "name":"e7-alley-b"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-alley-c.scn",
+      "name":"e7-alley-c"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-alley-d.scn",
+      "name":"e7-alley-d"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-alley-e.scn",
+      "name":"e7-alley-e"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-alley-f.scn",
+      "name":"e7-alley-f"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-alley-g.scn",
+      "name":"e7-alley-g"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-train-head-inside.scn",
+      "name":"e7-train-head-inside"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-multipurpose-section-a.scn",
+      "name":"e7-multipurpose-section-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-multipurpose-section-b.scn",
+      "name":"e7-multipurpose-section-b"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-multipurpose-section-c.scn",
+      "name":"e7-multipurpose-section-c"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-multipurpose-green-section-a.scn",
+      "name":"e7-multipurpose-green-section-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-multipurpose-gran-class-section-a.scn",
+      "name":"e7-multipurpose-gran-class-section-a"
+   },
+   {
+      "isInteractible":false,
+      "resource":"e7-multipurpose-gran-class-section-b.scn",
+      "name":"e7-multipurpose-gran-class-section-b"
    }
-
-   ,
-   {
-      "isInteractible": false,
-      "resource": "e7-gangway.scn",
-      "name": "e7-gangway"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-entrance-section.scn",
-      "name": "e7-entrance-section"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-accessible-entrance-section.scn",
-      "name": "e7-accessible-entrance-section"
-   }
-   
-   
-   
-   ,
-
-   {
-      "isInteractible": false,
-      "resource": "e7-ordinary-seat-partition-a.scn",
-      "name": "e7-ordinary-seat-partition-a"
-   },
-
-   {
-      "isInteractible": false,
-      "resource": "e7-ordinary-seat-partition-b.scn",
-      "name": "e7-ordinary-seat-partition-b"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-green-seat-partition-a.scn",
-      "name": "e7-green-seat-partition-a"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-green-seat-partition-b.scn",
-      "name": "e7-green-seat-partition-b"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-gran-class-seat-partition-a.scn",
-      "name": "e7-gran-class-seat-partition-a"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-gran-class-seat-partition-b.scn",
-      "name": "e7-gran-class-seat-partition-b"
-   },
-
-
-
-   
-
-   {
-      "isInteractible": false,
-      "resource": "e7-alley-a.scn",
-      "name": "e7-alley-a"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-alley-b.scn",
-      "name": "e7-alley-b"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-alley-c.scn",
-      "name": "e7-alley-c"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-alley-d.scn",
-      "name": "e7-alley-d"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-alley-e.scn",
-      "name": "e7-alley-e"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-alley-f.scn",
-      "name": "e7-alley-f"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-alley-g.scn",
-      "name": "e7-alley-g"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-train-head-inside.scn",
-      "name": "e7-train-head-inside"
-   }
-
-
-
-   ,
-   {
-      "isInteractible": false,
-      "resource": "e7-multipurpose-section-a.scn",
-      "name": "e7-multipurpose-section-a"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-multipurpose-section-b.scn",
-      "name": "e7-multipurpose-section-b"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-multipurpose-section-c.scn",
-      "name": "e7-multipurpose-section-c"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-multipurpose-green-section-a.scn",
-      "name": "e7-multipurpose-green-section-a"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-multipurpose-gran-class-section-a.scn",
-      "name": "e7-multipurpose-gran-class-section-a"
-   },
-   {
-      "isInteractible": false,
-      "resource": "e7-multipurpose-gran-class-section-b.scn",
-      "name": "e7-multipurpose-gran-class-section-b"
-   }
-   
-   
 ]
