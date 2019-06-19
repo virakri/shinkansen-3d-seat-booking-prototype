@@ -205,9 +205,6 @@ class NodeFactory {
         
         func cloneGeometry(from: SCNNode, to: SCNNode) {
             to.geometry = from.geometry?.copy() as? SCNGeometry
-            to.geometry?.materials = from.geometry?.materials.map {
-                SCNMaterial().clone(from: $0, name: $0.name)
-                } ?? []
             if modelData.isInteractible {
                 to.categoryBitMask = ReservableNode.defaultBitMask
             }
