@@ -8,6 +8,12 @@
 
 import SceneKit
 
+enum SeatClassType: String, Codable {
+    case granClass = "granClass"
+    case green = "green"
+    case ordinary = "ordinary"
+}
+
 struct SeatClass: Codable {
     let id: Int
     let name: String
@@ -17,11 +23,7 @@ struct SeatClass: Codable {
     let isAvailable: Bool
 }
 
-enum SeatClassType: String, Codable {
-    case granClass = "granClass"
-    case green = "green"
-    case ordinary = "ordinary"
-    
+extension SeatClassType {
     var name: String {
         switch self {
         case .granClass:
@@ -32,14 +34,4 @@ enum SeatClassType: String, Codable {
             return "Ordinary Class"
         }
     }
-}
-
-class SeatClassEntity: Codable {
-    let id: Int
-    let seatClass: SeatClassType
-    let name: String
-    let carNumber: String
-    let reservableEntities: [ReservableEntity]
-    let viewableRange: ClosedRange<SCNVector3>
-    let transformedModelEntities: [TransformedModelEntity]
 }
