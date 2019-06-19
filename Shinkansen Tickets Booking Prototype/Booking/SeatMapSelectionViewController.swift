@@ -115,7 +115,9 @@ class SeatMapSelectionViewController: BookingViewController {
         print("Scene has been setup with \(seatClassEntity.reservableEntities.count) interactible nodes.")
         
         seatMapSceneView.setupContent(seatMap: seatMap,
-                                      currentEntity: seatClassEntity)
+                                      currentEntity: seatClassEntity,
+                                      fromStation: headerInformation?.fromStation,
+                                      toStation: headerInformation?.toStation)
         
         
     }

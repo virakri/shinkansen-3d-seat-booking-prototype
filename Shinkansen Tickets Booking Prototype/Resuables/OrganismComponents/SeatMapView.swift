@@ -30,6 +30,8 @@ class SeatMapSceneView: SCNView {
     /// The main node that contains all content which is repositioned according to the vertical pan gesture.
     private var contentNode: SCNNode! = SCNNode()
     
+    private var stationDirectionTextNode: SCNNode! = SCNNode()
+    
     private var cameraNode: CameraNode! = CameraNode()
     
     private var hitTestPositionWhenTouchBegan: SCNVector3?
@@ -153,17 +155,6 @@ class SeatMapSceneView: SCNView {
         
         contentNode.addChildNode(exampleRightTextNode)
         contentNode.addChildNode(exampleLeftTextNode)
-        
-        // TODO: Make this text dynamic obtaining from the station info object
-        let exampleStationText = TextNode(text: "← Omiya     Tokyo →",
-                                       font: .systemFont(ofSize: 0.5,
-                                                         weight: .light),
-                                       textAlignment: .right,
-                                       color: currentColorTheme.componentColor.secondaryText)
-        exampleStationText.position = SCNVector3(-3.15, 1.2, -13)
-        exampleStationText.eulerAngles.y = .pi / 2
-        
-        scene.rootNode.addChildNode(exampleStationText)
     }
     
     private func placeStaticNodes(from factory: NodeFactory,
@@ -250,7 +241,9 @@ class SeatMapSceneView: SCNView {
     }
     
     public func setupContent(seatMap: SeatMap,
-                             currentEntity: SeatClassEntity) {
+                             currentEntity: SeatClassEntity,
+                             fromStation: String?,
+                             toStation: String?) {
         
         setupGlobalStaticContent(seatMap: seatMap)
         
@@ -282,6 +275,21 @@ class SeatMapSceneView: SCNView {
             setupSeatClassContent(seatClassEntity: $0,
                                   isCurrentEntity: isCurrentEntity)
         }
+        
+        setupStationDirection(fromStation: fromStation, toStation: toStation)
+    }
+    
+    private func setupStationDirection(fromStation: String?, toStation: String?) {
+        let stationDirectionText = "\(toStation != nil ? "← \(toStation ?? "")" : "")\(fromStation != nil ? "     \(fromStation ?? "") →" : "")"
+        stationDirectionTextNode = TextNode(text: stationDirectionText,
+                                            font: .systemFont(ofSize: 0.5,
+                                                              weight: .light),
+                                            textAlignment: .right,
+                                            color: currentColorTheme.componentColor.secondaryText)
+        stationDirectionTextNode.position = SCNVector3(-3.15, 1.2, -13)
+        stationDirectionTextNode.eulerAngles.y = .pi / 2
+        
+        self.scene?.rootNode.addChildNode(stationDirectionTextNode)
     }
     
     private func setupGlobalStaticContent(seatMap: SeatMap) {
