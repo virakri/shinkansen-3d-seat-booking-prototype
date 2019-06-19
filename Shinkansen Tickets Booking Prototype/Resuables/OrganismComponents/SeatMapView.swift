@@ -188,7 +188,7 @@ class SeatMapSceneView: SCNView {
                     node.reservableEntity = $0
                     
                     // Assign Enabled state of interactible nodes
-                    node.isEnabled = $0.isAvailable && isCurrentEntity
+                    node.setEnabled($0.isAvailable && isCurrentEntity, animated: false)
                     return node
                 }
                 /// Show Error node

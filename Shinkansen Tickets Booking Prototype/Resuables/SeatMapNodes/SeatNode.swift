@@ -10,16 +10,20 @@ import SceneKit
 
 class SeatNode: ReservableNode {
     
+    // MARK: States
+
     /// All states
     enum State: String, CodingKey {
         case normal, highlighted, selected, disabled, focus
     }
     
+    private var state: State = .normal
+    
     /// setter-getter for hightlighted state
     override var isHighlighted: Bool {
         didSet {
             super.isHighlighted = isHighlighted
-            setupTheme()
+            reloadState()
         }
     }
     
@@ -27,28 +31,47 @@ class SeatNode: ReservableNode {
     override var isSelected: Bool {
         didSet {
             super.isSelected = isSelected
-            setupTheme()
+            reloadState()
         }
     }
     
     /// setter-getter for enabled/disabled state
     override var isEnabled: Bool {
-        didSet {
-            super.isEnabled = isEnabled
-            setupTheme()
+        get {
+            return super.isEnabled
+        }set {
+            super.isEnabled = newValue
+            reloadState()
         }
     }
     
-    /// getter for determine current state
-    var state: State {
-        return !isEnabled ?
+    private func reloadState(_ animated: Bool = true) {
+        let newState: State = !isEnabled ?
                     .disabled:
                     isHighlighted ?
                         .highlighted:
-                        isSelected ?
-                            .selected :
-                            .normal
+                    isSelected ?
+                        .selected :
+                    .normal
+        
+        if newState != state {
+            state = newState
+            setupTheme(animated)
+        }
     }
+    
+    
+    func setEnabled(_ isEnabled: Bool, animated: Bool) {
+        if animated {
+            self.isEnabled = isEnabled
+        }else{
+            super.isEnabled = isEnabled
+            reloadState()
+        }
+    }
+    
+    // MARK:- Variables
+
     
     /// Materials to apply for each state
     var materialMap: [String: Any] = [:]
