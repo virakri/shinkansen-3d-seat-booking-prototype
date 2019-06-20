@@ -29,8 +29,7 @@ final class NodeFactory {
     public var isLoaded = false {
         didSet {
             // When all models are loaded, This method will execute all completion block.
-            onFactoryLoadedCompletionBuffer.forEach { [weak self] (callback) in
-                guard let self = self else { return }
+            onFactoryLoadedCompletionBuffer.forEach { [unowned self] (callback) in
                 callback(self)
             }
         }

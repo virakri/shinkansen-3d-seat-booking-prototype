@@ -154,14 +154,13 @@ class SeatMapSceneView: SCNView {
         
     }
     
-    private func placeStaticNodes(from factory: NodeFactory,
-                                  using transformedModelEntities: [TransformedModelEntity],
+    private func placeStaticNodes(using transformedModelEntities: [TransformedModelEntity],
                                   isEnabled: Bool = true) {
         let staticNode = SCNNode()
         
         // Place static nodes
         transformedModelEntities.compactMap({
-            if let node: ObjectNode = factory.create(name: $0.modelEntity) {
+            if let node: ObjectNode = NodeFactory.shared?.create(name: $0.modelEntity) {
                 node.transformedModelEntity = $0
                 node.isEnabled = isEnabled
                 return node
@@ -191,21 +190,20 @@ class SeatMapSceneView: SCNView {
     /// - Parameter factory: NodeFactory object
     /// - Parameter seatClassEntity: Seat class data
     /// - Parameter isCurrentEntity: To consider priority to load
-    private func placeSeatClassNodes(from factory: NodeFactory,
-                                     seatClassEntity: SeatClassEntity,
+    private func placeSeatClassNodes(seatClassEntity: SeatClassEntity,
                                      isCurrentEntity: Bool) {
         var workItem: DispatchWorkItem!
-        
+        weak var seatClassEntity = seatClassEntity
         workItem = DispatchWorkItem { [weak self] in
             guard !workItem.isCancelled else { return }
             // Generate all interactible nodes with transform values
             let containerNode = SCNNode()
-            containerNode.name = seatClassEntity.name
-            let nodes: [ReservableNode] = seatClassEntity.reservableEntities.compactMap({
+            containerNode.name = seatClassEntity?.name
+            let nodes: [ReservableNode] = seatClassEntity?.reservableEntities.compactMap({
                 guard !workItem.isCancelled else {
                     return nil
                 }
-                if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
+                if let node: SeatNode = NodeFactory.shared?.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
                     // Assign Enabled state of interactible nodes
                     node.setEnabled($0.isAvailable && isCurrentEntity, animated: false)
@@ -215,7 +213,7 @@ class SeatMapSceneView: SCNView {
                 let node = RedBoxNode()
                 node.reservableEntity = $0
                 return node
-            })
+            }) ?? []
             nodes.forEach { node in
                 if !workItem.isCancelled {
                     containerNode.addChildNode(node)
@@ -223,8 +221,7 @@ class SeatMapSceneView: SCNView {
             }
             // Try to inturrupt when process did cancelled
             guard !workItem.isCancelled else { return }
-            self?.placeStaticNodes(from: factory,
-                                   using: seatClassEntity.transformedModelEntities,
+            self?.placeStaticNodes(using: seatClassEntity?.transformedModelEntities ?? [],
                                    isEnabled: isCurrentEntity)
             DispatchQueue.main.async {
                 // Add bunch of nodes to contentNode
@@ -306,13 +303,11 @@ class SeatMapSceneView: SCNView {
         if let factory = NodeFactory.shared {
             if factory.isLoaded {
                 DispatchQueue.global(qos: .background).async { [weak self] in
-                    self?.placeStaticNodes(from: factory,
-                                           using: seatMap.transformedModelEntities)
+                    self?.placeStaticNodes(using: seatMap.transformedModelEntities)
                 }
             }else{
-                factory.onComplete { [weak self] in
-                    self?.placeStaticNodes(from: $0,
-                                           using: seatMap.transformedModelEntities)
+                factory.onComplete { [weak self] _ in
+                    self?.placeStaticNodes(using: seatMap.transformedModelEntities)
                 }
             }
         }else{
@@ -326,14 +321,12 @@ class SeatMapSceneView: SCNView {
         if let factory = NodeFactory.shared {
             if factory.isLoaded {
                 DispatchQueue.global(qos: .background).async { [weak self] in
-                    self?.placeSeatClassNodes(from: factory,
-                                              seatClassEntity: seatClassEntity,
+                    self?.placeSeatClassNodes(seatClassEntity: seatClassEntity,
                                               isCurrentEntity: isCurrentEntity)
                 }
             }else{
-                factory.onComplete { [weak self] in
-                    self?.placeSeatClassNodes(from: $0,
-                                              seatClassEntity: seatClassEntity,
+                factory.onComplete { [weak self] _ in
+                    self?.placeSeatClassNodes(seatClassEntity: seatClassEntity,
                                               isCurrentEntity: isCurrentEntity)
                 }
             }
