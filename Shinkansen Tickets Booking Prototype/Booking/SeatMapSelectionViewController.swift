@@ -142,6 +142,7 @@ class SeatMapSelectionViewController: BookingViewController {
         isTransitionPerforming = true
         
         let bookingConfirmationVC = BookingConfirmationViewController()
+        bookingConfirmationVC.selectedReservableEntity = selectedEntity
         bookingConfirmationVC.headerInformation = headerInformation
         bookingConfirmationVC.headerInformation?.seatNumber = selectedEntity.name
         bookingConfirmationVC.headerInformation?.price = seatClass?.price.yen

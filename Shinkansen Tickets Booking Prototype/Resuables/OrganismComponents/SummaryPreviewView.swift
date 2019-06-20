@@ -15,6 +15,24 @@ class SummaryPreviewView: UIView {
     
     var contentNode: SCNNode!
     
+    var selectedReservableEntity: ReservableEntity? {
+        didSet {
+            contentNode?.childNodes
+                .filter({ $0.categoryBitMask == ReservableNode.defaultBitMask})
+                .forEach {
+                    $0.removeFromParentNode()
+            }
+            if let name = selectedReservableEntity?.transformedModelEntity.modelEntity,
+                let node: SeatNode = NodeFactory.shared?.create(name: name) {
+                node.position = SCNVector3Make(0, -1, 0)
+                node.eulerAngles = .zero
+                contentNode.addChildNode(node)
+            }else{
+                contentNode.addChildNode(RedBoxNode())
+            }
+        }
+    }
+    
     init() {
         sceneView = SCNView(frame: .zero, options: [:])
         super.init(frame: .zero)
@@ -49,19 +67,14 @@ class SummaryPreviewView: UIView {
         
         let scene = SCNScene()
         
-        let box = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0)
-        box.firstMaterial?.diffuse.contents = UIColor.red
-        box.firstMaterial?.lightingModel = .blinn
-        let boxNode = SCNNode(geometry: box)
         contentNode = SCNNode()
-        
-        contentNode.addChildNode(boxNode)
         scene.rootNode.addChildNode(contentNode)
         
         let camera = SCNCamera()
         let cameraNode = SCNNode()
         cameraNode.camera = camera
-        cameraNode.position.z = 5
+        cameraNode.position.z = 2
+        cameraNode.position.y = 0.5
         cameraNode.look(at: .init())
         
         scene.rootNode.addChildNode(cameraNode)

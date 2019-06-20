@@ -27,6 +27,10 @@ extension SCNVector3: Codable {
     private enum CodingKeys: String, CodingKey {
         case x,y,z
     }
+    
+    static var zero: SCNVector3 {
+        return SCNVector3(0, 0, 0)
+    }
 }
 
 extension SCNVector3: Comparable {
