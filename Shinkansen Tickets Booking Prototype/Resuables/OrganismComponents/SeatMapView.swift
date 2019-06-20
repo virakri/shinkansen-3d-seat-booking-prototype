@@ -176,6 +176,7 @@ class SeatMapSceneView: SCNView {
     }
     
     deinit {
+        // Try to inturrupt and remove model load operation
         workItems.forEach { $0.cancel() }
         workItems.removeAll()
     }
@@ -185,6 +186,11 @@ class SeatMapSceneView: SCNView {
     private let currentEntityQueue = DispatchQueue(label: "Current Entity Placing Queue", qos: .utility)
     private let otherEntityQueue = DispatchQueue(label: "Placing Object Queue", qos: .background)
     
+    
+    /// Place seat to content node (expensive process)
+    /// - Parameter factory: NodeFactory object
+    /// - Parameter seatClassEntity: Seat class data
+    /// - Parameter isCurrentEntity: To consider priority to load
     private func placeSeatClassNodes(from factory: NodeFactory,
                                      seatClassEntity: SeatClassEntity,
                                      isCurrentEntity: Bool) {
@@ -201,7 +207,6 @@ class SeatMapSceneView: SCNView {
                 }
                 if let node: SeatNode = factory.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
-                    
                     // Assign Enabled state of interactible nodes
                     node.setEnabled($0.isAvailable && isCurrentEntity, animated: false)
                     return node
@@ -216,12 +221,15 @@ class SeatMapSceneView: SCNView {
                     containerNode.addChildNode(node)
                 }
             }
+            // Try to inturrupt when process did cancelled
             guard !workItem.isCancelled else { return }
             self?.placeStaticNodes(from: factory,
                                    using: seatClassEntity.transformedModelEntities,
                                    isEnabled: isCurrentEntity)
             DispatchQueue.main.async {
+                // Add bunch of nodes to contentNode
                 self?.contentNode?.addChildNode(containerNode)
+                // When current entity is loaded, will remove indicator view
                 if isCurrentEntity {
                     self?.loadingActivityIndicatorView?.removeFromSuperview()
                     self?.alpha = 0
