@@ -61,6 +61,8 @@ class SeatMapSceneView: SCNView {
         }
     }
     
+    private var dimissHeadsUpBadgeControlTimer: Timer?
+    
     private weak var selectedSeat: ReservableNode? {
         didSet {
             oldValue?.isSelected = false
@@ -69,8 +71,21 @@ class SeatMapSceneView: SCNView {
                 seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
                 // Make sure that the seat isn't the same one before showing the message
                 if oldValue != selectedSeat {
+                    
+                    let message = "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected."
+                    
                     headsUpBadgeControl
-                        .setupContent(message: "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected.")
+                        .setupContent(message: message)
+                    
+                    if let timer = dimissHeadsUpBadgeControlTimer {
+                        timer.invalidate()
+                        dimissHeadsUpBadgeControlTimer = nil
+                    }
+                    
+                    dimissHeadsUpBadgeControlTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {_ in
+                        self.headsUpBadgeControl.dismiss(animated: true)
+                    })
+                    
                 }
             }
             if let selectedSeat = selectedSeat {

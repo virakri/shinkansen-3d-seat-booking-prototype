@@ -155,6 +155,7 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
         guard !(navigationController?.viewControllers.last is SeatMapSelectionViewController?) else {
             return
         }
+        
         //
         selectedIndexPath = indexPath
         

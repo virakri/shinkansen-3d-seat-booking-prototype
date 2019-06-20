@@ -36,18 +36,46 @@ class HeadsUpBadgeControl: CardControl {
         
     }
     
-    public func setupContent(message: String, animated: Bool = true) {
+    public func setupContent(message: String,
+                             animated: Bool = true,
+                             delay: TimeInterval = 0,
+                             completion: ((Bool)->())? = nil) {
         label.text = message
         isHidden = false
         if animated {
             alpha = 0
-            transform = .init(scaleX: 0.8, y: 0.8)
-            transform.ty = bounds.height * 1.5
-            UIView.animate(withStyle: .normalAnimationStyle,
+            transform.ty = -bounds.height * 1.5
+            UIView.animate(withStyle: .halfTransitionAnimationStyle,
+                           delay: delay,
                            animations: {
                             self.alpha = 1
                             self.transform = .identity
-            })
+            },
+                           completion: completion)
+        }
+    }
+    
+    public func dismiss(animated: Bool = true,
+                        delay: TimeInterval = 0,
+                        completion: ((Bool)->())? = nil) {
+        isHidden = false
+        if animated {
+            alpha = 1
+            transform = .identity
+            UIView
+                .animate(withStyle: .transitionAnimationStyle,
+                         delay: delay,
+                         animations: {
+                            self.alpha = 0
+                            self.transform.ty = -self.bounds.height * 1.5
+                }, completion: {
+                    finished in
+                    self.isHidden = true
+                    
+                    if let completion = completion {
+                        completion(finished)
+                    }
+                })
         }
     }
 }
