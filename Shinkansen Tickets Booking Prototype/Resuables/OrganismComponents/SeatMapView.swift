@@ -40,6 +40,8 @@ class SeatMapSceneView: SCNView {
     
     private var loadingActivityIndicatorView: UIView! = UIView()
     
+    private var headsUpBadgeControl: HeadsUpBadgeControl = HeadsUpBadgeControl()
+    
     private var currectContentNodePosition: SCNVector3? {
         didSet {
             setCurrectContentNodePosition(
@@ -65,15 +67,11 @@ class SeatMapSceneView: SCNView {
             selectedSeat?.isSelected = true
             if let reservableEntity = selectedSeat?.reservableEntity {
                 seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
+                headsUpBadgeControl
+                    .setupContent(message: "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected.")
             }
             if let selectedSeat = selectedSeat {
-                let center = positionOfFloorHitTest(.init(x: 0, y: frame.midY))?.z ?? 0
-                SceneKitAnimator.animateWithDuration(
-                    duration: 0.35 * 2,
-                    timingFunction: .easeOut,
-                    animations: {
-                        currectContentNodePosition?.z = -(selectedSeat.position.z) + center
-                })
+                animateContentNodeToZPosition(of: selectedSeat.position.z)
             }
         }
     }
@@ -103,6 +101,8 @@ class SeatMapSceneView: SCNView {
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
         
+        
+        // Setup Loading Activity Indicator
         loadingActivityIndicatorView.backgroundColor = currentColorTheme.componentColor.cardBackground
         let indicatorView = UIActivityIndicatorView(style: .whiteLarge)
         indicatorView.color = currentColorTheme.componentColor.secondaryText
@@ -112,6 +112,17 @@ class SeatMapSceneView: SCNView {
                         withConstaintEquals: .centerSafeArea,
                         insetsConstant: .init(bottom: 24))
         addSubview(loadingActivityIndicatorView, withConstaintEquals: .edges)
+        
+        preservesSuperviewLayoutMargins = true
+        
+        // Setup headsUpBadgeControl
+        addSubview(headsUpBadgeControl,
+                   withConstaintEquals: [.topMargin, .centerHorizontal])
+        headsUpBadgeControl.isHidden = true
+        headsUpBadgeControl
+            .addTarget(self,
+                       action: #selector(headsUpbadgeControlDidTouch(_:)),
+                       for: .touchUpInside)
     }
     
     override func didMoveToSuperview() {
@@ -437,6 +448,12 @@ class SeatMapSceneView: SCNView {
         }
     }
     
+    @objc private func headsUpbadgeControlDidTouch(_ sender: HeadsUpBadgeControl) {
+        if let selectedSeat = selectedSeat {
+            animateContentNodeToZPosition(of: selectedSeat.position.z)
+        }
+    }
+    
     // MARK: Utility & Helper
     
     /// Recursive find parent node that be `ReservableNode` class
@@ -476,6 +493,16 @@ class SeatMapSceneView: SCNView {
     private func positionOfFloorHitTest(_ point: CGPoint) -> SCNVector3? {
         let hitTests = hitTest(point, options: [.categoryBitMask : 1 << 1])
         return hitTests.first?.worldCoordinates
+    }
+    
+    private func animateContentNodeToZPosition(of zPosition: Float) {
+        let center = positionOfFloorHitTest(.init(x: 0, y: frame.midY))?.z ?? 0
+        SceneKitAnimator.animateWithDuration(
+            duration: 0.35 * 2,
+            timingFunction: .easeOut,
+            animations: {
+                currectContentNodePosition?.z = -zPosition + center
+        })
     }
     
 }

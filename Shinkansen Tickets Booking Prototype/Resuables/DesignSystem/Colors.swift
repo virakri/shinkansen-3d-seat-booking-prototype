@@ -32,6 +32,7 @@ extension UIColor {
         static let offBlack = #colorLiteral(red: 0.13, green: 0.13, blue: 0.13, alpha: 1)
         static let slightlyBlack = #colorLiteral(red: 0.1411764706, green: 0.1411764706, blue: 0.1411764706, alpha: 1)
         static let darkGray = #colorLiteral(red: 0.1803921569, green: 0.1803921569, blue: 0.1803921569, alpha: 1)
+        static let slightlyDarkGray = #colorLiteral(red: 0.2365458608, green: 0.2365458608, blue: 0.2365458608, alpha: 1)
         var gray: UIColor {
             return UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0.18, green: 0.18, blue: 0.18, alpha: 1) : #colorLiteral(red: 0.5647058824, green: 0.5647058824, blue: 0.5843137255, alpha: 1)
         }

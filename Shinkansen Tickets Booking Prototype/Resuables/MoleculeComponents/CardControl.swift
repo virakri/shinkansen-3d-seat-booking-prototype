@@ -12,16 +12,34 @@ import Kumi
 class CardControl: UIControl {
     enum _Type {
         case regular
+        case regularAlternative
         case large
         
         func layerStyle(by state: State) -> LayerStyle {
             switch self {
-            case .regular:
+            case .regular, .regularAlternative:
                 switch state {
                 case .normal:
-                    return DesignSystem.layerStyle.card.normal()
+                    if currentColorTheme == .dark {
+                        return self ==  .regular ?
+                            DesignSystem.layerStyle.card.normal() :
+                            DesignSystem.layerStyle.card.normal()
+                        .withBackgroundColor( UIColor.basic.slightlyDarkGray.cgColor)
+                        
+                    } else {
+                        return DesignSystem.layerStyle.card.normal()
+                    }
+                    
                 case .highlighted:
-                    return DesignSystem.layerStyle.card.highlighted()
+                    if currentColorTheme == .dark {
+                        return self ==  .regular ?
+                            DesignSystem.layerStyle.card.highlighted() :
+                            DesignSystem.layerStyle.card.highlighted()
+                                .withBackgroundColor( UIColor.basic.slightlyDarkGray.cgColor)
+                        
+                    } else {
+                        return DesignSystem.layerStyle.card.highlighted()
+                    }
                 case .disabled:
                     return DesignSystem.layerStyle.card.disabled()
                 default:
@@ -43,10 +61,10 @@ class CardControl: UIControl {
         
         func layoutMargin() -> NSDirectionalEdgeInsets {
             switch self {
-            case .regular:
-                return DesignSystem.layoutMargins.card()//Constant().cardLayoutMarginInset
+            case .regular, .regularAlternative:
+                return DesignSystem.layoutMargins.card()
             case .large:
-                return DesignSystem.layoutMargins.largeCard()//Constant().largeCardLayoutMarginInset
+                return DesignSystem.layoutMargins.largeCard()
             }
         }
     }

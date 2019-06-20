@@ -37,7 +37,7 @@ class SeatMapSelectionViewController: BookingViewController {
             
             mainCallToActionButton.isEnabled = selectedEntity != nil
             
-            let buttonTitle = "Continue with a Seat \(selectedEntity?.name ?? "*")"
+            let buttonTitle = "Continue with seat \(selectedEntity?.name ?? "*")"
             if mainCallToActionButton.titleLabel?.text != buttonTitle {
                 mainCallToActionButton.setTitle(buttonTitle)
                 mainCallToActionButton.titleLabel?.alpha = 0
