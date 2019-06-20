@@ -440,9 +440,9 @@ class SeatMapSceneView: SCNView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        if let node = touches.compactMap ({ touch in
+        touches.compactMap ({ touch in
             highlightedSeats.first { $0.touch == touch }
-        }).first {
+        }).forEach { node in
             selectedSeat = node
             highlightedSeats.remove(node)
         }
