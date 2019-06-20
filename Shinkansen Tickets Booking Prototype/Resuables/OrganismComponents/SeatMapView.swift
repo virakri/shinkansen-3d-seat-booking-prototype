@@ -44,6 +44,37 @@ class SeatMapSceneView: SCNView {
     
     private var centerScreenZ: Float = 0
     
+    private enum SeatNavigationState: String {
+        case top
+        case bottom
+        case hide
+    }
+    
+    private var seatNavigationState: SeatNavigationState = .hide {
+        didSet {
+            if seatNavigationState != oldValue {
+                DispatchQueue.main.async { [weak self] in
+                    switch self?.seatNavigationState ?? .hide {
+                    case .top:
+                        self?.headsUpBadgeControl
+                            .setupContent(message: "↑ Your \(self?.selectedSeat?.reservableEntity?.name ?? "selected") seat is up there.")
+                        self?.dimissHeadsUpBadgeControlTimer?.invalidate()
+                        self?.dimissHeadsUpBadgeControlTimer = nil
+                    case .bottom:
+                        self?.headsUpBadgeControl
+                            .setupContent(message: "↓ Your \(self?.selectedSeat?.reservableEntity?.name ?? "selected") seat is down there.")
+                        self?.dimissHeadsUpBadgeControlTimer?.invalidate()
+                        self?.dimissHeadsUpBadgeControlTimer = nil
+                    case .hide:
+                        if self?.dimissHeadsUpBadgeControlTimer == nil {
+                             self?.headsUpBadgeControl.dismiss()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     private var currectContentNodePosition: SCNVector3? {
         didSet {
             setCurrectContentNodePosition(
@@ -55,14 +86,14 @@ class SeatMapSceneView: SCNView {
             }
             if let selected = selectedSeat, let current = currectContentNodePosition?.z, centerScreenZ != 0 {
                 if selected.position.z > centerScreenZ - current + 3 {
-                    print("👇")
+                    seatNavigationState = .bottom
                 } else if selected.position.z < centerScreenZ - current - 4 {
-                    print("👆")
+                    seatNavigationState = .top
                 }else{
-                    print("Hide")
+                    seatNavigationState = .hide
                 }
             }else{
-                print("Hide")
+                seatNavigationState = .hide
             }
         }
     }
@@ -98,8 +129,10 @@ class SeatMapSceneView: SCNView {
                         dimissHeadsUpBadgeControlTimer = nil
                     }
                     
-                    dimissHeadsUpBadgeControlTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {_ in
-                        self.headsUpBadgeControl.dismiss(animated: true)
+                    dimissHeadsUpBadgeControlTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] t in
+                        self?.headsUpBadgeControl.dismiss(animated: true)
+                        t.invalidate()
+                        self?.dimissHeadsUpBadgeControlTimer = nil
                     })
                     
                 }
