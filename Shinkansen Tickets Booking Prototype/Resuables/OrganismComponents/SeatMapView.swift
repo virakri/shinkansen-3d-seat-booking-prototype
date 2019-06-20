@@ -67,8 +67,11 @@ class SeatMapSceneView: SCNView {
             selectedSeat?.isSelected = true
             if let reservableEntity = selectedSeat?.reservableEntity {
                 seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
-                headsUpBadgeControl
-                    .setupContent(message: "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected.")
+                // Make sure that the seat isn't the same one before showing the message
+                if oldValue != selectedSeat {
+                    headsUpBadgeControl
+                        .setupContent(message: "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected.")
+                }
             }
             if let selectedSeat = selectedSeat {
                 animateContentNodeToZPosition(of: selectedSeat.position.z)
