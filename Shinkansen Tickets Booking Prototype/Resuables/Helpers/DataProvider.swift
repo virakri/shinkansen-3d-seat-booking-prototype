@@ -38,7 +38,6 @@ extension TrainCriteria {
     /// - Parameter completion: completion block
     static func fetchData(completion: @escaping (Result<TrainCriteria, Error>) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            sleep(1)
             guard let data = NSDataAsset(name: "TrainCriteria")?.data else {
                 return completion(.failure(NSError(domain: "SeatMap", code: -900, userInfo: [NSLocalizedFailureReasonErrorKey: "Please check TrainCriteria.json in assets directory."])))
             }

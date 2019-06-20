@@ -42,12 +42,28 @@ class SeatMapSceneView: SCNView {
     
     private var headsUpBadgeControl: HeadsUpBadgeControl = HeadsUpBadgeControl()
     
+    private var centerScreenZ: Float = 0
+    
     private var currectContentNodePosition: SCNVector3? {
         didSet {
             setCurrectContentNodePosition(
                 currectContentNodePosition: currectContentNodePosition,
                 oldValue: oldValue
             )
+            if centerScreenZ == 0 {
+                centerScreenZ = positionOfFloorHitTest(.init(x: 0, y: frame.midY))?.z ?? 0
+            }
+            if let selected = selectedSeat, let current = currectContentNodePosition?.z, centerScreenZ != 0 {
+                if selected.position.z > centerScreenZ - current + 3 {
+                    print("👇")
+                } else if selected.position.z < centerScreenZ - current - 4 {
+                    print("👆")
+                }else{
+                    print("Hide")
+                }
+            }else{
+                print("Hide")
+            }
         }
     }
     
