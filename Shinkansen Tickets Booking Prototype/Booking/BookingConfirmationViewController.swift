@@ -96,7 +96,9 @@ class BookingConfirmationViewController: BookingViewController {
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: {
+            NodeFactory.shared = nil
+        })
     }
     
     @objc func backButtonDidTouch(_ sender: Button) {

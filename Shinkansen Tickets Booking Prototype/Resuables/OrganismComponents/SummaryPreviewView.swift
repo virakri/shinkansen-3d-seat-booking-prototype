@@ -107,22 +107,25 @@ class SummaryPreviewView: UIView {
     }
     
     private func playInitialAnimation() {
-        contentNode.scale = SCNVector3(0.1, 0.1, 0.1)
-        contentNode.eulerAngles = SCNVector3(0, Float.pi * 2, 0)
+        
+        weak var contentNode = self.contentNode
+        
+        contentNode?.scale = SCNVector3(0.1, 0.1, 0.1)
+        contentNode?.eulerAngles = SCNVector3(0, Float.pi * 2, 0)
         SceneKitAnimator.animateWithDuration(
             duration: 0.35 * 2,
             timingFunction: .explodingEaseOut,
             animations: {
-                self.contentNode.scale = SCNVector3(1.1, 1.1, 1.1)
-                self.contentNode.eulerAngles = SCNVector3(0, Float.pi * -0.25, 0)
+                contentNode?.scale = SCNVector3(1.1, 1.1, 1.1)
+                contentNode?.eulerAngles = SCNVector3(0, Float.pi * -0.25, 0)
         },
             completion: {
                 SceneKitAnimator.animateWithDuration(
-                    duration: 0.35 / 3,
+                    duration: 0.35 / 2,
                     timingFunction: .easeInEaseOut,
                     animations: {
-                        self.contentNode.scale = SCNVector3(1, 1, 1)
-                        self.contentNode.eulerAngles = SCNVector3(0, 0, 0)
+                        contentNode?.scale = SCNVector3(1, 1, 1)
+                        contentNode?.eulerAngles = SCNVector3(0, 0, 0)
                 })
         })
     }

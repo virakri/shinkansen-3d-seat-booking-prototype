@@ -48,9 +48,10 @@ public class SceneKitAnimator {
                                           completion: (() -> Void)? = nil) -> SceneKitAnimator{
         let promise = SceneKitAnimator()
         SCNTransaction.begin()
-        SCNTransaction.completionBlock = {
+        SCNTransaction.completionBlock = { [weak promise] in
             completion?()
-            promise.completed?()
+            promise?.completed?()
+            
         }
         SCNTransaction.animationTimingFunction = timingFunction
         SCNTransaction.animationDuration = duration
@@ -75,14 +76,14 @@ public class SceneKitAnimator {
                                         animations: @escaping (() -> Void),
                                         completion: (() -> Void)? = nil) -> SceneKitAnimator {
         let animator = SceneKitAnimator()
-        completed = {
+        completed = { [weak animator] in
             SceneKitAnimator.animateWithDuration(duration: duration,
                                                  timingFunction: timingFunction,
                                                  animated: animated,
                                                  animations: animations,
                                                  completion: {
+                                                    animator?.completed?()
                                                     completion?()
-                                                    animator.completed?()
             })
         }
         return animator
