@@ -230,7 +230,7 @@ class SeatMapSceneView: SCNView {
                 // Add bunch of nodes to contentNode
                 self?.contentNode?.addChildNode(containerNode)
                 // When current entity is loaded, will remove indicator view
-                if self?.loadingActivityIndicatorView.superview != nil {
+                if isCurrentEntity {
                     self?.loadingActivityIndicatorView?.removeFromSuperview()
                     self?.alpha = 0
                     UIView.animate(withDuration: 0.35, animations: {

@@ -18,7 +18,13 @@ class SeatMapSelectionViewController: BookingViewController {
     
     var seatClass: SeatClass?
     
-    var seatMap: SeatMap?
+    var sceneDidSetup = false
+    
+    var seatMap: SeatMap? {
+        didSet {
+            setupScene()
+        }
+    }
     
 //    var seatClassEntities: [SeatClassEntity] = []
     
@@ -109,7 +115,8 @@ class SeatMapSelectionViewController: BookingViewController {
         print("Scene has been setup with \(seatClassEntity?.reservableEntities.count ?? 0) interactible nodes.")
         print(seatClassEntity?.reservableEntities.count ?? 0)
         guard let seatMap = seatMap,
-            let seatClassEntity = seatClassEntity else {
+            let seatMapSceneView = seatMapSceneView,
+            let seatClassEntity = seatClassEntity, !sceneDidSetup else {
                 return
         }
         print("Scene has been setup with \(seatClassEntity.reservableEntities.count) interactible nodes.")
@@ -118,7 +125,7 @@ class SeatMapSelectionViewController: BookingViewController {
                                       currentEntity: seatClassEntity,
                                       fromStation: headerInformation?.fromStation,
                                       toStation: headerInformation?.toStation)
-        
+        sceneDidSetup = true
         
     }
     

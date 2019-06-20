@@ -86,10 +86,24 @@ class SeatClassSelectionViewController: BookingViewController {
         
     }
     
+    weak var seatMapSelectionVC: SeatMapSelectionViewController?
+    
     func obtainData() {
         SeatMap.fetchData { [weak self] result in
             if case .success(let seatMap) = result {
-                self?.seatMap = seatMap
+                DispatchQueue.main.async {
+                    self?.seatMap = seatMap
+                    if let vc = self?.seatMapSelectionVC,
+                        let indexPath = self?.mainTableView?.indexPathForSelectedRow,
+                        let seatClass = self?.seatClasses[indexPath.row],
+                        let selectedEntity = seatMap.seatClassEntities.first(where: {
+                            $0.seatClass == seatClass.seatClass
+                        }){
+                        vc.seatClass = seatClass
+                        vc.seatClassEntity = selectedEntity
+                        vc.seatMap = seatMap
+                    }
+                }
             }
         }
         
@@ -153,7 +167,7 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard !(navigationController?.viewControllers.last is SeatMapSelectionViewController?) else {
-            return
+            return print("Seat map is loading please wait")
         }
         //
         selectedIndexPath = indexPath
@@ -172,6 +186,9 @@ extension SeatClassSelectionViewController: UITableViewDataSource {
         seatMapSelectionVC.headerInformation?.carNumber = selectedEntity?.carNumber
         seatMapSelectionVC.headerInformation?.className = seatClass.name
         seatMapSelectionVC.headerInformation?.price = seatClass.price.yen
+        if seatMap == nil {
+            self.seatMapSelectionVC = seatMapSelectionVC
+        }
         navigationController?.pushViewController(seatMapSelectionVC, animated: true)
     }
     
