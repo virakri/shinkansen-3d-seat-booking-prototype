@@ -10,6 +10,8 @@ import UIKit
 
 class BookingConfirmationViewController: BookingViewController {
     
+    var summaryPreviewView: SummaryPreviewView!
+    
     var mainCardView: CardControl!
     
     var dateLabelContainerView: UIView!
@@ -49,10 +51,15 @@ class BookingConfirmationViewController: BookingViewController {
         mainContentView.addSubview(mainCardView,
                                    withConstaintEquals: .edges,
                                    insetsConstant: .init(top: -mainCardView.layer.cornerRadius))
-      mainContentView.heightAnchor.constraint(lessThanOrEqualTo:  mainContentView.widthAnchor, multiplier: 1).isActive = true
+        mainContentView.heightAnchor.constraint(lessThanOrEqualTo:  mainContentView.widthAnchor, multiplier: 1).isActive = true
         
+        summaryPreviewView = SummaryPreviewView()
+        
+        // Setup Main Card View
         mainCardView.isUserInteractionEnabled = false
-        
+        mainCardView.contentView
+            .addSubview(summaryPreviewView,
+                        withConstaintEquals: .edges)
         
         placeholderView.translatesAutoresizingMaskIntoConstraints = false
         placeholderView.topAnchor.constraint(equalTo: mainCallToActionButton.topAnchor).isActive = true

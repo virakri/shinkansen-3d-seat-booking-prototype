@@ -26,7 +26,7 @@ class HeadsUpBadgeControl: CardControl {
     
     private func setupView() {
         contentView.addSubview(label, withConstaintEquals: .marginEdges)
-        contentView.directionalLayoutMargins = .init(vertical: 12, horizontal: 12)
+        contentView.directionalLayoutMargins = .init(vertical: 12, horizontal: 16)
     }
     
     public override func setupTheme() {
@@ -41,11 +41,12 @@ class HeadsUpBadgeControl: CardControl {
         isHidden = false
         if animated {
             alpha = 0
-            transform.ty = bounds.height
+            transform = .init(scaleX: 0.8, y: 0.8)
+            transform.ty = bounds.height * 1.5
             UIView.animate(withStyle: .normalAnimationStyle,
                            animations: {
                             self.alpha = 1
-                            self.transform.ty = 0
+                            self.transform = .identity
             })
         }
     }

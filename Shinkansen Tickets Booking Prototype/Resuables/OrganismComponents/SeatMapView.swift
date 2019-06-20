@@ -496,6 +496,7 @@ class SeatMapSceneView: SCNView {
     }
     
     private func animateContentNodeToZPosition(of zPosition: Float) {
+        contentNode.removeAction(forKey: "panDrift")
         let center = positionOfFloorHitTest(.init(x: 0, y: frame.midY))?.z ?? 0
         SceneKitAnimator.animateWithDuration(
             duration: 0.35 * 2,
