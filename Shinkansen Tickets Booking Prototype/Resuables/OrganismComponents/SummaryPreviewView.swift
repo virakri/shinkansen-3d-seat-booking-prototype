@@ -59,7 +59,7 @@ class SummaryPreviewView: UIView {
             tiltNodeMotionEffect.horizontalShiftedIntensity = 0
             tiltNodeMotionEffect.verticalShiftedIntensity = 0
             
-            tiltNodeMotionEffect.horizontalTiltedIntensity = -1 / 2
+            tiltNodeMotionEffect.horizontalTiltedIntensity = 1 / 2
             tiltNodeMotionEffect.verticalTiltedIntensity = 1 / 2
             
             superview?.addMotionEffect(tiltNodeMotionEffect)
