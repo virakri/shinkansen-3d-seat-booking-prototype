@@ -100,6 +100,8 @@
 		901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltNodeMotionEffect.swift; sourceTree = "<group>"; };
 		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
 		904756F222B4283F00971014 /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
+		9051A6D522BD2C3200897297 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9051A6D722BD2CEA00897297 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		90CA078122AEC21C002C204E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		90D4FD4222BAC38B00679526 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		90D4FD4422BACC0A00679526 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -332,6 +334,8 @@
 		D0EAF1A8228B7FB700F3D4F6 = {
 			isa = PBXGroup;
 			children = (
+				9051A6D522BD2C3200897297 /* README.md */,
+				9051A6D722BD2CEA00897297 /* LICENSE */,
 				D0EAF1B3228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype */,
 				D0EAF1B2228B7FB700F3D4F6 /* Products */,
 				865DF0FC68928DF1C21699FF /* Pods */,
@@ -739,7 +743,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJ5UD9292F;
 				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -761,7 +765,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJ5UD9292F;
 				INFOPLIST_FILE = "Shinkansen Tickets Booking Prototype/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
