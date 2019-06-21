@@ -133,12 +133,12 @@ class PrototypeInitialViewController: ViewController {
         textStackView.addArrangedSubview(headlineLabel)
         textStackView.addArrangedSubview(bodyLabel)
         
+        callToActionStackView.addArrangedSubview(colorThemeSegmentedControlContainerView)
         let textButtonStackView = UIStackView([gitHubButton,
                                                designSystemButton],
                                               axis: .vertical,
                                               spacing: 4)
         callToActionStackView.addArrangedSubview(textButtonStackView)
-        callToActionStackView.addArrangedSubview(colorThemeSegmentedControlContainerView)
         callToActionStackView.addArrangedSubview(startPrototypeButton)
         
         callToActionStackView.topAnchor.constraint(equalTo: textScrollView.bottomAnchor, constant: 16).isActive = true
