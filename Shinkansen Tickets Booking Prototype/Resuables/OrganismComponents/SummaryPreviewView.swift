@@ -109,18 +109,18 @@ class SummaryPreviewView: UIView {
         weak var contentNode = self.contentNode
         
         contentNode?.scale = SCNVector3(0.1, 0.1, 0.1)
-        contentNode?.eulerAngles = SCNVector3(0, Float.pi * 2, 0)
+        contentNode?.eulerAngles = SCNVector3(0, Float.pi * 1.5, 0)
         SceneKitAnimator.animateWithDuration(
-            duration: 0.35 * 2,
+            duration: 0.35 * 1.5,
             timingFunction: .explodingEaseOut,
             animations: {
-                contentNode?.scale = SCNVector3(1.1, 1.1, 1.1)
-                contentNode?.eulerAngles = SCNVector3(0, Float.pi * -0.1, 0)
+                contentNode?.scale = SCNVector3(1.066, 1.066, 1.066)
+                contentNode?.eulerAngles = SCNVector3(0, Float.pi * -0.066, 0)
         },
             completion: {
                 SceneKitAnimator.animateWithDuration(
                     duration: 0.35 / 1.5,
-                    timingFunction: .easeInEaseOut,
+                    timingFunction: CAMediaTimingFunction(controlPoints: 0.33, 0, 0.33, 1),
                     animations: {
                         contentNode?.scale = SCNVector3(1, 1, 1)
                         contentNode?.eulerAngles = SCNVector3(0, 0, 0)
