@@ -233,6 +233,7 @@ V Jinangkul
     
     @objc private func openGitHub() {
         let vc = SFSafariViewController(url: URL(string: "https://github.com/virakri/shinkansen-tickets-booking-prototype")!)
+        vc.modalPresentationStyle = .pageSheet
         present(vc, animated: true, completion: nil)
     }
 }

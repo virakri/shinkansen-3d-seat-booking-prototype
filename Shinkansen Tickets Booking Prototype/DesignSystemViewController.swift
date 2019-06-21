@@ -660,7 +660,8 @@ class DesignSystemViewController: ViewController {
         
         let closeButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
         view.addSubview(closeButton,
-                        withConstaintEquals: [.trailingMargin, .topSafeArea])
+                        withConstaintEquals: [.trailingMargin, .topSafeArea],
+                        insetsConstant: .init(top: 16))
         closeButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
         closeButton.addTarget(self,
