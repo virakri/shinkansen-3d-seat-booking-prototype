@@ -115,11 +115,11 @@ class SummaryPreviewView: UIView {
             timingFunction: .explodingEaseOut,
             animations: {
                 contentNode?.scale = SCNVector3(1.1, 1.1, 1.1)
-                contentNode?.eulerAngles = SCNVector3(0, Float.pi * -0.25, 0)
+                contentNode?.eulerAngles = SCNVector3(0, Float.pi * -0.1, 0)
         },
             completion: {
                 SceneKitAnimator.animateWithDuration(
-                    duration: 0.35 / 2,
+                    duration: 0.35 / 1.5,
                     timingFunction: .easeInEaseOut,
                     animations: {
                         contentNode?.scale = SCNVector3(1, 1, 1)
