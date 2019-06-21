@@ -17,7 +17,7 @@ extension UIColor {
     
     struct accent {
         var main: UIColor {
-            return UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0, green: 0.28, blue: 0.1269064748, alpha: 1) : #colorLiteral(red: 0, green: 0.5450980392, blue: 0.2470588235, alpha: 1)
+            return UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0, green: 0.2784313725, blue: 0.1254901961, alpha: 1) : #colorLiteral(red: 0, green: 0.5450980392, blue: 0.2470588235, alpha: 1)
         }
         var dark: UIColor {
             return UIAccessibility.isDarkerSystemColorsEnabled ? #colorLiteral(red: 0, green: 0.2, blue: 0.09064748201, alpha: 1) : #colorLiteral(red: 0.02658655568, green: 0.400528169, blue: 0.196070884, alpha: 1)

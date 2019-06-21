@@ -73,6 +73,7 @@
 		D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF4AF22A43533002A9282 /* HeadlineWithContainerView.swift */; };
 		D0EAF4B222A442DD002A9282 /* StationCardControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF4B122A442DD002A9282 /* StationCardControl.swift */; };
 		D0EAF4B422A449BC002A9282 /* ViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF4B322A449BC002A9282 /* ViewControllerAnimatedTransitioning.swift */; };
+		D0ECFEC122BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ECFEC022BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift */; };
 		D0F175BD22A29AFE0095631F /* UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F175BC22A29AFE0095631F /* UIEdgeInsets.swift */; };
 		D0F175BF22A2A7B60095631F /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F175BE22A2A7B60095631F /* DesignSystem.swift */; };
 		D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8B522A085AE00872B5B /* LabelSetView.swift */; };
@@ -165,6 +166,7 @@
 		D0EAF4AF22A43533002A9282 /* HeadlineWithContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineWithContainerView.swift; sourceTree = "<group>"; };
 		D0EAF4B122A442DD002A9282 /* StationCardControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCardControl.swift; sourceTree = "<group>"; };
 		D0EAF4B322A449BC002A9282 /* ViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		D0ECFEC022BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeInitialViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		D0F175BC22A29AFE0095631F /* UIEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets.swift; sourceTree = "<group>"; };
 		D0F175BE22A2A7B60095631F /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 		D0F6D8B522A085AE00872B5B /* LabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelSetView.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				D074B1D9228B90AC00791F94 /* Booking */,
 				E04BCCF722AAA686002E29DE /* Models */,
 				D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */,
+				D0ECFEC022BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift */,
 				D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */,
 				D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */,
 				D050625E22A9C6BF003A8565 /* SeatMap.scnassets */,
@@ -562,6 +565,7 @@
 				D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */,
 				D05C760222AF20B900AC1461 /* SegmentedControl.swift in Sources */,
 				E0BA439722AC4B7300FC3A72 /* Date.swift in Sources */,
+				D0ECFEC122BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift in Sources */,
 				E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,

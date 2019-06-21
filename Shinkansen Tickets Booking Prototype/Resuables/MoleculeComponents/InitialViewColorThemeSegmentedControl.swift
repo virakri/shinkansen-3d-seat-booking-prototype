@@ -56,7 +56,7 @@ class InitialViewColorThemeItemControl: UIControl {
         didSet {
             let scaleFactor: CGFloat = isHighlighted ? 0.98 : 1
             
-            UIView.animate(withStyle: .normalAnimationStyle,
+            UIView.animate(withStyle: .fastTransitionAnimationStyle,
                            animations: {
                             self.alpha =
                                 self.isHighlighted ?
@@ -80,7 +80,7 @@ class InitialViewColorThemeItemControl: UIControl {
                 }
             }
             
-            UIView.animate(withStyle: .normalAnimationStyle,
+            UIView.animate(withStyle: .fastTransitionAnimationStyle,
                            animations: {
                             self.iconImageView.alpha =
                                 self.isSelected ?

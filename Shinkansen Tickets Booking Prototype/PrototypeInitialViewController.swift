@@ -215,6 +215,7 @@ V Jinangkul
         
         let presentedViewController = NavigationController(rootViewController: BookingCriteriaViewController())
         presentedViewController.modalPresentationStyle = .fullScreen
+        presentedViewController.transitioningDelegate = self
         
         present(presentedViewController, animated: true, completion: nil)
     }
@@ -233,5 +234,20 @@ V Jinangkul
     @objc private func openGitHub() {
         let vc = SFSafariViewController(url: URL(string: "https://github.com/virakri/shinkansen-tickets-booking-prototype")!)
         present(vc, animated: true, completion: nil)
+    }
+}
+
+// MARK: - PrototypeInitialViewControllerTransitioningDelegate
+
+extension PrototypeInitialViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let transition =  PrototypeInitialViewControllerAnimatedTransition()
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let transition =  PrototypeInitialViewControllerAnimatedTransition()
+        return transition
     }
 }

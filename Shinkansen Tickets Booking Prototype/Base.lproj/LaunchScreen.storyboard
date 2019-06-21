@@ -28,6 +28,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="AccentColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="amV-GP-JdO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="YbQ-Ac-BZc"/>
                             <constraint firstItem="amV-GP-JdO" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" priority="750" id="Zn2-gB-bag"/>
