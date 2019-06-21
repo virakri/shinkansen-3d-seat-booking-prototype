@@ -95,7 +95,8 @@ class InitialViewButton: Button {
             case .contained:
                 return DesignSystem.edgeInsets.button()
             case .text:
-                return DesignSystem.edgeInsets.button()
+                return .init(vertical: 12,
+                             horizontal: 12)
             }
         }
     }

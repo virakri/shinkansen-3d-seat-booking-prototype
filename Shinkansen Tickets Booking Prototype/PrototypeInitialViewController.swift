@@ -22,6 +22,8 @@ class PrototypeInitialViewController: ViewController {
     
     var colorThemeSegmentedControlContainerView: UIView!
     
+    var gitHubButton: InitialViewButton!
+    
     var designSystemButton: InitialViewButton!
     
     var startPrototypeButton: InitialViewButton!
@@ -58,13 +60,15 @@ class PrototypeInitialViewController: ViewController {
         colorThemeSegmentedControlContainerView.preservesSuperviewLayoutMargins = true
         colorThemeSegmentedControlContainerView
             .addSubview(colorThemeSegmentedControl,
-                        withConstaintEquals: [.topMargin, .bottomMargin, .center],
+                        withConstaintEquals: [.topMargin,
+                                              .bottomMargin,
+                                              .centerHorizontal],
                         insetsConstant: .init(vertical: 8,
                                               horizontal: 0) )
         colorThemeSegmentedControlContainerView
             .addConstraints(toView: colorThemeSegmentedControl,
                             withConstaintGreaterThanOrEquals: .marginEdges)
-        
+        gitHubButton = InitialViewButton(type: .text)
         designSystemButton = InitialViewButton(type: .text)
         startPrototypeButton = InitialViewButton(type: .contained)
         
@@ -76,17 +80,37 @@ class PrototypeInitialViewController: ViewController {
         headlineLabel.numberOfLines = 0
         bodyLabel.numberOfLines = 0
         
-        // MARK: Setup stackViews in view
-        view.addSubview(textStackView,
-                        withConstaintEquals: [.topSafeArea, .centerHorizontal],
-                        insetsConstant: .init(top: 24, trailing: 0))
+        // MARK: Setup Scroll View
+        let textStackViewContainerView = UIView(containingView: textStackView,
+                                                withConstaintEquals: [.topSafeArea,
+                                                                      .leadingMargin,
+                                                                      .trailingMargin,
+                                                                      .bottom],
+                                                insetsConstant: .init(top: 24))
+        textStackViewContainerView.preservesSuperviewLayoutMargins = true
+
+        let textScrollView = UIScrollView()
+        textScrollView.addSubview(textStackViewContainerView,
+                                  withConstaintEquals: [.edges])
+        textScrollView
+            .widthAnchor
+            .constraint(equalTo: textStackViewContainerView
+                .widthAnchor)
+            .isActive = true
+
+        textScrollView.preservesSuperviewLayoutMargins = true
+        textScrollView.indicatorStyle = .white
         
-        view.addConstraints(toView: textStackView,
-                            withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+        // MARK: Setup stackViews and scrollView in view
+        view.addSubview(textScrollView,
+                        withConstaintEquals: [.topSafeArea])
         
-        let textStackViewWidthConstraint = textStackView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
-        textStackViewWidthConstraint.priority = .defaultHigh
-        textStackViewWidthConstraint.isActive = true
+        view.addConstraints(toView: textScrollView,
+                            withConstaintGreaterThanOrEquals: [.leading, .trailing])
+
+        let textScrollViewWidthConstraint = textScrollView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        textScrollViewWidthConstraint.priority = .defaultHigh
+        textScrollViewWidthConstraint.isActive = true
         
         view.addSubview(callToActionStackView,
                         withConstaintEquals: [.centerHorizontal])
@@ -102,22 +126,29 @@ class PrototypeInitialViewController: ViewController {
         callToActionStackViewWidthConstraint.isActive = true
         
         view.constraintBottomSafeArea(to: callToActionStackView,
-                                      withGreaterThanConstant: 16)
-        
+                                      withGreaterThanConstant: 16,
+                                      minimunConstant: 8)
         
         // MARK: Add labels into stackViews
         textStackView.addArrangedSubview(headlineLabel)
         textStackView.addArrangedSubview(bodyLabel)
         
-        
+        let textButtonStackView = UIStackView([gitHubButton,
+                                               designSystemButton],
+                                              axis: .vertical,
+                                              spacing: 4)
+        callToActionStackView.addArrangedSubview(textButtonStackView)
         callToActionStackView.addArrangedSubview(colorThemeSegmentedControlContainerView)
-        callToActionStackView.addArrangedSubview(designSystemButton)
         callToActionStackView.addArrangedSubview(startPrototypeButton)
         
-        // MARK: Setup static content
-        headlineLabel.text = "Lorem ipsum dolor sit amet"
-        bodyLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+        callToActionStackView.topAnchor.constraint(equalTo: textScrollView.bottomAnchor, constant: 16).isActive = true
         
+        
+        // MARK: Setup static content
+        headlineLabel.text = "Welcome to 3D Seat Booking Prototype!"
+        bodyLabel.text = "Thank you for your interest in this prototype!\nThis prototype shows the potential usage of 3D visualization capability in booking and reservation products.\nAs this is a prototype, the information showing is mock data which statically stores in the app. That means the information doesn’t obtain from or send back to the server, and many functionalities don’t fully work. (Particularly, the route picker and date picker in the first view.)\nTo start the prototype please tap on \"Start this Prototype\" button, and to exit the prototype in the middle of the flow, shake your device and the exiting prompt will show up.\nThis prototype is an open-source project, so feel free to visit project's GitHub repository to learn more or contribute. \"GitHub Repository\" button down there will direct you to the repository.\nIf you have any further question or feedback, please contact me by sending feedback via TestFlight feedback or direct message via Twitter @virakri.\nThank you,\nV Jinangkul"
+        
+        gitHubButton.setTitle("GitHub Repository")
         designSystemButton.setTitle("Explore Design System")
         startPrototypeButton.setTitle("Start the Prototype")
         
@@ -132,7 +163,7 @@ class PrototypeInitialViewController: ViewController {
         // MARK: Update Theme for views
         designSystemButton.setupTheme()
         startPrototypeButton.setupTheme()
-        colorThemeSegmentedControl.tintColor = UIColor.basic.white
+        colorThemeSegmentedControl.setupTheme()
         colorThemeSegmentedControlContainerView.backgroundColor = UIColor.accent().light
         colorThemeSegmentedControlContainerView.layer.cornerRadius = DesignSystem.radiusCorner.card()
         
@@ -142,7 +173,8 @@ class PrototypeInitialViewController: ViewController {
         
         // MARK: Set Text Styles for labels
         headlineLabel.textStyle = textStyle.largeTitle()
-        bodyLabel.textStyle = textStyle.body()
+        bodyLabel.textStyle = textStyle.body().with(newParagraphSpacing: (textStyle.body().font.pointSize +
+            (textStyle.body().lineSpacing ?? 0)) * 0.75)
         
         // MARK: Set Colors for labels
         headlineLabel.textColor = UIColor.basic.white
@@ -154,6 +186,7 @@ class PrototypeInitialViewController: ViewController {
         
         // MARK: Initialize state of user interfaces
         colorThemeSegmentedControl.selectedIndex = currentColorTheme == .light ? 0 : 1
+        colorThemeSegmentedControl.setFeedbackGeneratorEnabled()
         
         // MARK: Add targets to buttons
         designSystemButton.addTarget(self, action: #selector(designSystemButtonDidTouch(_:)), for: .touchUpInside)

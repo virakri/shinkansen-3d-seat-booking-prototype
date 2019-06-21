@@ -42,6 +42,8 @@ class InitialViewColorThemeItemControl: UIControl {
         }
     }
     
+    static let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     private var colorThemeType: ColorThemeType
     
     private var iconImageView: UIImageView
@@ -72,6 +74,12 @@ class InitialViewColorThemeItemControl: UIControl {
             
             let scaleFactor: CGFloat = isSelected ? 1 : 0.8
             
+            if isSelected != oldValue {
+                if isFeedbackGeneratorEnabled {
+                    SegmentedControl.feedbackGenerator.impactOccurred()
+                }
+            }
+            
             UIView.animate(withStyle: .normalAnimationStyle,
                            animations: {
                             self.iconImageView.alpha =
@@ -87,6 +95,8 @@ class InitialViewColorThemeItemControl: UIControl {
         }
     }
     
+    var isFeedbackGeneratorEnabled = false
+    
     init(colorThemeType: ColorThemeType) {
         self.colorThemeType = colorThemeType
         iconImageView = UIImageView(image: #imageLiteral(resourceName: "colorThemeModeIcon"))
@@ -94,6 +104,7 @@ class InitialViewColorThemeItemControl: UIControl {
         checkMarkIconImageView = UIImageView()
         super.init(frame: .zero)
         setupView()
+        setupTheme()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,6 +112,25 @@ class InitialViewColorThemeItemControl: UIControl {
     }
     
     private func setupView() {
+        setContentHuggingPriority(.required, for: .vertical)
+        iconImageView.setContentHuggingPriority(.required, for: .vertical)
+        
+        titleLabel.numberOfLines = 1
+        
+        checkMarkIconImageView.setContentHuggingPriority(.required, for: .vertical)
+        
+        let mainStackView = UIStackView([iconImageView,
+                                         titleLabel,
+                                         checkMarkIconImageView],
+                                        axis: .vertical,
+                                        distribution: .fill,
+                                        alignment: .center,
+                                        spacing: 8)
+        
+        addSubview(mainStackView, withConstaintEquals: .edges)
+    }
+    
+    public func setupTheme() {
         tintColor = UIColor.basic.white
         
         iconImageView.tintColor = colorThemeType.iconTintColor()
@@ -112,16 +142,6 @@ class InitialViewColorThemeItemControl: UIControl {
         titleLabel.text = colorThemeType.text()
         titleLabel.textStyle = textStyle.caption1()
         titleLabel.textColor = UIColor.basic.white
-        
-        let mainStackView = UIStackView([iconImageView,
-                                         titleLabel,
-                                         checkMarkIconImageView],
-                                        axis: .vertical,
-                                        distribution: .fill,
-                                        alignment: .center,
-                                        spacing: 8)
-        
-        addSubview(mainStackView, withConstaintEquals: .edges)
     }
 }
 
@@ -164,11 +184,21 @@ class InitialViewColorThemeSegmentedControl: UIControl {
     }
     
     private func setupView() {
+        setContentHuggingPriority(.required, for: .vertical)
         mainStackView = UIStackView(colorThemeItemControls,
                                     axis: .horizontal,
                                     spacing: 40)
+        mainStackView.setContentHuggingPriority(.required, for: .vertical)
         mainStackView.isUserInteractionEnabled = false
         addSubview(mainStackView, withConstaintEquals: .edges)
+    }
+    
+    public func setupTheme() {
+        colorThemeItemControls.forEach { $0.setupTheme() }
+    }
+    
+    public func setFeedbackGeneratorEnabled(_ isEnabled: Bool = true) {
+        colorThemeItemControls.forEach { $0.isFeedbackGeneratorEnabled = isEnabled }
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {

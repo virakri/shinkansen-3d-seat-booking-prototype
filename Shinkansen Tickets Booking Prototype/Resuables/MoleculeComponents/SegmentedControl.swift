@@ -10,18 +10,23 @@ import UIKit
 
 class SegmentedControl: UIControl {
     
-    var stackView: UIStackView
-    
     static let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
+    private var stackView: UIStackView
+    
+    private var isFeedbackGeneratorEnabled = false
     
     private var _selectedIndex: Int = 0
     
     var selectedIndex: Int {
         get {
             return _selectedIndex
-        }set{
+        }
+        set {
             if selectedIndex != newValue {
-                SegmentedControl.feedbackGenerator.impactOccurred()
+                if isFeedbackGeneratorEnabled {
+                    SegmentedControl.feedbackGenerator.impactOccurred()
+                }
                 _selectedIndex = newValue
                 sendActions(for: .valueChanged)
             }
@@ -34,6 +39,7 @@ class SegmentedControl: UIControl {
             setupItems()
             setSelectedIndexItemCardControl()
             setItemCardControlAnimated(true)
+            isFeedbackGeneratorEnabled = true
         }
     }
     
@@ -124,6 +130,7 @@ class SegmentedControl: UIControl {
             stackView.addArrangedSubview(itemCardControl)
         }
         setItemCardControlAnimated(false)
+        isFeedbackGeneratorEnabled = false
         
         // Make sure the item that is currently selected is enabled otherwise select the other first item that is enabled
         if !items[selectedIndex].isEnabled {

@@ -71,6 +71,13 @@ class SummaryPreviewView: UIView {
     private func setupView() {
         addSubview(sceneView, withConstaintEquals: .edges)
         
+        // TODO: Remove this when model is done
+        let alertLabel = Label()
+        alertLabel.text = "Work in Progress".uppercased()
+        alertLabel.textStyle = textStyle.caption1()
+        alertLabel.textColor = .red
+        addSubview(alertLabel, withConstaintEquals: .center)
+        
         // Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
         sceneView.antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
