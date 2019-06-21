@@ -808,7 +808,5 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
                         toView.backgroundColor = toView.backgroundColor?.withAlphaComponent(1)
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
-        
-        
     }
 }

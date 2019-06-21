@@ -31,8 +31,8 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="amV-GP-JdO" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="YbQ-Ac-BZc"/>
-                            <constraint firstItem="amV-GP-JdO" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" priority="750" id="Zn2-gB-bag"/>
-                            <constraint firstItem="amV-GP-JdO" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.5" priority="750" id="m0j-of-9tc"/>
+                            <constraint firstItem="amV-GP-JdO" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.333" priority="750" id="Zn2-gB-bag"/>
+                            <constraint firstItem="amV-GP-JdO" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.333" priority="750" id="m0j-of-9tc"/>
                             <constraint firstItem="amV-GP-JdO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="svi-vZ-ioN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
