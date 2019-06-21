@@ -29,8 +29,8 @@ final class NodeFactory {
     public var isLoaded = false {
         didSet {
             // When all models are loaded, This method will execute all completion block.
-            onFactoryLoadedCompletionBuffer.forEach { [unowned self] (callback) in
-                callback(self)
+            onFactoryLoadedCompletionBuffer.forEach { (callback) in
+                callback()
             }
         }
     }
@@ -39,11 +39,11 @@ final class NodeFactory {
     
     public var modelPrototypes: [String: SCNNode?] = [:]
     
-    private var onFactoryLoadedCompletionBuffer: [(NodeFactory) -> Void] = []
+    private var onFactoryLoadedCompletionBuffer: [() -> Void] = []
     
     /// Ge callback when all models are loaded
     /// - Parameter callback: Command to execute after models are loaded
-    public func onComplete(callback: @escaping (NodeFactory) -> Void) {
+    public func onComplete(callback: @escaping () -> Void) {
         onFactoryLoadedCompletionBuffer.append(callback)
     }
     

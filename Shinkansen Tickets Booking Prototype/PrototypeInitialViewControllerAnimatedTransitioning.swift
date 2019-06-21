@@ -25,7 +25,6 @@ class PrototypeInitialViewControllerAnimatedTransition: NSObject, UIViewControll
         guard let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) else { return }
         guard let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else { return }
         
-//        isPresenting ? container.addSubview(toView) : container.insertSubview(toView, belowSubview: fromView)
         container.addSubview(toView)
         
         toView.alpha = 0

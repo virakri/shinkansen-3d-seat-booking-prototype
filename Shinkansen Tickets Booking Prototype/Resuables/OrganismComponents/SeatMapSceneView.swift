@@ -98,6 +98,8 @@ class SeatMapSceneView: SCNView {
         }
     }
     
+    private var dimissHeadsUpBadgeControlTimer: Timer?
+    
     private var highlightedSeats = Set<ReservableNode>() {
         didSet {
             oldValue.subtracting(highlightedSeats).forEach { $0.isHighlighted = false }
@@ -107,8 +109,6 @@ class SeatMapSceneView: SCNView {
             }
         }
     }
-    
-    private var dimissHeadsUpBadgeControlTimer: Timer?
     
     private weak var selectedSeat: ReservableNode? {
         didSet {
@@ -145,7 +145,7 @@ class SeatMapSceneView: SCNView {
     
     var perspectiveVelocity: Float?
     
-    var contentZPositionLimit: ClosedRange<Float> = -2...25
+    var contentZPositionLimit: ClosedRange<Float> = 0...1
     
     // MARK: Initialzer & Setup
     
@@ -164,12 +164,12 @@ class SeatMapSceneView: SCNView {
     private func setupView() {
         backgroundColor = .clear
         
-        // Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
+        /// Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use `multisampling4X`
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
         
         
-        // Setup Loading Activity Indicator
+        /// Setup Loading Activity Indicator
         loadingActivityIndicatorView.backgroundColor = currentColorTheme.componentColor.cardBackground
         let indicatorView = UIActivityIndicatorView(style: .whiteLarge)
         indicatorView.color = currentColorTheme.componentColor.secondaryText
@@ -182,7 +182,7 @@ class SeatMapSceneView: SCNView {
         
         preservesSuperviewLayoutMargins = true
         
-        // Setup headsUpBadgeControl
+        /// Setup headsUpBadgeControl
         addSubview(headsUpBadgeControl,
                    withConstaintEquals: [.topMargin, .centerHorizontal])
         headsUpBadgeControl.isHidden = true
@@ -194,14 +194,13 @@ class SeatMapSceneView: SCNView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        // MARK: Add visual effect
+        /// Add visual effect
         superview?.addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
     }
     
-    /// Scene setup
+    // MARK: Scene setup
     private func setupScene() {
-        
-        
+    
         let hitTestFloorNode = HitTestFloorNode()
         
         let scene = SCNScene()
@@ -214,8 +213,6 @@ class SeatMapSceneView: SCNView {
         scene.rootNode.addChildNode(cameraNode)
         
         self.scene = scene
-        
-        
     }
     
     private func placeStaticNodes(using transformedModelEntities: [TransformedModelEntity],
@@ -365,14 +362,13 @@ class SeatMapSceneView: SCNView {
     private func setupGlobalStaticContent(seatMap: SeatMap) {
         
         if let factory = NodeFactory.shared {
+            let onComplete: () -> Void = { [weak self] in
+                self?.placeStaticNodes(using: seatMap.transformedModelEntities)
+            }
             if factory.isLoaded {
-                DispatchQueue.global(qos: .background).async { [weak self] in
-                    self?.placeStaticNodes(using: seatMap.transformedModelEntities)
-                }
+                DispatchQueue.global(qos: .background).async(execute: onComplete)
             }else{
-                factory.onComplete { [weak self] _ in
-                    self?.placeStaticNodes(using: seatMap.transformedModelEntities)
-                }
+                factory.onComplete(callback: onComplete)
             }
         }else{
             fatalError("NodeFactory is not defined before used")
@@ -383,16 +379,14 @@ class SeatMapSceneView: SCNView {
                                        isCurrentEntity: Bool = true) {
         
         if let factory = NodeFactory.shared {
+            let onComplete: () -> Void = { [weak self] in
+                self?.placeSeatClassNodes(seatClassEntity: seatClassEntity,
+                                          isCurrentEntity: isCurrentEntity)
+            }
             if factory.isLoaded {
-                DispatchQueue.global(qos: .background).async { [weak self] in
-                    self?.placeSeatClassNodes(seatClassEntity: seatClassEntity,
-                                              isCurrentEntity: isCurrentEntity)
-                }
+                DispatchQueue.global(qos: .background).async(execute: onComplete)
             }else{
-                factory.onComplete { [weak self] _ in
-                    self?.placeSeatClassNodes(seatClassEntity: seatClassEntity,
-                                              isCurrentEntity: isCurrentEntity)
-                }
+                factory.onComplete(callback: onComplete)
             }
         }else{
             fatalError("NodeFactory is not defined before used")
@@ -453,13 +447,12 @@ class SeatMapSceneView: SCNView {
         let location = sender.location(in: self)
         
         switch sender.state {
+            
         case .began:
             hitTestPositionWhenTouchBegan = positionOfFloorHitTest(location)
             contentNodePositionWhenTouchBegan = contentNode.position
             
         case .changed:
-            // Temporary
-            
             let hitTestPositionWhereCurrentTouch = positionOfFloorHitTest(location)
             
             if let hitTestPositionWhereTouchBegan = hitTestPositionWhenTouchBegan,
@@ -469,8 +462,8 @@ class SeatMapSceneView: SCNView {
                 let zPosition = zPositionClamp(hitTestPositionWhereCurrentTouch.z - hitTestPositionWhereTouchBegan.z + contentNodePositionWhereTouchBegan.z)
                 self.currectContentNodePosition?.z = zPosition
             }
-        case .ended:
             
+        case .ended:
             var currentTime: CGFloat = 0
             var currentVelocity = CGPoint(x: 0, y: CGFloat(perspectiveVelocity ?? 0))
             
@@ -483,7 +476,6 @@ class SeatMapSceneView: SCNView {
                             .step(timeElapsed: CFTimeInterval(elapsedTime - currentTime),
                                   velocity: currentVelocity)
                         
-                        //                        let xDisplacment = newStep.displacement.x
                         let yDisplacment = newStep.displacement.y
                         
                         let newZPosition = self.contentNode.position.z + Float(yDisplacment)
