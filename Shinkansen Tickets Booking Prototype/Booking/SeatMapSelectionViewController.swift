@@ -26,8 +26,6 @@ class SeatMapSelectionViewController: BookingViewController {
         }
     }
     
-//    var seatClassEntities: [SeatClassEntity] = []
-    
     var seatClassEntity: SeatClassEntity?
     
     private var isTransitionPerforming: Bool = true

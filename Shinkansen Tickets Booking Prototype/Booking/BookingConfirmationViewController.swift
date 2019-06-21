@@ -18,8 +18,6 @@ class BookingConfirmationViewController: BookingViewController {
     
     var selectedReservableEntity: ReservableEntity?
     
-//    var dateLabel: Label!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStaticContent()
