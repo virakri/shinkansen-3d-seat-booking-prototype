@@ -121,7 +121,7 @@ class Button: UIButton {
         }
     }
     
-    fileprivate var currentState: State {
+    var currentState: State {
         didSet {
             updateAppearance()
         }
@@ -155,7 +155,7 @@ class Button: UIButton {
         }
     }
     
-    private func updateAppearance(animated: Bool = true) {
+     public func updateAppearance(animated: Bool = true) {
         
         var layerStyle = type.layerStyle(by: currentState)
         

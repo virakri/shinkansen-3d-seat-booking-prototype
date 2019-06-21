@@ -88,7 +88,6 @@ class SummaryPreviewView: UIView {
     }
     
     private func setupCamera() {
-        
         cameraControlNode = SCNNode()
         cameraControlNode.position.y = 0.75
         
@@ -102,7 +101,6 @@ class SummaryPreviewView: UIView {
         cameraNode.look(at: .zero)
         
         cameraControlNode.addChildNode(cameraNode)
-        
         scene.rootNode.addChildNode(cameraControlNode)
     }
     

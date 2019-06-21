@@ -659,8 +659,12 @@ class DesignSystemViewController: ViewController {
         view.addSubview(stackView, withConstaintEquals: .edges)
         
         let closeButton = ImageButton(image: #imageLiteral(resourceName: "symbol-close-button"))
-        view.addSubview(closeButton, withConstaintEquals: [.trailingMargin, .topSafeArea])
-        closeButton.addTarget(self, action: #selector(closeButtonDidtouch(_:)), for: .touchUpInside)
+        view.addSubview(closeButton,
+                        withConstaintEquals: [.trailingMargin, .topSafeArea])
+        closeButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        closeButton.addTarget(self,
+                              action: #selector(closeButtonDidtouch(_:)), for: .touchUpInside)
     }
     
     @objc func stateSegmentedControlValueChanged(_ sender: UISegmentedControl) {

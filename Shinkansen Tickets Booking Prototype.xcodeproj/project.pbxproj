@@ -65,6 +65,8 @@
 		D0B8D61722BB140A00F9A425 /* SummaryPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B8D61622BB140A00F9A425 /* SummaryPreviewView.swift */; };
 		D0C26E3722A0B7A0001D3065 /* StationPairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3622A0B7A0001D3065 /* StationPairView.swift */; };
 		D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C26E3822A13940001D3065 /* DescriptionSetView.swift */; };
+		D0CCB06E22BC33BB00C7AED3 /* InitialViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB06D22BC33BB00C7AED3 /* InitialViewButton.swift */; };
+		D0CCB07022BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB06F22BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift */; };
 		D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */; };
 		D0EAF1BC228B7FB900F3D4F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */; };
 		D0EAF1BF228B7FB900F3D4F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */; };
@@ -153,6 +155,8 @@
 		D0B8D61622BB140A00F9A425 /* SummaryPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPreviewView.swift; sourceTree = "<group>"; };
 		D0C26E3622A0B7A0001D3065 /* StationPairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationPairView.swift; sourceTree = "<group>"; };
 		D0C26E3822A13940001D3065 /* DescriptionSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSetView.swift; sourceTree = "<group>"; };
+		D0CCB06D22BC33BB00C7AED3 /* InitialViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewButton.swift; sourceTree = "<group>"; };
+		D0CCB06F22BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewColorThemeSegmentedControl.swift; sourceTree = "<group>"; };
 		D0EAF1B1228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shinkansen Tickets Booking Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 			children = (
 				D053EBDE229D52BB007CCFFE /* Label.swift */,
 				D004698F229F559C0028A9D7 /* Button.swift */,
+				D0CCB06D22BC33BB00C7AED3 /* InitialViewButton.swift */,
+				D0CCB06F22BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift */,
 				D01B2EB722A2D8B000C3FAF3 /* ImageButton.swift */,
 				D0046995229FCB550028A9D7 /* CardControl.swift */,
 				D05C760122AF20B900AC1461 /* SegmentedControl.swift */,
@@ -519,6 +525,7 @@
 				9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */,
 				E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */,
 				D0046996229FCB550028A9D7 /* CardControl.swift in Sources */,
+				D0CCB06E22BC33BB00C7AED3 /* InitialViewButton.swift in Sources */,
 				901F107B22B563CF00FB03D8 /* TiltNodeMotionEffect.swift in Sources */,
 				D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */,
 				9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */,
@@ -584,6 +591,7 @@
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
 				D016655422AABD4600BFD6DB /* CameraNode.swift in Sources */,
 				D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */,
+				D0CCB07022BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift in Sources */,
 				D0B8D61522BB048300F9A425 /* HeadsUpBadgeControl.swift in Sources */,
 				E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */,
 				D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */,
