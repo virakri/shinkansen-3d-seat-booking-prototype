@@ -114,12 +114,8 @@ class SeatClassSelectionViewController: BookingViewController {
                 NodeFactory.shared =
                     NodeFactory(modelData: modelData)
         }else{
-            NodeFactory.shared =
-                NodeFactory(url:
-                    URL(string: "https://v-eyes-tracking-prototype.firebaseio.com/data.json")!)
+            fatalError("Please check ModelData.json from Assets.xcassets")
         }
-        
-        
     }
 
     func setupStaticContent() {
