@@ -128,6 +128,9 @@ class InitialViewColorThemeItemControl: UIControl {
                                         spacing: 8)
         
         addSubview(mainStackView, withConstaintEquals: .edges)
+        
+        /// Hide icon when it's in smallest devices.
+        iconImageView.isHidden = DesignSystem.isNarrowScreen
     }
     
     public func setupTheme() {

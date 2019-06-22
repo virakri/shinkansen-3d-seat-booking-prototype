@@ -11,6 +11,8 @@ import SafariServices
 
 class PrototypeInitialViewController: ViewController {
     
+    var textScrollView: UIScrollView!
+    
     var textStackView: UIStackView!
     
     var callToActionStackView: UIStackView!
@@ -83,6 +85,8 @@ class PrototypeInitialViewController: ViewController {
         bodyLabel.numberOfLines = 0
         
         // MARK: Setup Scroll View
+        textStackView.widthAnchor.constraint(lessThanOrEqualToConstant: DesignSystem.layout.maximumWidth).isActive = true
+        
         let textStackViewContainerView = UIView(containingView: textStackView,
                                                 withConstaintEquals: [.topSafeArea,
                                                                       .leadingMargin,
@@ -91,7 +95,7 @@ class PrototypeInitialViewController: ViewController {
                                                 insetsConstant: .init(top: 24))
         textStackViewContainerView.preservesSuperviewLayoutMargins = true
 
-        let textScrollView = UIScrollView()
+        textScrollView = UIScrollView()
         textScrollView.addSubview(textStackViewContainerView,
                                   withConstaintEquals: [.edges])
         textScrollView
@@ -105,20 +109,19 @@ class PrototypeInitialViewController: ViewController {
         
         // MARK: Setup stackViews and scrollView in view
         view.addSubview(textScrollView,
-                        withConstaintEquals: [.topSafeArea])
+                        withConstaintEquals: [.topSafeArea, .centerHorizontal])
         
         view.addConstraints(toView: textScrollView,
                             withConstaintGreaterThanOrEquals: [.leading, .trailing])
-
-        let textScrollViewWidthConstraint = textScrollView.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
-        textScrollViewWidthConstraint.priority = .defaultHigh
-        textScrollViewWidthConstraint.isActive = true
         
+        // MARK: Setup CallToActionStackView in View
         view.addSubview(callToActionStackView,
                         withConstaintEquals: [.centerHorizontal])
         
         view.addConstraints(toView: callToActionStackView,
-                            withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+                            withConstaintGreaterThanOrEquals: [
+                                .leadingMargin,
+                                .trailingMargin])
         
         let callToActionStackViewWidthConstraint =
             callToActionStackView
@@ -153,7 +156,7 @@ Thank you for your interest in this prototype!
 This prototype shows the potential usage of 3D visualization capability in booking and reservation products.
 As this is a prototype, the information showing is mock data which statically stores in the app. That means the information doesn’t obtain from or send back to the server, and many functionalities don’t fully work. (Particularly, the route picker and date picker in the first view.)
 To start the prototype please tap on "Start this Prototype" button, and to exit the prototype in the middle of the flow, shake your device and the exiting prompt will show up.\nThis prototype is an open-source project, so feel free to visit project's GitHub repository to learn more or contribute. "GitHub Repository" button down there will direct you to the repository.
-If you have any further question or feedback, please contact me by sending feedback via TestFlight feedback or direct message via Twitter [@virakri](https://www.twitter.com/virakri).
+If you have any further question or feedback, please contact me by sending feedback via TestFlight feedback or direct message via Twitter @virakri.
 Thank you,
 V Jinangkul
 """
