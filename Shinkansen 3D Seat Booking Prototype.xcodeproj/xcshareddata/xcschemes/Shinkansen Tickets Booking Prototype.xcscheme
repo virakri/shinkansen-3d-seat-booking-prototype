@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1100"
-   version = "1.7">
+   version = "1.8">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D0EAF1B0228B7FB700F3D4F6"
-               BuildableName = "Shinkansen Tickets Booking Prototype.app"
-               BlueprintName = "Shinkansen Tickets Booking Prototype"
-               ReferencedContainer = "container:Shinkansen Tickets Booking Prototype.xcodeproj">
+               BuildableName = "Shinkansen 3D Seat Booking Prototype.app"
+               BlueprintName = "Shinkansen 3D Seat Booking Prototype"
+               ReferencedContainer = "container:Shinkansen 3D Seat Booking Prototype.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,6 +27,10 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+      </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <TestPlans>
       </TestPlans>
    </TestAction>
@@ -45,11 +49,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D0EAF1B0228B7FB700F3D4F6"
-            BuildableName = "Shinkansen Tickets Booking Prototype.app"
-            BlueprintName = "Shinkansen Tickets Booking Prototype"
-            ReferencedContainer = "container:Shinkansen Tickets Booking Prototype.xcodeproj">
+            BuildableName = "Shinkansen 3D Seat Booking Prototype.app"
+            BlueprintName = "Shinkansen 3D Seat Booking Prototype"
+            ReferencedContainer = "container:Shinkansen 3D Seat Booking Prototype.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -62,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D0EAF1B0228B7FB700F3D4F6"
-            BuildableName = "Shinkansen Tickets Booking Prototype.app"
-            BlueprintName = "Shinkansen Tickets Booking Prototype"
-            ReferencedContainer = "container:Shinkansen Tickets Booking Prototype.xcodeproj">
+            BuildableName = "Shinkansen 3D Seat Booking Prototype.app"
+            BlueprintName = "Shinkansen 3D Seat Booking Prototype"
+            ReferencedContainer = "container:Shinkansen 3D Seat Booking Prototype.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
