@@ -11,7 +11,8 @@ import Kumi
 
 class PrototypeInitialViewControllerAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
-    lazy var animationStyle: UIViewAnimationStyle = UIViewAnimationStyle.transitionAnimationStyle
+    lazy var animationStyle: UIViewAnimationStyle = UIViewAnimationStyle
+        .transitionAnimationStyle
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return animationStyle.duration

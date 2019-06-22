@@ -81,8 +81,12 @@ class SeatClassSelectionViewController: BookingViewController {
             .isActive = true
         
         trainImageView.widthAnchor.constraint(equalTo: trainImageView.heightAnchor, multiplier: 6).isActive = true
-        trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .vertical)
-        trainImageView.setContentCompressionResistancePriority(.init(rawValue: 249), for: .horizontal)
+        trainImageView
+            .setContentCompressionResistancePriority(
+                .init(rawValue: 249), for: .vertical)
+        trainImageView
+            .setContentCompressionResistancePriority(
+                .init(rawValue: 249), for: .horizontal)
         
     }
     
