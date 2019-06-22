@@ -334,7 +334,7 @@
 		D0EAF1A8228B7FB700F3D4F6 = {
 			isa = PBXGroup;
 			children = (
-				D0EAF1B3228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype */,
+				D0EAF1B3228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype */,
 				D0EAF1B2228B7FB700F3D4F6 /* Products */,
 				865DF0FC68928DF1C21699FF /* Pods */,
 				D42F2C7267605DFEF7363CBA /* Frameworks */,
@@ -349,7 +349,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D0EAF1B3228B7FB700F3D4F6 /* Shinkansen Tickets Booking Prototype */ = {
+		D0EAF1B3228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype */ = {
 			isa = PBXGroup;
 			children = (
 				D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */,
@@ -364,7 +364,7 @@
 				D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */,
 				D0EAF1C0228B7FB900F3D4F6 /* Info.plist */,
 			);
-			path = "Shinkansen Tickets Booking Prototype";
+			path = "Shinkansen 3D Seat Booking Prototype";
 			sourceTree = "<group>";
 		};
 		D42F2C7267605DFEF7363CBA /* Frameworks */ = {
