@@ -30,10 +30,22 @@ class NavigationController: UINavigationController {
         setNavigationBarHidden(true, animated: false)
     }
     
-    private func displayAlertToDismiss() {
-        let alert = UIAlertController(title: "You're about to exit the Prototype.",
-                                      message: "Are you sure you want to proceed this action?",
-                                      preferredStyle: .actionSheet)
+    public func displayAlertToDismiss(isEndOfPrototype: Bool = false) {
+        
+        let title, message: String
+        if isEndOfPrototype {
+            title = "You're about to exit the Prototype."
+            message = "Are you sure you want to proceed this action?"
+        }else{
+            title = "This is the end of this prototype."
+            message = "Are you sure you want to exit the prototype?"
+        }
+        
+        let isIPhone = UIDevice.current.userInterfaceIdiom == .phone
+        
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: isIPhone ? .actionSheet : .alert)
         alert.addAction(UIAlertAction(title: "Exit",
                                       style: .destructive,
                                       handler: { _ in

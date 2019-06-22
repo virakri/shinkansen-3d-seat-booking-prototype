@@ -93,28 +93,9 @@ class BookingConfirmationViewController: BookingViewController {
         mainCallToActionButton.setTitle("Purchase this Ticket—\(headerInformation?.price ?? "")")
     }
     
-    private func displayAlertToDismiss() {
-        let alert = UIAlertController(title: "This is the end of this prototype.",
-                                      message: "Are you sure you want to exit the prototype?",
-                                      preferredStyle: .actionSheet)
-        alert
-            .addAction(UIAlertAction(title: "Exit",
-                                     style: .destructive,
-                                     handler: { [weak self] _ in
-                                        self?.dismiss(animated: true, completion: {
-                                            NodeFactory.shared = nil
-                                        })
-            }))
-        alert
-            .addAction(UIAlertAction(title: "Cancel",
-                                      style: .cancel,
-                                      handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
-        displayAlertToDismiss()
-        
+        guard let navigationController = navigationController as? NavigationController else { return }
+        navigationController.displayAlertToDismiss(isEndOfPrototype: true)
     }
     
     @objc func backButtonDidTouch(_ sender: Button) {
