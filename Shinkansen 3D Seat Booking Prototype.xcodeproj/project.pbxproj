@@ -19,6 +19,7 @@
 		90D7776422B3E88300170E24 /* RedBoxNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776322B3E88300170E24 /* RedBoxNode.swift */; };
 		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
 		90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED74E522ADA28C007D8DDF /* NodeFactory.swift */; };
+		BF2D4F6E5C8DAF84DD0769F9 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF203C4B4923FA6BFE24C2C5 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework */; };
 		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
 		D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046991229F58BB0028A9D7 /* AnimationStyle.swift */; };
 		D0046994229F58CC0028A9D7 /* DesignValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046993229F58CC0028A9D7 /* DesignValues.swift */; };
@@ -91,12 +92,12 @@
 		E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */; };
 		E0CF325422AAEF3F00BC4788 /* TrainCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */; };
 		E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325522AAF10800BC4788 /* TrainSchedule.swift */; };
-		F3B92A8562906132AD800542 /* Pods_Shinkansen_Tickets_Booking_Prototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_Tickets_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C23C2EB9887018AA47CBBE0 /* Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
 		67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
+		680A1D758CA89B7EBB17C2CA /* Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
 		9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitAnimator.swift; sourceTree = "<group>"; };
 		901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltNodeMotionEffect.swift; sourceTree = "<group>"; };
 		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		90ED74E522ADA28C007D8DDF /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
 		9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
+		AF203C4B4923FA6BFE24C2C5 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_3D_Seat_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D004698F229F559C0028A9D7 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		D0046991229F58BB0028A9D7 /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		D0046993229F58CC0028A9D7 /* DesignValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignValues.swift; sourceTree = "<group>"; };
@@ -191,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3B92A8562906132AD800542 /* Pods_Shinkansen_Tickets_Booking_Prototype.framework in Frameworks */,
+				BF2D4F6E5C8DAF84DD0769F9 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +205,8 @@
 			children = (
 				9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */,
 				67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */,
+				4C23C2EB9887018AA47CBBE0 /* Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig */,
+				680A1D758CA89B7EBB17C2CA /* Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -370,7 +374,7 @@
 		D42F2C7267605DFEF7363CBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2CB8B26EE9F673BC8E92E76F /* Pods_Shinkansen_Tickets_Booking_Prototype.framework */,
+				AF203C4B4923FA6BFE24C2C5 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -489,7 +493,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Shinkansen Tickets Booking Prototype-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Shinkansen 3D Seat Booking Prototype-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -502,15 +506,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -736,7 +740,7 @@
 		};
 		D0EAF1C4228B7FB900F3D4F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */;
+			baseConfigurationReference = 4C23C2EB9887018AA47CBBE0 /* Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -758,7 +762,7 @@
 		};
 		D0EAF1C5228B7FB900F3D4F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */;
+			baseConfigurationReference = 680A1D758CA89B7EBB17C2CA /* Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Shinkansen Tickets Booking Prototype
+//  Shinkansen 3D Seat Booking Prototype
 //
 //  Created by Virakri Jinangkul on 5/14/19.
 //  Copyright © 2019 Virakri Jinangkul. All rights reserved.
@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Interfaces Initializer
         window = UIWindow(frame: UIScreen.main.bounds)
         let prototypeInitialViewController = PrototypeInitialViewController()
-//        let prototypeInitialViewController = SeatMapSelectionViewController()
         window?.rootViewController = prototypeInitialViewController
         window?.makeKeyAndVisible()
         

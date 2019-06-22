@@ -1,6 +1,6 @@
 //
 //  Numuric.swift
-//  Shinkansen Tickets Booking Prototype
+//  Shinkansen 3D Seat Booking Prototype
 //
 //  Created by Nattawut Singhchai on 9/6/2562 BE.
 //  Copyright © 2562 Virakri Jinangkul. All rights reserved.
