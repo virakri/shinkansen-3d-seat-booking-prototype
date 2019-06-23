@@ -21,6 +21,7 @@ class DesignSystemView: UIView {
     
     var title: String
     var designSystemBlockViews: [DesignSystemBlockView]
+    var contentView: UIView?
     var accessoryView: UIView?
     
     init(title: String, designSystemBlockViews: [DesignSystemBlockView], accessoryView: UIView? = nil) {
@@ -29,6 +30,15 @@ class DesignSystemView: UIView {
         self.accessoryView = accessoryView
         super.init(frame: .zero)
         setupView()
+    }
+    
+    init(title: String, contentView: UIView, accessoryView: UIView? = nil) {
+        self.title = title
+        self.contentView = contentView
+        self.designSystemBlockViews = []
+        self.accessoryView = accessoryView
+        super.init(frame: .zero)
+        setupStaticView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -78,6 +88,59 @@ class DesignSystemView: UIView {
         //
         let stackView =
             UIStackView([labelContainerView, scrollView, _accessoryView],
+                        axis: .vertical,
+                        spacing: 8)
+        
+        stackView.preservesSuperviewLayoutMargins = true
+        
+        
+        addSubview(stackView, withConstaintEquals: .edges)
+        
+        preservesSuperviewLayoutMargins = true
+    }
+    
+    func setupStaticView() {
+        
+        guard let contentView = contentView else { return }
+        
+        var _accessoryView = UIView()
+        _accessoryView = accessoryView ?? _accessoryView
+        _accessoryView.isHidden = accessoryView == nil
+        
+        //
+        let labelContainerView = UIView()
+        labelContainerView.preservesSuperviewLayoutMargins = true
+        labelContainerView.addSubview({
+            let headlineLabel = Label()
+            headlineLabel.text = title
+            headlineLabel.textColor = currentColorTheme.componentColor.primaryText
+            headlineLabel.font = .systemFont(ofSize: 36, weight: .heavy)
+            return headlineLabel
+        }(), withConstaintEquals: [.topSafeArea, .leadingMargin, .trailingMargin, .bottom],
+             insetsConstant: .init(top: 16, leading: 0, bottom: 0, trailing: 0))
+
+//        scrollView.addSubview({
+//            let containerView = UIView()
+//            containerView.addSubview({
+//                let stackView =
+//                    UIStackView(designSystemBlockViews,
+//                                axis: .vertical,
+//                                distribution: .fill,
+//                                alignment: .fill,
+//                                spacing: 16)
+//                stackView.preservesSuperviewLayoutMargins = true
+//                return stackView
+//            }(), withConstaintEquals: .edges)
+//            containerView.preservesSuperviewLayoutMargins = true
+//            return containerView
+//        }(), withConstaintEquals: .edges,
+//             insetsConstant: .init(top: 0, leading: , bottom: 24, trailing: 0))
+//        scrollView.widthAnchor.constraint(equalTo: scrollView.subviews.first!.widthAnchor).isActive = true
+        contentView.preservesSuperviewLayoutMargins = true
+        
+        //
+        let stackView =
+            UIStackView([labelContainerView, contentView, _accessoryView],
                         axis: .vertical,
                         spacing: 8)
         

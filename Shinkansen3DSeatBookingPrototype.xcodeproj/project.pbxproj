@@ -89,6 +89,7 @@
 		D0F90B8522BFE58F00839891 /* DesignSystemTextStylesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8422BFE58F00839891 /* DesignSystemTextStylesView.swift */; };
 		D0F90B8722BFE65100839891 /* DesignSystemColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8622BFE65100839891 /* DesignSystemColorsView.swift */; };
 		D0F90B8922BFE6BA00839891 /* DesignSystemLayerStylesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8822BFE6BA00839891 /* DesignSystemLayerStylesView.swift */; };
+		D0F90B8B22BFF45100839891 /* DesignSystemModel3DContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8A22BFF45100839891 /* DesignSystemModel3DContentView.swift */; };
 		D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9E35B22A87C57003B339D /* BackButtonControl.swift */; };
 		E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04BCCF522AAA626002E29DE /* SeatMap.swift */; };
 		E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA439422AC4A0F00FC3A72 /* Formatter.swift */; };
@@ -192,6 +193,7 @@
 		D0F90B8422BFE58F00839891 /* DesignSystemTextStylesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemTextStylesView.swift; sourceTree = "<group>"; };
 		D0F90B8622BFE65100839891 /* DesignSystemColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemColorsView.swift; sourceTree = "<group>"; };
 		D0F90B8822BFE6BA00839891 /* DesignSystemLayerStylesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemLayerStylesView.swift; sourceTree = "<group>"; };
+		D0F90B8A22BFF45100839891 /* DesignSystemModel3DContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemModel3DContentView.swift; sourceTree = "<group>"; };
 		D0F9E35B22A87C57003B339D /* BackButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonControl.swift; sourceTree = "<group>"; };
 		D289ECAA41348DC5303019F2 /* Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen3DSeatBookingPrototype/Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig"; sourceTree = "<group>"; };
 		E04BCCF522AAA626002E29DE /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				D0F90B8422BFE58F00839891 /* DesignSystemTextStylesView.swift */,
 				D0F90B8622BFE65100839891 /* DesignSystemColorsView.swift */,
 				D0F90B8822BFE6BA00839891 /* DesignSystemLayerStylesView.swift */,
+				D0F90B8A22BFF45100839891 /* DesignSystemModel3DContentView.swift */,
 			);
 			path = DesignSystemPreviewer;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0F90B8B22BFF45100839891 /* DesignSystemModel3DContentView.swift in Sources */,
 				D0EAF4B222A442DD002A9282 /* StationCardControl.swift in Sources */,
 				E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */,
 				D02710EC22BA809600D9FF4D /* TextNode.swift in Sources */,

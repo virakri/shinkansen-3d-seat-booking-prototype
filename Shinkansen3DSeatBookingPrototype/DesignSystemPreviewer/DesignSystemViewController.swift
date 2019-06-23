@@ -15,7 +15,7 @@ class DesignSystemViewController: ViewController {
     var textStylesView: DesignSystemView!
     var colorsView: DesignSystemView!
     var layerStylesView: DesignSystemView!
-    var modelContentView: DesignSystemView!
+    var model3DContentView: DesignSystemView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class DesignSystemViewController: ViewController {
         
         layerStylesView = DesignSystemLayerStylesView()
         
-        modelContentView = DesignSystemView(title: "3D Content", designSystemBlockViews: [])
+        model3DContentView = DesignSystemModel3DContentView()
         
         // MARK: Layout Views
         let contentView = UIView()
@@ -40,14 +40,14 @@ class DesignSystemViewController: ViewController {
         contentView.addSubview(colorsView, withConstaintEquals: .edges)
         contentView.addSubview(textStylesView, withConstaintEquals: .edges)
         contentView.addSubview(layerStylesView, withConstaintEquals: .edges)
-        contentView.addSubview(modelContentView, withConstaintEquals: .edges)
+        contentView.addSubview(model3DContentView, withConstaintEquals: .edges)
         contentView.preservesSuperviewLayoutMargins = true
         
         let tabBarControl = DesignSystemTabBarControl(items: [componentsView,
                                                               colorsView,
                                                               textStylesView,
                                                               layerStylesView,
-                                                              modelContentView])
+                                                              model3DContentView])
         tabBarControl.selectedIndex = 0
         tabBarControl.translatesAutoresizingMaskIntoConstraints = false
         tabBarControl.heightAnchor.constraint(equalToConstant: 48).isActive = true

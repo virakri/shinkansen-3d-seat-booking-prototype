@@ -118,7 +118,7 @@ class SeatClassSelectionViewController: BookingViewController {
                 NodeFactory.shared =
                     NodeFactory(modelData: modelData)
         }else{
-            fatalError("Please check ModelData.json from Assets.xcassets")
+            fatalError("There is some errors of trying to phrase JSON, so please check ModelData.json in Assets.xcassets")
         }
     }
 

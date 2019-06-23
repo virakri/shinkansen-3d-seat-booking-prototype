@@ -246,7 +246,6 @@ class SeatMapSceneView: SCNView {
     private let currentEntityQueue = DispatchQueue(label: "Current Entity Placing Queue", qos: .utility)
     private let otherEntityQueue = DispatchQueue(label: "Placing Object Queue", qos: .background)
     
-    
     /// Place seat to content node (expensive process)
     /// - Parameter factory: NodeFactory object
     /// - Parameter seatClassEntity: Seat class data
