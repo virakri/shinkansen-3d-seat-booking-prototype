@@ -35,7 +35,7 @@ Besides the 3D seat map, this example app also includes some several interesting
 
 When talking about 3D in mobile apps, many people are thinking about 3D games right away, but this feature in this prototype will completely change that notion. The feature includes real-time 3D rendering of the high-speed train cabin which allows users to understand the look of the real space and more easily make decision on what and where the seat they want to pick. 
 
-In this feature, we use SceneKit which is one of the built-in framework made by Apple as a 3D framework, and it allows the other part of the apps to have a native behavior as well.
+In this feature, SceneKit which is one of the iOS-native framework made by Apple has been used as a 3D framework, and it allows the other parts of the app to remain having a native behavior.
 
 ![3D Seat Map Image](Documentation/feature-3d-seat-map-image.gif)
 
@@ -80,19 +80,19 @@ You can install this Shinkansen 3D seat booking prototype app on-the-fly via [Te
 
 ## Build Process
 
-By following the steps, you need to have [Xcode 10.2+](https://apps.apple.com/us/app/xcode/id497799835) and [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) already installed, and of course, a Mac is required if you wish to develop for iOS.
+By following the steps, you should already have [Xcode 10.2+](https://apps.apple.com/us/app/xcode/id497799835) and [CocoaPods](https://guides.cocoapods.org/using/getting-started.html) installed, and of course, a Mac is required if you wish to develop for iOS.
 
-1. You have options to download the repository directly or clone the repository via Git method.
-2. After you have the project store locally in your machine, install framework dependencies by running `pod install` command in the repository directory.
-3. Then open *Shinkansen 3D Seat Booking Prototype.xcworkspace* file.
-4. After *Shinkansen 3D Seat Booking Prototype.xcworkspace* has been opened, you can run the project either in the simulator or physical devices (you need to have change Apple Developer Certificate to be yours before have it run on the devices)
+1. You have options to either directly download the repository or clone the repository via Git method.
+2. After you have the project stored locally in your machine, install framework dependencies by running `pod install` command in Terminal under the repository directory.
+3. After that, then open *Shinkansen 3D Seat Booking Prototype.xcworkspace* file.
+4. So now you can run the project either in the simulator or physical devices (you need to have change Apple Developer Certificate to be yours before have it run on the devices)
 5. Enjoy, be creative, and maybe contribute to the project!
 
 ![Build Process Image](Documentation/build-process-image.png)
 
 ## External libraries
 
-This project only use a few external libraries, it mostly uses the standard iOS frameworks.
+This project mostly uses the standard iOS frameworks. Anyway, a few external libraries have been used in this project, and here are those libraries.
 
 ### Kumi-iOS
 <img align="right" width="120" height="120" src="Documentation/kumi-ios-icon-image.png?raw=true">
