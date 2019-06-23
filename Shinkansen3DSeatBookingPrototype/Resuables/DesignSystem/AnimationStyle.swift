@@ -26,7 +26,9 @@ extension UIViewAnimationStyle {
     
     static let transitionAnimationStyle = UIViewAnimationStyle(duration: 0.6, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
     
-    static let halfTransitionAnimationStyle = UIViewAnimationStyle(duration: 0.35, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
+    static let halfTransitionAnimationStyle = UIViewAnimationStyle(duration: 0.3, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
+    
+    static let quarterTransitionAnimationStyle = UIViewAnimationStyle(duration: 0.15, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
     
     static let fastTransitionAnimationStyle = UIViewAnimationStyle(duration: 0.125, delay: 0, dampingRatio: 1, velocity: 0, options: .allowUserInteraction)
 }

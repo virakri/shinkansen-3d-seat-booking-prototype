@@ -11,11 +11,9 @@ import Kumi
 
 class PrototypeInitialViewControllerAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
-    lazy var animationStyle: UIViewAnimationStyle = UIViewAnimationStyle
-        .transitionAnimationStyle
-    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return animationStyle.duration
+        let duration = UIViewAnimationStyle.transitionAnimationStyle.duration + UIViewAnimationStyle.quarterTransitionAnimationStyle.duration
+        return duration
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -23,21 +21,27 @@ class PrototypeInitialViewControllerAnimatedTransition: NSObject, UIViewControll
         let container = transitionContext.containerView
         container.backgroundColor = UIColor.basic.white
         
-        guard let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from) else { return }
-        guard let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else { return }
+        guard let fromView = transitionContext
+            .view(forKey: UITransitionContextViewKey.from) else { return }
+        guard let toView = transitionContext
+            .view(forKey: UITransitionContextViewKey.to) else { return }
         
         container.addSubview(toView)
         
         toView.alpha = 0
         
-        UIView.animate(withStyle: .halfTransitionAnimationStyle, animations: {
-            fromView.alpha = 0
-        }, completion: {
+        UIView.animate(withStyle: .quarterTransitionAnimationStyle,
+                       animations: {
+                        fromView.alpha = 0
+        },
+                       completion: {
             _ in
-            UIView.animate(withStyle: .halfTransitionAnimationStyle, animations: {
-                toView.alpha = 1
-            }, completion: {
-                _ in transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            UIView.animate(withStyle: .transitionAnimationStyle,
+                           animations: {
+                            toView.alpha = 1
+            },
+                           completion: {
+                _ in transitionContext.completeTransition(true)
             })
         })
     }
