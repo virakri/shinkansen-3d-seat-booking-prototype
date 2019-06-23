@@ -491,15 +491,10 @@ class SeatMapSceneView: SCNView {
             contentNode.runAction(driftAction,
                                   forKey: "panDrift",
                                   completionHandler:{ [weak self] in
-                                    guard let self = self else { return }
+                                    guard let currentZ = self?.currectContentNodePosition?.z,
+                                        let contentZPositionLimit = self?.contentZPositionLimit else { return }
                                     // reset the position of the content if it goes beyond the position limit after the panDrift animation
-                                    if (self.currectContentNodePosition?.z ?? 0) > self.contentZPositionLimit.upperBound {
-                                        self.currectContentNodePosition?.z = self.contentZPositionLimit.upperBound
-                                    }
-                                        
-                                    else if (self.currectContentNodePosition?.z ?? 0) < self.contentZPositionLimit.lowerBound {
-                                        self.currectContentNodePosition?.z = self.contentZPositionLimit.lowerBound
-                                    }
+                                    self?.currectContentNodePosition?.z = max(min(currentZ, contentZPositionLimit.upperBound), contentZPositionLimit.lowerBound)
             })
             
             
