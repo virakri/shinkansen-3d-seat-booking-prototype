@@ -119,7 +119,7 @@ This project only use a few external libraries, it mostly uses the standard iOS 
 <a name="kumi-ios"/>
 
 ### Kumi-iOS
-<img align="right" width="120" height="120" src="https://dummyimage.com/240x240/999/ccc">
+<img align="right" width="120" height="120" src="https://github.com/virakri/shinkansen-3d-seat-booking-prototype/blob/master/images/kumi-ios-icon-image.png?raw=true">
 
 Kumi-iOS is an iOS framework that abstracts common design values into different designer-understandable data objects such as `TextStyle`, `LayerStyle`, `AnimationStyle`, and it also comes with convenience extensions for setting those values into different subclasses of `UIView`.
 
@@ -130,7 +130,6 @@ In this project, Kumi-iOS is used for all design elements, and is deeply as a pa
 <a name="brightfutures"/>
 
 ### BrightFutures
-<img align="right" width="120" height="120" src="https://dummyimage.com/240x240/999/ccc">
 
 BrightFutures is a Swift framework that handle asynchronous code with a handful completion blocks and type-safe error handling.
 
@@ -155,7 +154,7 @@ Work in progress
 
 ### What is SceneKit?
 
-<img align="right" width="120" height="120" src="https://dummyimage.com/240x240/999/ccc">
+<img align="right" width="120" height="120" src="https://github.com/virakri/shinkansen-3d-seat-booking-prototype/blob/master/images/scene-kit-icon-image.png?raw=true">
 
 SceneKit is a high-level 3D graphic API made by Apple to provide an easy-to-use layer over the lower level APIs (Metal.) SceneKit's main features include object based scene graph, physics engine, and particle system.
 
@@ -167,7 +166,7 @@ In this prototype, SceneKit has been used as a main framework to render 3D visua
 
 ### What is Atomic Design System?
 
-<img align="right" width="120" height="120" src="https://dummyimage.com/240x240/999/ccc">
+<img align="right" width="120" height="120" src="https://github.com/virakri/shinkansen-3d-seat-booking-prototype/blob/master/images/atomic-design-icon-image.png?raw=true">
 
 Atomic Design is a methodology coined by Brad Frost. It is a method of creating and maintaining design system in a thoughtful hierarchies and effective pattern. It consists of collections of reusable components that have been clearly organized and standardized, and they can easily be assembled to be an application. 
 
