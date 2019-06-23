@@ -182,13 +182,6 @@ class BookingCriteriaViewController: BookingViewController {
                                       (title: "Tomorrow", subtitle: formatter.string(from: tomorrow), true),
                                       (title: "Pick a Date", subtitle: " ", true)]
         
-        // Specify date components
-//        var dateComponents = DateComponents()
-//        dateComponents.timeZone = TimeZone(abbreviation: "JST") // Japan Standard Time
-//        dateComponents.hour = 8
-//        dateComponents.minute = 0
-//        let someDateTime = Calendar.current.date(from: dateComponents)
-        
         timeSegmentedContainerView.setTitle(title: "Time")
         
         reloadTimeSegemtnedControl()

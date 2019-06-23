@@ -82,6 +82,13 @@
 		D0F6D8B822A0867C00872B5B /* SubHeadlineLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8B722A0867C00872B5B /* SubHeadlineLabelSetView.swift */; };
 		D0F6D8BA22A0869400872B5B /* HeadlineLabelSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8B922A0869400872B5B /* HeadlineLabelSetView.swift */; };
 		D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F6D8BB22A0930100872B5B /* CGFloat.swift */; };
+		D0F90B7D22BFD11700839891 /* DesignSystemBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B7C22BFD11700839891 /* DesignSystemBlockView.swift */; };
+		D0F90B7F22BFD14000839891 /* DesignSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B7E22BFD14000839891 /* DesignSystemView.swift */; };
+		D0F90B8122BFD19000839891 /* DesignSystemTabBarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8022BFD19000839891 /* DesignSystemTabBarControl.swift */; };
+		D0F90B8322BFD2AA00839891 /* DesignSystemComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8222BFD2AA00839891 /* DesignSystemComponentView.swift */; };
+		D0F90B8522BFE58F00839891 /* DesignSystemTextStylesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8422BFE58F00839891 /* DesignSystemTextStylesView.swift */; };
+		D0F90B8722BFE65100839891 /* DesignSystemColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8622BFE65100839891 /* DesignSystemColorsView.swift */; };
+		D0F90B8922BFE6BA00839891 /* DesignSystemLayerStylesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F90B8822BFE6BA00839891 /* DesignSystemLayerStylesView.swift */; };
 		D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F9E35B22A87C57003B339D /* BackButtonControl.swift */; };
 		E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04BCCF522AAA626002E29DE /* SeatMap.swift */; };
 		E0BA439522AC4A0F00FC3A72 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BA439422AC4A0F00FC3A72 /* Formatter.swift */; };
@@ -178,6 +185,13 @@
 		D0F6D8B722A0867C00872B5B /* SubHeadlineLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubHeadlineLabelSetView.swift; sourceTree = "<group>"; };
 		D0F6D8B922A0869400872B5B /* HeadlineLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineLabelSetView.swift; sourceTree = "<group>"; };
 		D0F6D8BB22A0930100872B5B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		D0F90B7C22BFD11700839891 /* DesignSystemBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemBlockView.swift; sourceTree = "<group>"; };
+		D0F90B7E22BFD14000839891 /* DesignSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemView.swift; sourceTree = "<group>"; };
+		D0F90B8022BFD19000839891 /* DesignSystemTabBarControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemTabBarControl.swift; sourceTree = "<group>"; };
+		D0F90B8222BFD2AA00839891 /* DesignSystemComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemComponentView.swift; sourceTree = "<group>"; };
+		D0F90B8422BFE58F00839891 /* DesignSystemTextStylesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemTextStylesView.swift; sourceTree = "<group>"; };
+		D0F90B8622BFE65100839891 /* DesignSystemColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemColorsView.swift; sourceTree = "<group>"; };
+		D0F90B8822BFE6BA00839891 /* DesignSystemLayerStylesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystemLayerStylesView.swift; sourceTree = "<group>"; };
 		D0F9E35B22A87C57003B339D /* BackButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonControl.swift; sourceTree = "<group>"; };
 		D289ECAA41348DC5303019F2 /* Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen3DSeatBookingPrototype/Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig"; sourceTree = "<group>"; };
 		E04BCCF522AAA626002E29DE /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
@@ -363,19 +377,34 @@
 		D0EAF1B3228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */,
 				D053EBCC229CB413007CCFFE /* Resuables */,
 				D074B1D9228B90AC00791F94 /* Booking */,
 				E04BCCF722AAA686002E29DE /* Models */,
+				D0F90B7B22BFD0F200839891 /* DesignSystemPreviewer */,
+				D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */,
 				D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */,
 				D0ECFEC022BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift */,
-				D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */,
 				D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */,
 				D050625E22A9C6BF003A8565 /* SeatMap.scnassets */,
 				D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */,
 				D0EAF1C0228B7FB900F3D4F6 /* Info.plist */,
 			);
 			path = Shinkansen3DSeatBookingPrototype;
+			sourceTree = "<group>";
+		};
+		D0F90B7B22BFD0F200839891 /* DesignSystemPreviewer */ = {
+			isa = PBXGroup;
+			children = (
+				D053EBCA229CB33A007CCFFE /* DesignSystemViewController.swift */,
+				D0F90B8022BFD19000839891 /* DesignSystemTabBarControl.swift */,
+				D0F90B7E22BFD14000839891 /* DesignSystemView.swift */,
+				D0F90B7C22BFD11700839891 /* DesignSystemBlockView.swift */,
+				D0F90B8222BFD2AA00839891 /* DesignSystemComponentView.swift */,
+				D0F90B8422BFE58F00839891 /* DesignSystemTextStylesView.swift */,
+				D0F90B8622BFE65100839891 /* DesignSystemColorsView.swift */,
+				D0F90B8822BFE6BA00839891 /* DesignSystemLayerStylesView.swift */,
+			);
+			path = DesignSystemPreviewer;
 			sourceTree = "<group>";
 		};
 		D42F2C7267605DFEF7363CBA /* Frameworks */ = {
@@ -566,6 +595,7 @@
 				D016655822AABE1D00BFD6DB /* HitTestFloorNode.swift in Sources */,
 				E0CF322A22AAB44900BC4788 /* SeatClass.swift in Sources */,
 				D053EBDA229D4C31007CCFFE /* ViewController.swift in Sources */,
+				D0F90B8122BFD19000839891 /* DesignSystemTabBarControl.swift in Sources */,
 				D0EAF4B022A43533002A9282 /* HeadlineWithContainerView.swift in Sources */,
 				E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */,
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
@@ -579,6 +609,7 @@
 				E0BA439722AC4B7300FC3A72 /* Date.swift in Sources */,
 				D0ECFEC122BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift in Sources */,
 				E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */,
+				D0F90B8322BFD2AA00839891 /* DesignSystemComponentView.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,
 				90D4FD4722BACC8E00679526 /* SeatClassEntity.swift in Sources */,
@@ -589,7 +620,9 @@
 				D0F9E35C22A87C57003B339D /* BackButtonControl.swift in Sources */,
 				E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */,
 				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
+				D0F90B7D22BFD11700839891 /* DesignSystemBlockView.swift in Sources */,
 				D016655622AABDEC00BFD6DB /* ContentNode.swift in Sources */,
+				D0F90B8722BFE65100839891 /* DesignSystemColorsView.swift in Sources */,
 				D09F3F1322A20239005E59C0 /* HeaderRouteInformationView.swift in Sources */,
 				D053EBD3229D29B3007CCFFE /* UILabel.swift in Sources */,
 				D0EAF4B422A449BC002A9282 /* ViewControllerAnimatedTransitioning.swift in Sources */,
@@ -603,14 +636,17 @@
 				D0046990229F559C0028A9D7 /* Button.swift in Sources */,
 				90D7776422B3E88300170E24 /* RedBoxNode.swift in Sources */,
 				90CA078222AEC21C002C204E /* UIColor.swift in Sources */,
+				D0F90B8522BFE58F00839891 /* DesignSystemTextStylesView.swift in Sources */,
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
 				D016655422AABD4600BFD6DB /* CameraNode.swift in Sources */,
 				D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */,
+				D0F90B7F22BFD14000839891 /* DesignSystemView.swift in Sources */,
 				D0CCB07022BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift in Sources */,
 				D0B8D61522BB048300F9A425 /* HeadsUpBadgeControl.swift in Sources */,
 				E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */,
 				D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */,
+				D0F90B8922BFE6BA00839891 /* DesignSystemLayerStylesView.swift in Sources */,
 				D053EBCF229CB476007CCFFE /* UIStackView.swift in Sources */,
 				D074B1E2228B90AC00791F94 /* SeatMapSelectionViewController.swift in Sources */,
 			);
