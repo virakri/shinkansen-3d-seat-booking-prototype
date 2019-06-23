@@ -134,7 +134,6 @@ class SeatMapSceneView: SCNView {
                         t.invalidate()
                         self?.dimissHeadsUpBadgeControlTimer = nil
                     })
-                    
                 }
             }
             if let selectedSeat = selectedSeat {
@@ -148,7 +147,6 @@ class SeatMapSceneView: SCNView {
     var contentZPositionLimit: ClosedRange<Float> = 0...1
     
     // MARK: Initialzer & Setup
-    
     init() {
         super.init(frame: .zero, options: nil)
         setupView()
@@ -167,7 +165,6 @@ class SeatMapSceneView: SCNView {
         /// Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use `multisampling4X`
         antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
-        
         
         /// Setup Loading Activity Indicator
         loadingActivityIndicatorView.backgroundColor = currentColorTheme.componentColor.cardBackground

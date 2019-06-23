@@ -16,7 +16,11 @@ class DesignSystemModel3DContentView: DesignSystemView {
     
     var currentContentView: UIView!
     
+    var contentNode: SCNNode!
+    
     var sceneView: SCNView!
+    
+    var cameraNode: SCNNode!
     
     var nodeLabel: Label!
     
@@ -46,19 +50,11 @@ class DesignSystemModel3DContentView: DesignSystemView {
                 availableNodes.forEach { $0.isHidden = true }
                 let node = availableNodes[currentNodeIndex]
                 node.isHidden = false
-//                sceneView.scene?.rootNode.childNodes.forEach { $0.removeFromParentNode() }
-//                sceneView.scene?.rootNode.addChildNode(node)
                 nodeLabel.text = node.childNodes.first?.name
-                
                 sceneView.alpha = 0
                 
-                let camera = SCNCamera()
-                let cameraNode = SCNNode()
-                cameraNode.camera = camera
-                
-                cameraNode.position = SCNVector3(20, 10, -20)
-                cameraNode.look(at: SCNVector3(0, 0, 0))
-                sceneView.scene?.rootNode.addChildNode(cameraNode)
+                setCameraPositionByObjectBoundingSphere(center: node.boundingSphere.center,
+                                                        radius: node.boundingSphere.radius)
                 
                 UIView.animate(withStyle: .transitionAnimationStyle,
                                animations: {
@@ -66,6 +62,21 @@ class DesignSystemModel3DContentView: DesignSystemView {
                 })
             }
         }
+    }
+    
+    private func setCameraPositionByObjectBoundingSphere(center: SCNVector3, radius: Float) {
+        
+        let cameraPosition = SCNVector3(center.x - radius * 0.75, center.y + radius, center.z + radius * 3)
+        
+        sceneView.defaultCameraController.stopInertia()
+        sceneView.defaultCameraController.pointOfView?.position = cameraPosition
+        sceneView.defaultCameraController.pointOfView?.look(at: center)
+        sceneView.defaultCameraController.clearRoll()
+        sceneView.defaultCameraController.target = center
+        
+        cameraNode.position = cameraPosition
+        cameraNode.look(at: center)
+
     }
     
     init() {
@@ -89,7 +100,7 @@ class DesignSystemModel3DContentView: DesignSystemView {
                                         action: #selector(stateSegmentedControlValueChanged(_:)),
                                         for: .valueChanged)
         stateSegmentedControl.selectedSegmentIndex = 0
-//        setupView()
+        setupScene()
         setupAvailableNodes()
     }
     
@@ -97,20 +108,22 @@ class DesignSystemModel3DContentView: DesignSystemView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        cameraNode.camera?.projectionDirection =
+            rect.width > rect.height ? .vertical : .horizontal
+    }
+    
      override func setupStaticView() {
         super.setupStaticView()
         
         sceneView = SCNView(frame: .zero, options: [:])
         sceneView.backgroundColor = .clear
-        sceneView.allowsCameraControl = true
         sceneView.cameraControlConfiguration.allowsTranslation = false
         
         /// Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use `multisampling4X`
         sceneView.antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
-        
-        sceneView.scene = SCNScene()
-        sceneView.scene?.background.contents = UIColor.clear
         
         currentContentView.addSubview(sceneView, withConstaintEquals: .edges)
         
@@ -140,6 +153,39 @@ class DesignSystemModel3DContentView: DesignSystemView {
         sceneView.preservesSuperviewLayoutMargins = true
     }
     
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        if let node = contentNode {
+            
+            // MARK: Add visual effect
+            let tiltNodeMotionEffect = TiltNodeMotionEffect(node: node)
+            
+            tiltNodeMotionEffect.horizontalShiftedIntensity = 0
+            tiltNodeMotionEffect.verticalShiftedIntensity = 0
+            
+            tiltNodeMotionEffect.horizontalTiltedIntensity = -1 / 2
+            tiltNodeMotionEffect.verticalTiltedIntensity = 0
+            
+            superview?.addMotionEffect(tiltNodeMotionEffect)
+        }
+    }
+    
+    private func setupScene() {
+        sceneView.scene = SCNScene()
+        sceneView.scene?.background.contents = UIColor.clear
+        sceneView.allowsCameraControl = true
+        
+        cameraNode = SCNNode()
+        contentNode = SCNNode()
+        
+        let camera = SCNCamera()
+        camera.fieldOfView = 45
+        cameraNode.camera = camera
+        sceneView.scene?.rootNode.addChildNode(cameraNode)
+        sceneView.scene?.rootNode.addChildNode(contentNode)
+        
+    }
+    
     private func setupAvailableNodes() {
         
         let decoder = JSONDecoder()
@@ -147,7 +193,7 @@ class DesignSystemModel3DContentView: DesignSystemView {
             let modelData = try? decoder.decode([ModelData].self, from: data) {
             NodeFactory.shared =
                 NodeFactory(modelData: modelData)
-        }else{
+        } else {
             fatalError("There is some errors of trying to phrase JSON, so please check ModelData.json in Assets.xcassets")
         }
         
@@ -163,7 +209,7 @@ class DesignSystemModel3DContentView: DesignSystemView {
                     
                     if let node = reservableNode{
                         self?.availableNodes.append(node)
-                        self?.sceneView.scene?.rootNode.addChildNode(node)
+                        self?.contentNode.addChildNode(node)
                     }
                 }
                self?.currentNodeIndex = 0
