@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0F6A1D6C8DC1A22587ABAA /* Pods_Shinkansen3DSeatBookingPrototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C8EAD904F3BCBAA5E25096 /* Pods_Shinkansen3DSeatBookingPrototype.framework */; };
 		9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */; };
 		901F107B22B563CF00FB03D8 /* TiltNodeMotionEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */; };
 		9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9044513A22B00FA700E6FF45 /* SCNMaterial.swift */; };
@@ -19,7 +20,6 @@
 		90D7776422B3E88300170E24 /* RedBoxNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776322B3E88300170E24 /* RedBoxNode.swift */; };
 		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
 		90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED74E522ADA28C007D8DDF /* NodeFactory.swift */; };
-		BF2D4F6E5C8DAF84DD0769F9 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF203C4B4923FA6BFE24C2C5 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework */; };
 		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
 		D0046992229F58BB0028A9D7 /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046991229F58BB0028A9D7 /* AnimationStyle.swift */; };
 		D0046994229F58CC0028A9D7 /* DesignValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0046993229F58CC0028A9D7 /* DesignValues.swift */; };
@@ -99,6 +99,8 @@
 		4C23C2EB9887018AA47CBBE0 /* Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
 		67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
 		680A1D758CA89B7EBB17C2CA /* Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig"; sourceTree = "<group>"; };
+		75C8EAD904F3BCBAA5E25096 /* Pods_Shinkansen3DSeatBookingPrototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen3DSeatBookingPrototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7676B7A0D0F5969440B658DD /* Pods-Shinkansen3DSeatBookingPrototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen3DSeatBookingPrototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen3DSeatBookingPrototype/Pods-Shinkansen3DSeatBookingPrototype.debug.xcconfig"; sourceTree = "<group>"; };
 		9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitAnimator.swift; sourceTree = "<group>"; };
 		901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltNodeMotionEffect.swift; sourceTree = "<group>"; };
 		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
@@ -112,7 +114,6 @@
 		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		90ED74E522ADA28C007D8DDF /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
 		9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
-		AF203C4B4923FA6BFE24C2C5 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shinkansen_3D_Seat_Booking_Prototype.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D004698F229F559C0028A9D7 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		D0046991229F58BB0028A9D7 /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		D0046993229F58CC0028A9D7 /* DesignValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignValues.swift; sourceTree = "<group>"; };
@@ -162,7 +163,7 @@
 		D0C26E3822A13940001D3065 /* DescriptionSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionSetView.swift; sourceTree = "<group>"; };
 		D0CCB06D22BC33BB00C7AED3 /* InitialViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewButton.swift; sourceTree = "<group>"; };
 		D0CCB06F22BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewColorThemeSegmentedControl.swift; sourceTree = "<group>"; };
-		D0EAF1B1228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shinkansen 3D Seat Booking Prototype.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0EAF1B1228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shinkansen3DSeatBookingPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0EAF1BB228B7FB900F3D4F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0EAF1BE228B7FB900F3D4F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -178,6 +179,7 @@
 		D0F6D8B922A0869400872B5B /* HeadlineLabelSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineLabelSetView.swift; sourceTree = "<group>"; };
 		D0F6D8BB22A0930100872B5B /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		D0F9E35B22A87C57003B339D /* BackButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonControl.swift; sourceTree = "<group>"; };
+		D289ECAA41348DC5303019F2 /* Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig"; path = "Target Support Files/Pods-Shinkansen3DSeatBookingPrototype/Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig"; sourceTree = "<group>"; };
 		E04BCCF522AAA626002E29DE /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
 		E0BA439422AC4A0F00FC3A72 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		E0BA439622AC4B7300FC3A72 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -195,7 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF2D4F6E5C8DAF84DD0769F9 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework in Frameworks */,
+				4E0F6A1D6C8DC1A22587ABAA /* Pods_Shinkansen3DSeatBookingPrototype.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +211,8 @@
 				67660B36E4CF0E9B8EA4A1BD /* Pods-Shinkansen Tickets Booking Prototype.release.xcconfig */,
 				4C23C2EB9887018AA47CBBE0 /* Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig */,
 				680A1D758CA89B7EBB17C2CA /* Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig */,
+				7676B7A0D0F5969440B658DD /* Pods-Shinkansen3DSeatBookingPrototype.debug.xcconfig */,
+				D289ECAA41348DC5303019F2 /* Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -341,7 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				D026D03422BEE3EE00CDA428 /* README.md */,
-				D0EAF1B3228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype */,
+				D0EAF1B3228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype */,
 				D0EAF1B2228B7FB700F3D4F6 /* Products */,
 				865DF0FC68928DF1C21699FF /* Pods */,
 				D42F2C7267605DFEF7363CBA /* Frameworks */,
@@ -351,12 +355,12 @@
 		D0EAF1B2228B7FB700F3D4F6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D0EAF1B1228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype.app */,
+				D0EAF1B1228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D0EAF1B3228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype */ = {
+		D0EAF1B3228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype */ = {
 			isa = PBXGroup;
 			children = (
 				D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */,
@@ -371,13 +375,13 @@
 				D0EAF1BD228B7FB900F3D4F6 /* LaunchScreen.storyboard */,
 				D0EAF1C0228B7FB900F3D4F6 /* Info.plist */,
 			);
-			path = "Shinkansen 3D Seat Booking Prototype";
+			path = Shinkansen3DSeatBookingPrototype;
 			sourceTree = "<group>";
 		};
 		D42F2C7267605DFEF7363CBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AF203C4B4923FA6BFE24C2C5 /* Pods_Shinkansen_3D_Seat_Booking_Prototype.framework */,
+				75C8EAD904F3BCBAA5E25096 /* Pods_Shinkansen3DSeatBookingPrototype.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -415,9 +419,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D0EAF1B0228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype */ = {
+		D0EAF1B0228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0EAF1C3228B7FB900F3D4F6 /* Build configuration list for PBXNativeTarget "Shinkansen 3D Seat Booking Prototype" */;
+			buildConfigurationList = D0EAF1C3228B7FB900F3D4F6 /* Build configuration list for PBXNativeTarget "Shinkansen3DSeatBookingPrototype" */;
 			buildPhases = (
 				0FECD1314AE3A8DF702ABF50 /* [CP] Check Pods Manifest.lock */,
 				D0EAF1AD228B7FB700F3D4F6 /* Sources */,
@@ -429,9 +433,9 @@
 			);
 			dependencies = (
 			);
-			name = "Shinkansen 3D Seat Booking Prototype";
+			name = Shinkansen3DSeatBookingPrototype;
 			productName = "Shinkansen Tickets Booking Prototype";
-			productReference = D0EAF1B1228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype.app */;
+			productReference = D0EAF1B1228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -449,7 +453,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D0EAF1AC228B7FB700F3D4F6 /* Build configuration list for PBXProject "Shinkansen 3D Seat Booking Prototype" */;
+			buildConfigurationList = D0EAF1AC228B7FB700F3D4F6 /* Build configuration list for PBXProject "Shinkansen3DSeatBookingPrototype" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -462,7 +466,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D0EAF1B0228B7FB700F3D4F6 /* Shinkansen 3D Seat Booking Prototype */,
+				D0EAF1B0228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype */,
 			);
 		};
 /* End PBXProject section */
@@ -497,7 +501,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Shinkansen 3D Seat Booking Prototype-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Shinkansen3DSeatBookingPrototype-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -510,15 +514,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen3DSeatBookingPrototype/Pods-Shinkansen3DSeatBookingPrototype-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Shinkansen3DSeatBookingPrototype/Pods-Shinkansen3DSeatBookingPrototype-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shinkansen 3D Seat Booking Prototype/Pods-Shinkansen 3D Seat Booking Prototype-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shinkansen3DSeatBookingPrototype/Pods-Shinkansen3DSeatBookingPrototype-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -744,13 +748,13 @@
 		};
 		D0EAF1C4228B7FB900F3D4F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C23C2EB9887018AA47CBBE0 /* Pods-Shinkansen 3D Seat Booking Prototype.debug.xcconfig */;
+			baseConfigurationReference = 7676B7A0D0F5969440B658DD /* Pods-Shinkansen3DSeatBookingPrototype.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJ5UD9292F;
-				INFOPLIST_FILE = "$(SRCROOT)/Shinkansen 3D Seat Booking Prototype/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Shinkansen3DSeatBookingPrototype/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -766,13 +770,13 @@
 		};
 		D0EAF1C5228B7FB900F3D4F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 680A1D758CA89B7EBB17C2CA /* Pods-Shinkansen 3D Seat Booking Prototype.release.xcconfig */;
+			baseConfigurationReference = D289ECAA41348DC5303019F2 /* Pods-Shinkansen3DSeatBookingPrototype.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EJ5UD9292F;
-				INFOPLIST_FILE = "$(SRCROOT)/Shinkansen 3D Seat Booking Prototype/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Shinkansen3DSeatBookingPrototype/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -789,7 +793,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0EAF1AC228B7FB700F3D4F6 /* Build configuration list for PBXProject "Shinkansen 3D Seat Booking Prototype" */ = {
+		D0EAF1AC228B7FB700F3D4F6 /* Build configuration list for PBXProject "Shinkansen3DSeatBookingPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0EAF1C1228B7FB900F3D4F6 /* Debug */,
@@ -798,7 +802,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0EAF1C3228B7FB900F3D4F6 /* Build configuration list for PBXNativeTarget "Shinkansen 3D Seat Booking Prototype" */ = {
+		D0EAF1C3228B7FB900F3D4F6 /* Build configuration list for PBXNativeTarget "Shinkansen3DSeatBookingPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0EAF1C4228B7FB900F3D4F6 /* Debug */,

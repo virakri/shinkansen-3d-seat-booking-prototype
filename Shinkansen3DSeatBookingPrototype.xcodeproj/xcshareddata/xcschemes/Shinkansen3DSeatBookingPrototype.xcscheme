@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D0EAF1B0228B7FB700F3D4F6"
-               BuildableName = "Shinkansen 3D Seat Booking Prototype.app"
-               BlueprintName = "Shinkansen 3D Seat Booking Prototype"
-               ReferencedContainer = "container:Shinkansen 3D Seat Booking Prototype.xcodeproj">
+               BuildableName = "Shinkansen3DSeatBookingPrototype.app"
+               BlueprintName = "Shinkansen3DSeatBookingPrototype"
+               ReferencedContainer = "container:Shinkansen3DSeatBookingPrototype.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,9 +49,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D0EAF1B0228B7FB700F3D4F6"
-            BuildableName = "Shinkansen 3D Seat Booking Prototype.app"
-            BlueprintName = "Shinkansen 3D Seat Booking Prototype"
-            ReferencedContainer = "container:Shinkansen 3D Seat Booking Prototype.xcodeproj">
+            BuildableName = "Shinkansen3DSeatBookingPrototype.app"
+            BlueprintName = "Shinkansen3DSeatBookingPrototype"
+            ReferencedContainer = "container:Shinkansen3DSeatBookingPrototype.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -68,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D0EAF1B0228B7FB700F3D4F6"
-            BuildableName = "Shinkansen 3D Seat Booking Prototype.app"
-            BlueprintName = "Shinkansen 3D Seat Booking Prototype"
-            ReferencedContainer = "container:Shinkansen 3D Seat Booking Prototype.xcodeproj">
+            BuildableName = "Shinkansen3DSeatBookingPrototype.app"
+            BlueprintName = "Shinkansen3DSeatBookingPrototype"
+            ReferencedContainer = "container:Shinkansen3DSeatBookingPrototype.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
