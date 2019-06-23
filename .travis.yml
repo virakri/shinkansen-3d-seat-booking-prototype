@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode10.2
+script: 
+    - pod install
+    - xcodebuild -workspace "Shinkansen 3D Seat Booking Prototype.xcworkspace" -scheme "Shinkansen 3D Seat Booking Prototype" -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
