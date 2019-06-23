@@ -1,5 +1,6 @@
 language: objective-c
 osx_image: xcode10.2
+before_install:
 script: 
     - pod install
-    - xcodebuild -workspace Shinkansen3DSeatBookingPrototype.xcworkspace -scheme Shinkansen3DSeatBookingPrototype -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+    - travis_retry xcodebuild -workspace Shinkansen3DSeatBookingPrototype.xcworkspace -scheme Shinkansen3DSeatBookingPrototype -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
