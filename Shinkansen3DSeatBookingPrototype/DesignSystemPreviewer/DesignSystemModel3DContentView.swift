@@ -26,6 +26,10 @@ class DesignSystemModel3DContentView: DesignSystemView {
     
     var availableNodes: [SeatNode] = []
     
+    var factory: NodeFactory?
+    
+    private var loadingIndicator = UIActivityIndicatorView()
+    
     override var state: UIControl.State {
         didSet {
             SceneKitAnimator.animateWithDuration(duration: 1, animations: {
@@ -151,6 +155,11 @@ class DesignSystemModel3DContentView: DesignSystemView {
         
         currentContentView.addSubview(stackView, withConstaintEquals: [.leadingMargin, .bottomMargin, .trailingMargin])
         sceneView.preservesSuperviewLayoutMargins = true
+        
+        loadingIndicator.style = .whiteLarge
+        loadingIndicator.color =  currentColorTheme.componentColor.secondaryText
+        loadingIndicator.startAnimating()
+        addSubview(loadingIndicator, withConstaintEquals: .safeAreaEdges, insetsConstant: .zero)
     }
     
     override func didMoveToSuperview() {
@@ -191,28 +200,27 @@ class DesignSystemModel3DContentView: DesignSystemView {
         let decoder = JSONDecoder()
         if let data = NSDataAsset(name: "ModelData")?.data,
             let modelData = try? decoder.decode([ModelData].self, from: data) {
-            NodeFactory.shared =
-                NodeFactory(modelData: modelData)
+            factory = NodeFactory(modelData: modelData)
         } else {
             fatalError("There is some errors of trying to phrase JSON, so please check ModelData.json in Assets.xcassets")
         }
         
-        if let factory = NodeFactory.shared {
+        if let factory = factory {
             
-            let onComplete: () -> Void = {
-                [weak self] in
-                factory.modelPrototypes.forEach {
-                    
-                    
+            let onComplete: () -> Void = { [weak self] in
+                
+                factory.modelPrototypes.keys
+                    .forEach {
                     let reservableNode: SeatNode? =
-                        factory.create(name: $0.key)
-                    
+                        factory.create(name: $0)
                     if let node = reservableNode{
                         self?.availableNodes.append(node)
                         self?.contentNode.addChildNode(node)
                     }
                 }
-               self?.currentNodeIndex = 0
+                self?.availableNodes = self?.availableNodes.sorted(by: {$0.name ?? "" < $1.name ?? ""}) ?? []
+                self?.currentNodeIndex = 0
+                self?.loadingIndicator.removeFromSuperview()
             }
             if factory.isLoaded {
                 DispatchQueue.global(qos: .background).async(execute: onComplete)
