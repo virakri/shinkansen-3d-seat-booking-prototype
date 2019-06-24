@@ -91,8 +91,8 @@ class SeatNode: ReservableNode {
     
     // MARK: Intialializer
     
-    required init(node: SCNNode, modelData: ModelData?) {
-        super.init(node: node, modelData: modelData)
+    required init(node: SCNNode) {
+        super.init(node: node)
         name = node.name
         transformMapNode.transform = transform
         transformMapNode.addChildNode(removeAllGeomery(from: node.clone()))

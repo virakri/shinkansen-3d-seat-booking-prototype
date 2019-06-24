@@ -24,14 +24,14 @@ class RedBoxNode: ReservableNode {
         let node = SCNNode()
         node.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        super.init(node: node, modelData: nil)
+        super.init(node: node)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    required init(node: SCNNode, modelData: ModelData?) {
+    required init(node: SCNNode) {
         fatalError("init(node:modelData:) has not been implemented")
     }
     

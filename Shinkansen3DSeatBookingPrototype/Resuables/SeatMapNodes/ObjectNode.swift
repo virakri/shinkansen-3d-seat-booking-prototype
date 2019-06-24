@@ -22,7 +22,7 @@ class ObjectNode: SCNNode, StaticNode {
         }
     }
     
-    required init(node: SCNNode, modelData: ModelData?) {
+    required init(node: SCNNode) {
         super.init()
         addChildNode(node)
         materialMap = createMaterialMap(from: self)

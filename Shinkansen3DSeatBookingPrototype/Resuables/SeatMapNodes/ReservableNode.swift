@@ -24,10 +24,9 @@ class ReservableNode: SCNNode, InteractibleNode {
     
     weak var touch: UITouch?
     
-    required init(node: SCNNode, modelData: ModelData?) {
+    required init(node: SCNNode) {
         super.init()
         self.addChildNode(node)
-        self.modelData = modelData
         categoryBitMask = ReservableNode.defaultBitMask
     }
     

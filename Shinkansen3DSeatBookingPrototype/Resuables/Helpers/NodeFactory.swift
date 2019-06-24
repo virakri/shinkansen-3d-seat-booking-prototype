@@ -11,7 +11,7 @@ import SceneKit
 import BrightFutures
 
 protocol StaticNode {
-    init(node: SCNNode, modelData: ModelData?)
+    init(node: SCNNode)
     var isEnabled: Bool { get set }
 }
 
@@ -186,10 +186,7 @@ final class NodeFactory {
         cloneGeometry(from: prototypeNode, to: clone)
         
         // Create node object from provioded generic
-        let node = T(
-            node: clone,
-            modelData: modelData
-        )
+        let node = T(node: clone)
 
         return node
     }
