@@ -20,23 +20,23 @@ class SummaryPreviewView: UIView {
     var scene: SCNScene!
     
     // TODO: Obtain model from seat class...
-    var selectedReservableEntity: ReservableEntity? {
-        didSet {
-            contentNode?.childNodes
-                .filter({ $0.categoryBitMask == ReservableNode.defaultBitMask})
-                .forEach {
-                    $0.removeFromParentNode()
-            }
-            if let name = selectedReservableEntity?.transformedModelEntity.modelEntity,
-                let node: SeatNode = NodeFactory.shared?.create(name: name) {
-                node.position = SCNVector3(0, 0, 0)
-                node.eulerAngles = SCNVector3(0, -Float.pi / 6, 0)
-                contentNode.addChildNode(node)
-            }else{
-                contentNode.addChildNode(RedBoxNode())
-            }
-        }
-    }
+//    var selectedReservableEntity: ReservableEntity? {
+//        didSet {
+//            contentNode?.childNodes
+//                .filter({ $0.categoryBitMask == ReservableNode.defaultBitMask})
+//                .forEach {
+//                    $0.removeFromParentNode()
+//            }
+//            if let name = selectedReservableEntity?.transformedModelEntity.modelEntity,
+//                let node: SeatNode = NodeFactory.shared?.create(name: name) {
+//                node.position = SCNVector3(0, 0, 0)
+//                node.eulerAngles = SCNVector3(0, -Float.pi / 6, 0)
+//                contentNode.addChildNode(node)
+//            }else{
+//                contentNode.addChildNode(RedBoxNode())
+//            }
+//        }
+//    }
     
     init() {
         sceneView = SCNView(frame: .zero, options: [:])
@@ -71,13 +71,6 @@ class SummaryPreviewView: UIView {
     private func setupView() {
         addSubview(sceneView, withConstaintEquals: .edges)
         
-        // TODO: Remove this when model is done
-        let alertLabel = Label()
-        alertLabel.text = "Work in Progress".uppercased()
-        alertLabel.textStyle = textStyle.caption1()
-        alertLabel.textColor = .red
-        addSubview(alertLabel, withConstaintEquals: .center)
-        
         // Set Antialiasing Mode depending on the density of the pixels, so if the screen is 3X, the view will use `multisampling2X` otherwise it will use ``multisampling4X`
         sceneView.antialiasingMode = UIScreen.main.scale > 2 ?
             .multisampling2X : .multisampling4X
@@ -109,6 +102,26 @@ class SummaryPreviewView: UIView {
         
         cameraControlNode.addChildNode(cameraNode)
         scene.rootNode.addChildNode(cameraControlNode)
+    }
+    
+    public func setupContent(withSeatClassType seatClassType: SeatClassType?) {
+        contentNode?.childNodes
+            .filter({ $0.categoryBitMask == ReservableNode.defaultBitMask})
+            .forEach {
+                $0.removeFromParentNode()
+        }
+        
+        guard let seatClassType = seatClassType,
+        let node: SeatNode =
+            NodeFactory
+                .shared?
+                .create(name: seatClassType.completeNodeName)
+            else { contentNode.addChildNode(RedBoxNode())
+            return
+        }
+        node.position = SCNVector3(0, 0, 0)
+        node.eulerAngles = SCNVector3(0, -Float.pi / 6, 0)
+        contentNode.addChildNode(node)
     }
     
     private func playInitialAnimation() {

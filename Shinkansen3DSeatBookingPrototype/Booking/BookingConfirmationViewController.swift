@@ -16,7 +16,7 @@ class BookingConfirmationViewController: BookingViewController {
     
     var dateLabelContainerView: UIView!
     
-    var selectedReservableEntity: ReservableEntity?
+    var seatClassType: SeatClassType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ class BookingConfirmationViewController: BookingViewController {
         mainContentView.heightAnchor.constraint(lessThanOrEqualTo:  mainContentView.widthAnchor, multiplier: 1).isActive = true
         
         summaryPreviewView = SummaryPreviewView()
-        summaryPreviewView.selectedReservableEntity = selectedReservableEntity
+        summaryPreviewView.setupContent(withSeatClassType: seatClassType)
         
         // Setup Main Card View
         mainCardView.isUserInteractionEnabled = false
