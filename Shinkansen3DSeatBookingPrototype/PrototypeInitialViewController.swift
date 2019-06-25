@@ -209,20 +209,6 @@ V Jinangkul
         
     }
     
-    @objc private func designSystemButtonDidTouch(_ sender: Button) {
-        
-        present(DesignSystemViewController(), animated: true, completion: nil)
-    }
-    
-    @objc private func startPrototypeButtonDidTouch(_ sender: Button) {
-        
-        let presentedViewController = NavigationController(rootViewController: BookingCriteriaViewController())
-        presentedViewController.modalPresentationStyle = .fullScreen
-        presentedViewController.transitioningDelegate = self
-        
-        present(presentedViewController, animated: true, completion: nil)
-    }
-    
     @objc private func colorThemeSegmentedControlValueChanged(_ sender: InitialViewColorThemeSegmentedControl) {
         switch sender.selectedIndex {
         case 0:
@@ -239,10 +225,24 @@ V Jinangkul
         vc.modalPresentationStyle = .pageSheet
         present(vc, animated: true, completion: nil)
     }
+    
+    @objc private func designSystemButtonDidTouch(_ sender: Button) {
+        let viewController = DesignSystemViewController()
+        viewController.modalPresentationStyle = .pageSheet
+        present(DesignSystemViewController(), animated: true, completion: nil)
+    }
+    
+    @objc private func startPrototypeButtonDidTouch(_ sender: Button) {
+        
+        let presentedViewController = NavigationController(rootViewController: BookingCriteriaViewController())
+        presentedViewController.modalPresentationStyle = .fullScreen
+        presentedViewController.transitioningDelegate = self
+        
+        present(presentedViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - PrototypeInitialViewControllerTransitioningDelegate
-
 extension PrototypeInitialViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
