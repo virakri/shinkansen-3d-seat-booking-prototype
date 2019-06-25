@@ -23,6 +23,7 @@ class SummaryPreviewView: UIView {
         sceneView = SCNView(frame: .zero, options: [:])
         super.init(frame: .zero)
         setupView()
+        setupGesture()
         setupScene()
         setupCamera()
     }
@@ -57,6 +58,11 @@ class SummaryPreviewView: UIView {
             .multisampling2X : .multisampling4X
     }
     
+    private func setupGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureDidPan))
+        addGestureRecognizer(panGesture)
+    }
+    
     private func setupScene(){
         
         // Temporary
@@ -75,6 +81,7 @@ class SummaryPreviewView: UIView {
         let camera = SCNCamera()
         camera.fieldOfView = 16
         camera.projectionDirection = .vertical
+        camera.motionBlurIntensity = 0.5
         let cameraNode = SCNNode()
         cameraNode.camera = camera
         cameraNode.position.z = 8
@@ -127,5 +134,22 @@ class SummaryPreviewView: UIView {
                         contentNode?.eulerAngles = SCNVector3(0, 0, 0)
                 })
         })
+    }
+    
+    @objc func panGestureDidPan(_ sender: UIPanGestureRecognizer) {
+        let state = sender.state
+        let translatePercentage = sender.translation(in: sender.view!).x / max(sender.view!.bounds.width, sender.view!.bounds.height)
+        switch state {
+        case .changed:
+            contentNode.eulerAngles.y = Float(translatePercentage * .pi / 2)
+        case .ended:
+            let duration: TimeInterval =
+                TimeInterval(abs(contentNode.eulerAngles.y) / .pi)
+            SceneKitAnimator.animateWithDuration(duration: duration, animations: {
+                contentNode.eulerAngles.y = 0
+            })
+        default:
+            break
+        }
     }
 }

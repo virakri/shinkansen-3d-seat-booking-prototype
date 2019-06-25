@@ -57,10 +57,11 @@ class BookingConfirmationViewController: BookingViewController {
         summaryPreviewView.setupContent(withSeatClassType: seatClassType)
         
         // Setup Main Card View
-        mainCardView.isUserInteractionEnabled = false
         mainCardView.contentView
             .addSubview(summaryPreviewView,
                         withConstaintEquals: .edges)
+        mainCardView.contentView
+            .isUserInteractionEnabled = true
         
         placeholderView.translatesAutoresizingMaskIntoConstraints = false
         placeholderView.topAnchor.constraint(equalTo: mainCallToActionButton.topAnchor).isActive = true
