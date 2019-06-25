@@ -19,25 +19,6 @@ class SummaryPreviewView: UIView {
     
     var scene: SCNScene!
     
-    // TODO: Obtain model from seat class...
-//    var selectedReservableEntity: ReservableEntity? {
-//        didSet {
-//            contentNode?.childNodes
-//                .filter({ $0.categoryBitMask == ReservableNode.defaultBitMask})
-//                .forEach {
-//                    $0.removeFromParentNode()
-//            }
-//            if let name = selectedReservableEntity?.transformedModelEntity.modelEntity,
-//                let node: SeatNode = NodeFactory.shared?.create(name: name) {
-//                node.position = SCNVector3(0, 0, 0)
-//                node.eulerAngles = SCNVector3(0, -Float.pi / 6, 0)
-//                contentNode.addChildNode(node)
-//            }else{
-//                contentNode.addChildNode(RedBoxNode())
-//            }
-//        }
-//    }
-    
     init() {
         sceneView = SCNView(frame: .zero, options: [:])
         super.init(frame: .zero)
