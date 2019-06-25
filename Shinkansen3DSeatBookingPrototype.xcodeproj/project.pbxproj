@@ -379,10 +379,10 @@
 		D0EAF1B3228B7FB700F3D4F6 /* Shinkansen3DSeatBookingPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				D053EBCC229CB413007CCFFE /* Resuables */,
-				D074B1D9228B90AC00791F94 /* Booking */,
 				E04BCCF722AAA686002E29DE /* Models */,
+				D053EBCC229CB413007CCFFE /* Resuables */,
 				D0F90B7B22BFD0F200839891 /* DesignSystemPreviewer */,
+				D074B1D9228B90AC00791F94 /* Booking */,
 				D0EAF1B4228B7FB700F3D4F6 /* AppDelegate.swift */,
 				D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */,
 				D0ECFEC022BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift */,

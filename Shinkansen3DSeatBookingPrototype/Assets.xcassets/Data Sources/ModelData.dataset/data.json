@@ -243,5 +243,23 @@
       "isInteractible":false,
       "resource":"e7-multipurpose-gran-class-section-b.scn",
       "name":"e7-multipurpose-gran-class-section-b"
+   },
+
+   {
+      "isInteractible":false,
+      "resource":"e7_gran_seat_complete.scn",
+      "name":"_e7_gran_seat_complete"
+   },
+
+   {
+      "isInteractible":false,
+      "resource":"e7_green_seat_complete.scn",
+      "name":"_e7_green_seat_complete"
+   },
+
+   {
+      "isInteractible":false,
+      "resource":"e7_ordinary_seat_complete.scn",
+      "name":"_e7_ordinary_seat_complete"
    }
 ]
