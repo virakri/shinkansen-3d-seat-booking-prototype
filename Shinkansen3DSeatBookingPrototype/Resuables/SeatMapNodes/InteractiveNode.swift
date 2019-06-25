@@ -8,29 +8,29 @@
 
 import SceneKit
 
-class ReservableNode: SCNNode, InteractibleNode {
+class InteractiveNode: StaticNode {
     
     static let defaultBitMask = 1 << 2
     
     var reservableEntity: ReservableEntity?
     
-    var modelData: ModelData?
-    
     var isHighlighted: Bool = false
     
     var isSelected: Bool = false
     
-    var isEnabled: Bool = true
-    
     weak var touch: UITouch?
     
-    required init(node: SCNNode) {
+    override init() {
         super.init()
-        self.addChildNode(node)
-        categoryBitMask = ReservableNode.defaultBitMask
+    }
+    
+    required init(node: SCNNode) {
+        super.init(node: node)
+        categoryBitMask = InteractiveNode.defaultBitMask
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }

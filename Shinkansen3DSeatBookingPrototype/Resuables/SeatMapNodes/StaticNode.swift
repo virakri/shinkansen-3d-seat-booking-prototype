@@ -8,9 +8,15 @@
 
 import SceneKit
 
-class ObjectNode: SCNNode, StaticNode {
+class StaticNode: SCNNode, Clonable {
     
     var materialMap: [String: Any] = [:]
+    
+    var isEnabled: Bool = true {
+        didSet {
+            updateMaterial(node: self, materialMap: materialMap)
+        }
+    }
     
     var transformedModelEntity: TransformedModelEntity? {
         didSet {
@@ -20,6 +26,10 @@ class ObjectNode: SCNNode, StaticNode {
             position = transformedModelEntity.position
             eulerAngles = transformedModelEntity.rotation
         }
+    }
+    
+    override init() {
+        super.init()
     }
     
     required init(node: SCNNode) {
@@ -32,6 +42,7 @@ class ObjectNode: SCNNode, StaticNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+
     /// Build material recursively map for `transformMapNode`
     /// - Parameter node: Target node to create
     private func createMaterialMap(from node: SCNNode) -> [String: Any] {
@@ -63,17 +74,19 @@ class ObjectNode: SCNNode, StaticNode {
                 }
             }
         }).compactMap({ material  in
+            // Material management
             if let name = material.name, name.contains("-") {
                 var nameComponent = Array(name.split(separator: "-"))
                 if let last = nameComponent.last,
+                    let state = State(stringValue: String(last)),
                     nameComponent.count > 1
                 {
-                    if last == "normal" {
+                    if state == .normal {
                         nameComponent.removeLast()
                         let newName = nameComponent.joined(separator: "-")
                         return SCNMaterial().clone(from: material, name: newName)
                     }else{
-                        return material
+                        return nil
                     }
                 }
             }
@@ -88,7 +101,7 @@ class ObjectNode: SCNNode, StaticNode {
     /// Update material from state
     /// - Parameter node: Target node to apply material
     /// - Parameter materialMap: Material map to apply for each state
-    private func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
+    func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
         if let materials = materialMap["materials"] as? [SCNMaterial] {
             node.geometry?.materials.forEach({ currentMaterial in
                 if let name = currentMaterial.name?.appending("-\(isEnabled ? "normal" : "disabled")"),
@@ -107,12 +120,6 @@ class ObjectNode: SCNNode, StaticNode {
             if let map = materialMap[child.name ?? "undefined"] as? [String: Any] {
                 updateMaterial(node: child, materialMap: map)
             }
-        }
-    }
-    
-    var isEnabled: Bool = true {
-        didSet {
-            updateMaterial(node: self, materialMap: materialMap)
         }
     }
     

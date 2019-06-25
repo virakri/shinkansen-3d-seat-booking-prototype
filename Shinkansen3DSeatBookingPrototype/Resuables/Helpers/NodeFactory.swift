@@ -10,14 +10,8 @@ import Foundation
 import SceneKit
 import BrightFutures
 
-protocol StaticNode {
+protocol Clonable {
     init(node: SCNNode)
-    var isEnabled: Bool { get set }
-}
-
-protocol InteractibleNode: StaticNode {
-    var isHighlighted: Bool { get set }
-    var isSelected: Bool { get set }
 }
 
 final class NodeFactory {
@@ -164,7 +158,7 @@ final class NodeFactory {
     /// After models are loaded this function allow to create model from refferenced name
     /// by provoide generic object that conform to `StaticNode` protocol
     /// - Parameter name: Refferenced name of prototype node
-    public func create<T>(name: String) -> T? where T : SCNNode & StaticNode {
+    public func create<T>(name: String) -> T? where T:  Clonable {
         guard
             let prototypeNode = modelPrototypes[name] as? SCNNode,
             let modelData = modelData?.first(where: { $0.name == name })
@@ -176,7 +170,7 @@ final class NodeFactory {
         func cloneGeometry(from: SCNNode, to: SCNNode) {
             to.geometry = from.geometry?.copy() as? SCNGeometry
             if modelData.isInteractible {
-                to.categoryBitMask = ReservableNode.defaultBitMask
+                to.categoryBitMask = InteractiveNode.defaultBitMask
             }
             zip(from.childNodes, to.childNodes).forEach {
                 cloneGeometry(from: $0, to: $1)

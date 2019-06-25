@@ -29,7 +29,7 @@ extension SCNVector3: Codable {
     }
     
     static var zero: SCNVector3 {
-        return SCNVector3(0, 0, 0)
+        return SCNVector3Zero
     }
 }
 

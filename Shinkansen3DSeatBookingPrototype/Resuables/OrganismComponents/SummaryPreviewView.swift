@@ -94,7 +94,7 @@ class SummaryPreviewView: UIView {
     
     public func setupContent(withSeatClassType seatClassType: SeatClassType?) {
         contentNode?.childNodes
-            .filter({ $0.categoryBitMask == ReservableNode.defaultBitMask})
+            .filter({ $0.categoryBitMask == InteractiveNode.defaultBitMask})
             .forEach {
                 $0.removeFromParentNode()
         }

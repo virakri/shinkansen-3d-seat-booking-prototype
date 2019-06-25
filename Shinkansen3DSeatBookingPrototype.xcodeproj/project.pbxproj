@@ -11,7 +11,7 @@
 		9013DC6C22B15D4E003304E0 /* SceneKitAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */; };
 		901F107B22B563CF00FB03D8 /* TiltNodeMotionEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */; };
 		9044513B22B00FA700E6FF45 /* SCNMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9044513A22B00FA700E6FF45 /* SCNMaterial.swift */; };
-		904756F322B4283F00971014 /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904756F222B4283F00971014 /* ObjectNode.swift */; };
+		904756F322B4283F00971014 /* StaticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904756F222B4283F00971014 /* StaticNode.swift */; };
 		90CA078222AEC21C002C204E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CA078122AEC21C002C204E /* UIColor.swift */; };
 		90D4FD4322BAC38B00679526 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4FD4222BAC38B00679526 /* ModelData.swift */; };
 		90D4FD4522BACC0A00679526 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4FD4422BACC0A00679526 /* DataProvider.swift */; };
@@ -98,7 +98,7 @@
 		E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */; };
 		E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */; };
 		E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */; };
-		E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */; };
+		E0CF325222AAD9AA00BC4788 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325122AAD9AA00BC4788 /* InteractiveNode.swift */; };
 		E0CF325422AAEF3F00BC4788 /* TrainCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */; };
 		E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325522AAF10800BC4788 /* TrainSchedule.swift */; };
 /* End PBXBuildFile section */
@@ -112,7 +112,7 @@
 		9013DC6B22B15D4E003304E0 /* SceneKitAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneKitAnimator.swift; sourceTree = "<group>"; };
 		901F107A22B563CF00FB03D8 /* TiltNodeMotionEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltNodeMotionEffect.swift; sourceTree = "<group>"; };
 		9044513A22B00FA700E6FF45 /* SCNMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNMaterial.swift; sourceTree = "<group>"; };
-		904756F222B4283F00971014 /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
+		904756F222B4283F00971014 /* StaticNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticNode.swift; sourceTree = "<group>"; };
 		90CA078122AEC21C002C204E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		90D4FD4222BAC38B00679526 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		90D4FD4422BACC0A00679526 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableEntity.swift; sourceTree = "<group>"; };
 		E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformedModelEntity.swift; sourceTree = "<group>"; };
 		E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3.swift; sourceTree = "<group>"; };
-		E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableNode.swift; sourceTree = "<group>"; };
+		E0CF325122AAD9AA00BC4788 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
 		E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainCriteria.swift; sourceTree = "<group>"; };
 		E0CF325522AAF10800BC4788 /* TrainSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainSchedule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -426,8 +426,8 @@
 				D016655322AABD4600BFD6DB /* CameraNode.swift */,
 				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
 				D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */,
-				E0CF325122AAD9AA00BC4788 /* ReservableNode.swift */,
-				904756F222B4283F00971014 /* ObjectNode.swift */,
+				E0CF325122AAD9AA00BC4788 /* InteractiveNode.swift */,
+				904756F222B4283F00971014 /* StaticNode.swift */,
 				90D7776322B3E88300170E24 /* RedBoxNode.swift */,
 			);
 			path = SeatMapNodes;
@@ -585,7 +585,7 @@
 				D074B1E3228B90AC00791F94 /* BookingConfirmationViewController.swift in Sources */,
 				D074B1E0228B90AC00791F94 /* TrainSelectionViewController.swift in Sources */,
 				D0C26E3922A13940001D3065 /* DescriptionSetView.swift in Sources */,
-				904756F322B4283F00971014 /* ObjectNode.swift in Sources */,
+				904756F322B4283F00971014 /* StaticNode.swift in Sources */,
 				90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */,
 				D01B2EBA22A2E3AD00C3FAF3 /* SeatClassIconImageView.swift in Sources */,
 				D074B1E5228B90BD00791F94 /* NavigationController.swift in Sources */,
@@ -612,7 +612,7 @@
 				D05C760222AF20B900AC1461 /* SegmentedControl.swift in Sources */,
 				E0BA439722AC4B7300FC3A72 /* Date.swift in Sources */,
 				D0ECFEC122BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift in Sources */,
-				E0CF325222AAD9AA00BC4788 /* ReservableNode.swift in Sources */,
+				E0CF325222AAD9AA00BC4788 /* InteractiveNode.swift in Sources */,
 				D0F90B8322BFD2AA00839891 /* DesignSystemComponentView.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,

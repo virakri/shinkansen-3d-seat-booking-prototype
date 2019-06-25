@@ -9,9 +9,9 @@
 import SceneKit
 
 enum SeatClassType: String, Codable {
-    case granClass = "granClass"
-    case green = "green"
-    case ordinary = "ordinary"
+    case granClass
+    case green
+    case ordinary
 }
 
 struct SeatClass: Codable {

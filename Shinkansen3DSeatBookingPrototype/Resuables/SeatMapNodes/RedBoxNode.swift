@@ -8,7 +8,7 @@
 
 import SceneKit
 
-class RedBoxNode: ReservableNode {
+class RedBoxNode: InteractiveNode {
     
     /// Current node's entity information
     override var reservableEntity: ReservableEntity? {
@@ -20,7 +20,7 @@ class RedBoxNode: ReservableNode {
         }
     }
     
-    init() {
+    override init() {
         let node = SCNNode()
         node.geometry = SCNBox(width: 0.5, height: 0.5, length: 0.5, chamferRadius: 0.1)
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.red

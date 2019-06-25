@@ -100,7 +100,7 @@ class SeatMapSceneView: SCNView {
     
     private var dimissHeadsUpBadgeControlTimer: Timer?
     
-    private var highlightedSeats = Set<ReservableNode>() {
+    private var highlightedSeats = Set<InteractiveNode>() {
         didSet {
             oldValue.subtracting(highlightedSeats).forEach { $0.isHighlighted = false }
             highlightedSeats.subtracting(oldValue).forEach {
@@ -110,7 +110,7 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    private weak var selectedSeat: ReservableNode? {
+    private weak var selectedSeat: InteractiveNode? {
         didSet {
             oldValue?.isSelected = false
             selectedSeat?.isSelected = true
@@ -218,7 +218,7 @@ class SeatMapSceneView: SCNView {
         
         // Place static nodes
         transformedModelEntities.compactMap({
-            if let node: ObjectNode = NodeFactory.shared?.create(name: $0.modelEntity) {
+            if let node: StaticNode = NodeFactory.shared?.create(name: $0.modelEntity) {
                 node.transformedModelEntity = $0
                 node.isEnabled = isEnabled
                 return node
@@ -256,7 +256,7 @@ class SeatMapSceneView: SCNView {
             // Generate all interactible nodes with transform values
             let containerNode = SCNNode()
             containerNode.name = seatClassEntity?.name
-            let nodes: [ReservableNode] = seatClassEntity?.reservableEntities.compactMap({
+            let nodes: [InteractiveNode] = seatClassEntity?.reservableEntities.compactMap({
                 guard !workItem.isCancelled else {
                     return nil
                 }
@@ -509,11 +509,11 @@ class SeatMapSceneView: SCNView {
     
     /// Recursive find parent node that be `ReservableNode` class
     /// - Parameter node: Target node to find
-    func findParent(of node: SCNNode?) -> ReservableNode? {
+    func findParent(of node: SCNNode?) -> InteractiveNode? {
         guard let node = node else {
             return nil
         }
-        if let node = node as? ReservableNode {
+        if let node = node as? InteractiveNode {
             return node
         }
         return findParent(of: node.parent)
@@ -521,10 +521,10 @@ class SeatMapSceneView: SCNView {
     
     /// Get nodes from touches position
     /// - Parameter touches: Set of touch to determine
-    private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> [ReservableNode] {
+    private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> [InteractiveNode] {
         return touches.compactMap { touch in
             let firstHitTestResult = hitTest(touch.location(in: self),
-                                             options: [.categoryBitMask: ReservableNode.defaultBitMask]).first
+                                             options: [.categoryBitMask: InteractiveNode.defaultBitMask]).first
             if let node = firstHitTestResult?.node,
                 let parent = findParent(of: node),
                 parent.isEnabled {

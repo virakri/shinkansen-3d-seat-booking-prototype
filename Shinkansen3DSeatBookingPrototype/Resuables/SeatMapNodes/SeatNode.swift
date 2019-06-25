@@ -8,14 +8,14 @@
 
 import SceneKit
 
-class SeatNode: ReservableNode {
-    
-    // MARK: States
+/// All states
+enum State: String, CodingKey {
+    case normal, highlighted, selected, disabled, focus
+}
 
-    /// All states
-    enum State: String, CodingKey {
-        case normal, highlighted, selected, disabled, focus
-    }
+class SeatNode: InteractiveNode {
+    
+    
     
     private var state: State = .normal
     
@@ -71,10 +71,6 @@ class SeatNode: ReservableNode {
     }
     
     // MARK:- Variables
-
-    
-    /// Materials to apply for each state
-    var materialMap: [String: Any] = [:]
     
     /// Stored original transform
     let transformMapNode = SCNNode()
@@ -96,7 +92,6 @@ class SeatNode: ReservableNode {
         name = node.name
         transformMapNode.transform = transform
         transformMapNode.addChildNode(removeAllGeomery(from: node.clone()))
-        materialMap = createMaterialMap(from: self)
         setupTheme(false)
     }
     
@@ -129,7 +124,7 @@ class SeatNode: ReservableNode {
     /// Update material from state
     /// - Parameter node: Target node to apply material
     /// - Parameter materialMap: Material map to apply for each state
-    private func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
+    override func updateMaterial(node: SCNNode, materialMap: [String: Any]) {
         if let materials = materialMap["materials"] as? [SCNMaterial] {
             node.geometry?.materials.forEach({ currentMaterial in
                 if let name = currentMaterial.name?.appending("-\(state.stringValue)"),
@@ -176,70 +171,16 @@ class SeatNode: ReservableNode {
         return node
     }
     
-    /// Build material recursively map for `transformMapNode`
-    /// - Parameter node: Target node to create
-    private func createMaterialMap(from node: SCNNode) -> [String: Any] {
-        var result = [String: Any]()
-        if let materials = node.geometry?.materials {
-            result["materials"] = materials.map { $0 }
-        }
-        
-        let materialNames = node.geometry?.materials.compactMap { $0.name } ?? []
-        
-        // Filter dark/light mode
-        node.geometry?.materials = node.geometry?.materials.compactMap({ material -> SCNMaterial? in
-            if let name = material.name,
-                let last = name.split(separator: "-").last,
-                last == "darkMode" {
-                var component = Array(name.split(separator: "-"))
-                component.removeLast()
-                let newName = component.joined(separator: "-")
-                if currentColorTheme == .dark || (currentColorTheme != .dark && !materialNames.contains(newName)) {
-                    material.name = newName
-                    return material
-                }
-                return nil
-            }else{
-                if currentColorTheme == .dark && materialNames.contains( "\(material.name ?? "")-darkMode") {
-                    return nil
-                }else{
-                    return material
-                }
-            }
-        }).compactMap({ material  in
-            // Material management
-            if let name = material.name, name.contains("-") {
-                var nameComponent = Array(name.split(separator: "-"))
-                if let last = nameComponent.last,
-                    let state = State(stringValue: String(last)),
-                    nameComponent.count > 1
-                {
-                    if state == .normal {
-                        nameComponent.removeLast()
-                        let newName = nameComponent.joined(separator: "-")
-                        return SCNMaterial().clone(from: material, name: newName)
-                    }else{
-                        return nil
-                    }
-                }
-            }
-            return material
-        }) ?? []
-        node.childNodes.forEach { child in
-            result[child.name ?? "undefined"] = createMaterialMap(from: child)
-        }
-        return result
-    }
     
 }
 
 // MARK:- Extension
 
-extension SeatNode.State: Equatable {
-    static func == (lhs: String, rhs: SeatNode.State) -> Bool {
+extension State: Equatable {
+    static func == (lhs: String, rhs: State) -> Bool {
         return lhs == rhs.stringValue
     }
-    static func == (lhs: SeatNode.State, rhs: String) -> Bool {
+    static func == (lhs: State, rhs: String) -> Bool {
         return lhs.stringValue == rhs
     }
 }
