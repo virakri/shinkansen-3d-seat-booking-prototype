@@ -63,6 +63,18 @@ class TrainSelectionViewController: BookingViewController {
                         self?.didFirstLoad = true
                         self?.mainTableView.isUserInteractionEnabled = true
                         self?.loadingActivityIndicatorView.stopAnimating()
+                        
+                        /// Check if there is no result
+                        if self?.mainTableView.visibleCells.count == 0 {
+                            let label = Label()
+                            label.numberOfLines = 0
+                            label.text = "No train scheduled in the time range you selected"
+                            label.textStyle = textStyle.body()
+                            label.textColor = currentColorTheme.componentColor.secondaryText
+                            self?.mainTableView
+                                .addSubview(label,
+                                            withConstaintEquals: [.center, .trailingMargin, .leadingMargin])
+                        }
                     }
                 }
             }

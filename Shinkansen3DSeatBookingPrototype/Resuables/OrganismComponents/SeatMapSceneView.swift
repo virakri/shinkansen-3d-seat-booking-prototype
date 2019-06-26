@@ -53,7 +53,6 @@ class SeatMapSceneView: SCNView {
     private var seatNavigationState: SeatNavigationState = .hide {
         didSet {
             if seatNavigationState != oldValue {
-                print(seatNavigationState)
                 DispatchQueue.main.async { [weak self] in
                     switch self?.seatNavigationState ?? .hide {
                     case .top:

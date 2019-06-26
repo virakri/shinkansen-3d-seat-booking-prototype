@@ -59,7 +59,7 @@ class SeatClassSelectionViewController: BookingViewController {
             .trailingAnchor
             .constraint(
                 equalTo:
-                view.trailingAnchor)
+                headerRouteInformationView.trailingAnchor)
         
         trainImageViewTrailingConstraint.priority = .defaultLow
         trainImageViewTrailingConstraint.isActive = true
