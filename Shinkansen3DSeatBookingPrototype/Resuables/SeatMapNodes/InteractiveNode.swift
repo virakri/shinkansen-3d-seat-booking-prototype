@@ -35,11 +35,8 @@ class InteractiveNode: StaticNode {
     
     /// setter-getter for enabled/disabled state
     override var isEnabled: Bool {
-        get {
-            return super.isEnabled
-        } set {
-            super.isEnabled = newValue
-            reloadState()
+        didSet {
+            reloadState(false)
         }
     }
     

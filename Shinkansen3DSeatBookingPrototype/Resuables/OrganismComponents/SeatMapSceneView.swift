@@ -237,7 +237,7 @@ class SeatMapSceneView: SCNView {
                 if let node: SeatNode = NodeFactory.shared?.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
                     // Assign Enabled state of interactible nodes
-                    node.setEnabled($0.isAvailable && isCurrentEntity, animated: false)
+                    node.isEnabled = $0.isAvailable && isCurrentEntity
                     return node
                 }
                 /// Show Error node
