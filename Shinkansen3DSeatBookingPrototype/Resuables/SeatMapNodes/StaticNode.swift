@@ -8,7 +8,7 @@
 
 import SceneKit
 
-class StaticNode: SCNNode, Clonable {
+class StaticNode: SCNNode, NodeFactoryCreatable {
     
     var materialMap: [String: Any] = [:]
     

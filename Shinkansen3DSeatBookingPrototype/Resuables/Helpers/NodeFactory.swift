@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 import BrightFutures
 
-protocol Clonable {
+public protocol NodeFactoryCreatable {
     init(node: SCNNode)
 }
 
@@ -158,7 +158,7 @@ final class NodeFactory {
     /// After models are loaded this function allow to create model from refferenced name
     /// by provoide generic object that conform to `StaticNode` protocol
     /// - Parameter name: Refferenced name of prototype node
-    public func create<T>(name: String) -> T? where T:  Clonable {
+    public func create<T>(name: String) -> T? where T:  NodeFactoryCreatable {
         guard
             let prototypeNode = modelPrototypes[name] as? SCNNode,
             let modelData = modelData?.first(where: { $0.name == name })
