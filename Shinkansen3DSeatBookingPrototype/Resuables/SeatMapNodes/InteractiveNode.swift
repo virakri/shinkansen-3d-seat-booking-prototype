@@ -134,10 +134,9 @@ class InteractiveNode: StaticNode {
     /// - Parameter originalTransformedNode: Map node that contained each state's transform
     private func updateTransfrom(node: SCNNode, originalTransformedNode: SCNNode) {
         if let parent = node.parent {
-            node.transform = SCNMatrix4Identity
-            node.transform = parent.convertTransform(originalTransformedNode.transform, from: node)
+            node.transform = originalTransformedNode.transform
             if let childNode = originalTransformedNode.childNode(withName: state.stringValue, recursively: false) {
-                node.transform = node.parent!.convertTransform(childNode.transform, from: node)
+                node.transform = parent.convertTransform(childNode.transform, from: node)
             }
         }
         

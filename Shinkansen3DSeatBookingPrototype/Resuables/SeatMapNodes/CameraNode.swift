@@ -25,6 +25,7 @@ class CameraNode: SCNNode {
         let offsetPosition = SCNVector3(0, 2, 1.5)
         
         let camera = SCNCamera()
+        camera.motionBlurIntensity = 0.333
         camera.projectionDirection = .vertical
         camera.fieldOfView = 64
         camera.zNear = 1

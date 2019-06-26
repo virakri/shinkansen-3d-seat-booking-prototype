@@ -206,6 +206,23 @@ class SeatMapSceneView: SCNView {
         }
     }
     
+    private func playInitialAnimation() {
+        DispatchQueue.main.async { [weak self] in
+            guard let contentZPositionLimit = self?.contentZPositionLimit else { return }
+            /// Play initial Animation
+            self?.currectContentNodePosition?.z = contentZPositionLimit.lowerBound
+            let duration: TimeInterval = TimeInterval(abs(contentZPositionLimit.upperBound) - abs(contentZPositionLimit.lowerBound)) / 100 + 0.5
+            SceneKitAnimator
+                .animateWithDuration(duration: duration,
+                                     timingFunction: .explodingEaseOut,
+                                     animations: {
+                                        self?.currectContentNodePosition?.z =
+                                            (contentZPositionLimit.lowerBound * 2 +
+                                                contentZPositionLimit.upperBound) / 3
+                })
+        }
+    }
+    
     deinit {
         // Try to inturrupt and remove model load operation
         workItems.forEach { $0.cancel() }
@@ -259,6 +276,7 @@ class SeatMapSceneView: SCNView {
                 self?.contentNode?.addChildNode(containerNode)
                 // When current entity is loaded, will remove indicator view
                 if isCurrentEntity {
+                    self?.playInitialAnimation()
                     self?.loadingActivityIndicatorView?.removeFromSuperview()
                     self?.alpha = 0
                     UIView.animate(withDuration: 0.35, animations: {
