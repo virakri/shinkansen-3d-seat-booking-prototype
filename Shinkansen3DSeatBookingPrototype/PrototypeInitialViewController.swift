@@ -153,12 +153,11 @@ class PrototypeInitialViewController: ViewController {
         headlineLabel.text = "Welcome to 3D Seat Booking Prototype!"
         bodyLabel.text = """
 Thank you for your interest in this prototype!
-This prototype shows the potential usage of 3D visualization capability in booking and reservation products.
-As this is a prototype, the information showing is mock data which statically stores in the app. That means the information doesn’t obtain from or send back to the server, and many functionalities don’t fully work. (Particularly, the route picker and date picker in the first view.)
-To start the prototype please tap on "Start this Prototype" button, and to exit the prototype in the middle of the flow, shake your device and the exiting prompt will show up.\nThis prototype is an open-source project, so feel free to visit project's GitHub repository to learn more or contribute. "GitHub Repository" button down there will direct you to the repository.
+This prototype shows the potential usage of 3D visualization capability in booking products.
+As this is a prototype, the information showing is mock data which statically stores in the app. That means the information doesn't obtain from or send back to the server, and many functionalities don't fully work. (Particularly, the route picker and date picker in the first view.)
+To start the prototype, please tap on "Start this Prototype" button, and to exit the prototype in the middle of the flow, shake your device and the exiting prompt will show up.
+This prototype is an open-source project, so feel free to visit the project's GitHub repository to learn more or contribute. "GitHub Repository" button down there will direct you to the repository's site.
 If you have any further question or feedback, please contact me by sending feedback via TestFlight feedback or direct message via Twitter @virakri.
-Thank you,
-V Jinangkul
 """
         bodyLabel.isUserInteractionEnabled = true
         gitHubButton.setTitle("GitHub Repository")

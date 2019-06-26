@@ -40,7 +40,7 @@ class SeatMapSceneView: SCNView {
     
     private var loadingActivityIndicatorView: UIView! = UIView()
     
-    private var headsUpBadgeControl: HeadsUpBadgeControl = HeadsUpBadgeControl()
+//    private var headsUpBadgeControl: HeadsUpBadgeControl = HeadsUpBadgeControl()
     
     private var centerScreenZ: Float = 0
     
@@ -53,22 +53,15 @@ class SeatMapSceneView: SCNView {
     private var seatNavigationState: SeatNavigationState = .hide {
         didSet {
             if seatNavigationState != oldValue {
+                print(seatNavigationState)
                 DispatchQueue.main.async { [weak self] in
                     switch self?.seatNavigationState ?? .hide {
                     case .top:
-                        self?.headsUpBadgeControl
-                            .setupContent(message: "↑ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is up there.")
-                        self?.dimissHeadsUpBadgeControlTimer?.invalidate()
-                        self?.dimissHeadsUpBadgeControlTimer = nil
+                        self?.addHeadsUpBadgeControl(withMessage: "↑ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is up there.")
                     case .bottom:
-                        self?.headsUpBadgeControl
-                            .setupContent(message: "↓ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is down there.")
-                        self?.dimissHeadsUpBadgeControlTimer?.invalidate()
-                        self?.dimissHeadsUpBadgeControlTimer = nil
+                        self?.addHeadsUpBadgeControl(withMessage: "↓ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is down there.")
                     case .hide:
-                        if self?.dimissHeadsUpBadgeControlTimer == nil {
-                             self?.headsUpBadgeControl.dismiss()
-                        }
+                        self?.removeHeadsUpBadgeControl(animated: true)
                     }
                 }
             }
@@ -98,8 +91,6 @@ class SeatMapSceneView: SCNView {
         }
     }
     
-    private var dimissHeadsUpBadgeControlTimer: Timer?
-    
     private var highlightedSeatNodes = Set<SeatNode>() {
         didSet {
             oldValue.subtracting(highlightedSeatNodes).forEach { $0.isHighlighted = false }
@@ -121,19 +112,8 @@ class SeatMapSceneView: SCNView {
                     
                     let message = "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected."
                     
-                    headsUpBadgeControl
-                        .setupContent(message: message)
-                    
-                    if let timer = dimissHeadsUpBadgeControlTimer {
-                        timer.invalidate()
-                        dimissHeadsUpBadgeControlTimer = nil
-                    }
-                    
-                    dimissHeadsUpBadgeControlTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] t in
-                        self?.headsUpBadgeControl.dismiss(animated: true)
-                        t.invalidate()
-                        self?.dimissHeadsUpBadgeControlTimer = nil
-                    })
+                    addHeadsUpBadgeControl(withMessage: message,
+                                           delayUntilRemoved: 4)
                 }
             }
             if let selectedSeat = selectedSeatNode {
@@ -179,14 +159,6 @@ class SeatMapSceneView: SCNView {
         
         preservesSuperviewLayoutMargins = true
         
-        /// Setup headsUpBadgeControl
-        addSubview(headsUpBadgeControl,
-                   withConstaintEquals: [.topMargin, .centerHorizontal])
-        headsUpBadgeControl.isHidden = true
-        headsUpBadgeControl
-            .addTarget(self,
-                       action: #selector(headsUpbadgeControlDidTouch(_:)),
-                       for: .touchUpInside)
     }
     
     override func didMoveToSuperview() {
@@ -558,5 +530,41 @@ class SeatMapSceneView: SCNView {
                 currectContentNodePosition?.z = -zPosition + center
         })
     }
+}
+
+extension SeatMapSceneView {
+    func addHeadsUpBadgeControl(withMessage message: String,
+                                animated: Bool = true,
+                                delayUntilRemoved: TimeInterval = 0,
+                                completion: ((Bool)->())? = nil) {
+        /// Remove all badgeControls first
+        removeHeadsUpBadgeControl(animated: false)
+        /// Setup headsUpBadgeControl
+        let headsUpBadgeControl = HeadsUpBadgeControl()
+        addSubview(headsUpBadgeControl,
+                   withConstaintEquals: [.topMargin, .centerHorizontal])
+        headsUpBadgeControl.isHidden = true
+        headsUpBadgeControl
+            .addTarget(self,
+                       action: #selector(headsUpbadgeControlDidTouch(_:)),
+                       for: .touchUpInside)
+        headsUpBadgeControl.setupContent(message: message,
+                                         animated: animated,
+                                         delay: 0,
+                                         completion: completion)
+        if delayUntilRemoved > 0 {
+            headsUpBadgeControl.dismiss(animated: animated,
+                                        delay: delayUntilRemoved,
+                                        removeWhenComplete: true)
+        }
+    }
     
+    func removeHeadsUpBadgeControl(animated: Bool = true,
+                                   completion: ((Bool)->())? = nil) {
+        subviews.forEach {
+            guard let headsUpBadgeControl = $0 as? HeadsUpBadgeControl else { return }
+            headsUpBadgeControl.dismiss(animated: animated,
+                                        removeWhenComplete: true)
+        }
+    }
 }

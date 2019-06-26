@@ -13,6 +13,8 @@ class HeadsUpBadgeControl: CardControl {
     
     private var label: Label
     
+    private var initialYOffset: CGFloat = -CGFloat(32).systemSizeMuliplier() * 1.5
+    
      init() {
         label = Label()
         super.init(type: .regularAlternative)
@@ -44,7 +46,7 @@ class HeadsUpBadgeControl: CardControl {
         isHidden = false
         if animated {
             alpha = 0
-            transform.ty = -bounds.height * 1.5
+            transform.ty = initialYOffset
             UIView.animate(withStyle: .halfTransitionAnimationStyle,
                            delay: delay,
                            animations: {
@@ -57,6 +59,7 @@ class HeadsUpBadgeControl: CardControl {
     
     public func dismiss(animated: Bool = true,
                         delay: TimeInterval = 0,
+                        removeWhenComplete: Bool = true,
                         completion: ((Bool)->())? = nil) {
         isHidden = false
         if animated {
@@ -67,15 +70,19 @@ class HeadsUpBadgeControl: CardControl {
                          delay: delay,
                          animations: {
                             self.alpha = 0
-                            self.transform.ty = -self.bounds.height * 1.5
+                            self.transform.ty = self.initialYOffset
                 }, completion: {
                     finished in
-                    self.isHidden = true
-                    
+                    if removeWhenComplete { self.removeFromSuperview() }
                     if let completion = completion {
                         completion(finished)
                     }
                 })
+        } else {
+            if removeWhenComplete { self.removeFromSuperview() }
+            if let completion = completion {
+                completion(true)
+            }
         }
     }
 }
