@@ -17,7 +17,7 @@
 		90D4FD4522BACC0A00679526 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4FD4422BACC0A00679526 /* DataProvider.swift */; };
 		90D4FD4722BACC8E00679526 /* SeatClassEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4FD4622BACC8E00679526 /* SeatClassEntity.swift */; };
 		90D7776222B3DB1B00170E24 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776122B3DB1B00170E24 /* URL.swift */; };
-		90D7776422B3E88300170E24 /* PlaceholderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776322B3E88300170E24 /* PlaceholderNode.swift */; };
+		90D7776422B3E88300170E24 /* PlaceholderSeatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776322B3E88300170E24 /* PlaceholderSeatNode.swift */; };
 		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
 		90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED74E522ADA28C007D8DDF /* NodeFactory.swift */; };
 		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
@@ -35,6 +35,7 @@
 		D01B2EC022A316B000C3FAF3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EBF22A316B000C3FAF3 /* UITableView.swift */; };
 		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
 		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
+		D025A14022C386B4008D62C5 /* SeatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025A13F22C386B4008D62C5 /* SeatNode.swift */; };
 		D02710EC22BA809600D9FF4D /* TextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02710EB22BA809600D9FF4D /* TextNode.swift */; };
 		D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042A71422A70C7600A0CBFC /* CALayer.swift */; };
 		D050625F22A9C6BF003A8565 /* SeatMap.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D050625E22A9C6BF003A8565 /* SeatMap.scnassets */; };
@@ -117,7 +118,7 @@
 		90D4FD4422BACC0A00679526 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		90D4FD4622BACC8E00679526 /* SeatClassEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassEntity.swift; sourceTree = "<group>"; };
 		90D7776122B3DB1B00170E24 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
-		90D7776322B3E88300170E24 /* PlaceholderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderNode.swift; sourceTree = "<group>"; };
+		90D7776322B3E88300170E24 /* PlaceholderSeatNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderSeatNode.swift; sourceTree = "<group>"; };
 		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		90ED74E522ADA28C007D8DDF /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
 		9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		D01B2EBF22A316B000C3FAF3 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
 		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		D025A13F22C386B4008D62C5 /* SeatNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatNode.swift; sourceTree = "<group>"; };
 		D02710EB22BA809600D9FF4D /* TextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNode.swift; sourceTree = "<group>"; };
 		D042A71422A70C7600A0CBFC /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		D050625E22A9C6BF003A8565 /* SeatMap.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SeatMap.scnassets; sourceTree = "<group>"; };
@@ -419,13 +421,14 @@
 		E04BCCF422AAA602002E29DE /* SeatMapNodes */ = {
 			isa = PBXGroup;
 			children = (
-				D0689C1B22AABBAC00EE5660 /* InteractiveNode.swift */,
-				D02710EB22BA809600D9FF4D /* TextNode.swift */,
 				D016655322AABD4600BFD6DB /* CameraNode.swift */,
-				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
-				D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */,
 				904756F222B4283F00971014 /* StaticNode.swift */,
-				90D7776322B3E88300170E24 /* PlaceholderNode.swift */,
+				D0689C1B22AABBAC00EE5660 /* InteractiveNode.swift */,
+				D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */,
+				D02710EB22BA809600D9FF4D /* TextNode.swift */,
+				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
+				D025A13F22C386B4008D62C5 /* SeatNode.swift */,
+				90D7776322B3E88300170E24 /* PlaceholderSeatNode.swift */,
 			);
 			path = SeatMapNodes;
 			sourceTree = "<group>";
@@ -634,12 +637,13 @@
 				90D4FD4322BAC38B00679526 /* ModelData.swift in Sources */,
 				D0046998229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift in Sources */,
 				D0046990229F559C0028A9D7 /* Button.swift in Sources */,
-				90D7776422B3E88300170E24 /* PlaceholderNode.swift in Sources */,
+				90D7776422B3E88300170E24 /* PlaceholderSeatNode.swift in Sources */,
 				90CA078222AEC21C002C204E /* UIColor.swift in Sources */,
 				D0F90B8522BFE58F00839891 /* DesignSystemTextStylesView.swift in Sources */,
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,
 				D074B1E8228B926F00791F94 /* TextStyle.swift in Sources */,
 				D016655422AABD4600BFD6DB /* CameraNode.swift in Sources */,
+				D025A14022C386B4008D62C5 /* SeatNode.swift in Sources */,
 				D01B2EB822A2D8B000C3FAF3 /* ImageButton.swift in Sources */,
 				D0F90B7F22BFD14000839891 /* DesignSystemView.swift in Sources */,
 				D0CCB07022BC3DFA00C7AED3 /* InitialViewColorThemeSegmentedControl.swift in Sources */,

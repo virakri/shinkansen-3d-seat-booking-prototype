@@ -8,6 +8,4 @@
 
 import SceneKit
 
-class ContentNode: SCNNode {
-    
-}
+class ContentNode: SCNNode {}

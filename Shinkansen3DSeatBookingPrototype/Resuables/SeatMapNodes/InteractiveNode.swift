@@ -37,7 +37,7 @@ class InteractiveNode: StaticNode {
     override var isEnabled: Bool {
         get {
             return super.isEnabled
-        }set {
+        } set {
             super.isEnabled = newValue
             reloadState()
         }
@@ -64,7 +64,7 @@ class InteractiveNode: StaticNode {
     func setEnabled(_ isEnabled: Bool, animated: Bool) {
         if animated {
             self.isEnabled = isEnabled
-        }else{
+        } else {
             super.isEnabled = isEnabled
             reloadState()
         }
@@ -75,14 +75,6 @@ class InteractiveNode: StaticNode {
     /// Stored original transform
     let originalTransformedNode = SCNNode()
     
-    /// Current node's entity information
-     var reservableEntity: ReservableEntity? {
-        didSet {
-            if let reservableEntity = reservableEntity {
-                updateReservableEntity(reservableEntity: reservableEntity)
-            }
-        }
-    }
     
     // MARK: Intialializer
     
@@ -116,13 +108,6 @@ class InteractiveNode: StaticNode {
             updateTransfrom(node: self.childNodes[0],
                             originalTransformedNode: originalTransformedNode.childNodes[0])
         }
-    }
-    
-    /// Function to update transform from `reservableEntity`
-    /// - Parameter reservableEntity: Target tranfrom data
-    private func updateReservableEntity(reservableEntity: ReservableEntity) {
-        position = reservableEntity.transformedModelEntity.position
-        eulerAngles = reservableEntity.transformedModelEntity.rotation
     }
     
     /// Update material from state

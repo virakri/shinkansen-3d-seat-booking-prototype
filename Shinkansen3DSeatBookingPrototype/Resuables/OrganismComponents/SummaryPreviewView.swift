@@ -104,7 +104,7 @@ class SummaryPreviewView: UIView {
             NodeFactory
                 .shared?
                 .create(name: seatClassType.completeNodeName)
-            else { contentNode.addChildNode(PlaceholderNode())
+            else { contentNode.addChildNode(PlaceholderSeatNode())
             return
         }
         node.position = SCNVector3(0, 0, 0)

@@ -8,7 +8,7 @@
 
 import SceneKit
 
-class PlaceholderNode: InteractiveNode {
+class PlaceholderSeatNode: SeatNode {
     
      init() {
         let node = SCNNode()

@@ -57,12 +57,12 @@ class SeatMapSceneView: SCNView {
                     switch self?.seatNavigationState ?? .hide {
                     case .top:
                         self?.headsUpBadgeControl
-                            .setupContent(message: "↑ Your \(self?.selectedSeat?.reservableEntity?.name ?? "selected") seat is up there.")
+                            .setupContent(message: "↑ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is up there.")
                         self?.dimissHeadsUpBadgeControlTimer?.invalidate()
                         self?.dimissHeadsUpBadgeControlTimer = nil
                     case .bottom:
                         self?.headsUpBadgeControl
-                            .setupContent(message: "↓ Your \(self?.selectedSeat?.reservableEntity?.name ?? "selected") seat is down there.")
+                            .setupContent(message: "↓ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is down there.")
                         self?.dimissHeadsUpBadgeControlTimer?.invalidate()
                         self?.dimissHeadsUpBadgeControlTimer = nil
                     case .hide:
@@ -84,7 +84,7 @@ class SeatMapSceneView: SCNView {
             if centerScreenZ == 0 {
                 centerScreenZ = positionOfFloorHitTest(.init(x: 0, y: frame.midY))?.z ?? 0
             }
-            if let selected = selectedSeat, let current = currectContentNodePosition?.z, centerScreenZ != 0 {
+            if let selected = selectedSeatNode, let current = currectContentNodePosition?.z, centerScreenZ != 0 {
                 if selected.position.z > centerScreenZ - current + 3 {
                     seatNavigationState = .bottom
                 } else if selected.position.z < centerScreenZ - current - 4 {
@@ -100,24 +100,24 @@ class SeatMapSceneView: SCNView {
     
     private var dimissHeadsUpBadgeControlTimer: Timer?
     
-    private var highlightedSeats = Set<InteractiveNode>() {
+    private var highlightedSeatNodes = Set<SeatNode>() {
         didSet {
-            oldValue.subtracting(highlightedSeats).forEach { $0.isHighlighted = false }
-            highlightedSeats.subtracting(oldValue).forEach {
+            oldValue.subtracting(highlightedSeatNodes).forEach { $0.isHighlighted = false }
+            highlightedSeatNodes.subtracting(oldValue).forEach {
                 $0.isHighlighted = true
                 lightFeedbackGenerator.impactOccurred()
             }
         }
     }
     
-    private weak var selectedSeat: InteractiveNode? {
+    private weak var selectedSeatNode: SeatNode? {
         didSet {
             oldValue?.isSelected = false
-            selectedSeat?.isSelected = true
-            if let reservableEntity = selectedSeat?.reservableEntity {
+            selectedSeatNode?.isSelected = true
+            if let reservableEntity = selectedSeatNode?.reservableEntity {
                 seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
                 // Make sure that the seat isn't the same one before showing the message
-                if oldValue != selectedSeat {
+                if oldValue != selectedSeatNode {
                     
                     let message = "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected."
                     
@@ -136,7 +136,7 @@ class SeatMapSceneView: SCNView {
                     })
                 }
             }
-            if let selectedSeat = selectedSeat {
+            if let selectedSeat = selectedSeatNode {
                 animateContentNodeToZPosition(of: selectedSeat.position.z)
             }
         }
@@ -256,18 +256,18 @@ class SeatMapSceneView: SCNView {
             // Generate all interactible nodes with transform values
             let containerNode = SCNNode()
             containerNode.name = seatClassEntity?.name
-            let nodes: [InteractiveNode] = seatClassEntity?.reservableEntities.compactMap({
+            let nodes: [SeatNode] = seatClassEntity?.reservableEntities.compactMap({
                 guard !workItem.isCancelled else {
                     return nil
                 }
-                if let node: InteractiveNode = NodeFactory.shared?.create(name: $0.transformedModelEntity.modelEntity) {
+                if let node: SeatNode = NodeFactory.shared?.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
                     // Assign Enabled state of interactible nodes
                     node.setEnabled($0.isAvailable && isCurrentEntity, animated: false)
                     return node
                 }
                 /// Show Error node
-                let node = PlaceholderNode()
+                let node = PlaceholderSeatNode()
                 node.reservableEntity = $0
                 return node
             }) ?? []
@@ -339,10 +339,12 @@ class SeatMapSceneView: SCNView {
             contentNode.addChildNode($0)
         }
         
-        setupStationDirection(fromStation: fromStation, toStation: toStation)
+        setupStationDirectionLabelNode(withFromStation: fromStation,
+                                       toStation: toStation)
     }
     
-    private func setupStationDirection(fromStation: String?, toStation: String?) {
+    private func setupStationDirectionLabelNode(withFromStation fromStation: String?,
+                                                toStation: String?) {
         let stationDirectionText = "\(toStation != nil ? "← \(toStation ?? "")" : "")\(fromStation != nil ? "     \(fromStation ?? "") →" : "")"
         stationDirectionTextNode = TextNode(text: stationDirectionText,
                                             font: .systemFont(ofSize: 0.5,
@@ -416,14 +418,14 @@ class SeatMapSceneView: SCNView {
         super.touchesBegan(touches, with: event)
         contentNode.removeAction(forKey: "panDrift")
         for node in filterReservationNodeFrom(touches) {
-            highlightedSeats.insert(node)
+            highlightedSeatNodes.insert(node)
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        if highlightedSeats.count > 0 {
-            highlightedSeats.removeAll()
+        if highlightedSeatNodes.count > 0 {
+            highlightedSeatNodes.removeAll()
         }
     }
     
@@ -431,10 +433,10 @@ class SeatMapSceneView: SCNView {
         super.touchesEnded(touches, with: event)
         
         touches.compactMap ({ touch in
-            highlightedSeats.first { $0.touch == touch }
+            highlightedSeatNodes.first { $0.touch == touch }
         }).forEach { node in
-            selectedSeat = node
-            highlightedSeats.remove(node)
+            selectedSeatNode = node
+            highlightedSeatNodes.remove(node)
         }
     }
     
@@ -500,7 +502,7 @@ class SeatMapSceneView: SCNView {
     }
     
     @objc private func headsUpbadgeControlDidTouch(_ sender: HeadsUpBadgeControl) {
-        if let selectedSeat = selectedSeat {
+        if let selectedSeat = selectedSeatNode {
             animateContentNodeToZPosition(of: selectedSeat.position.z)
         }
     }
@@ -509,11 +511,11 @@ class SeatMapSceneView: SCNView {
     
     /// Recursive find parent node that be `ReservableNode` class
     /// - Parameter node: Target node to find
-    func findParent(of node: SCNNode?) -> InteractiveNode? {
+    func findParent(of node: SCNNode?) -> SeatNode? {
         guard let node = node else {
             return nil
         }
-        if let node = node as? InteractiveNode {
+        if let node = node as? SeatNode {
             return node
         }
         return findParent(of: node.parent)
@@ -521,10 +523,10 @@ class SeatMapSceneView: SCNView {
     
     /// Get nodes from touches position
     /// - Parameter touches: Set of touch to determine
-    private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> [InteractiveNode] {
+    private func filterReservationNodeFrom(_ touches: Set<UITouch>) -> [SeatNode] {
         return touches.compactMap { touch in
             let firstHitTestResult = hitTest(touch.location(in: self),
-                                             options: [.categoryBitMask: InteractiveNode.defaultBitMask]).first
+                                             options: [.categoryBitMask: SeatNode.defaultBitMask]).first
             if let node = firstHitTestResult?.node,
                 let parent = findParent(of: node),
                 parent.isEnabled {
