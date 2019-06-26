@@ -51,7 +51,7 @@ class HeadsUpBadgeControl: CardControl {
                            delay: delay,
                            animations: {
                             self.alpha = 1
-                            self.transform = .identity
+                            self.transform.ty = 0
             },
                            completion: completion)
         }
@@ -63,8 +63,9 @@ class HeadsUpBadgeControl: CardControl {
                         completion: ((Bool)->())? = nil) {
         isHidden = false
         if animated {
+            layer.removeAllAnimations()
             alpha = 1
-            transform = .identity
+            transform.ty = 0
             UIView
                 .animate(withStyle: .transitionAnimationStyle,
                          delay: delay,

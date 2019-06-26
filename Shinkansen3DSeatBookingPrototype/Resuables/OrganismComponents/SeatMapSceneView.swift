@@ -107,13 +107,15 @@ class SeatMapSceneView: SCNView {
             selectedSeatNode?.isSelected = true
             if let reservableEntity = selectedSeatNode?.reservableEntity {
                 seatMapDelegate?.sceneView(sceneView: self, didSelected: reservableEntity)
+                
                 // Make sure that the seat isn't the same one before showing the message
                 if oldValue != selectedSeatNode {
                     
                     let message = "Seat \(reservableEntity.name) in \(reservableEntity.carNumber.lowercased()) has been selected."
                     
                     addHeadsUpBadgeControl(withMessage: message,
-                                           delayUntilRemoved: 4)
+                                           delayUntilRemoved: 4,
+                                           bitMask: 1 << 0)
                 }
             }
             if let selectedSeat = selectedSeatNode {
@@ -536,35 +538,48 @@ extension SeatMapSceneView {
     func addHeadsUpBadgeControl(withMessage message: String,
                                 animated: Bool = true,
                                 delayUntilRemoved: TimeInterval = 0,
+                                bitMask: Int = 1 << 0,
                                 completion: ((Bool)->())? = nil) {
-        /// Remove all badgeControls first
-        removeHeadsUpBadgeControl(animated: false)
-        /// Setup headsUpBadgeControl
-        let headsUpBadgeControl = HeadsUpBadgeControl()
-        addSubview(headsUpBadgeControl,
-                   withConstaintEquals: [.topMargin, .centerHorizontal])
-        headsUpBadgeControl.isHidden = true
+        
+            /// Remove all badgeControls first
+            removeHeadsUpBadgeControl(animated: false)
+            /// Setup headsUpBadgeControl
+            let headsUpBadgeControl = HeadsUpBadgeControl()
+            headsUpBadgeControl.tag = bitMask
+            addSubview(headsUpBadgeControl,
+                             withConstaintEquals: [.topMargin, .centerHorizontal])
+            headsUpBadgeControl
+                .addTarget(self,
+                           action: #selector(headsUpbadgeControlDidTouch(_:)),
+                           for: .touchUpInside)
         headsUpBadgeControl
-            .addTarget(self,
-                       action: #selector(headsUpbadgeControlDidTouch(_:)),
-                       for: .touchUpInside)
-        headsUpBadgeControl.setupContent(message: message,
-                                         animated: animated,
-                                         delay: 0,
-                                         completion: completion)
-        if delayUntilRemoved > 0 {
-            headsUpBadgeControl.dismiss(animated: animated,
-                                        delay: delayUntilRemoved,
-                                        removeWhenComplete: true)
+            .setupContent(message: message,
+                          animated: animated,
+                          delay: 0,
+                          completion: { finished in
+                            if let completion = completion {
+                                completion(finished)
+                            }
+                            if delayUntilRemoved > 0 {
+                                headsUpBadgeControl.dismiss(animated: animated,
+                                                            delay: delayUntilRemoved,
+                                                            removeWhenComplete: true)
+                            }
+            })
         }
-    }
-    
-    func removeHeadsUpBadgeControl(animated: Bool = true,
+        
+        func removeHeadsUpBadgeControl(animated: Bool = true,
+                                   bitMask: Int? = nil,
                                    completion: ((Bool)->())? = nil) {
         subviews.forEach {
             guard let headsUpBadgeControl = $0 as? HeadsUpBadgeControl else { return }
-            headsUpBadgeControl.dismiss(animated: animated,
-                                        removeWhenComplete: true)
+            let removeHeadsUpBadgeAction = {
+                headsUpBadgeControl.dismiss(animated: animated,
+                                            removeWhenComplete: true)
+            }
+            if bitMask != nil {
+                if $0.tag == bitMask { removeHeadsUpBadgeAction() }
+            } else { removeHeadsUpBadgeAction() }
         }
     }
 }
