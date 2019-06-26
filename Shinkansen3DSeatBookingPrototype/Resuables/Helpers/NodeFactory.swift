@@ -43,51 +43,17 @@ final class NodeFactory {
     
     public init(url: URL) {
         self.url = url
-        loadNodeFrom(fetchModelData(url))
+        fetchModelData(url)
+            .flatMap{ self.loadNode(from: $0) }
+            .onComplete(callback: finalizeData)
     }
     
     public init(modelData: [ModelData]) {
-        loadNodeFrom(Future(value: modelData))
+        loadNode(from: modelData)
+            .onComplete(callback: finalizeData)
     }
     
-    /// Chained method to work after `[ModelData]` are generated
-    /// - Parameter future: `[ModelData]` future object
-    private func loadNodeFrom(_ future: Future<[ModelData], Error>) {
-        // flatmap (convert) [ModelData] to [String: SCNNode?]
-        future.flatMap { [weak self] (modelData) -> Future<[String: SCNNode?], Error> in
-            guard let weakSelf = self else {
-                return Future(error: NSError(
-                    domain: "NodeFactory",
-                    code: -9004, userInfo: [NSLocalizedFailureReasonErrorKey: "Memory of self release before use it"]
-                ))
-            }
-            weakSelf.modelData = modelData
-            // Load each model from model data
-            return weakSelf.loadModels(
-                from: Dictionary(
-                    uniqueKeysWithValues: modelData.compactMap {
-                        switch $0.resource {
-                        case .fileName(let filename):
-                            return ($0.name, URL.resource(name: filename)) as? (String, URL)
-                        case .url(let url):
-                            return ($0.name, url)
-                        default:
-                            return nil
-                        }
-                    }
-                )
-            )
-            // When all models are loaded store it to `modelPrototypes` and notify user by set isLoaded = true
-            }.onSuccess { [weak self] modelPrototypes in
-                self?.modelPrototypes = modelPrototypes
-                self?.isLoaded = true
-            }.onFailure { error in
-                print(error)
-        }
-    }
-    
-    
-    /// Fetch model data from URL
+    /// if proviode URL let fetch model data from URL first
     /// - Parameter url: URL that contain json of `[ModelData]`
     private func fetchModelData(_ url: URL) -> Future<[ModelData], Error> {
         // return it as Future of `[ModelData]`
@@ -95,16 +61,11 @@ final class NodeFactory {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
                     let decoder = JSONDecoder()
-                    let data = try? decoder.decode([ModelData].self, from: data)
-                    DispatchQueue.main.async {
-                        if let data = data {
-                            complete(.success(data))
-                        }else{
-                            complete(.failure(NSError(
-                                domain: "NodeFactory",
-                                code: -9000,
-                                userInfo: [NSLocalizedFailureReasonErrorKey: "Cannot decode json"])))
-                        }
+                    do {
+                        let response = try decoder.decode([ModelData].self, from: data)
+                        complete(.success(response))
+                    } catch (let error) {
+                        complete(.failure(error))
                     }
                 }else if let error = error {
                     complete(.failure(error))
@@ -119,14 +80,32 @@ final class NodeFactory {
     }
     
     
+    /// Chained method to work after `[ModelData]` are generated
+    /// - Parameter future: `[ModelData]` future object
+    private func loadNode(from modelData: [ModelData]) -> Future<[String: SCNNode?], Error> {
+        self.modelData = modelData
+        return loadModels(
+            from: Dictionary(
+                uniqueKeysWithValues: modelData.compactMap {
+                    switch $0.resource {
+                    case .fileName(let filename):
+                        return ($0.name, URL.resource(name: filename)) as? (String, URL)
+                    case .url(let url):
+                        return ($0.name, url)
+                    default:
+                        return nil
+                    }
+                }
+            )
+        )
+    }
+    
     /// Load all models by sequency
     /// - Parameter data: String = refernced key of model, URL = url of `*.scn` file
     public func loadModels(from data: [String: URL]) -> Future<[String: SCNNode?], Error> {
         return data.map({ loadModel(name: $0, from: $1) })
             .sequence()
-            .flatMap {
-                Future(value: Dictionary(uniqueKeysWithValues: $0))
-        }
+            .map { Dictionary(uniqueKeysWithValues: $0) }
     }
     
     
@@ -155,6 +134,19 @@ final class NodeFactory {
         }
     }
     
+    private func finalizeData(_ result: Result<[String: SCNNode?], Error>) {
+        switch result {
+        case .success(let modelPrototypes):
+            self.modelPrototypes = modelPrototypes
+            self.isLoaded = true
+        case .failure(let error):
+            print(error)
+        }
+    }
+    
+    // MARK:- Create new node from prototype
+
+    
     /// After models are loaded this function allow to create model from refferenced name
     /// by provoide generic object that conform to `StaticNode` protocol
     /// - Parameter name: Refferenced name of prototype node
@@ -181,7 +173,7 @@ final class NodeFactory {
         
         // Create node object from provioded generic
         let node = T(node: clone)
-
+        
         return node
     }
     
