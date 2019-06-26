@@ -17,7 +17,7 @@
 		90D4FD4522BACC0A00679526 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4FD4422BACC0A00679526 /* DataProvider.swift */; };
 		90D4FD4722BACC8E00679526 /* SeatClassEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D4FD4622BACC8E00679526 /* SeatClassEntity.swift */; };
 		90D7776222B3DB1B00170E24 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776122B3DB1B00170E24 /* URL.swift */; };
-		90D7776422B3E88300170E24 /* RedBoxNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776322B3E88300170E24 /* RedBoxNode.swift */; };
+		90D7776422B3E88300170E24 /* PlaceholderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D7776322B3E88300170E24 /* PlaceholderNode.swift */; };
 		90E6F7DC22AD760700C3AD6F /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6F7DB22AD760700C3AD6F /* Numeric.swift */; };
 		90ED74E622ADA28C007D8DDF /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ED74E522ADA28C007D8DDF /* NodeFactory.swift */; };
 		D0046990229F559C0028A9D7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = D004698F229F559C0028A9D7 /* Button.swift */; };
@@ -48,7 +48,7 @@
 		D053EBDF229D52BB007CCFFE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = D053EBDE229D52BB007CCFFE /* Label.swift */; };
 		D05C760222AF20B900AC1461 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C760122AF20B900AC1461 /* SegmentedControl.swift */; };
 		D05C760422AF23DC00AC1461 /* SegmentedItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */; };
-		D0689C1C22AABBAC00EE5660 /* SeatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0689C1B22AABBAC00EE5660 /* SeatNode.swift */; };
+		D0689C1C22AABBAC00EE5660 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0689C1B22AABBAC00EE5660 /* InteractiveNode.swift */; };
 		D0743EB222BF9373007981F9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D0743EB122BF933C007981F9 /* README.md */; };
 		D074B1CE228B8F6100791F94 /* PrototypeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */; };
 		D074B1DF228B90AC00791F94 /* BookingCriteriaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */; };
@@ -98,7 +98,6 @@
 		E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */; };
 		E0CF322E22AAB4AD00BC4788 /* TransformedModelEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */; };
 		E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */; };
-		E0CF325222AAD9AA00BC4788 /* InteractiveNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325122AAD9AA00BC4788 /* InteractiveNode.swift */; };
 		E0CF325422AAEF3F00BC4788 /* TrainCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */; };
 		E0CF325622AAF10800BC4788 /* TrainSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CF325522AAF10800BC4788 /* TrainSchedule.swift */; };
 /* End PBXBuildFile section */
@@ -118,7 +117,7 @@
 		90D4FD4422BACC0A00679526 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		90D4FD4622BACC8E00679526 /* SeatClassEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassEntity.swift; sourceTree = "<group>"; };
 		90D7776122B3DB1B00170E24 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
-		90D7776322B3E88300170E24 /* RedBoxNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedBoxNode.swift; sourceTree = "<group>"; };
+		90D7776322B3E88300170E24 /* PlaceholderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderNode.swift; sourceTree = "<group>"; };
 		90E6F7DB22AD760700C3AD6F /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		90ED74E522ADA28C007D8DDF /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
 		9FB51CE318A0563A0BD00F1F /* Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; path = "Target Support Files/Pods-Shinkansen Tickets Booking Prototype/Pods-Shinkansen Tickets Booking Prototype.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,7 +149,7 @@
 		D053EBDE229D52BB007CCFFE /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		D05C760122AF20B900AC1461 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedItemControl.swift; sourceTree = "<group>"; };
-		D0689C1B22AABBAC00EE5660 /* SeatNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatNode.swift; sourceTree = "<group>"; };
+		D0689C1B22AABBAC00EE5660 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
 		D0743EB122BF933C007981F9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		D074B1CD228B8F6100791F94 /* PrototypeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrototypeInitialViewController.swift; sourceTree = "<group>"; };
 		D074B1DA228B90AC00791F94 /* BookingCriteriaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCriteriaViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +202,6 @@
 		E0CF322B22AAB46000BC4788 /* ReservableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservableEntity.swift; sourceTree = "<group>"; };
 		E0CF322D22AAB4AD00BC4788 /* TransformedModelEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformedModelEntity.swift; sourceTree = "<group>"; };
 		E0CF322F22AAB4D700BC4788 /* SCNVector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNVector3.swift; sourceTree = "<group>"; };
-		E0CF325122AAD9AA00BC4788 /* InteractiveNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveNode.swift; sourceTree = "<group>"; };
 		E0CF325322AAEF3F00BC4788 /* TrainCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainCriteria.swift; sourceTree = "<group>"; };
 		E0CF325522AAF10800BC4788 /* TrainSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainSchedule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -421,14 +419,13 @@
 		E04BCCF422AAA602002E29DE /* SeatMapNodes */ = {
 			isa = PBXGroup;
 			children = (
-				D0689C1B22AABBAC00EE5660 /* SeatNode.swift */,
+				D0689C1B22AABBAC00EE5660 /* InteractiveNode.swift */,
 				D02710EB22BA809600D9FF4D /* TextNode.swift */,
 				D016655322AABD4600BFD6DB /* CameraNode.swift */,
 				D016655522AABDEC00BFD6DB /* ContentNode.swift */,
 				D016655722AABE1D00BFD6DB /* HitTestFloorNode.swift */,
-				E0CF325122AAD9AA00BC4788 /* InteractiveNode.swift */,
 				904756F222B4283F00971014 /* StaticNode.swift */,
-				90D7776322B3E88300170E24 /* RedBoxNode.swift */,
+				90D7776322B3E88300170E24 /* PlaceholderNode.swift */,
 			);
 			path = SeatMapNodes;
 			sourceTree = "<group>";
@@ -604,7 +601,7 @@
 				E0CF322C22AAB46000BC4788 /* ReservableEntity.swift in Sources */,
 				D0F6D8B622A085AE00872B5B /* LabelSetView.swift in Sources */,
 				E04BCCF622AAA626002E29DE /* SeatMap.swift in Sources */,
-				D0689C1C22AABBAC00EE5660 /* SeatNode.swift in Sources */,
+				D0689C1C22AABBAC00EE5660 /* InteractiveNode.swift in Sources */,
 				D0AD0AC522A9712600F2E976 /* SeatMapSceneView.swift in Sources */,
 				D00C5E0722AA73BA00FB8CF0 /* DecayFunction.swift in Sources */,
 				D053EBD5229D42F6007CCFFE /* Theme.swift in Sources */,
@@ -612,7 +609,6 @@
 				D05C760222AF20B900AC1461 /* SegmentedControl.swift in Sources */,
 				E0BA439722AC4B7300FC3A72 /* Date.swift in Sources */,
 				D0ECFEC122BD434A00BAF0E6 /* PrototypeInitialViewControllerAnimatedTransitioning.swift in Sources */,
-				E0CF325222AAD9AA00BC4788 /* InteractiveNode.swift in Sources */,
 				D0F90B8322BFD2AA00839891 /* DesignSystemComponentView.swift in Sources */,
 				D09F3F1522A20ACE005E59C0 /* TrainScheduleTableViewCell.swift in Sources */,
 				D0F6D8BC22A0930100872B5B /* CGFloat.swift in Sources */,
@@ -638,7 +634,7 @@
 				90D4FD4322BAC38B00679526 /* ModelData.swift in Sources */,
 				D0046998229FD2460028A9D7 /* NSDirectionalEdgeInsets.swift in Sources */,
 				D0046990229F559C0028A9D7 /* Button.swift in Sources */,
-				90D7776422B3E88300170E24 /* RedBoxNode.swift in Sources */,
+				90D7776422B3E88300170E24 /* PlaceholderNode.swift in Sources */,
 				90CA078222AEC21C002C204E /* UIColor.swift in Sources */,
 				D0F90B8522BFE58F00839891 /* DesignSystemTextStylesView.swift in Sources */,
 				D053EBD1229CB772007CCFFE /* UIView.swift in Sources */,

@@ -100,11 +100,11 @@ class SummaryPreviewView: UIView {
         }
         
         guard let seatClassType = seatClassType,
-        let node: SeatNode =
+        let node: InteractiveNode =
             NodeFactory
                 .shared?
                 .create(name: seatClassType.completeNodeName)
-            else { contentNode.addChildNode(RedBoxNode())
+            else { contentNode.addChildNode(PlaceholderNode())
             return
         }
         node.position = SCNVector3(0, 0, 0)

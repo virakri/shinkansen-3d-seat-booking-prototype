@@ -24,7 +24,7 @@ class DesignSystemModel3DContentView: DesignSystemView {
     
     var nodeLabel: Label!
     
-    var availableNodes: [SeatNode] = []
+    var availableNodes: [InteractiveNode] = []
     
     var factory: NodeFactory?
     
@@ -211,7 +211,7 @@ class DesignSystemModel3DContentView: DesignSystemView {
                 
                 factory.modelPrototypes.keys
                     .forEach {
-                    let reservableNode: SeatNode? =
+                    let reservableNode: InteractiveNode? =
                         factory.create(name: $0)
                     if let node = reservableNode{
                         self?.availableNodes.append(node)

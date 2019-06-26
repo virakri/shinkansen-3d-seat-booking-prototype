@@ -260,14 +260,14 @@ class SeatMapSceneView: SCNView {
                 guard !workItem.isCancelled else {
                     return nil
                 }
-                if let node: SeatNode = NodeFactory.shared?.create(name: $0.transformedModelEntity.modelEntity) {
+                if let node: InteractiveNode = NodeFactory.shared?.create(name: $0.transformedModelEntity.modelEntity) {
                     node.reservableEntity = $0
                     // Assign Enabled state of interactible nodes
                     node.setEnabled($0.isAvailable && isCurrentEntity, animated: false)
                     return node
                 }
                 /// Show Error node
-                let node = RedBoxNode()
+                let node = PlaceholderNode()
                 node.reservableEntity = $0
                 return node
             }) ?? []
