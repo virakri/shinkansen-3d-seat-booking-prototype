@@ -206,7 +206,7 @@ class BookingCriteriaViewController: BookingViewController {
         BookingCriteriaViewController
             .errorGeneratorFeedback
             .notificationOccurred(.error)
-        showErrorMessage("Oops! Changing station feature doesn't work as this prototype doesn't have the functionality implemented yet.")
+        showErrorMessage("Oops! Changing station feature doesn't work as this prototype doesn't have it implemented yet.")
     }
     
     @objc private func reloadTimeSegemtnedControl() {
@@ -222,7 +222,7 @@ class BookingCriteriaViewController: BookingViewController {
             BookingCriteriaViewController
                 .errorGeneratorFeedback
                 .notificationOccurred(.error)
-            showErrorMessage("Oops! Picking a particular date feature doesn't work as this prototype doesn't have the functionality implemented yet.")
+            showErrorMessage("Oops! Picking a particular date feature doesn't work as this prototype doesn't have it implemented yet.")
         }
         
         let morning = (Date(byHourOf: 6)...Date(byHourOf: 12)).addingTimeInterval(timeInterval)

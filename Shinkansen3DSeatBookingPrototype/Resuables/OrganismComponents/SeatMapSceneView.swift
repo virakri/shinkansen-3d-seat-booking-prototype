@@ -40,8 +40,6 @@ class SeatMapSceneView: SCNView {
     
     private var loadingActivityIndicatorView: UIView! = UIView()
     
-//    private var headsUpBadgeControl: HeadsUpBadgeControl = HeadsUpBadgeControl()
-    
     private var centerScreenZ: Float = 0
     
     private enum SeatNavigationState: String {
@@ -278,7 +276,8 @@ class SeatMapSceneView: SCNView {
                     self?.playInitialAnimation()
                     self?.loadingActivityIndicatorView?.removeFromSuperview()
                     self?.alpha = 0
-                    UIView.animate(withDuration: 0.35, animations: {
+                    let duration: TimeInterval = TimeInterval(abs(self?.contentZPositionLimit.upperBound ?? 0) - abs(self?.contentZPositionLimit.lowerBound ?? 0)) / 100 + 0.5
+                    UIView.animate(withDuration: duration, animations: {
                         self?.alpha = 1
                     })
                 }

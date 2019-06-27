@@ -13,7 +13,7 @@ class HeadsUpBadgeControl: CardControl {
     
     private var label: Label
     
-    private var initialYOffset: CGFloat = -CGFloat(32).systemSizeMuliplier() * 1.5
+//    private var initialYOffset: CGFloat = -CGFloat(32).systemSizeMuliplier() * 1.5
     
      init() {
         label = Label()
@@ -46,7 +46,8 @@ class HeadsUpBadgeControl: CardControl {
         isHidden = false
         if animated {
             alpha = 0
-            transform.ty = initialYOffset
+            layoutIfNeeded()
+            transform.ty = -bounds.height * 1.5
             UIView.animate(withStyle: .halfTransitionAnimationStyle,
                            delay: delay,
                            animations: {
@@ -70,8 +71,9 @@ class HeadsUpBadgeControl: CardControl {
                 .animate(withStyle: .transitionAnimationStyle,
                          delay: delay,
                          animations: {
-                            self.alpha = 0
-                            self.transform.ty = self.initialYOffset
+                            [weak self] in
+                            self?.alpha = 0
+                            self?.transform.ty = -(self?.bounds.height ?? 0) * 1.5
                 }, completion: {
                     finished in
                     if removeWhenComplete { self.removeFromSuperview() }

@@ -99,6 +99,15 @@ class BookingViewController: ViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        view.subviews.forEach {
+            if $0.tag == 1 << 3 {
+                $0.removeFromSuperview()
+            }
+        }
+    }
+    
     override func setupView() {
         super.setupView()
         
