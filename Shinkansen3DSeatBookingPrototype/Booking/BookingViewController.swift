@@ -242,23 +242,60 @@ class BookingViewController: ViewController {
                                               price: headerInformation.price)
     }
     
-    func showErrorMessage(_ message: String, duration: TimeInterval = 4) {
+    func showErrorMessage(_ message: String, delay: TimeInterval = 3) {
+        view.subviews.forEach {
+            if $0.tag == 1 << 3 {
+                $0.removeFromSuperview()
+            }
+        }
         let containerView = UIView()
+        containerView.tag = 1 << 3
         containerView.preservesSuperviewLayoutMargins = true
         containerView.backgroundColor = currentColorTheme.componentColor.errorBackground
-        view.addSubview(containerView, withConstaintEquals: [.top, .leading, .trailing])
+        view.addSubview(containerView,
+                        withConstaintEquals: [.top,
+                                              .leading,
+                                              .trailing])
         
         let label = Label()
         label.textStyle = textStyle.caption1()
+        label.numberOfLines = 0
         label.textColor = currentColorTheme.componentColor.primaryText
         label.textAlignment = .center
         label.text = message
         
-        containerView.addSubview(label, withConstaintEquals: [.topMargin, .bottomMargin, .centerHorizontal])
-        containerView.addConstraints(toView: label, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+        containerView.addSubview(label,
+                                 withConstaintEquals: [.topMargin,
+                                                       .bottomMargin,
+                                                       .centerHorizontal],
+                                 insetsConstant: .init(bottom: 8))
+        containerView.addConstraints(toView: label,
+                                     withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
         let labelWidthConstraint = label.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
         labelWidthConstraint.priority = .defaultHigh
         labelWidthConstraint.isActive = true
+        
+        /// Animating Container View
+        containerView.layoutIfNeeded()
+        containerView.transform.ty = -containerView.bounds.height
+        UIView.animate(withStyle: .normalAnimationStyle,
+                       animations: {
+                        
+                        containerView.transform.ty = 0
+                        
+        }, completion: {
+            finished in
+            
+            UIView.animate(withStyle: .normalAnimationStyle,
+                           delay: delay,
+                           animations: {
+                            containerView.transform.ty = -containerView.bounds.height
+            },
+                           completion: {
+                            finished in
+                            containerView.removeFromSuperview()
+            })
+        })
         
     }
     

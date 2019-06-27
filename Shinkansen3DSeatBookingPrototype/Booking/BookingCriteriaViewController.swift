@@ -10,7 +10,6 @@ import UIKit
 
 class BookingCriteriaViewController: BookingViewController {
     
-    //
     var stackView: UIStackView!
     
     var headerStackView: UIStackView!
@@ -40,6 +39,8 @@ class BookingCriteriaViewController: BookingViewController {
     var dateSegmentedControl : SegmentedControl!
     
     var timeSegmentedControl: SegmentedControl!
+    
+    static let errorGeneratorFeedback = UINotificationFeedbackGenerator()
     
     private var logoImageAlignmentConstraint: NSLayoutConstraint!
     
@@ -202,7 +203,10 @@ class BookingCriteriaViewController: BookingViewController {
     }
     
     @objc private func stationCardControlDidTouch() {
-        showErrorMessage("Test")
+        BookingCriteriaViewController
+            .errorGeneratorFeedback
+            .notificationOccurred(.error)
+        showErrorMessage("Oops! Changing station feature doesn't work as this prototype doesn't have the functionality implemented yet.")
     }
     
     @objc private func reloadTimeSegemtnedControl() {
@@ -214,7 +218,11 @@ class BookingCriteriaViewController: BookingViewController {
         case 1:
             timeInterval = 60 * 60 * 24
         default:
-            timeInterval = 60 * 60 * 24 * 2
+            timeInterval = 60 * 60 * 24
+            BookingCriteriaViewController
+                .errorGeneratorFeedback
+                .notificationOccurred(.error)
+            showErrorMessage("Oops! Picking a particular date feature doesn't work as this prototype doesn't have the functionality implemented yet.")
         }
         
         let morning = (Date(byHourOf: 6)...Date(byHourOf: 12)).addingTimeInterval(timeInterval)
