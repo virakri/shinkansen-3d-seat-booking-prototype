@@ -54,11 +54,13 @@ class SeatMapSceneView: SCNView {
                 DispatchQueue.main.async { [weak self] in
                     switch self?.seatNavigationState ?? .hide {
                     case .top:
-                        self?.addHeadsUpBadgeControl(withMessage: "↑ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is up there.")
+                        self?.addHeadsUpBadgeControl(withMessage: "↑ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is up there.",
+                            bitMask: 1 << 1)
                     case .bottom:
-                        self?.addHeadsUpBadgeControl(withMessage: "↓ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is down there.")
+                        self?.addHeadsUpBadgeControl(withMessage: "↓ Your \(self?.selectedSeatNode?.reservableEntity?.name ?? "selected") seat is down there.",
+                            bitMask: 1 << 1)
                     case .hide:
-                        self?.removeHeadsUpBadgeControl(animated: true)
+                        self?.removeHeadsUpBadgeControl(animated: true, bitMask: 1 << 1)
                     }
                 }
             }
