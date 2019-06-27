@@ -217,6 +217,11 @@ class BookingViewController: ViewController {
     
     override func setupInteraction() {
         super.setupInteraction()
+        let screenEdgePanGesture =
+            UIScreenEdgePanGestureRecognizer(target: self,
+                                             action: #selector(screenEdgePanGestureDidPan))
+        screenEdgePanGesture.edges = .left
+        view.addGestureRecognizer(screenEdgePanGesture)
     }
     
     func setHeaderInformationValue(_ headerInformation: HeaderInformation?) {
@@ -237,6 +242,54 @@ class BookingViewController: ViewController {
                                               price: headerInformation.price)
     }
     
+    @objc func screenEdgePanGestureDidPan(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let state = sender.state
+        let translate = CGPoint(x: max(sender.translation(in: sender.view!).x, 0), y: 0)
+        let velocity = sender.velocity(in: sender.view!)
+        let translateThreshold: CGFloat = 64
+        switch state {
+        case .changed:
+            if !isPopPerforming {
+            backButton.transform.tx = translate.x / 3
+            
+            let alpha = max(((1 - DesignSystem.alpha.disabled) *
+                (1 - translate.x / translateThreshold)), 0) +
+                DesignSystem.alpha.disabled
+                
+            headerRouteInformationView.alpha = alpha
+            dateLabel.alpha = alpha
+            
+            isPopPerforming = translate.x > translateThreshold * 2
+            }
+            
+        case .ended:
+            if !isPopPerforming {
+                if velocity.x > 50 {
+                    isPopPerforming = true
+                } else {
+                    if translate.x > translateThreshold * 1.5 {
+                        isPopPerforming = true
+                    } else {
+                        UIView.animate(withStyle: .normalAnimationStyle,
+                                       animations: {
+                                        [weak self] in
+                                        self?.backButton.transform.tx = 0
+                                        self?.headerRouteInformationView.transform.tx = 0
+                                        self?.dateLabel.transform.tx = 0
+                                        
+                                        let alpha: CGFloat = 1
+                                        
+                                        self?.headerRouteInformationView.alpha = alpha
+                                        self?.dateLabel.alpha = alpha
+                        })
+                    }
+                }
+            }
+            
+        default:
+            break
+        }
+    }
 }
 
 extension BookingViewController: UITableViewDelegate {
