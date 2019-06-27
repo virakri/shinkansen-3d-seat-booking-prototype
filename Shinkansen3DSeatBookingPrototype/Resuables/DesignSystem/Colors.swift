@@ -8,11 +8,6 @@
 
 import UIKit
 
-//internal struct ColorTheme {
-//    var light: UIColor
-//    var dark: UIColor
-//}
-
 extension UIColor {
     
     struct accent {
@@ -40,6 +35,12 @@ extension UIColor {
         static let white = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
+    struct miscellaneous {
+        static let darkRed = #colorLiteral(red: 0.5333333333, green: 0.1529411765, blue: 0.262745098, alpha: 1)
+        static let red = #colorLiteral(red: 0.7960784314, green: 0.2274509804, blue: 0.3921568627, alpha: 1)
+        static let lightRed = #colorLiteral(red: 0.8666666667, green: 0.4352941176, blue: 0.5764705882, alpha: 1)
+    }
+    
     struct Component {
         var background: UIColor
         var cardBackground: UIColor
@@ -57,6 +58,8 @@ extension UIColor {
         var callToActionDisabled: UIColor
         
         var contentOnCallToAction: UIColor
+        
+        var errorBackground: UIColor
     }
     
     struct _SeatClass {
@@ -88,7 +91,8 @@ extension UIColor {
                          callToAction: UIColor.accent().main,
                          callToActionHighlighted: UIColor.accent().dark,
                          callToActionDisabled: UIColor.basic().gray,
-                         contentOnCallToAction: UIColor.basic.white) }
+                         contentOnCallToAction: UIColor.basic.white,
+                         errorBackground: UIColor.miscellaneous.lightRed) }
     
     var darkModeComponent: Component {
         return Component(background: UIColor.basic.offBlack,
@@ -103,6 +107,7 @@ extension UIColor {
                          callToActionHighlighted: UIColor.basic.white
                             .withAlphaComponent(DesignSystem.alpha.highlighted),
                          callToActionDisabled: UIColor.basic().gray,
-                         contentOnCallToAction: UIColor.basic.offBlack)
+                         contentOnCallToAction: UIColor.basic.offBlack,
+                         errorBackground: UIColor.miscellaneous.red)
     }
 }

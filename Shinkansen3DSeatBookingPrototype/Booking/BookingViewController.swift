@@ -242,6 +242,26 @@ class BookingViewController: ViewController {
                                               price: headerInformation.price)
     }
     
+    func showErrorMessage(_ message: String, duration: TimeInterval = 4) {
+        let containerView = UIView()
+        containerView.preservesSuperviewLayoutMargins = true
+        containerView.backgroundColor = currentColorTheme.componentColor.errorBackground
+        view.addSubview(containerView, withConstaintEquals: [.top, .leading, .trailing])
+        
+        let label = Label()
+        label.textStyle = textStyle.caption1()
+        label.textColor = currentColorTheme.componentColor.primaryText
+        label.textAlignment = .center
+        label.text = message
+        
+        containerView.addSubview(label, withConstaintEquals: [.topMargin, .bottomMargin, .centerHorizontal])
+        containerView.addConstraints(toView: label, withConstaintGreaterThanOrEquals: [.leadingMargin, .trailingMargin])
+        let labelWidthConstraint = label.widthAnchor.constraint(equalToConstant: DesignSystem.layout.maximumWidth)
+        labelWidthConstraint.priority = .defaultHigh
+        labelWidthConstraint.isActive = true
+        
+    }
+    
     @objc func screenEdgePanGestureDidPan(_ sender: UIScreenEdgePanGestureRecognizer) {
         let state = sender.state
         let translate = CGPoint(x: max(sender.translation(in: sender.view!).x, 0), y: 0)

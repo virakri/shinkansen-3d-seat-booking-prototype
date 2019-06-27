@@ -97,7 +97,6 @@ class BookingCriteriaViewController: BookingViewController {
         fromStationContainerView.widthAnchor.constraint(equalTo: destinationStationContainerView.widthAnchor).isActive = true
         
         dateSegmentedControl = SegmentedControl()
-        dateSegmentedControl.addTarget(self, action: #selector(reloadTimeSegemtnedControl), for: .valueChanged)
         dateSegmentedContainerView = HeadlineWithContainerView(containingView: dateSegmentedControl)
         
         timeSegmentedControl = SegmentedControl()
@@ -150,13 +149,26 @@ class BookingCriteriaViewController: BookingViewController {
     override func setupInteraction() {
         super.setupInteraction()
         
-        mainCallToActionButton.addTarget(self,
-                                         action: #selector(mainCallToActionButtonDidTouch(_:)),
-                                         for: .touchUpInside)
+        fromStationCardControl
+            .addTarget(self,
+                       action: #selector(stationCardControlDidTouch),
+                       for: .touchUpInside)
         
-        backButton.addTarget(self,
-                             action: #selector(backButtonDidTouch(_:)),
-                             for: .touchUpInside)
+        destinationStationCardControl
+            .addTarget(self,
+                       action: #selector(stationCardControlDidTouch),
+                       for: .touchUpInside)
+        
+        
+        dateSegmentedControl
+            .addTarget(self,
+                       action: #selector(reloadTimeSegemtnedControl),
+                       for: .valueChanged)
+        
+        mainCallToActionButton
+            .addTarget(self,
+                       action: #selector(mainCallToActionButtonDidTouch(_:)),
+                       for: .touchUpInside)
     }
     
     func setupStaticContent() {
@@ -189,6 +201,10 @@ class BookingCriteriaViewController: BookingViewController {
         mainCallToActionButton.setTitle("Search for Tickets")
     }
     
+    @objc private func stationCardControlDidTouch() {
+        showErrorMessage("Test")
+    }
+    
     @objc private func reloadTimeSegemtnedControl() {
         
         let timeInterval: TimeInterval
@@ -218,7 +234,6 @@ class BookingCriteriaViewController: BookingViewController {
     }
     
     @objc func mainCallToActionButtonDidTouch(_ sender: Button) {
-        
         
         let dateOffset: TimeInterval
         switch dateSegmentedControl.selectedIndex {
@@ -257,10 +272,6 @@ class BookingCriteriaViewController: BookingViewController {
         trainSelectionVC.dateOffset = dateOffset
         trainSelectionVC.timeOffset = timeOffset
         navigationController?.pushViewController(trainSelectionVC, animated: true)
-    }
-    
-    @objc func backButtonDidTouch(_ sender: Button) {
-        
     }
 }
 
