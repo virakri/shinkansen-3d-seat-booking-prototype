@@ -69,11 +69,13 @@ class TrainSelectionViewController: BookingViewController {
                             let label = Label()
                             label.numberOfLines = 0
                             label.text = "No train scheduled in the time range you selected"
-                            label.textStyle = textStyle.body()
+                            label.textStyle = textStyle.caption1()
                             label.textColor = currentColorTheme.componentColor.secondaryText
+                            label.textAlignment = .center
                             self?.mainTableView
                                 .addSubview(label,
-                                            withConstaintEquals: [.center, .trailingMargin, .leadingMargin])
+                                            withConstaintEquals: [.center, .trailingMargin, .leadingMargin],
+                                            insetsConstant: .init(bottom: 24))
                         }
                     }
                 }

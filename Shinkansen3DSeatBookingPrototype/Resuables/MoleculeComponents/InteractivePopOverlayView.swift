@@ -19,8 +19,8 @@ class InteractivePopOverlayView: UIView {
                 
                 UIView.animate(withStyle: .normalAnimationStyle, animations: {
                     [weak self] in
-                    self?.callToActionLabelContainerView.transform.tx = self?.isReadyToPop ?? false ? 0 : -(self?.callToActionLabelContainerView.bounds.width ?? 64)
-                    self?.callToActionLabelContainerView.alpha = self?.isReadyToPop ?? false ? 1 : 0
+                    self?.callToActionLabel.transform.tx = self?.isReadyToPop ?? false ? 0 : -(self?.callToActionLabel.bounds.width ?? 64) / 2
+                    self?.callToActionLabel.alpha = self?.isReadyToPop ?? false ? 1 : 0
                 })
             }
         }
@@ -28,7 +28,9 @@ class InteractivePopOverlayView: UIView {
     
     var overlayView: UIView!
     
-    var callToActionLabelContainerView: UIView!
+    var callToActionContainerView: UIView!
+    
+    var callToActionBackgroundView: UIView!
     
     var callToActionLabel: Label!
     
@@ -43,8 +45,19 @@ class InteractivePopOverlayView: UIView {
     var currentTranslation: CGPoint? {
         didSet {
             isReadyToPop = currentTranslation?.x ?? 0 > dismissXTranslateThreshold
-            
-//            callToActionLabelView.transform.ty = currentTranslation?.y ?? 0
+            let translation = currentTranslation ?? CGPoint.zero
+            callToActionContainerView.transform.ty = translation.y
+            if translation.x > 48 {
+                let maxWidth = callToActionLabel.bounds.width + callToActionContainerView.bounds.height / 2 + 16
+                if translation.x < maxWidth - 48 {
+                    callToActionBackgroundView.transform.tx = translation.x - callToActionBackgroundView.bounds.width + 48
+                } else {
+                    callToActionBackgroundView.transform.tx = maxWidth - callToActionBackgroundView.bounds.width
+                }
+                
+            } else {
+                callToActionBackgroundView.transform.tx = translation.x * 2 - callToActionBackgroundView.bounds.width
+            }
         }
     }
     
@@ -68,29 +81,35 @@ class InteractivePopOverlayView: UIView {
         overlayView.alpha = 0
         addSubview(overlayView, withConstaintEquals: .edges)
         
-        callToActionLabelContainerView = UIView()
-        callToActionLabelContainerView.preservesSuperviewLayoutMargins = true
-        addSubview(callToActionLabelContainerView, withConstaintEquals: [.leading, .centerVertical])
+        callToActionContainerView = UIView()
+        callToActionContainerView.clipsToBounds = true
+        callToActionContainerView.preservesSuperviewLayoutMargins = true
+        addSubview(callToActionContainerView, withConstaintEquals: [.leading, .trailing])
+        callToActionContainerView.centerYAnchor.constraint(equalTo: topAnchor).isActive = true
+        callToActionContainerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
+        
+        callToActionBackgroundView = UIView()
+        callToActionContainerView.addSubview(callToActionBackgroundView, withConstaintEquals: .edges)
         
         callToActionLabel = Label()
-        callToActionLabel.text = "← Back"
-        callToActionLabelContainerView.addSubview(callToActionLabel, withConstaintEquals: .marginEdges)
-        
-        callToActionLabelContainerView.alpha = 0
+        callToActionLabel.text = "←  Previous Step"
+        callToActionContainerView.addSubview(callToActionLabel, withConstaintEquals: [.leadingMargin, .top, .bottom])
     }
     
     func setupTheme() {
         
         overlayView.backgroundColor = currentColorTheme.componentColor.background
         
-        callToActionLabel.textStyle = textStyle.body()
+        callToActionLabel.textStyle = textStyle.button()
         callToActionLabel.textColor = currentColorTheme.componentColor.contentOnCallToAction
+        callToActionLabel.transform.tx = -callToActionLabel.bounds.width / 2
+        callToActionLabel.alpha = 0
         
-        callToActionLabelContainerView.backgroundColor = currentColorTheme.componentColor.callToAction
-        callToActionLabelContainerView.layoutIfNeeded()
-        callToActionLabelContainerView.directionalLayoutMargins.trailing = callToActionLabelContainerView.bounds.height / 2
-        callToActionLabelContainerView.layer.cornerRadius = callToActionLabelContainerView.bounds.height / 2
-        callToActionLabelContainerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        callToActionLabelContainerView.transform.tx = -callToActionLabelContainerView.bounds.width
+        callToActionContainerView.layoutIfNeeded()
+        callToActionBackgroundView.backgroundColor = currentColorTheme.componentColor.callToAction
+        callToActionBackgroundView.layer.cornerRadius = callToActionContainerView.bounds.height / 2
+        callToActionBackgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        
+        callToActionBackgroundView.transform.tx = -callToActionBackgroundView.bounds.width
     }
 }

@@ -351,21 +351,29 @@ class BookingViewController: ViewController {
             }
             
         case .ended:
-            interactivePopOverlayView.currentTranslation?.x = 0
+            UIView
+                .animate(withStyle: .normalAnimationStyle,
+                         animations: {
+                            [weak self] in
+                            self?.interactivePopOverlayView.currentTranslation?.x = 0
+                            setAlpha(to: 1)
+                            self?.backButton.transform.tx = 0
+                })
+            
             if velocity.x > 72 {
                 isPopPerforming = true
             } else {
                 if translate.x > dismissXTranslateThreshold {
                     isPopPerforming = true
                 } else {
-                    UIView
-                        .animate(withStyle: .normalAnimationStyle,
-                                 animations: {
-                                    [weak self] in
-                                    self?.backButton.transform.tx = 0
-                                    
-                                    setAlpha(to: 1)
-                        })
+//                    UIView
+//                        .animate(withStyle: .normalAnimationStyle,
+//                                 animations: {
+//                                    [weak self] in
+//                                    
+//                                    
+//                                    
+//                        })
                 }
             }
         default:
