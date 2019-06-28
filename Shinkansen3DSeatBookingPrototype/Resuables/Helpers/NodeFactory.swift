@@ -114,10 +114,14 @@ final class NodeFactory {
     /// - Parameter url: URL of `*.scn` file
     public func loadModel(name: String, from url: URL) -> Future<((String, SCNNode?)), Error> {
         /// returns pair of String, SCNNode
-        return Future { complete in
+        return Future { [weak self] complete in
             DispatchQueue.global(qos: .background).async {
                 if let node = SCNReferenceNode(url: url) {
                     node.load()
+                    if let modelData = self?.modelData?.first(where: {$0.name == name}),
+                        modelData.isInteractible{
+                        self?.applyInteractiveCategoryBitmask(to: node)
+                    }
                     DispatchQueue.main.async {
                         complete(
                             .success(
@@ -151,19 +155,15 @@ final class NodeFactory {
     /// by provoide generic object that conform to `StaticNode` protocol
     /// - Parameter name: Refferenced name of prototype node
     public func create<T>(name: String) -> T? where T:  NodeFactoryCreatable {
-        guard
-            let prototypeNode = modelPrototypes[name] as? SCNNode,
-            let modelData = modelData?.first(where: { $0.name == name })
-            else { return nil }
+        guard let prototypeNode = modelPrototypes[name] as? SCNNode else {
+            return nil
+        }
         
         let clone = prototypeNode.clone()
         
         /// Deep clone new geometry from prototype recursively
         func cloneGeometry(from: SCNNode, to: SCNNode) {
             to.geometry = from.geometry?.copy() as? SCNGeometry
-            if modelData.isInteractible {
-                to.categoryBitMask = InteractiveNode.defaultBitMask
-            }
             zip(from.childNodes, to.childNodes).forEach {
                 cloneGeometry(from: $0, to: $1)
             }
@@ -175,6 +175,14 @@ final class NodeFactory {
         let node = T(node: clone)
         
         return node
+    }
+    
+    /// Apply interactive cateogry bitmask
+    private func applyInteractiveCategoryBitmask(to node: SCNNode) {
+        node.categoryBitMask = InteractiveNode.defaultBitMask
+        for node in node.childNodes {
+            applyInteractiveCategoryBitmask(to: node)
+        }
     }
     
 }
