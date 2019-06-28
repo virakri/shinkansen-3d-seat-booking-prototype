@@ -309,31 +309,38 @@ class BookingViewController: ViewController {
     }
     
     @objc func screenEdgePanGestureDidPan(_ sender: UIScreenEdgePanGestureRecognizer) {
+        /// Make it only work with the compact trait
+        
+        guard traitCollection.horizontalSizeClass == .compact else { return }
         let state = sender.state
         let translate = CGPoint(x: max(sender.translation(in: sender.view!).x, 0), y: 0)
         let velocity = sender.velocity(in: sender.view!)
-        let translateThreshold: CGFloat = 64
+        let dismissXTranslateThreshold: CGFloat = view.bounds.width / 3
+        let alphaXTranslateThreshold: CGFloat = 64
         switch state {
         case .changed:
             if !isPopPerforming {
-            backButton.transform.tx = translate.x / 3
-            
-            let alpha = max(((1 - DesignSystem.alpha.disabled) *
-                (1 - translate.x / translateThreshold)), 0) +
-                DesignSystem.alpha.disabled
+                backButton.transform.tx = min(translate.x / 3, view.bounds.width / 9)
                 
-            headerRouteInformationView.alpha = alpha
-            dateLabel.alpha = alpha
-            
-            isPopPerforming = translate.x > translateThreshold * 2
+                let alpha = max(((1 - DesignSystem.alpha.disabled) *
+                    (1 - translate.x / alphaXTranslateThreshold)), 0) +
+                    DesignSystem.alpha.disabled
+                
+                backButton.alpha = alpha
+                headerRouteInformationView.alpha = alpha
+                dateLabel.alpha = alpha
+                mainTableView.alpha = alpha
+                mainContentView.alpha = alpha
+                
+//                isPopPerforming = translate.x > translateThreshold * 2
             }
             
         case .ended:
             if !isPopPerforming {
-                if velocity.x > 50 {
+                if velocity.x > 72 {
                     isPopPerforming = true
                 } else {
-                    if translate.x > translateThreshold * 1.5 {
+                    if translate.x > dismissXTranslateThreshold {
                         isPopPerforming = true
                     } else {
                         UIView.animate(withStyle: .normalAnimationStyle,
@@ -345,8 +352,11 @@ class BookingViewController: ViewController {
                                         
                                         let alpha: CGFloat = 1
                                         
+                                        self?.backButton.alpha = alpha
                                         self?.headerRouteInformationView.alpha = alpha
                                         self?.dateLabel.alpha = alpha
+                                        self?.mainTableView.alpha = alpha
+                                        self?.mainContentView.alpha = alpha
                         })
                     }
                 }
