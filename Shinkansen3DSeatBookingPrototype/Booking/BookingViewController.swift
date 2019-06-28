@@ -220,6 +220,7 @@ class BookingViewController: ViewController {
         backButton.setupTheme()
         headerRouteInformationView.setupTheme()
         mainTableView.setupTheme()
+        interactivePopOverlayView.setupTheme()
         
         dateLabel.textStyle = textStyle.headline()
         dateLabel.textAlignment = .center
@@ -327,18 +328,12 @@ class BookingViewController: ViewController {
                                 y: location.y)
         let velocity = sender.velocity(in: sender.view!)
         let dismissXTranslateThreshold: CGFloat = view.bounds.width / 3
-        let alphaXTranslateThreshold: CGFloat = 64
+        let alphaXTranslateThreshold: CGFloat = dismissXTranslateThreshold
         
         interactivePopOverlayView.dismissXTranslateThreshold = dismissXTranslateThreshold
         
         func setAlpha(to alpha: CGFloat) {
             interactivePopOverlayView.overlayAlpha = 1 - alpha
-//            backButton.alpha = alpha
-//            headerRouteInformationView.alpha = alpha
-//            dateLabel.alpha = alpha
-//            mainTableView.alpha = alpha
-//            mainContentView.alpha = alpha
-//            mainCallToActionButton.alpha = alpha
         }
         
         switch state {

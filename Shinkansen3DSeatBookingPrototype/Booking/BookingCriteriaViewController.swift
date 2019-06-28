@@ -83,6 +83,8 @@ class BookingCriteriaViewController: BookingViewController {
         
         arrowImageView = UIImageView()
         
+        arrowImageView.setContentHuggingPriority(.required, for: .horizontal)
+        
         let arrowImageContainerView = UIView(containingView: arrowImageView, withConstaintEquals: [.leading, .trailing])
         
         horizontalStationStackView = UIStackView([fromStationContainerView,
