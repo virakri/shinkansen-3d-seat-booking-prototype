@@ -36,6 +36,7 @@
 		D01B2EC222A32ECA00C3FAF3 /* SeatClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */; };
 		D01B2EC422A3D03300C3FAF3 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */; };
 		D025A14022C386B4008D62C5 /* SeatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025A13F22C386B4008D62C5 /* SeatNode.swift */; };
+		D025A14222C5BFE6008D62C5 /* InteractivePopOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025A14122C5BFE6008D62C5 /* InteractivePopOverlayView.swift */; };
 		D02710EC22BA809600D9FF4D /* TextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02710EB22BA809600D9FF4D /* TextNode.swift */; };
 		D042A71522A70C7600A0CBFC /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042A71422A70C7600A0CBFC /* CALayer.swift */; };
 		D050625F22A9C6BF003A8565 /* SeatMap.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = D050625E22A9C6BF003A8565 /* SeatMap.scnassets */; };
@@ -138,6 +139,7 @@
 		D01B2EC122A32ECA00C3FAF3 /* SeatClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatClassTableViewCell.swift; sourceTree = "<group>"; };
 		D01B2EC322A3D03300C3FAF3 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		D025A13F22C386B4008D62C5 /* SeatNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatNode.swift; sourceTree = "<group>"; };
+		D025A14122C5BFE6008D62C5 /* InteractivePopOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivePopOverlayView.swift; sourceTree = "<group>"; };
 		D02710EB22BA809600D9FF4D /* TextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNode.swift; sourceTree = "<group>"; };
 		D042A71422A70C7600A0CBFC /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
 		D050625E22A9C6BF003A8565 /* SeatMap.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SeatMap.scnassets; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				D05C760122AF20B900AC1461 /* SegmentedControl.swift */,
 				D05C760322AF23DC00AC1461 /* SegmentedItemControl.swift */,
 				D0F9E35B22A87C57003B339D /* BackButtonControl.swift */,
+				D025A14122C5BFE6008D62C5 /* InteractivePopOverlayView.swift */,
 			);
 			path = MoleculeComponents;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				E0CF323022AAB4D700BC4788 /* SCNVector3.swift in Sources */,
 				D0EAF1B5228B7FB700F3D4F6 /* AppDelegate.swift in Sources */,
 				D0F90B7D22BFD11700839891 /* DesignSystemBlockView.swift in Sources */,
+				D025A14222C5BFE6008D62C5 /* InteractivePopOverlayView.swift in Sources */,
 				D016655622AABDEC00BFD6DB /* ContentNode.swift in Sources */,
 				D0F90B8722BFE65100839891 /* DesignSystemColorsView.swift in Sources */,
 				D09F3F1322A20239005E59C0 /* HeaderRouteInformationView.swift in Sources */,

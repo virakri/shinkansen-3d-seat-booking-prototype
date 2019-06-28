@@ -58,6 +58,7 @@ class ViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTra
             
             UIView.animate(withStyle: animationStyle, animations: {
                 fromBookingVC.headerRouteInformationView.verticalRubberBandEffect(byVerticalContentOffset: 0)
+                fromBookingVC.interactivePopOverlayView.overlayAlpha = 0
             }, completion: { _ in
                 fromBookingVC.headerRouteInformationView.alpha = toBookingVC is BookingCriteriaViewController ? 0 : 1
                 toBookingVC.headerRouteInformationView.alpha = 1

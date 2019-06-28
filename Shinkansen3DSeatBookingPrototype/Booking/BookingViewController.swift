@@ -95,6 +95,8 @@ class BookingViewController: ViewController {
     
     var mainTableView: UITableView!
     
+    var interactivePopOverlayView: InteractivePopOverlayView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -166,6 +168,9 @@ class BookingViewController: ViewController {
         mainStackView.preservesSuperviewLayoutMargins = true
         
         mainContentView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor).isActive = true
+        
+        interactivePopOverlayView = InteractivePopOverlayView()
+        view.addSubview(interactivePopOverlayView, withConstaintEquals: .edges)
         
         view.addSubview(mainStackView, withConstaintEquals: .edges)
         
@@ -310,13 +315,32 @@ class BookingViewController: ViewController {
     
     @objc func screenEdgePanGestureDidPan(_ sender: UIScreenEdgePanGestureRecognizer) {
         /// Make it only work with the compact trait
+        guard traitCollection.horizontalSizeClass == .compact,
+            self != navigationController?.viewControllers[0],
+            !isPopPerforming else { return }
         
-        guard traitCollection.horizontalSizeClass == .compact else { return }
+        view.bringSubviewToFront(interactivePopOverlayView)
         let state = sender.state
-        let translate = CGPoint(x: max(sender.translation(in: sender.view!).x, 0), y: 0)
+        
+        let location = sender.location(in: sender.view!)
+        let translate = CGPoint(x: max(sender.translation(in: sender.view!).x, 0),
+                                y: location.y)
         let velocity = sender.velocity(in: sender.view!)
         let dismissXTranslateThreshold: CGFloat = view.bounds.width / 3
         let alphaXTranslateThreshold: CGFloat = 64
+        
+        interactivePopOverlayView.dismissXTranslateThreshold = dismissXTranslateThreshold
+        
+        func setAlpha(to alpha: CGFloat) {
+            interactivePopOverlayView.overlayAlpha = 1 - alpha
+//            backButton.alpha = alpha
+//            headerRouteInformationView.alpha = alpha
+//            dateLabel.alpha = alpha
+//            mainTableView.alpha = alpha
+//            mainContentView.alpha = alpha
+//            mainCallToActionButton.alpha = alpha
+        }
+        
         switch state {
         case .changed:
             if !isPopPerforming {
@@ -326,42 +350,29 @@ class BookingViewController: ViewController {
                     (1 - translate.x / alphaXTranslateThreshold)), 0) +
                     DesignSystem.alpha.disabled
                 
-                backButton.alpha = alpha
-                headerRouteInformationView.alpha = alpha
-                dateLabel.alpha = alpha
-                mainTableView.alpha = alpha
-                mainContentView.alpha = alpha
+                setAlpha(to: alpha)
                 
-//                isPopPerforming = translate.x > translateThreshold * 2
+                interactivePopOverlayView.currentTranslation = translate
             }
             
         case .ended:
-            if !isPopPerforming {
-                if velocity.x > 72 {
+            interactivePopOverlayView.currentTranslation?.x = 0
+            if velocity.x > 72 {
+                isPopPerforming = true
+            } else {
+                if translate.x > dismissXTranslateThreshold {
                     isPopPerforming = true
                 } else {
-                    if translate.x > dismissXTranslateThreshold {
-                        isPopPerforming = true
-                    } else {
-                        UIView.animate(withStyle: .normalAnimationStyle,
-                                       animations: {
-                                        [weak self] in
-                                        self?.backButton.transform.tx = 0
-                                        self?.headerRouteInformationView.transform.tx = 0
-                                        self?.dateLabel.transform.tx = 0
-                                        
-                                        let alpha: CGFloat = 1
-                                        
-                                        self?.backButton.alpha = alpha
-                                        self?.headerRouteInformationView.alpha = alpha
-                                        self?.dateLabel.alpha = alpha
-                                        self?.mainTableView.alpha = alpha
-                                        self?.mainContentView.alpha = alpha
+                    UIView
+                        .animate(withStyle: .normalAnimationStyle,
+                                 animations: {
+                                    [weak self] in
+                                    self?.backButton.transform.tx = 0
+                                    
+                                    setAlpha(to: 1)
                         })
-                    }
                 }
             }
-            
         default:
             break
         }
