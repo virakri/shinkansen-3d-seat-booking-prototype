@@ -48,7 +48,7 @@ class InteractivePopOverlayView: UIView {
             let translation = currentTranslation ?? CGPoint.zero
             callToActionContainerView.transform.ty = translation.y
             if translation.x > 48 {
-                let maxWidth = callToActionLabel.bounds.width + callToActionContainerView.bounds.height / 2 + 16
+                let maxWidth = max(callToActionLabel.bounds.width + 24 + callToActionContainerView.directionalLayoutMargins.leading, dismissXTranslateThreshold + 48)
                 if translation.x < maxWidth - 48 {
                     callToActionBackgroundView.transform.tx = translation.x - callToActionBackgroundView.bounds.width + 48
                 } else {
@@ -86,7 +86,8 @@ class InteractivePopOverlayView: UIView {
         callToActionContainerView.preservesSuperviewLayoutMargins = true
         addSubview(callToActionContainerView, withConstaintEquals: [.leading, .trailing])
         callToActionContainerView.centerYAnchor.constraint(equalTo: topAnchor).isActive = true
-        callToActionContainerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 80).isActive = true
+        layoutIfNeeded()
+        callToActionContainerView.heightAnchor.constraint(greaterThanOrEqualToConstant: UIScreen.main.bounds.height).isActive = true
         
         callToActionBackgroundView = UIView()
         callToActionContainerView.addSubview(callToActionBackgroundView, withConstaintEquals: .edges)
