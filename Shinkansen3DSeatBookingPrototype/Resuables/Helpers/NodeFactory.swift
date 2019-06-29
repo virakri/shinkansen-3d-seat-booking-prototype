@@ -154,7 +154,7 @@ final class NodeFactory {
     /// After models are loaded this function allow to create model from refferenced name
     /// by provoide generic object that conform to `StaticNode` protocol
     /// - Parameter name: Refferenced name of prototype node
-    public func create<T>(name: String) -> T? where T:  NodeFactoryCreatable {
+    public func create(name: String) -> SCNNode? {
         guard let prototypeNode = modelPrototypes[name] as? SCNNode else {
             return nil
         }
@@ -170,11 +170,15 @@ final class NodeFactory {
         }
         
         cloneGeometry(from: prototypeNode, to: clone)
-        
-        // Create node object from provioded generic
-        let node = T(node: clone)
-        
-        return node
+        return clone
+    }
+    
+    /// if class is conform to NodeFacotryCreatable will automatic returns as generic class
+    public func create<T>(name: String) -> T? where T:  NodeFactoryCreatable {
+        guard let node = create(name: name) else {
+            return nil
+        }
+        return T(node: node)
     }
     
     /// Apply interactive cateogry bitmask
