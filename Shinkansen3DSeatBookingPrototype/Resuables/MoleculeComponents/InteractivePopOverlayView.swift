@@ -59,7 +59,8 @@ class InteractivePopOverlayView: UIView {
             } else {
                 offsetX = translation.x * 2
             }
-            setCallToActionBackgroundViewAppearance(by: offsetX)
+            setCallToActionBackgroundViewAppearance(by: CGPoint(x: offsetX,
+                                                                y: translation.y))
         }
     }
     
@@ -103,7 +104,7 @@ class InteractivePopOverlayView: UIView {
             .constraint(equalTo: callToActionContainerView.leadingAnchor,
                         constant:  -offsetCallToActionBackgroundX)
             .isActive = true
-        let sizeRatioToViewHeight: CGFloat = 1.5
+        let sizeRatioToViewHeight: CGFloat = 1.125
         callToActionBackgroundView.heightAnchor
             .constraint(equalTo: callToActionContainerView.heightAnchor,
                         multiplier: sizeRatioToViewHeight)
@@ -133,17 +134,18 @@ class InteractivePopOverlayView: UIView {
         callToActionBackgroundView.backgroundColor = currentColorTheme.componentColor.callToAction
         callToActionBackgroundView.layer.cornerRadius = callToActionBackgroundView.bounds.height / 2
         callToActionBackgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        setCallToActionBackgroundViewAppearance(by: 0)
+        setCallToActionBackgroundViewAppearance(by: .zero)
     }
     
-    private func setCallToActionBackgroundViewAppearance(by offsetX: CGFloat) {
+    private func setCallToActionBackgroundViewAppearance(by location: CGPoint) {
         
-        let scaleX = (offsetX + offsetCallToActionBackgroundX) / (callToActionBackgroundView.bounds.width) * 2
+        let scaleX = (location.x + offsetCallToActionBackgroundX) / (callToActionBackgroundView.bounds.width) * 2
+        let scaleY = abs((location.y / bounds.height) - 0.5) * 1.5 + 1
         callToActionBackgroundView
             .transform =
-            CGAffineTransform(scaleX: scaleX, y: 1)
+            CGAffineTransform(scaleX: scaleX, y: scaleY)
         
-        let alpha = min(offsetX / dismissXTranslateThreshold, 1)
+        let alpha = min(location.x / dismissXTranslateThreshold, 1)
         callToActionBackgroundView.alpha = alpha * DesignSystem.alpha.highlighted
     }
 }
