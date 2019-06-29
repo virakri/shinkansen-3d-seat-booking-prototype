@@ -47,19 +47,25 @@ class InteractivePopOverlayView: UIView {
             isReadyToPop = currentTranslation?.x ?? 0 > dismissXTranslateThreshold
             let translation = currentTranslation ?? CGPoint.zero
             callToActionContainerView.transform.ty = translation.y
-            if translation.x > 48 {
-                let maxWidth = max(callToActionLabel.bounds.width + 24 + callToActionContainerView.directionalLayoutMargins.leading, dismissXTranslateThreshold + 48)
-                if translation.x < maxWidth - 48 {
-                    callToActionBackgroundView.transform.tx = translation.x - callToActionBackgroundView.bounds.width + 48
-                } else {
-                    callToActionBackgroundView.transform.tx = maxWidth - callToActionBackgroundView.bounds.width
-                }
+            var offsetX: CGFloat
+            if translation.x > offsetTouchAreaCallToActionBackgroundX {
+                let maxWidth = dismissXTranslateThreshold + offsetTouchAreaCallToActionBackgroundX
                 
+                if translation.x < maxWidth - offsetTouchAreaCallToActionBackgroundX {
+                    offsetX = translation.x + offsetTouchAreaCallToActionBackgroundX
+                } else {
+                    offsetX = maxWidth * ( sqrt((translation.x + offsetTouchAreaCallToActionBackgroundX) / maxWidth))
+                }
             } else {
-                callToActionBackgroundView.transform.tx = translation.x * 2 - callToActionBackgroundView.bounds.width
+                offsetX = translation.x * 2
             }
+            setCallToActionBackgroundViewAppearance(by: offsetX)
         }
     }
+    
+    private var offsetTouchAreaCallToActionBackgroundX: CGFloat = 40
+    
+    private var offsetCallToActionBackgroundX: CGFloat = 32
     
     init() {
         super.init(frame: .zero)
@@ -82,7 +88,6 @@ class InteractivePopOverlayView: UIView {
         addSubview(overlayView, withConstaintEquals: .edges)
         
         callToActionContainerView = UIView()
-        callToActionContainerView.clipsToBounds = true
         callToActionContainerView.preservesSuperviewLayoutMargins = true
         addSubview(callToActionContainerView, withConstaintEquals: [.leading, .trailing])
         callToActionContainerView.centerYAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -90,11 +95,29 @@ class InteractivePopOverlayView: UIView {
         callToActionContainerView.heightAnchor.constraint(greaterThanOrEqualToConstant: UIScreen.main.bounds.height).isActive = true
         
         callToActionBackgroundView = UIView()
-        callToActionContainerView.addSubview(callToActionBackgroundView, withConstaintEquals: .edges)
+        callToActionContainerView
+            .addSubview(callToActionBackgroundView,
+                        withConstaintEquals: .centerVertical)
+        callToActionBackgroundView
+            .centerXAnchor
+            .constraint(equalTo: callToActionContainerView.leadingAnchor,
+                        constant:  -offsetCallToActionBackgroundX)
+            .isActive = true
+        let sizeRatioToViewHeight: CGFloat = 1.5
+        callToActionBackgroundView.heightAnchor
+            .constraint(equalTo: callToActionContainerView.heightAnchor,
+                        multiplier: sizeRatioToViewHeight)
+            .isActive = true
+        callToActionBackgroundView.widthAnchor
+            .constraint(equalTo: callToActionContainerView.heightAnchor,
+                        multiplier: sizeRatioToViewHeight)
+            .isActive = true
         
         callToActionLabel = Label()
-        callToActionLabel.text = "←  Previous Step"
-        callToActionContainerView.addSubview(callToActionLabel, withConstaintEquals: [.leadingMargin, .top, .bottom])
+        callToActionLabel.text = "←  Previous"
+        addSubview(callToActionLabel,
+                   withConstaintEquals: [.leadingMargin,
+                                         .centerVertical])
     }
     
     func setupTheme() {
@@ -108,9 +131,19 @@ class InteractivePopOverlayView: UIView {
         
         callToActionContainerView.layoutIfNeeded()
         callToActionBackgroundView.backgroundColor = currentColorTheme.componentColor.callToAction
-        callToActionBackgroundView.layer.cornerRadius = callToActionContainerView.bounds.height / 2
+        callToActionBackgroundView.layer.cornerRadius = callToActionBackgroundView.bounds.height / 2
         callToActionBackgroundView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        setCallToActionBackgroundViewAppearance(by: 0)
+    }
+    
+    private func setCallToActionBackgroundViewAppearance(by offsetX: CGFloat) {
         
-        callToActionBackgroundView.transform.tx = -callToActionBackgroundView.bounds.width
+        let scaleX = (offsetX + offsetCallToActionBackgroundX) / (callToActionBackgroundView.bounds.width) * 2
+        callToActionBackgroundView
+            .transform =
+            CGAffineTransform(scaleX: scaleX, y: 1)
+        
+        let alpha = min(offsetX / dismissXTranslateThreshold, 1)
+        callToActionBackgroundView.alpha = alpha * DesignSystem.alpha.highlighted
     }
 }

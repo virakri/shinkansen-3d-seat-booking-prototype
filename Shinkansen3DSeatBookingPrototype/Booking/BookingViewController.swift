@@ -315,11 +315,9 @@ class BookingViewController: ViewController {
     }
     
     @objc func screenEdgePanGestureDidPan(_ sender: UIScreenEdgePanGestureRecognizer) {
-        /// Make it only work with the compact trait
-        guard traitCollection.horizontalSizeClass == .compact,
-            self != navigationController?.viewControllers[0],
-            !isPopPerforming else { return }
         
+        guard self != navigationController?.viewControllers[0],
+            !isPopPerforming else { return }
         view.bringSubviewToFront(interactivePopOverlayView)
         let state = sender.state
         
@@ -327,7 +325,7 @@ class BookingViewController: ViewController {
         let translate = CGPoint(x: max(sender.translation(in: sender.view!).x, 0),
                                 y: location.y)
         let velocity = sender.velocity(in: sender.view!)
-        let dismissXTranslateThreshold: CGFloat = view.bounds.width / 3
+        let dismissXTranslateThreshold: CGFloat = view.bounds.width / 5
         let alphaXTranslateThreshold: CGFloat = dismissXTranslateThreshold
         
         interactivePopOverlayView.dismissXTranslateThreshold = dismissXTranslateThreshold
@@ -360,20 +358,12 @@ class BookingViewController: ViewController {
                             self?.backButton.transform.tx = 0
                 })
             
-            if velocity.x > 72 {
+            if velocity.x > 128 {
                 isPopPerforming = true
             } else {
                 if translate.x > dismissXTranslateThreshold {
                     isPopPerforming = true
                 } else {
-//                    UIView
-//                        .animate(withStyle: .normalAnimationStyle,
-//                                 animations: {
-//                                    [weak self] in
-//                                    
-//                                    
-//                                    
-//                        })
                 }
             }
         default:
