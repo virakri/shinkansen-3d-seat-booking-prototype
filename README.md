@@ -37,7 +37,7 @@ When talking about 3D in mobile apps, many people are thinking about 3D games ri
 
 In this feature, SceneKit, which is one of the iOS-native framework made by Apple, has been used as a 3D framework, and it allows the other parts of the app to remain to have a native behavior.
 
-![3D Seat Map Image](Documentation/feature-3d-seat-map-image.gif)
+![3D Seat Map Image](Documentation/feature-3d-seat-map-image.png)
 
 ### Seamless View Transition
 
