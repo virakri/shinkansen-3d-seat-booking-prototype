@@ -88,8 +88,6 @@ By following the steps, you should already have [Xcode 10.2+](https://apps.apple
 4. So now you can run the project either in the simulator or physical devices (you need to have change Apple Developer Certificate to be yours before have it run on the devices)
 5. Enjoy, be creative, and maybe contribute to the project!
 
-![Build Process Image](Documentation/build-process-image.png)
-
 ## External libraries
 
 This project mostly uses standard iOS frameworks. Regardless, a few external libraries are used in this project, and here are those libraries.
@@ -121,7 +119,6 @@ Work in progress
 ## Fun Facts
 
 ### What is SceneKit?
-
 <img align="right" width="120" height="120" src="Documentation/scene-kit-icon-image.png?raw=true">
 
 SceneKit is a high-level 3D graphics API made by Apple to provide an easy-to-use layer over the lower level APIs (Metal.) SceneKit's main features include object-based scene graph, physics engine, and particle system.
