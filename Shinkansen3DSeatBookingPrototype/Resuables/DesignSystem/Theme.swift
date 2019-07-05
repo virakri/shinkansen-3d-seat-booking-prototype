@@ -29,10 +29,10 @@ internal enum ColorTheme: Int {
         }
     }
     
-    var seatClassColor: UIColor._SeatClass {
+    var seatClassColor: UIColor.SeatClassColor {
         switch self {
         case .light:
-            return UIColor.lightModeSeatClass
+            return UIColor().lightModeSeatClass
         case .dark:
             return UIColor.darkModeSeatClass
         }
