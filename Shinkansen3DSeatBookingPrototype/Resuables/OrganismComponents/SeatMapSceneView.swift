@@ -95,7 +95,6 @@ class SeatMapSceneView: SCNView {
             oldValue.subtracting(highlightedSeatNodes).forEach { $0.isHighlighted = false }
             highlightedSeatNodes.subtracting(oldValue).forEach {
                 $0.isHighlighted = true
-                lightFeedbackGenerator.impactOccurred()
             }
         }
     }
@@ -116,6 +115,9 @@ class SeatMapSceneView: SCNView {
                                            delayUntilRemoved: 4,
                                            bitMask: 1 << 0)
                 }
+                
+                // Activate Impact
+                lightFeedbackGenerator.impactOccurred()
             }
             if let selectedSeat = selectedSeatNode {
                 animateContentNodeToZPosition(of: selectedSeat.position.z)
