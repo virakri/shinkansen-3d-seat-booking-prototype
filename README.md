@@ -61,8 +61,8 @@ This prototype's atomic design system has been influenced by Brad Frost Atomic D
 ## Articles
 
 Here are some complimentary articles to learn more about this prototype.
-* [3D doesn't always mean games or AR: 3D Seat Map](https://medium.com/@virakri/3d-seat-map-17ecf34f8f47)
-* [The Make of 3D Seat Map: Engineering Episode]()
+* [3D doesn't always mean games or AR: 3D Seat Map](https://medium.com/dansiam/3d-seat-map-17ecf34f8f47)
+* [The Make of 3D Seat Map: Engineering Episode](https://medium.com/dansiam/the-make-of-3d-seat-map-engineering-episode-494846b5f75e)
 * ~~The Make of 3D Seat Map: Design Episode~~ (Coming Soon)
 
 ## Demo
@@ -111,10 +111,10 @@ In this prototype, BrightFutures plays a vital role to handle and organize the l
 
 ## Next Steps
 
-Work in progress
-
-* [ ] Finish up readme images
-* [ ] List Next Steps
+* [ ] Preparing Design and 3D Assets
+* [ ] Wrapping up 'The Make of 3D Seat Map: Design Episode' article
+* [ ] Improvement of Cloning Material
+* [ ] Framework Development
 
 ## Fun Facts
 
