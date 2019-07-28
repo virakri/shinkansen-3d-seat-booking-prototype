@@ -52,21 +52,21 @@ This prototype's atomic design system has been influenced by Brad Frost Atomic D
 ![Atomic Design System Image](Documentation/feature-atomic-design-system-image.png)
 
 
-### Design and 3D Assets
+### ~~Design and 3D Assets~~
 
-Besides features that are in the prototype app, all design files and 3D assets in this repository are here and open-sourced under the MIT license, so feel free to experiment and play around with those assets!
+~~Besides features that are in the prototype app, all design files and 3D assets in this repository are here and open-sourced under the MIT license, so feel free to experiment and play around with those assets!~~ (Coming Soon)
 
 ![Design and 3D Assets Image](Documentation/feature-design-and-3d-assets-image.png)
 
 ## Articles
 
 Here are some complimentary articles to learn more about this prototype.
-* [3D doesn't always mean games or AR: 3D Seat Map]()
-* [The Make of 3D Seat Map: Design Episode]()
+* [3D doesn't always mean games or AR: 3D Seat Map](https://medium.com/@virakri/3d-seat-map-17ecf34f8f47)
 * [The Make of 3D Seat Map: Engineering Episode]()
+* ~~The Make of 3D Seat Map: Design Episode~~ (Coming Soon)
 
 ## Demo
-You can install this Shinkansen 3D seat booking prototype app on-the-fly via [Testflight](https://apps.apple.com/us/app/testflight/id899247664) by using [this link]().
+You can install this Shinkansen 3D seat booking prototype app on-the-fly via [Testflight](https://apps.apple.com/us/app/testflight/id899247664) by using [this link](https://testflight.apple.com/join/lABxMaaE).
 
 ## Compatibility 
 
