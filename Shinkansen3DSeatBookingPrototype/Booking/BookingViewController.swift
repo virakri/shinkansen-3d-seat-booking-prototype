@@ -228,6 +228,8 @@ class BookingViewController: ViewController {
         
         datePlaceholderLabel.textStyle = dateLabel.textStyle
         
+        mainTableView.reloadData()
+        
     }
     
     override func setupInteraction() {

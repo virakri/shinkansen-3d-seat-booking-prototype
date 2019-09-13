@@ -11,7 +11,7 @@ import SafariServices
 
 class PrototypeInitialViewController: ViewController {
     
-    var textScrollView: UIScrollView!
+    var tableView: UITableView!
     
     var textStackView: UIStackView!
     
@@ -87,32 +87,29 @@ class PrototypeInitialViewController: ViewController {
         // MARK: Setup Scroll View
         textStackView.widthAnchor.constraint(lessThanOrEqualToConstant: DesignSystem.layout.maximumWidth).isActive = true
         
-        let textStackViewContainerView = UIView(containingView: textStackView,
-                                                withConstaintEquals: [.topSafeArea,
-                                                                      .leadingMargin,
-                                                                      .trailingMargin,
-                                                                      .bottom],
-                                                insetsConstant: .init(top: 24))
-        textStackViewContainerView.preservesSuperviewLayoutMargins = true
+//        textStackViewContainerView = UIView(containingView: textStackView,
+//                                                withConstaintEquals: [.topSafeArea,
+//                                                                      .leadingMargin,
+//                                                                      .trailingMargin,
+//                                                                      .bottom],
+//                                                insetsConstant: .init(top: 24))
+//        textStackViewContainerView.preservesSuperviewLayoutMargins = true
 
-        textScrollView = UIScrollView()
-        textScrollView.addSubview(textStackViewContainerView,
-                                  withConstaintEquals: [.edges])
-        textScrollView
-            .widthAnchor
-            .constraint(equalTo: textStackViewContainerView
-                .widthAnchor)
-            .isActive = true
+        tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
 
-        textScrollView.preservesSuperviewLayoutMargins = true
-        textScrollView.indicatorStyle = .white
+        tableView.preservesSuperviewLayoutMargins = true
+        tableView.indicatorStyle = .white
         
         // MARK: Setup stackViews and scrollView in view
-        view.addSubview(textScrollView,
+        view.addSubview(tableView,
                         withConstaintEquals: [.topSafeArea, .centerHorizontal])
         
-        view.addConstraints(toView: textScrollView,
-                            withConstaintGreaterThanOrEquals: [.leading, .trailing])
+        view.addConstraints(toView: tableView,
+                            withConstaintEquals: [.leading, .trailing])
         
         // MARK: Setup CallToActionStackView in View
         view.addSubview(callToActionStackView,
@@ -138,7 +135,8 @@ class PrototypeInitialViewController: ViewController {
         textStackView.addArrangedSubview(headlineLabel)
         textStackView.addArrangedSubview(bodyLabel)
         
-        callToActionStackView.addArrangedSubview(colorThemeSegmentedControlContainerView)
+       if #available(iOS 13.0, *) {} else { callToActionStackView.addArrangedSubview(colorThemeSegmentedControlContainerView)
+        }
         let textButtonStackView = UIStackView([gitHubButton,
                                                designSystemButton],
                                               axis: .vertical,
@@ -146,7 +144,7 @@ class PrototypeInitialViewController: ViewController {
         callToActionStackView.addArrangedSubview(textButtonStackView)
         callToActionStackView.addArrangedSubview(startPrototypeButton)
         
-        callToActionStackView.topAnchor.constraint(equalTo: textScrollView.bottomAnchor, constant: 16).isActive = true
+        callToActionStackView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16).isActive = true
         
         
         // MARK: Setup static content
@@ -173,6 +171,7 @@ If you have any further question or feedback, please contact me by sending feedb
         view.backgroundColor = UIColor.accent().main
         
         // MARK: Update Theme for views
+        gitHubButton.setupTheme()
         designSystemButton.setupTheme()
         startPrototypeButton.setupTheme()
         colorThemeSegmentedControl.setupTheme()
@@ -253,4 +252,23 @@ extension PrototypeInitialViewController: UIViewControllerTransitioningDelegate 
         let transition =  PrototypeInitialViewControllerAnimatedTransition()
         return transition
     }
+}
+
+extension PrototypeInitialViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.selectionStyle = .none
+        cell.backgroundColor = .clear
+        cell.contentView.addSubview(textStackView, withConstaintEquals: [.topSafeArea,
+                                                                         .leadingMargin,
+                                                                         .trailingMargin,
+                                                                         .bottom])
+        return cell
+    }
+    
+    
 }

@@ -104,6 +104,11 @@ class SeatMapSelectionViewController: BookingViewController {
                              for: .touchUpInside)
     }
     
+    override func setupTheme() {
+        super.setupTheme()
+        seatMapSceneView.setupTheme()
+    }
+    
     private func setupStaticContent() {
         mainCallToActionButton.setTitle("Please Select a Seat")
     }

@@ -72,6 +72,7 @@ class BookingConfirmationViewController: BookingViewController {
     
     override func setupTheme() {
         super.setupTheme()
+        summaryPreviewView.setupTheme()
     }
     
     override func setupInteraction() {

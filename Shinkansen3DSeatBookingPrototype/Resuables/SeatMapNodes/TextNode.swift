@@ -61,6 +61,7 @@ class TextNode: SCNNode, Decodable {
         let text = try container.decode(String.self, forKey: .text)
         textAlignment = try container.decode(TextAlignment.self, forKey: .textAlignment)
         let font = try container.decode(FontModel.self, forKey: .font).font()
+        
         setupNode(text: text,
                   font: font,
                   textAlignment: textAlignment,
@@ -68,6 +69,10 @@ class TextNode: SCNNode, Decodable {
                   estimatedWidth: 1)
         position = try container.decode(SCNVector3.self, forKey: .position)
         eulerAngles = try container.decode(SCNVector3.self, forKey: .rotation)
+    }
+    
+    func setColor(to color: UIColor) {
+        textContentNode.geometry?.firstMaterial?.diffuse.contents = color
     }
     
     private func setupNode(text: String?,
@@ -79,11 +84,11 @@ class TextNode: SCNNode, Decodable {
         let text = SCNText(string: text, extrusionDepth: 0.005)
         text.firstMaterial?.diffuse.contents = color
         text.font = font
-        text.flatness = 0.6 / ( 36 / font.pointSize )
-        text.containerFrame = CGRect(x: 0, y: 0, width: estimatedWidth, height: font.pointSize)
+        text.flatness = 0.6 / ( 36 / text.font.pointSize )
+        text.containerFrame = CGRect(x: 0, y: 0, width: estimatedWidth, height: text.font.pointSize)
         textContentNode.geometry = text
         textContentNode.eulerAngles.x = -.pi / 2
-        textContentNode.position.z = Float(font.pointSize + text.font.capHeight / 2)
+        textContentNode.position.z = Float(text.font.pointSize + text.font.capHeight / 2)
         
         // make the text node aligned
         textContentNode.position.x = textAlignment.offsetBy(textContentNode)
@@ -106,7 +111,7 @@ private struct FontModel: Decodable {
     }
     
     func font() -> UIFont {
-        return UIFont.systemFont(ofSize: size, weight: weight)
+        return UIFont.systemFont(ofSize: size, weight: .black)
     }
     
     init(from decoder: Decoder) throws {

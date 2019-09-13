@@ -76,4 +76,21 @@ class ViewController: UIViewController {
     @objc func preferredColorThemeChanged(_ notification: Notification) {
         setupTheme()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if #available(iOS 13.0, *) {
+            if (UIApplication.shared.delegate)?
+                .window??
+                .traitCollection.userInterfaceStyle == .dark
+            {currentColorTheme = .dark}
+            else {currentColorTheme = .light}
+        }
+        
+        UIView.animate(withDuration: 0.175, animations: {
+            [weak self] in
+            self?.setupTheme()
+        })
+    }
 }

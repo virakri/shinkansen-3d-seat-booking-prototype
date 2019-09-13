@@ -32,7 +32,7 @@ class DesignSystemModel3DContentView: DesignSystemView {
     
     override var state: UIControl.State {
         didSet {
-            SceneKitAnimator.animateWithDuration(duration: 1, animations: {
+            SceneKitAnimator.animateWithDuration(duration: 0.35, animations: {
                 availableNodes.forEach {
                     $0.isEnabled = state != .disabled
                     $0.isSelected = state == .selected

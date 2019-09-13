@@ -30,7 +30,12 @@ class SeatMapSceneView: SCNView {
     /// The main node that contains all content which is repositioned according to the vertical pan gesture.
     private var contentNode: SCNNode! = SCNNode()
     
-    private var stationDirectionTextNode: SCNNode! = SCNNode()
+    private var stationDirectionTextNode: TextNode! =
+        TextNode(text: "",
+                 font: .systemFont(ofSize: 0.25, weight: .regular),
+                 textAlignment: .center,
+                 color: .black,
+                 estimatedWidth: 0)
     
     private var cameraNode: CameraNode! = CameraNode()
     
@@ -170,13 +175,27 @@ class SeatMapSceneView: SCNView {
         superview?.addMotionEffect(TiltNodeMotionEffect(node: cameraNode))
     }
     
+    func setupTheme() {
+        
+        subviews.forEach {
+            guard let headsUpBadgeControl = $0 as? HeadsUpBadgeControl else { return }
+            headsUpBadgeControl.setupTheme()
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            SceneKitAnimator.animateWithDuration(duration: 1, animations: {
+                self?.scene?.background.contents = currentColorTheme.componentColor.cardBackground
+                self?.stationDirectionTextNode.setColor(to: currentColorTheme.componentColor.secondaryText)
+            })
+        }
+    }
+    
     // MARK: Scene setup
     private func setupScene() {
     
         let hitTestFloorNode = HitTestFloorNode()
         
         let scene = SCNScene()
-        scene.background.contents = currentColorTheme.componentColor.cardBackground
         
         currectContentNodePosition = contentNode.position
         
@@ -272,20 +291,24 @@ class SeatMapSceneView: SCNView {
             guard !workItem.isCancelled else { return }
             self?.placeStaticNodes(using: seatClassEntity?.transformedModelEntities ?? [],
                                    isEnabled: isCurrentEntity)
-            DispatchQueue.main.async {
-                // Add bunch of nodes to contentNode
-                self?.contentNode?.addChildNode(containerNode)
-                // When current entity is loaded, will remove indicator view
-                if isCurrentEntity {
-                    self?.playInitialAnimation()
-                    self?.loadingActivityIndicatorView?.removeFromSuperview()
-                    self?.alpha = 0
-                    let duration: TimeInterval = TimeInterval(abs(self?.contentZPositionLimit.upperBound ?? 0) - abs(self?.contentZPositionLimit.lowerBound ?? 0)) / 100 + 0.5
-                    UIView.animate(withDuration: duration, animations: {
-                        self?.alpha = 1
-                    })
+            guard let scene = self?.scene else { return }
+            self?.prepare([scene.rootNode], completionHandler: { finished in
+                DispatchQueue.main.async {
+                    // Add bunch of nodes to contentNode
+                    self?.contentNode?.addChildNode(containerNode)
+                    // When current entity is loaded, will remove indicator view
+                    if isCurrentEntity {
+                        self?.playInitialAnimation()
+                        self?.loadingActivityIndicatorView?.removeFromSuperview()
+                        self?.alpha = 0
+                        let duration: TimeInterval = TimeInterval(abs(self?.contentZPositionLimit.upperBound ?? 0) - abs(self?.contentZPositionLimit.lowerBound ?? 0)) / 100 + 0.5
+                        UIView.animate(withDuration: duration, animations: {
+                            self?.alpha = 1
+                        })
+                    }
                 }
-            }
+            })
+
         }
         
         (isCurrentEntity ? currentEntityQueue : otherEntityQueue).async(execute: workItem)

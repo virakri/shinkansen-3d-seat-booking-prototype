@@ -8,8 +8,24 @@
 
 import UIKit
 
-var currentColorTheme: ColorTheme = ColorTheme(rawValue: UserDefaults.standard.integer(forKey: "colorTheme")) ?? .light {
+var currentColorTheme: ColorTheme = {
+    if #available(iOS 13.0, *) {
+        if (UIApplication.shared.delegate)?
+            .window??
+            .traitCollection.userInterfaceStyle == .dark
+        {
+            return .dark
+        }
+        else {
+            return .light
+        }
+    } else {
+        return ColorTheme(rawValue: UserDefaults.standard.integer(forKey: "colorTheme")) ?? .light
+    }
+    }()
+    {
     didSet {
+        print(currentColorTheme)
         if currentColorTheme != oldValue {
             UserDefaults.standard.set(currentColorTheme.rawValue, forKey: "colorTheme")
             NotificationCenter.default.post(name: .didColorThemeChange, object: nil)

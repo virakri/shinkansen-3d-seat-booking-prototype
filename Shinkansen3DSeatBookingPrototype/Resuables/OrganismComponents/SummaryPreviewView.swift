@@ -32,6 +32,15 @@ class SummaryPreviewView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupTheme() {
+        
+        DispatchQueue.main.async { [weak self] in
+            SceneKitAnimator.animateWithDuration(duration: 1, animations: {
+                self?.sceneView.scene?.background.contents = currentColorTheme.componentColor.cardBackground
+            })
+        }
+    }
+    
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         if let cameraControlNode = cameraControlNode {
@@ -46,8 +55,12 @@ class SummaryPreviewView: UIView {
             
             superview?.addMotionEffect(tiltNodeMotionEffect)
         }
-        
-        playInitialAnimation()
+        guard let scene = sceneView.scene else { return }
+        sceneView.prepare([scene.rootNode]) { finished in
+            DispatchQueue.main.async { [weak self] in
+                self?.playInitialAnimation()
+            }
+        }
     }
     
     private func setupView() {
