@@ -1,0 +1,11 @@
+{
+  "name": "shinkansen-3d-seat-booking-prototype-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "100% Web Mobile-First Port of Shinkansen 3D Seat Booking Prototype",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080",
+    "extract-assets": "swift scripts/extract_assets.swift"
+  }
+}

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>Shinkansen 3D Seat Booking Prototype</title>
+  <link rel="icon" type="image/png" href="assets/images/app-icon/Icon-60@3x.png" />
+  <link rel="apple-touch-icon" href="assets/images/app-icon/Icon-60@3x.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="app-root">
+
+    <!-- ==================================================================
+         1. PrototypeInitialViewController (Welcome Screen)
+         ================================================================== -->
+    <section id="initial-view" class="screen-layer">
+      <div class="initial-scroll-area">
+        <div class="initial-text-stack">
+          <h1 class="initial-headline text-large-title">Welcome to 3D Seat Booking Prototype!</h1>
+          <div class="initial-body text-body">
+            <p>Thank you for your interest in this prototype!</p>
+            <p>This prototype shows the potential usage of 3D visualization capability in interactive booking products.</p>
+            <p>As this is a prototype, the information showing is mock data which statically stores in the app. That means the information doesn't obtain from or send back to the server, and many functionalities don't fully work. (Particularly, the route picker and date picker in the first view.)</p>
+            <p>To start the prototype, please tap on "Start this Prototype" button, and to exit the prototype in the middle of the flow, shake your device and the exiting prompt will show up.</p>
+            <p>This prototype is an open-source project, so feel free to visit the project's GitHub repository to learn more or contribute. "GitHub Repository" button down there will direct you to the repository's site.</p>
+            <p>If you have any further question or feedback, please contact me by sending feedback via TestFlight feedback or direct message via Twitter @virakri.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="initial-cta-stack">
+        <!-- InitialViewColorThemeSegmentedControl -->
+        <div class="initial-theme-container">
+          <div class="initial-theme-segmented" id="initial-theme-segmented">
+            <!-- Light Mode Item -->
+            <div class="initial-theme-item selected" data-theme-mode="light">
+              <div class="initial-theme-icon-box light-box">
+                <svg viewBox="0 0 40 64" width="40" height="64" fill="currentColor" aria-hidden="true">
+                  <path d="M 6 9 L 19.136719 9 L 19.136719 13 L 6 13 Z"/>
+                  <path d="M 7 49 L 33 49 C 33.550781 49 34 49.449219 34 50 L 34 57 C 34 57.550781 33.550781 58 33 58 L 7 58 C 6.449219 58 6 57.550781 6 57 L 6 50 C 6 49.449219 6.449219 49 7 49 Z"/>
+                  <path d="M 6 20 L 27.636719 20 L 27.636719 22 L 6 22 Z"/>
+                  <path d="M 6 32 L 27.636719 32 L 27.636719 34 L 6 34 Z"/>
+                  <path d="M 6 26 L 24.546875 26 L 24.546875 28 L 6 28 Z"/>
+                </svg>
+              </div>
+              <span class="initial-theme-label text-caption1">Light Mode</span>
+              <div class="initial-theme-check" data-check-icon></div>
+            </div>
+
+            <!-- Dark Mode Item -->
+            <div class="initial-theme-item" data-theme-mode="dark">
+              <div class="initial-theme-icon-box dark-box">
+                <svg viewBox="0 0 40 64" width="40" height="64" fill="currentColor" aria-hidden="true">
+                  <path d="M 6 9 L 19.136719 9 L 19.136719 13 L 6 13 Z"/>
+                  <path d="M 7 49 L 33 49 C 33.550781 49 34 49.449219 34 50 L 34 57 C 34 57.550781 33.550781 58 33 58 L 7 58 C 6.449219 58 6 57.550781 6 57 L 6 50 C 6 49.449219 6.449219 49 7 49 Z"/>
+                  <path d="M 6 20 L 27.636719 20 L 27.636719 22 L 6 22 Z"/>
+                  <path d="M 6 32 L 27.636719 32 L 27.636719 34 L 6 34 Z"/>
+                  <path d="M 6 26 L 24.546875 26 L 24.546875 28 L 6 28 Z"/>
+                </svg>
+              </div>
+              <span class="initial-theme-label text-caption1">Dark Mode</span>
+              <div class="initial-theme-check" data-check-icon></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="initial-text-buttons">
+          <button type="button" id="btn-github" class="btn btn-initial-text text-button">GitHub Repository</button>
+          <button type="button" id="btn-design-system" class="btn btn-initial-text text-button">Explore Design System</button>
+        </div>
+
+        <button type="button" id="btn-start-prototype" class="btn btn-initial-contained text-button">Start the Prototype</button>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         2. NavigationController + Booking Flow Screens
+         ================================================================== -->
+    <section id="booking-nav-view" class="screen-layer hidden">
+      <!-- Top Error Message Banner (BookingViewController.showErrorMessage) -->
+      <div id="error-banner">
+        <div id="error-banner-text" class="text-caption1"></div>
+      </div>
+
+      <!-- InteractivePopOverlayView -->
+      <div id="interactive-pop-overlay">
+        <div class="pop-bg-fade" id="pop-bg-fade"></div>
+        <div class="pop-blob" id="pop-blob"></div>
+        <div class="pop-label text-button" id="pop-label">←  Previous</div>
+      </div>
+
+      <!-- Screen 2A: BookingCriteriaViewController -->
+      <div id="screen-criteria" class="booking-screen">
+        <div class="criteria-scroll-container">
+          <div class="criteria-main-stack">
+            <div class="criteria-header-stack" id="criteria-header-stack">
+              <h1 class="criteria-headline text-large-title">Reserve 
+Shinkansen 
+Tickets</h1>
+              <!-- Logo JR East (from Logo JR East.imageset/logo_jr_east.pdf) -->
+              <svg class="jr-logo-icon" viewBox="0 0 52 38" fill="currentColor" aria-label="JR East">
+                <path fill-rule="evenodd" d="M 8.074219 30.503906 L 9.597656 30.503906 L 9.597656 35.3125 C 9.597656 35.769531 9.550781 36.136719 9.460938 36.421875 C 9.367188 36.707031 9.210938 36.929688 8.988281 37.089844 C 8.765625 37.25 8.503906 37.359375 8.199219 37.417969 C 7.898438 37.476562 7.175781 37.503906 6.699219 37.503906 C 6.238281 37.503906 5.550781 37.484375 5.265625 37.449219 C 4.984375 37.410156 4.714844 37.335938 4.457031 37.21875 C 4.199219 37.101562 4.011719 36.921875 3.894531 36.675781 C 3.78125 36.433594 3.722656 36.117188 3.722656 35.726562 L 3.722656 34.292969 L 5.183594 34.292969 L 5.183594 34.8125 C 5.183594 35.085938 5.1875 35.707031 5.199219 35.816406 C 5.210938 35.925781 5.253906 36.03125 5.332031 36.136719 C 5.40625 36.238281 5.527344 36.304688 5.683594 36.328125 C 5.84375 36.355469 6.394531 36.367188 6.699219 36.367188 C 7.140625 36.367188 7.757812 36.300781 7.882812 36.167969 C 8.011719 36.035156 8.074219 35.75 8.074219 35.3125 Z M 11.742188 33.582031 L 13.96875 33.582031 C 14.539062 33.582031 14.917969 33.503906 15.097656 33.351562 C 15.277344 33.195312 15.367188 33.085938 15.367188 32.585938 C 15.367188 32.097656 15.285156 32 15.128906 31.855469 C 14.96875 31.714844 14.617188 31.644531 14.074219 31.644531 L 11.742188 31.644531 Z M 14.296875 34.722656 L 11.742188 34.722656 L 11.742188 37.449219 L 10.21875 37.449219 L 10.21875 30.503906 L 14.488281 30.503906 C 15.371094 30.523438 15.992188 30.683594 16.347656 30.980469 C 16.710938 31.28125 16.890625 31.707031 16.890625 32.480469 L 16.890625 32.742188 C 16.890625 32.890625 16.855469 33.050781 16.808594 33.230469 C 16.757812 33.410156 16.660156 33.550781 16.5625 33.652344 C 16.460938 33.753906 16.324219 33.847656 16.144531 33.929688 C 15.964844 34.011719 15.742188 34.070312 15.484375 34.109375 L 15.484375 34.144531 C 15.996094 34.183594 16.347656 34.324219 16.539062 34.570312 C 16.730469 34.820312 16.828125 35.203125 16.828125 35.722656 L 16.828125 37.449219 L 15.300781 37.449219 L 15.300781 35.722656 C 15.300781 35.0625 14.96875 34.726562 14.296875 34.722656 Z M 17.820312 34.457031 L 17.820312 33.324219 L 19.613281 33.324219 L 19.613281 34.457031 Z M 22.144531 31.644531 L 22.144531 33.375 L 25.859375 33.375 L 25.859375 34.46875 L 22.144531 34.46875 L 22.144531 36.308594 L 26.089844 36.308594 L 26.089844 37.449219 L 20.621094 37.449219 L 20.621094 30.503906 L 26.058594 30.503906 L 26.058594 31.644531 Z M 31.710938 35.125 L 30.34375 31.523438 L 30.324219 31.523438 L 28.96875 35.125 Z M 32.046875 36.136719 L 28.621094 36.136719 L 28.121094 37.449219 L 26.546875 37.449219 L 29.179688 30.503906 L 31.425781 30.503906 L 34.113281 37.449219 L 32.566406 37.449219 Z M 34.429688 35.234375 L 35.953125 35.234375 L 35.953125 35.5625 C 35.953125 35.941406 36.066406 36.179688 36.292969 36.273438 C 36.515625 36.367188 37.003906 36.414062 37.75 36.414062 C 38.421875 36.414062 38.851562 36.34375 39.042969 36.214844 C 39.234375 36.082031 39.328125 35.804688 39.328125 35.382812 C 39.328125 35.261719 39.316406 35.152344 39.296875 35.058594 C 39.277344 34.96875 39.25 34.890625 39.222656 34.828125 C 39.195312 34.765625 39.144531 34.714844 39.070312 34.671875 C 38.992188 34.628906 38.933594 34.597656 38.882812 34.574219 C 38.835938 34.550781 38.746094 34.535156 38.625 34.523438 C 38.5 34.511719 38.402344 34.503906 38.324219 34.496094 C 38.246094 34.488281 38.121094 34.484375 37.949219 34.480469 C 37.773438 34.476562 37.636719 34.472656 37.539062 34.46875 C 36.65625 34.417969 36.089844 34.367188 35.835938 34.308594 C 35.207031 34.175781 34.804688 33.859375 34.617188 33.367188 C 34.519531 33.105469 34.472656 32.789062 34.472656 32.414062 C 34.472656 32.148438 34.5 31.910156 34.5625 31.703125 C 34.621094 31.5 34.695312 31.324219 34.78125 31.1875 C 34.871094 31.046875 35 30.929688 35.167969 30.839844 C 35.339844 30.746094 35.5 30.675781 35.652344 30.621094 C 35.804688 30.566406 36.011719 30.53125 36.277344 30.503906 C 36.539062 30.480469 36.769531 30.464844 36.964844 30.460938 C 37.15625 30.453125 37.421875 30.449219 37.75 30.449219 C 38.03125 30.449219 38.257812 30.453125 38.429688 30.460938 C 38.597656 30.464844 38.800781 30.480469 39.035156 30.503906 C 39.273438 30.53125 39.460938 30.566406 39.597656 30.609375 C 39.734375 30.660156 39.882812 30.726562 40.042969 30.820312 C 40.199219 30.914062 40.320312 31.023438 40.402344 31.152344 C 40.484375 31.285156 40.550781 31.445312 40.609375 31.644531 C 40.664062 31.839844 40.691406 32.066406 40.691406 32.320312 L 40.691406 32.542969 L 39.167969 32.542969 L 39.167969 32.320312 C 39.167969 31.96875 39.078125 31.75 38.898438 31.667969 C 38.71875 31.585938 38.335938 31.542969 37.75 31.542969 C 36.996094 31.542969 36.515625 31.59375 36.308594 31.699219 C 36.097656 31.804688 35.996094 32.042969 35.996094 32.414062 C 35.996094 32.828125 36.085938 33.082031 36.269531 33.171875 C 36.453125 33.265625 36.945312 33.332031 37.742188 33.375 C 38.09375 33.394531 38.375 33.414062 38.582031 33.425781 C 38.789062 33.441406 39.015625 33.464844 39.253906 33.496094 C 39.492188 33.527344 39.679688 33.5625 39.804688 33.601562 C 39.933594 33.640625 40.066406 33.695312 40.207031 33.765625 C 40.347656 33.832031 40.449219 33.914062 40.511719 34.007812 C 40.578125 34.097656 40.640625 34.210938 40.703125 34.34375 C 40.769531 34.476562 40.808594 34.625 40.824219 34.792969 C 40.84375 34.960938 40.851562 35.15625 40.851562 35.382812 C 40.851562 35.773438 40.804688 36.097656 40.714844 36.355469 C 40.621094 36.617188 40.503906 36.820312 40.359375 36.972656 C 40.214844 37.125 40 37.242188 39.714844 37.320312 C 39.429688 37.398438 39.148438 37.453125 38.867188 37.472656 C 38.589844 37.496094 38.21875 37.503906 37.75 37.503906 L 37.519531 37.503906 C 37.222656 37.503906 36.988281 37.503906 36.816406 37.496094 C 36.640625 37.488281 36.433594 37.472656 36.1875 37.449219 C 35.9375 37.425781 35.742188 37.386719 35.597656 37.339844 C 35.453125 37.289062 35.296875 37.214844 35.128906 37.121094 C 34.957031 37.023438 34.828125 36.910156 34.742188 36.773438 C 34.652344 36.636719 34.578125 36.46875 34.519531 36.261719 C 34.457031 36.058594 34.429688 35.828125 34.429688 35.5625 Z M 45.074219 31.644531 L 45.074219 37.449219 L 43.550781 37.449219 L 43.550781 31.644531 L 41.222656 31.644531 L 41.222656 30.503906 L 47.402344 30.503906 L 47.402344 31.644531 Z M 0.101562 11.105469 L 7.082031 11.105469 L 7.082031 19.609375 C 7.082031 21.515625 11.839844 21.578125 12.917969 21.578125 C 14 21.578125 20.027344 21.515625 20.027344 19.101562 L 20.027344 0 L 45.921875 0 C 50.554688 0 51.386719 6.609375 51.386719 8.316406 C 51.386719 9.941406 50.621094 17.199219 46.304688 17.199219 L 43.613281 17.199219 L 51.394531 26.996094 L 42.65625 26.996094 L 30 11.105469 L 43.128906 11.105469 C 44.652344 11.105469 44.71875 9.011719 44.71875 8.570312 C 44.71875 8.125 44.652344 6.28125 43.191406 6.28125 L 26.886719 6.28125 L 26.886719 20.375 C 26.886719 26.59375 17.109375 27.800781 13.429688 27.800781 C 8.351562 27.800781 0.101562 26.089844 0.101562 20.820312 Z"/>
+              </svg>
+            </div>
+
+            <div class="criteria-input-stack">
+              <!-- Horizontal Station Stack -->
+              <div class="criteria-station-row" id="criteria-station-row">
+                <div class="criteria-station-col headline-with-container">
+                  <p class="section-footnote text-footnote">From</p>
+                  <div class="card-control station-card-control interactive" id="from-station-card">
+                    <div class="card-content">
+                      <div class="station-jp-label text-title1">東京</div>
+                      <div class="station-en-label text-caption1-alt">Tokyo</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="criteria-arrow-col">
+                  <!-- Icon Arrow Right (from Icon Arrow Right.imageset/icon_arrow_right.pdf) -->
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M 17.585938 13 L 13.292969 17.292969 C 12.902344 17.683594 12.902344 18.316406 13.292969 18.707031 C 13.683594 19.097656 14.316406 19.097656 14.707031 18.707031 L 20.707031 12.707031 C 21.097656 12.316406 21.097656 11.683594 20.707031 11.292969 L 14.707031 5.292969 C 14.316406 4.902344 13.683594 4.902344 13.292969 5.292969 C 12.902344 5.683594 12.902344 6.316406 13.292969 6.707031 L 17.585938 11 L 4 11 C 3.449219 11 3 11.449219 3 12 C 3 12.550781 3.449219 13 4 13 Z"/>
+                  </svg>
+                </div>
+
+                <div class="criteria-station-col headline-with-container">
+                  <p class="section-footnote text-footnote">Destination</p>
+                  <div class="card-control station-card-control interactive" id="to-station-card">
+                    <div class="card-content">
+                      <div class="station-jp-label text-title1">大宮</div>
+                      <div class="station-en-label text-caption1-alt">Ōmiya</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Date SegmentedControl -->
+              <div class="headline-with-container" id="criteria-date-group">
+                <p class="section-footnote text-footnote">Date</p>
+                <div class="segmented-control" id="date-segmented-control"></div>
+              </div>
+
+              <!-- Time SegmentedControl -->
+              <div class="headline-with-container" id="criteria-time-group">
+                <p class="section-footnote text-footnote">Time</p>
+                <div class="segmented-control" id="time-segmented-control"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-cta-wrapper" id="criteria-cta-wrap">
+          <button type="button" id="btn-search-tickets" class="btn btn-contained text-button">Search for Tickets</button>
+        </div>
+      </div>
+
+      <!-- Screen 2B: TrainSelectionViewController -->
+      <div id="screen-train-selection" class="booking-screen hidden">
+        <div class="booking-top-container">
+          <div class="top-nav-bar">
+            <button type="button" class="back-button-control" data-back-btn aria-label="Back">
+              <div class="shape-view">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path class="back-arrow-path" d="M 4 12 L 20 12 M 10 6 L 4 12 L 10 18"/>
+                </svg>
+              </div>
+            </button>
+            <div class="top-date-label text-headline" data-header-date></div>
+          </div>
+
+          <div class="header-route-info" data-header-route>
+            <div class="station-pair-view" data-station-pair>
+              <div class="headline-label-set align-left">
+                <div class="text-large-title" data-from-station>Tokyo</div>
+                <div class="text-subheadline hidden" data-from-time></div>
+              </div>
+              <div class="station-to-label text-subheadline">to</div>
+              <div class="headline-label-set align-right">
+                <div class="text-large-title" data-to-station>Ōmiya</div>
+                <div class="text-subheadline hidden" data-to-time></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-table-view" id="train-schedule-list"></div>
+      </div>
+
+      <!-- Screen 2C: SeatClassSelectionViewController -->
+      <div id="screen-seat-class" class="booking-screen hidden">
+        <div class="booking-top-container">
+          <div class="top-nav-bar">
+            <button type="button" class="back-button-control" data-back-btn aria-label="Back">
+              <div class="shape-view">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path class="back-arrow-path" d="M 4 12 L 20 12 M 10 6 L 4 12 L 10 18"/>
+                </svg>
+              </div>
+            </button>
+            <div class="top-date-label text-headline" data-header-date></div>
+          </div>
+
+          <div class="header-route-info" data-header-route>
+            <div class="station-pair-view" data-station-pair>
+              <div class="headline-label-set align-left">
+                <div class="text-large-title" data-from-station>Tokyo</div>
+                <div class="text-subheadline" data-from-time></div>
+              </div>
+              <div class="station-to-label text-subheadline">to</div>
+              <div class="headline-label-set align-right">
+                <div class="text-large-title" data-to-station>Ōmiya</div>
+                <div class="text-subheadline" data-to-time></div>
+              </div>
+            </div>
+
+            <div class="description-set-view" data-desc-set>
+              <div class="subheadline-label-set align-left">
+                <div class="sub-title text-headline" data-train-number></div>
+                <div class="sub-subtitle text-caption1" data-train-name></div>
+              </div>
+              <img id="seat-class-header-train-img" class="header-train-image" src="" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-table-view" id="seat-class-list"></div>
+      </div>
+
+      <!-- Screen 2D: SeatMapSelectionViewController -->
+      <div id="screen-seat-map" class="booking-screen hidden">
+        <div class="booking-top-container">
+          <div class="top-nav-bar">
+            <button type="button" class="back-button-control" data-back-btn aria-label="Back">
+              <div class="shape-view">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path class="back-arrow-path" d="M 4 12 L 20 12 M 10 6 L 4 12 L 10 18"/>
+                </svg>
+              </div>
+            </button>
+            <div class="top-date-label text-headline" data-header-date></div>
+          </div>
+
+          <div class="header-route-info" data-header-route>
+            <div class="station-pair-view" data-station-pair>
+              <div class="headline-label-set align-left">
+                <div class="text-large-title" data-from-station>Tokyo</div>
+                <div class="text-subheadline" data-from-time></div>
+              </div>
+              <div class="station-to-label text-subheadline">to</div>
+              <div class="headline-label-set align-right">
+                <div class="text-large-title" data-to-station>Ōmiya</div>
+                <div class="text-subheadline" data-to-time></div>
+              </div>
+            </div>
+
+            <div class="description-set-view" data-desc-set>
+              <div class="subheadline-label-set align-left">
+                <div class="sub-title text-headline" data-train-number></div>
+                <div class="sub-subtitle text-caption1" data-train-name></div>
+              </div>
+              <div class="subheadline-label-set align-center" id="seatmap-car-set">
+                <div class="sub-title text-headline" data-car-number></div>
+                <div class="sub-subtitle text-caption1" data-class-name></div>
+              </div>
+              <div class="subheadline-label-set align-right">
+                <div class="sub-title text-headline" data-price></div>
+                <div class="sub-subtitle text-caption1">&nbsp;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seatmap-main-content">
+          <div class="seatmap-large-card" id="seatmap-card">
+            <div class="card-content">
+              <div id="seatmap-heads-up-badge" class="heads-up-badge text-caption1"></div>
+              <div id="seatmap-canvas-container"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seatmap-cta-overlay">
+          <button type="button" id="btn-seatmap-cta" class="btn btn-contained text-button" disabled>Please Select a Seat</button>
+        </div>
+      </div>
+
+      <!-- Screen 2E: BookingConfirmationViewController -->
+      <div id="screen-confirmation" class="booking-screen hidden">
+        <div class="confirmation-top-bar">
+          <button type="button" class="back-button-control" data-back-btn aria-label="Back">
+            <div class="shape-view">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path class="back-arrow-path" d="M 4 12 L 20 12 M 10 6 L 4 12 L 10 18"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <div class="confirmation-card-container">
+          <div class="confirmation-large-card" id="confirmation-card">
+            <div id="summary-canvas-container"></div>
+          </div>
+        </div>
+
+        <div class="confirmation-details-stack">
+          <div class="top-date-label text-headline" data-header-date></div>
+
+          <div class="header-route-info" data-header-route>
+            <div class="station-pair-view" data-station-pair>
+              <div class="headline-label-set align-left">
+                <div class="text-large-title" data-from-station>Tokyo</div>
+                <div class="text-subheadline" data-from-time></div>
+              </div>
+              <div class="station-to-label text-subheadline">to</div>
+              <div class="headline-label-set align-right">
+                <div class="text-large-title" data-to-station>Ōmiya</div>
+                <div class="text-subheadline" data-to-time></div>
+              </div>
+            </div>
+
+            <div class="description-set-view" data-desc-set>
+              <div class="subheadline-label-set align-left">
+                <div class="sub-title text-headline" data-train-number></div>
+                <div class="sub-subtitle text-caption1" data-train-name></div>
+              </div>
+              <div class="subheadline-label-set align-center">
+                <div class="sub-title text-headline" data-car-number></div>
+                <div class="sub-subtitle text-caption1" data-class-name></div>
+              </div>
+              <div class="subheadline-label-set align-center">
+                <div class="sub-title text-headline" data-seat-number></div>
+                <div class="sub-subtitle text-caption1">&nbsp;</div>
+              </div>
+              <div class="subheadline-label-set align-right">
+                <div class="sub-title text-headline" data-price></div>
+                <div class="sub-subtitle text-caption1">&nbsp;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-cta-wrapper">
+          <button type="button" id="btn-purchase-ticket" class="btn btn-contained text-button">Purchase this Ticket</button>
+        </div>
+      </div>
+
+      <!-- iOS ActionSheet Alert (NavigationController.displayAlertToDismiss) -->
+      <div id="ios-alert-backdrop">
+        <div class="ios-action-sheet">
+          <div class="ios-sheet-group">
+            <div class="ios-sheet-header">
+              <p class="ios-sheet-title" id="ios-alert-title">You're about to exit the Prototype.</p>
+              <p class="ios-sheet-message" id="ios-alert-message">Are you sure you want to proceed this action?</p>
+            </div>
+            <button type="button" class="ios-sheet-btn destructive" id="btn-alert-exit">Exit</button>
+          </div>
+          <button type="button" class="ios-sheet-btn cancel" id="btn-alert-cancel">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         3. DesignSystemViewController (Modal Sheet)
+         ================================================================== -->
+    <aside id="design-system-modal">
+      <button type="button" id="btn-close-ds" class="ds-close-button" aria-label="Close">
+        <!-- symbol-close-button.pdf -->
+        <svg viewBox="0 0 22 22" width="22" height="22" fill="currentColor">
+          <path fill-rule="evenodd" d="M 11 22 C 4.925781 22 0 17.074219 0 11 C 0 4.925781 4.925781 0 11 0 C 17.074219 0 22 4.925781 22 11 C 22 17.074219 17.074219 22 11 22 Z M 11 9.585938 L 7.707031 6.292969 C 7.316406 5.902344 6.683594 5.902344 6.292969 6.292969 C 5.902344 6.683594 5.902344 7.316406 6.292969 7.707031 L 9.585938 11 L 6.292969 14.292969 C 5.902344 14.683594 5.902344 15.316406 6.292969 15.707031 C 6.683594 16.097656 7.316406 16.097656 7.707031 15.707031 L 11 12.414062 L 14.292969 15.707031 C 14.683594 16.097656 15.316406 16.097656 15.707031 15.707031 C 16.097656 15.316406 16.097656 14.683594 15.707031 14.292969 L 12.414062 11 L 15.707031 7.707031 C 16.097656 7.316406 16.097656 6.683594 15.707031 6.292969 C 15.316406 5.902344 14.683594 5.902344 14.292969 6.292969 Z"/>
+        </svg>
+      </button>
+
+      <!-- Tab 0: Components -->
+      <div class="ds-tab-pane" data-ds-pane="0">
+        <h2 class="ds-pane-title">Components</h2>
+        <div class="ds-pane-scroll" id="ds-components-scroll"></div>
+      </div>
+
+      <!-- Tab 1: Colors -->
+      <div class="ds-tab-pane hidden" data-ds-pane="1">
+        <h2 class="ds-pane-title">Colors</h2>
+        <div class="ds-pane-scroll" id="ds-colors-scroll"></div>
+      </div>
+
+      <!-- Tab 2: Text Styles -->
+      <div class="ds-tab-pane hidden" data-ds-pane="2">
+        <h2 class="ds-pane-title">Text Styles</h2>
+        <div class="ds-pane-scroll" id="ds-textstyles-scroll"></div>
+      </div>
+
+      <!-- Tab 3: Layer Styles -->
+      <div class="ds-tab-pane hidden" data-ds-pane="3">
+        <h2 class="ds-pane-title">Layer Styles</h2>
+        <div class="ds-pane-scroll" id="ds-layerstyles-scroll"></div>
+        <div class="ds-accessory-bar">
+          <div class="ios-segmented-control" id="ds-layer-state-seg">
+            <button type="button" class="ios-segment-btn active" data-layer-state="normal">Normal</button>
+            <button type="button" class="ios-segment-btn" data-layer-state="highlighted">Highlighted</button>
+            <button type="button" class="ios-segment-btn" data-layer-state="disabled">Disabled</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: 3D Assets -->
+      <div class="ds-tab-pane hidden" data-ds-pane="4">
+        <h2 class="ds-pane-title">3D Assets</h2>
+        <div class="ds-3d-stage">
+          <div id="ds-3d-canvas-container"></div>
+          <div class="ds-3d-nav-row">
+            <button type="button" class="btn btn-outlined text-outlined-button" id="ds-3d-prev">←</button>
+            <span class="text-caption1" id="ds-3d-node-label"></span>
+            <button type="button" class="btn btn-outlined text-outlined-button" id="ds-3d-next">→</button>
+          </div>
+        </div>
+        <div class="ds-accessory-bar">
+          <div class="ios-segmented-control" id="ds-3d-state-seg">
+            <button type="button" class="ios-segment-btn active" data-3d-state="normal">Normal</button>
+            <button type="button" class="ios-segment-btn" data-3d-state="highlighted">Highlighted</button>
+            <button type="button" class="ios-segment-btn" data-3d-state="selected">Selected</button>
+            <button type="button" class="ios-segment-btn" data-3d-state="disabled">Disabled</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="ds-tabbar" id="ds-tabbar">
+        <button type="button" class="ds-tab-btn active" data-ds-tab="0">Components</button>
+        <button type="button" class="ds-tab-btn" data-ds-tab="1">Colors</button>
+        <button type="button" class="ds-tab-btn" data-ds-tab="2">Text Styles</button>
+        <button type="button" class="ds-tab-btn" data-ds-tab="3">Layer Styles</button>
+        <button type="button" class="ds-tab-btn" data-ds-tab="4">3D Assets</button>
+      </nav>
+    </aside>
+
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -66,7 +66,8 @@ Here are some complimentary articles to learn more about this prototype.
 * ~~The Make of 3D Seat Map: Design Episode~~ (Coming Soon)
 
 ## Demo
-You can install this Shinkansen 3D seat booking prototype app on-the-fly via [Testflight](https://apps.apple.com/us/app/testflight/id899247664) by using [this link](https://testflight.apple.com/join/lABxMaaE).
+* **Live Web Demo (Mobile-First WebGL Port)**: **[https://agusibrahim.github.io/shinkansen-3d-seat-booking-prototype/](https://agusibrahim.github.io/shinkansen-3d-seat-booking-prototype/)** *(Source code in [`web/`](web/))*
+* **iOS TestFlight**: You can install this Shinkansen 3D seat booking prototype app on-the-fly via [Testflight](https://apps.apple.com/us/app/testflight/id899247664) by using [this link](https://testflight.apple.com/join/lABxMaaE).
 
 ## Compatibility 
 

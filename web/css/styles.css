@@ -1,0 +1,1616 @@
+:root {
+  /* Accent Colors (Colors.swift) */
+  --accent-main: #008B3F;
+  --accent-dark: #076632;
+  --accent-light: #4BB77C;
+
+  /* Basic Colors */
+  --basic-black: #000000;
+  --basic-off-black: #212121;
+  --basic-slightly-black: #242424;
+  --basic-dark-gray: #2E2E2E;
+  --basic-slightly-dark-gray: #3C3C3C;
+  --basic-gray: #909095;
+  --basic-off-white: #FAFAFA;
+  --basic-white: #FFFFFF;
+
+  /* Miscellaneous Colors */
+  --misc-dark-red: #882743;
+  --misc-red: #CB3A64;
+  --misc-light-red: #DD6F93;
+
+  /* Design Values (DesignValues.swift) */
+  --alpha-highlighted: 0.54;
+  --alpha-disabled: 0.25;
+  --radius-button: 8px;
+  --radius-segmented-item: 6px;
+  --radius-segmented-control: 12px;
+  --radius-card: 8px;
+  --radius-large-card: 20px;
+  --card-gutter: 16px;
+  --max-width: 540px;
+  --layout-margin: 20px;
+
+  /* Light Mode Component Defaults */
+  --comp-background: #FAFAFA;
+  --comp-card-background: #FFFFFF;
+  --comp-card-alt-background: #FFFFFF;
+  --comp-card-disabled-background: #FFFFFF;
+  --comp-primary-text: #000000;
+  --comp-secondary-text: #909095;
+  --comp-on-card-primary-text: #000000;
+  --comp-on-card-secondary-text: #909095;
+  --comp-call-to-action: #008B3F;
+  --comp-call-to-action-highlighted: #076632;
+  --comp-call-to-action-disabled: #909095;
+  --comp-content-on-cta: #FFFFFF;
+  --comp-error-background: #DD6F93;
+
+  /* Seat Class Colors (Light Mode) */
+  --seat-gran-class: #BB9E00;
+  --seat-green: #7ED321;
+  --seat-ordinary: #008B3F;
+
+  /* Shadow Styles (LayerStyle.swift) */
+  --shadow-card-normal: 0 5px 20px rgba(0, 0, 0, 0.12);
+  --shadow-card-highlighted: 0 2px 4px rgba(0, 0, 0, 0.10);
+  --shadow-card-disabled: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-segmented-selected: 0 5px 20px rgba(0, 0, 0, 0.12);
+
+  /* Animation Timing (AnimationStyle.swift) */
+  --ease-layer: cubic-bezier(0.2, 0, 0, 1);
+  --ease-transition: cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-theme="dark"] {
+  --comp-background: #212121;
+  --comp-card-background: #2E2E2E;
+  --comp-card-alt-background: #3C3C3C;
+  --comp-card-disabled-background: #242424;
+  --comp-primary-text: #FFFFFF;
+  --comp-secondary-text: #909095;
+  --comp-on-card-primary-text: #000000;
+  --comp-on-card-secondary-text: #909095;
+  --comp-call-to-action: #FFFFFF;
+  --comp-call-to-action-highlighted: rgba(255, 255, 255, 0.54);
+  --comp-call-to-action-disabled: #909095;
+  --comp-content-on-cta: #212121;
+  --comp-error-background: #CB3A64;
+
+  /* Seat Class Colors (Dark Mode) */
+  --seat-gran-class: #DFD494;
+  --seat-green: #BEF186;
+  --seat-ordinary: #AFE8C9;
+}
+
+@media (max-width: 320px) {
+  :root {
+    --layout-margin: 16px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--comp-background);
+  color: var(--comp-primary-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Text Styles (TextStyle.swift) */
+.text-large-title {
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: 0.2px;
+}
+@media (max-width: 320px) {
+  .text-large-title {
+    font-size: 28px;
+  }
+}
+
+.text-title1 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.text-headline {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.text-subheadline {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.text-body {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.text-button {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.text-outlined-button {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.text-footnote {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.text-caption1 {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.text-caption1-alt {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.text-caption2 {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* App Shell */
+#app-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--comp-background);
+  transition: background-color 0.175s ease;
+}
+
+.screen-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen-layer.hidden {
+  display: none !important;
+}
+
+/* ========================================================
+   1. PrototypeInitialViewController (Welcome Screen)
+   ======================================================== */
+#initial-view {
+  background-color: var(--accent-main);
+  color: var(--basic-white);
+  z-index: 20;
+  padding-top: max(env(safe-area-inset-top, 0px), 16px);
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+  justify-content: space-between;
+}
+
+.initial-scroll-area {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  justify-content: center;
+  padding: 20px var(--layout-margin) 0 var(--layout-margin);
+}
+
+.initial-text-stack {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.initial-headline {
+  color: var(--basic-white);
+  margin: 0;
+}
+
+.initial-body {
+  color: var(--basic-white);
+  margin: 0;
+}
+
+.initial-body p {
+  margin: 0 0 16.5px 0;
+}
+.initial-body p:last-child {
+  margin-bottom: 0;
+}
+
+.initial-cta-stack {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 16px var(--layout-margin) 0 var(--layout-margin);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+/* InitialViewColorThemeSegmentedControl */
+.initial-theme-container {
+  background-color: var(--accent-light);
+  border-radius: var(--radius-card);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.initial-theme-segmented {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: center;
+}
+
+.initial-theme-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.125s var(--ease-layer), opacity 0.125s var(--ease-layer);
+}
+
+.initial-theme-item:active {
+  transform: scale(0.98);
+  opacity: var(--alpha-highlighted);
+}
+
+.initial-theme-icon-box {
+  width: 40px;
+  height: 64px;
+  border-radius: 4px;
+  border: 1px solid var(--basic-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.125s var(--ease-layer), opacity 0.125s var(--ease-layer);
+}
+
+.initial-theme-icon-box.light-box {
+  background-color: var(--basic-white);
+  color: var(--accent-main);
+}
+
+.initial-theme-icon-box.dark-box {
+  background-color: var(--accent-main);
+  color: var(--basic-white);
+}
+
+.initial-theme-item:not(.selected) .initial-theme-icon-box {
+  opacity: var(--alpha-disabled);
+  transform: scale(0.8);
+}
+
+.initial-theme-item:not(.selected) .initial-theme-label {
+  opacity: var(--alpha-disabled);
+}
+
+@media (max-width: 320px) {
+  .initial-theme-icon-box {
+    display: none;
+  }
+}
+
+.initial-theme-label {
+  color: var(--basic-white);
+  white-space: nowrap;
+  transition: opacity 0.125s var(--ease-layer);
+}
+
+.initial-theme-check {
+  width: 24px;
+  height: 24px;
+  color: var(--basic-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.initial-text-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ========================================================
+   2. Molecule Components: Button, CardControl, SegmentedControl, BackButton
+   ======================================================== */
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.2s var(--ease-layer), opacity 0.2s var(--ease-layer), border-color 0.2s var(--ease-layer), color 0.2s var(--ease-layer);
+}
+
+.btn-contained {
+  padding: 18px;
+  border-radius: var(--radius-button);
+  background-color: var(--comp-call-to-action);
+  color: var(--comp-content-on-cta);
+  width: 100%;
+}
+.btn-contained:active:not(:disabled) {
+  background-color: var(--comp-call-to-action-highlighted);
+}
+.btn-contained:disabled {
+  background-color: var(--comp-call-to-action-disabled);
+  color: var(--comp-content-on-cta);
+  cursor: default;
+}
+
+.btn-outlined {
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--comp-call-to-action);
+  background-color: transparent;
+  color: var(--comp-call-to-action);
+}
+.btn-outlined:active:not(:disabled) {
+  opacity: var(--alpha-highlighted);
+}
+.btn-outlined:disabled {
+  border-color: var(--comp-call-to-action-disabled);
+  color: var(--comp-call-to-action-disabled);
+  cursor: default;
+}
+
+.btn-text {
+  padding: 18px;
+  background-color: transparent;
+  color: var(--comp-call-to-action);
+}
+.btn-text:active:not(:disabled) {
+  opacity: var(--alpha-highlighted);
+}
+
+/* InitialViewButton */
+.btn-initial-contained {
+  padding: 18px;
+  border-radius: var(--radius-button);
+  background-color: var(--basic-white);
+  color: var(--accent-main);
+  width: 100%;
+}
+.btn-initial-contained:active {
+  background-color: var(--accent-light);
+}
+
+.btn-initial-text {
+  padding: 12px;
+  background-color: transparent;
+  color: var(--basic-white);
+  width: 100%;
+}
+.btn-initial-text:active {
+  opacity: var(--alpha-highlighted);
+}
+
+/* CardControl */
+.card-control {
+  position: relative;
+  border-radius: var(--radius-card);
+  background-color: var(--comp-card-background);
+  box-shadow: var(--shadow-card-normal);
+  transition: transform 0.2s var(--ease-layer), box-shadow 0.2s var(--ease-layer), background-color 0.2s var(--ease-layer);
+}
+
+.card-control.card-alt {
+  background-color: var(--comp-card-alt-background);
+}
+
+.card-control.card-large {
+  border-radius: var(--radius-large-card);
+}
+
+.card-control > .card-content {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  padding: 12px 16px;
+  transition: opacity 0.2s var(--ease-layer), background-color 0.2s var(--ease-layer);
+}
+
+.card-control.card-large > .card-content {
+  padding: 20px 16px;
+}
+
+.card-control.interactive {
+  cursor: pointer;
+}
+
+.card-control.interactive:active,
+.card-control.is-highlighted {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-card-highlighted);
+}
+
+.card-control.interactive:active > .card-content,
+.card-control.is-highlighted > .card-content {
+  opacity: var(--alpha-highlighted);
+}
+
+.card-control.is-disabled {
+  background-color: var(--comp-card-disabled-background);
+  box-shadow: var(--shadow-card-disabled);
+  pointer-events: none;
+}
+
+/* HeadlineWithContainerView */
+.headline-with-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.headline-with-container > .section-footnote {
+  color: var(--comp-secondary-text);
+  margin: 0;
+}
+
+/* StationCardControl */
+.station-card-control {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 320px) {
+  .station-card-control {
+    height: 64px;
+  }
+}
+
+.station-card-control > .card-content {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.station-jp-label {
+  color: var(--comp-call-to-action);
+  text-align: center;
+}
+
+.station-en-label {
+  color: var(--comp-call-to-action);
+  text-align: center;
+}
+
+/* SegmentedControl & SegmentedItemControl */
+.segmented-control {
+  background-color: var(--comp-card-disabled-background);
+  border-radius: var(--radius-segmented-control);
+  box-shadow: var(--shadow-card-disabled);
+  padding: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--card-gutter);
+  width: 100%;
+}
+
+.segmented-item {
+  position: relative;
+  height: 56px;
+  border-radius: var(--radius-segmented-item);
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  transition: transform 0.2s var(--ease-layer), box-shadow 0.2s var(--ease-layer), background-color 0.2s var(--ease-layer);
+}
+
+.segmented-item.selected {
+  background-color: var(--comp-card-background);
+  box-shadow: var(--shadow-segmented-selected);
+}
+
+.segmented-item:not(.selected):not(.disabled):active,
+.segmented-item.is-highlighted:not(.selected) {
+  transform: scale(0.98);
+  opacity: var(--alpha-highlighted);
+}
+
+.segmented-item.disabled {
+  cursor: default;
+}
+
+.segmented-item .item-selected-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  transition: transform 0.2s var(--ease-layer), opacity 0.2s var(--ease-layer);
+}
+
+.segmented-item .item-title {
+  color: var(--comp-call-to-action);
+  white-space: nowrap;
+  text-align: center;
+  transition: transform 0.2s var(--ease-layer), opacity 0.2s var(--ease-layer);
+}
+
+.segmented-item .item-subtitle {
+  color: var(--comp-secondary-text);
+  white-space: nowrap;
+  text-align: center;
+  transition: transform 0.2s var(--ease-layer), opacity 0.2s var(--ease-layer);
+}
+
+.segmented-item .item-unselected-title {
+  position: absolute;
+  color: var(--comp-secondary-text);
+  white-space: nowrap;
+  text-align: center;
+  transition: transform 0.2s var(--ease-layer), opacity 0.2s var(--ease-layer);
+}
+
+.segmented-item.disabled .item-unselected-title {
+  text-decoration: line-through;
+}
+
+.segmented-item.selected .item-selected-stack {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.segmented-item.selected .item-unselected-title {
+  opacity: 0;
+  transform: scale(1) translateY(-8px);
+  pointer-events: none;
+}
+
+.segmented-item:not(.selected) .item-selected-stack {
+  opacity: 0;
+  transform: scale(0.8) translateY(8px);
+  pointer-events: none;
+}
+
+.segmented-item:not(.selected) .item-unselected-title {
+  opacity: 1;
+  transform: scale(0.8) translateY(0);
+}
+
+/* ========================================================
+   3. BookingViewController & Child Screens
+   ======================================================== */
+#booking-nav-view {
+  z-index: 10;
+  background-color: var(--comp-background);
+}
+
+.booking-screen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: max(env(safe-area-inset-top, 0px), 12px);
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+  background-color: var(--comp-background);
+  overflow: hidden;
+}
+
+.booking-screen.hidden {
+  display: none !important;
+}
+
+/* Error Banner (BookingViewController.showErrorMessage) */
+#error-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--comp-error-background);
+  color: var(--comp-primary-text);
+  padding: max(env(safe-area-inset-top, 0px), 12px) var(--layout-margin) 16px var(--layout-margin);
+  display: flex;
+  justify-content: center;
+  transform: translateY(-100%);
+  transition: transform 0.2s var(--ease-layer);
+  pointer-events: none;
+}
+
+#error-banner.visible {
+  transform: translateY(0);
+}
+
+#error-banner-text {
+  max-width: var(--max-width);
+  width: 100%;
+  text-align: center;
+}
+
+/* BookingCriteriaViewController */
+.criteria-scroll-container {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px var(--layout-margin) 16px var(--layout-margin);
+}
+
+.criteria-main-stack {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+@media (max-width: 320px), (max-height: 640px) {
+  .criteria-main-stack {
+    gap: 24px;
+  }
+}
+
+.criteria-header-stack {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.criteria-headline {
+  color: var(--comp-call-to-action);
+  margin: 0;
+  white-space: pre-line;
+}
+
+.jr-logo-icon {
+  width: 52px;
+  height: 38px;
+  color: var(--comp-call-to-action);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.criteria-input-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.criteria-station-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+
+.criteria-station-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.criteria-arrow-col {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--comp-call-to-action);
+  flex-shrink: 0;
+}
+@media (max-width: 320px) {
+  .criteria-arrow-col {
+    height: 64px;
+  }
+}
+
+.bottom-cta-wrapper {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 var(--layout-margin);
+  flex-shrink: 0;
+  z-index: 15;
+}
+
+/* Shared Booking Header (BackButton + Date + HeaderRouteInformationView) */
+.booking-top-container {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 var(--layout-margin);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  z-index: 12;
+}
+
+.top-nav-bar {
+  position: relative;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button-control {
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--comp-call-to-action);
+  z-index: 15;
+}
+
+.back-button-control .shape-view {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.125s var(--ease-layer), opacity 0.125s var(--ease-layer);
+}
+
+.back-button-control:active .shape-view {
+  opacity: var(--alpha-highlighted);
+  transform: translateX(6px);
+}
+
+.top-date-label {
+  color: var(--comp-primary-text);
+  text-align: center;
+}
+
+/* HeaderRouteInformationView */
+.header-route-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  position: relative;
+}
+
+/* StationPairView */
+.station-pair-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  will-change: transform;
+}
+
+.headline-label-set {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.headline-label-set.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+.headline-label-set.align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.station-to-label {
+  color: var(--comp-secondary-text);
+  text-align: center;
+}
+
+/* DescriptionSetView */
+.description-set-view {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  min-height: 36px;
+  will-change: transform;
+}
+
+.subheadline-label-set {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.subheadline-label-set.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+.subheadline-label-set.align-center {
+  align-items: center;
+  text-align: center;
+}
+.subheadline-label-set.align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.subheadline-label-set .sub-title {
+  color: var(--comp-primary-text);
+}
+.subheadline-label-set .sub-subtitle {
+  color: var(--comp-secondary-text);
+  min-height: 17px;
+}
+
+/* Train image in SeatClassSelectionViewController header */
+.header-train-image {
+  height: 36px;
+  width: 216px;
+  object-fit: contain;
+  object-position: left bottom;
+  pointer-events: none;
+}
+
+/* Main TableView List Area */
+.booking-table-view {
+  width: 100%;
+  max-width: var(--max-width);
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px var(--layout-margin) 24px var(--layout-margin);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.booking-table-view::-webkit-scrollbar {
+  display: none;
+}
+
+/* TrainScheduleTableViewCell */
+.train-schedule-cell {
+  padding-top: 4px;
+  padding-bottom: 12px;
+  width: 100%;
+}
+
+.train-schedule-card > .card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 12px 16px;
+}
+
+.train-cell-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.label-set-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.label-set-view.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+.label-set-view.align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.label-set-view .ls-title {
+  color: var(--comp-primary-text);
+}
+.label-set-view .ls-subtitle {
+  color: var(--comp-secondary-text);
+}
+
+.train-cell-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.seat-class-icons-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.seat-class-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.seat-class-icon.size-small {
+  width: 16px;
+  height: 16px;
+}
+.seat-class-icon.size-regular {
+  width: 24px;
+  height: 24px;
+}
+.seat-class-icon.class-granClass {
+  color: var(--seat-gran-class);
+}
+.seat-class-icon.class-green {
+  color: var(--seat-green);
+}
+.seat-class-icon.class-ordinary {
+  color: var(--seat-ordinary);
+}
+.seat-class-icon.unavailable {
+  color: var(--comp-call-to-action-disabled);
+  opacity: var(--alpha-disabled);
+}
+
+.train-cell-price {
+  color: var(--comp-secondary-text);
+}
+
+/* In TrainScheduleTableViewCell.swift:
+   cardView.centerXAnchor.constraint(equalTo: trainImageView.leadingAnchor, constant: 32)
+   trainImageView.topAnchor.constraint(equalTo: headerTextDetailStackView.bottomAnchor, constant: 8)
+   trainImageView.bottomMargin
+   trainImageView.width = height * 6 */
+.train-cell-image {
+  position: absolute;
+  left: calc(50% - 32px);
+  bottom: 12px;
+  height: 44px;
+  width: 264px;
+  object-fit: contain;
+  object-position: left bottom;
+  pointer-events: none;
+  transition: transform 0.55s var(--ease-transition);
+}
+
+/* SeatClassTableViewCell */
+.seat-class-cell {
+  padding-top: 4px;
+  padding-bottom: 12px;
+  width: 100%;
+}
+
+.seat-class-card > .card-content {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 8px 12px 16px;
+  min-height: 108px;
+}
+
+.seat-class-left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.seat-class-icon-wrap {
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  height: 33px;
+}
+
+.seat-class-text-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.seat-class-desc {
+  color: var(--comp-secondary-text);
+  margin: 0;
+}
+
+.seat-class-image {
+  height: 92px;
+  width: calc(92px * 0.8);
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+/* ========================================================
+   4. SeatMapSelectionViewController (3D Seat Map Card)
+   ======================================================== */
+.seatmap-main-content {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.seatmap-large-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  border-radius: var(--radius-large-card);
+  background-color: var(--comp-card-background);
+  box-shadow: var(--shadow-card-normal);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.seatmap-large-card > .card-content {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#seatmap-canvas-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  touch-action: none;
+  cursor: grab;
+}
+#seatmap-canvas-container:active {
+  cursor: grabbing;
+}
+
+#seatmap-canvas-container canvas,
+#summary-canvas-container canvas,
+#ds-3d-canvas-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.seatmap-cta-overlay {
+  position: absolute;
+  bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 var(--layout-margin);
+  z-index: 25;
+}
+
+/* HeadsUpBadgeControl */
+.heads-up-badge {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  opacity: 0;
+  z-index: 20;
+  background-color: var(--comp-card-alt-background);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-normal);
+  padding: 12px 16px;
+  color: var(--comp-secondary-text);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-transition), opacity 0.3s var(--ease-transition);
+}
+
+.heads-up-badge.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.heads-up-badge:active {
+  transform: translate(-50%, 0) scale(0.98);
+}
+
+/* ========================================================
+   5. BookingConfirmationViewController (Summary Preview)
+   ======================================================== */
+#screen-confirmation {
+  padding-top: 0;
+}
+
+.confirmation-top-bar {
+  position: absolute;
+  top: max(env(safe-area-inset-top, 0px), 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--max-width);
+  height: 44px;
+  padding: 0 var(--layout-margin);
+  z-index: 30;
+  pointer-events: none;
+}
+.confirmation-top-bar .back-button-control {
+  left: calc(var(--layout-margin) - 10px);
+  pointer-events: auto;
+}
+
+.confirmation-card-container {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  max-height: min(100vw, 420px);
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmation-large-card {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-large-card);
+  background-color: var(--comp-card-background);
+  box-shadow: var(--shadow-card-normal);
+  overflow: hidden;
+}
+
+#summary-canvas-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  touch-action: none;
+  cursor: ew-resize;
+}
+
+.confirmation-details-stack {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 20px var(--layout-margin) 0 var(--layout-margin);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+/* ========================================================
+   6. DesignSystemViewController (Modal Sheet)
+   ======================================================== */
+#design-system-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background-color: var(--comp-background);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.4s var(--ease-transition);
+}
+
+#design-system-modal.open {
+  transform: translateY(0);
+}
+
+.ds-close-button {
+  position: absolute;
+  top: calc(max(env(safe-area-inset-top, 0px), 12px) + 16px);
+  right: var(--layout-margin);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--comp-primary-text);
+  cursor: pointer;
+  z-index: 60;
+}
+.ds-close-button:active {
+  opacity: var(--alpha-highlighted);
+}
+
+.ds-tab-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: calc(max(env(safe-area-inset-top, 0px), 12px) + 16px);
+}
+.ds-tab-pane.hidden {
+  display: none !important;
+}
+
+.ds-pane-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--comp-primary-text);
+  padding: 0 var(--layout-margin);
+  margin: 0 0 8px 0;
+  flex-shrink: 0;
+}
+
+.ds-pane-scroll {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px var(--layout-margin) 24px var(--layout-margin);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ds-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-block-header {
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: #AAAAAA;
+}
+
+.ds-color-pill {
+  height: 64px;
+  border-radius: 32px;
+  border: 0.5px solid #000000;
+}
+
+.ds-layer-box-wrap {
+  height: 128px;
+  padding: 12px 0;
+}
+
+.ds-layer-box {
+  width: 100%;
+  height: 100%;
+  transition: all 0.35s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.ds-accessory-bar {
+  padding: 8px var(--layout-margin);
+  flex-shrink: 0;
+}
+
+.ios-segmented-control {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--comp-call-to-action);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ios-segment-btn {
+  flex: 1;
+  padding: 6px 4px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  background: transparent;
+  color: var(--comp-call-to-action);
+  border: none;
+  border-right: 1px solid var(--comp-call-to-action);
+  cursor: pointer;
+}
+.ios-segment-btn:last-child {
+  border-right: none;
+}
+.ios-segment-btn.active {
+  background-color: var(--comp-call-to-action);
+  color: var(--comp-content-on-cta);
+}
+
+.ds-3d-stage {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#ds-3d-canvas-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.ds-3d-nav-row {
+  position: absolute;
+  bottom: 12px;
+  left: var(--layout-margin);
+  right: var(--layout-margin);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  pointer-events: none;
+}
+.ds-3d-nav-row button {
+  pointer-events: auto;
+}
+
+.ds-tabbar {
+  height: calc(48px + env(safe-area-inset-bottom, 0px));
+  padding: 0 var(--layout-margin) env(safe-area-inset-bottom, 0px) var(--layout-margin);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 0.5px solid rgba(144, 144, 149, 0.2);
+  flex-shrink: 0;
+}
+
+.ds-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 12px 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--comp-call-to-action);
+  opacity: 0.33;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.ds-tab-btn.active {
+  opacity: 1;
+}
+
+/* ========================================================
+   7. InteractivePopOverlayView & iOS ActionSheet Alert
+   ======================================================== */
+#interactive-pop-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 45;
+  overflow: hidden;
+}
+
+.pop-bg-fade {
+  position: absolute;
+  inset: 0;
+  background-color: var(--comp-background);
+  opacity: 0;
+}
+
+.pop-blob {
+  position: absolute;
+  left: -32px;
+  top: 50%;
+  width: 112.5vh;
+  height: 112.5vh;
+  margin-top: -56.25vh;
+  margin-left: -56.25vh;
+  border-radius: 0 50% 50% 0;
+  background-color: var(--comp-call-to-action);
+  opacity: 0;
+  transform: scale(0, 1);
+}
+
+.pop-label {
+  position: absolute;
+  left: var(--layout-margin);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--comp-content-on-cta);
+  opacity: 0;
+  transition: transform 0.2s var(--ease-layer), opacity 0.2s var(--ease-layer);
+}
+
+/* iOS ActionSheet / Alert */
+#ios-alert-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px max(var(--layout-margin), 10px) max(env(safe-area-inset-bottom, 10px), 10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+#ios-alert-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ios-action-sheet {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateY(100%);
+  transition: transform 0.3s var(--ease-transition);
+}
+#ios-alert-backdrop.visible .ios-action-sheet {
+  transform: translateY(0);
+}
+
+.ios-sheet-group {
+  background-color: rgba(248, 248, 248, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+[data-theme="dark"] .ios-sheet-group {
+  background-color: rgba(44, 44, 46, 0.92);
+}
+
+.ios-sheet-header {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.3);
+}
+.ios-sheet-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8E8E93;
+  margin: 0 0 4px 0;
+}
+.ios-sheet-message {
+  font-size: 13px;
+  font-weight: 400;
+  color: #8E8E93;
+  margin: 0;
+}
+
+.ios-sheet-btn {
+  width: 100%;
+  padding: 18px 16px;
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+.ios-sheet-btn:active {
+  background-color: rgba(128, 128, 128, 0.15);
+}
+.ios-sheet-btn.destructive {
+  color: #FF3B30;
+  font-weight: 400;
+}
+.ios-sheet-btn.cancel {
+  color: #007AFF;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.96);
+  border-radius: 14px;
+}
+[data-theme="dark"] .ios-sheet-btn.cancel {
+  background-color: rgba(44, 44, 46, 0.96);
+  color: #0A84FF;
+}
+
+/* Loading Spinner (UIActivityIndicatorView .whiteLarge) */
+.ios-spinner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  pointer-events: none;
+}
+
+.ios-spinner {
+  width: 37px;
+  height: 37px;
+  position: relative;
+}
+.ios-spinner div {
+  transform-origin: 18.5px 18.5px;
+  animation: ios-spin 1s linear infinite;
+}
+.ios-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 17px;
+  width: 3px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--comp-secondary-text);
+}
+.ios-spinner div:nth-child(1) { transform: rotate(0deg); animation-delay: -0.916s; }
+.ios-spinner div:nth-child(2) { transform: rotate(30deg); animation-delay: -0.833s; }
+.ios-spinner div:nth-child(3) { transform: rotate(60deg); animation-delay: -0.75s; }
+.ios-spinner div:nth-child(4) { transform: rotate(90deg); animation-delay: -0.666s; }
+.ios-spinner div:nth-child(5) { transform: rotate(120deg); animation-delay: -0.583s; }
+.ios-spinner div:nth-child(6) { transform: rotate(150deg); animation-delay: -0.5s; }
+.ios-spinner div:nth-child(7) { transform: rotate(180deg); animation-delay: -0.416s; }
+.ios-spinner div:nth-child(8) { transform: rotate(210deg); animation-delay: -0.333s; }
+.ios-spinner div:nth-child(9) { transform: rotate(240deg); animation-delay: -0.25s; }
+.ios-spinner div:nth-child(10) { transform: rotate(270deg); animation-delay: -0.166s; }
+.ios-spinner div:nth-child(11) { transform: rotate(300deg); animation-delay: -0.083s; }
+.ios-spinner div:nth-child(12) { transform: rotate(330deg); animation-delay: 0s; }
+
+@keyframes ios-spin {
+  0% { opacity: 1; }
+  100% { opacity: 0.15; }
+}
